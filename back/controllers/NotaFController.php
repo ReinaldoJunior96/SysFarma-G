@@ -135,7 +135,7 @@ class NotaFController
                 'quantidade' => $v->qtde_compra,
                 'lote' => "",
                 'validade' => "",
-                'nf' => $idnf
+                'notaFiscal' => $idnf
             );
             self::addProdNf($produto);
         }
@@ -154,7 +154,7 @@ class NotaFController
             $sql->bindValue(':qtde_nf', $produto_nf['quantidade']);
             $sql->bindValue(':lote_e', $produto_nf['lote']);
             $sql->bindValue(':valiadde_prod_nf', $produto_nf['validade']);
-            $sql->bindValue(':id_nf', $produto_nf['nf']);
+            $sql->bindValue(':id_nf', $produto_nf['notaFiscal']);
             $sql->execute();
             $produto = $produto_nf['produto'];
             $qtde_antiga_sql = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
@@ -335,7 +335,7 @@ class NotaFController
                 "INSERT INTO tbl_nf_lotes(id_nf,id_prod,lote,validade) 
                 VALUES (:id_nf,:id_prod,:lote,:validade)";
             $sql = $this->conn->prepare($query_Sql);
-            $sql->bindValue(':id_nf', $produto['nf']);
+            $sql->bindValue(':id_nf', $produto['notaFiscal']);
             $sql->bindValue(':id_prod', $produto['produto']);
             $sql->bindValue(':lote', $produto['lote']);
             $sql->bindValue(':validade', $produto['validade']);

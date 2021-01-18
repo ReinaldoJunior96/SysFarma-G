@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -39,28 +43,37 @@
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                        <th>Nota Fiscal</th>
-                        <th>Ordem</th>
-                        <th>Fornecedor</th>
-                        <th>Data de Emissão</th>
-                        <th>Data de Lançamento</th>
-                        <th>Valor</th>
+                    <tr class="">
+                        <th class="">Nota Fiscal</th>
+                        <th class="">Nº Ordem</th>
+                        <th class="">Fornecedor</th>
+                        <th class="">Data de Emissão</th>
+                        <th class="">Data Lançamento</th>
+                        <th class="">Valor</th>
                         <th></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>000.017</td>
-                        <td><a href="">176</a></td>
-                        <td>MINI -BOX- MA EIRELI</td>
-                        <td>09/11/2020</td>
-                        <td>09/11/2020</td>
-                        <td>R$ 1.115,00</td>
-                        <td class="text-center"><a href=""><i class="fas fa-pen-square"></i></a></td>
-                        <td class="text-center"><a href=""><i class="fas fa-window-close"></i></a></td>
-                    </tr>
+                    <?php
+                    require_once ('../../back/controllers/NotaFController.php');
+                    $view_nf = new NotaFController();
+                    $allnf = $view_nf->index();
+                    foreach ($allnf as $v) {
+                        $data_emisao = date_create($v->data_emissao);
+                        $data_lancamento = date_create($v->data_lancamento);
+                        ?>
+                        <tr>
+                            <td class=''><a class='text-primary' href=n_produtos_nota_fiscal.php?idnf="<?=$v->id_nf?>><?=$v->numero_nf?></a></td>
+                            <td><a class='text-primary' href="../compra/n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"</a><?=$v->id_ordem?></td>
+                            <td><?= $v->fornecedor ?></td>
+                            <td><?= date_format($data_emisao, 'd/m/Y') ?> </td>
+                            <td><?= date_format($data_lancamento, 'd/m/Y') ?></td>
+                            <td>R$ <?= $v->valor_nf ?></td>
+                            <td><a href=e_nota_fiscal.php?idnf="<?=$v->id_nf?>><i class='fas fa-pen fa-1x color-icon-nf text-success'></i></a></td>
+                            <td><a href=../../back/response/notaf/d_nf_r.php?idnf="<?=$v->id_nf?>><i class='fas fa-trash-alt fa-1x text-danger'></i></a></td>
+                        </tr>
+                    <?php } ?>
                 </table>
             </div>
             <!-- /.card-body -->
@@ -90,5 +103,11 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
+
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../dist/js/myjs.js"></script>
 </body>
 </html>

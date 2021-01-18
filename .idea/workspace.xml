@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/estoque/farmacia.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminLTE-3.0.5/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/AdminLTE-3.0.5/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/relatorio/n_relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/n_relatorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminLTE-3.0.5/plugins/pdfmake/vfs_fonts.js" beforeDir="false" afterPath="$PROJECT_DIR$/AdminLTE-3.0.5/plugins/pdfmake/vfs_fonts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/NotaFController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/NotaFController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/estoque/d_produto.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/estoque/d_produto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/estoque/estoque_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/estoque/estoque_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/lotes_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/lotes_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/pdfmake/vfs_fonts.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pdfmake/vfs_fonts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/farmacia/nv_estoque.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/nf/n_nota_fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/notaF.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/n_saida_setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/s_data_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/s_data_setor.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,10 +75,23 @@
       <workItem from="1610364826939" duration="100000" />
       <workItem from="1610930188160" duration="492000" />
       <workItem from="1610930749370" duration="1572000" />
+      <workItem from="1610968133937" duration="116000" />
+      <workItem from="1610968256425" duration="10506000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

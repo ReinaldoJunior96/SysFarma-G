@@ -1,3 +1,24 @@
+<?php
+session_start();
+if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
+    header("location: login.php");
+}
+require_once('../../back/controllers/configCRUD.php');
+$s = new ConfigCRUD();
+require_once('../../back/controllers/EstoqueController.php');
+$view_estoque = new EstoqueController();
+$all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
+switch ($_SESSION['user']) {
+    case 'farma.hvu':
+        $permissao = 'disabled';
+        break;
+    case 'compras.hvu':
+        $permissao = '';
+        break;
+    default:
+        $permissao = '';
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -48,30 +69,34 @@
     <div class="content-wrapper">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Registro de saída para o setor "    " na data 07/01/2021</h3>
+                <?php $date = date_create($_GET['data_s']); ?>
+                <h3 class="card-title">Setor: <?= str_replace("-", " ", $_GET['nomesetor']) ?> -
+                    Data: <?= date_format($date, 'd/m/Y') ?></h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Produto</th>
-                        <th></th>
-                        <th>Em Estoque</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>CATETER DJ(DJ3016H)3FRX16CM C/FIO GUIA 18X150CM(NITINOL)</td>
-                        <td>
-                            <form role="form">
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                       placeholder="Quantidade solicitada">
-                            </form>
-                        </td>
-                        <td>34</td>
-                    </tr>
-                </table>
+                <form method="POST" action="../../back/response/saidasetor/n_saida_r.php">
+                    <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
+                    <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
+                    <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
+                    <?php foreach ($all_estoque as $value) { ?>
+                        <input type="hidden" name="produto_s[]" value="<?= $value->id_estoque ?>">
+                        <div class="form-group row">
+                            <label for="inputEmail3"
+                                   class="col-sm-5 col-form-label text-left font-weight-light"><?= $value->produto_e ?></label>
+                            <div class="col-sm-2">
+                                <input type="number" class="form-control" name="saidaqte_p[]">
+                            </div>
+                            <label for="inputEmail3"
+                                   class="col-sm-2 col-form-label text-left font-weight-normal">Em
+                                Estoque: <?= $value->quantidade_e ?></label>
+                        </div>
+                        <hr>
+                    <?php } ?>
+                    <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Registrar
+                        Saída
+                        <i class="far fa-edit ml-2"></i>
+                </form>
             </div>
             <!-- /.card-body -->
         </div>

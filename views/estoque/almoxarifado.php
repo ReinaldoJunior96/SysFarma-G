@@ -35,9 +35,15 @@ switch ($_SESSION['user']) {
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../dist/css/mycss.css">
+    <style>
+        #tabela {
+            display: none;
+        }
+    </style>
 </head>
-<body class="hold-transition sidebar-mini roboto-condensed">
+<body class="hold-transition sidebar-mini">
 <div class="wrapper">
+
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -46,9 +52,6 @@ switch ($_SESSION['user']) {
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
-        <form class="form-inline">
-            <a disabled="" class="nav-link">Cadastro & Visualização de Fornecedores</a>
-        </form>
     </nav>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
@@ -57,98 +60,96 @@ switch ($_SESSION['user']) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-green">
+            <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i></h3>
+                    <h3 class="card-title"><i class="fas fa-file-invoice"></i>
+                        Estoque Almoxarifado
+                    </h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="../../back/response/fornecedores/fornecedores_n.php">
+                <form role="form" method="POST" action="../../back/response/estoque/estoque_r.php">
                     <input type="hidden" name="new" value="1">
+                    <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
+                    <input type="hidden" name="tipo" value="material">
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nome</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                   placeholder="Qual nome do forncedor?" name="fornecedor">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Nome Comercial</label>
+                                <input type='text' class='form-control' name='produto_e' placeholder=''>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Apresentação</label>
+                                <input type='text' class='form-control ' name='apresentacao' placeholder=''>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Telefone</label>
-                                    <input type="text" class="form-control" placeholder="Número p/ contato"
-                                           name="telefone_fornecedor">
-                                </div>
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">Estoque Mínimo</label>
+                                <input type="number" class="form-control" name="estoque_minimo_e" id="inputEmail4"
+                                       placeholder="">
                             </div>
-                            <div class="col-sm-4">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>E-mail</label>
-                                    <input type="text" class="form-control" placeholder="E-mail p/ contato"
-                                           name="email_fornecedor">
-                                </div>
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">Quantidade</label>
+                                <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
+                                    <input type="number" class="form-control" name="quantidade_e" id="inputEmail4">
+                                <?php } else { ?>
+                                    <input type='text' class='form-control ' name='valor_un' placeholder=''
+                                           disabled>
+                                <?php } ?>
                             </div>
-                            <div class="col-sm-4">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>CPF/CNPJ</label>
-                                    <input type="text" class="form-control" placeholder="Identificação do fornecedor"
-                                           name="cnpj_fornecedor">
-                                </div>
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">Valor Unitário</label>
+                                <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
+                                    <input type='text' class='form-control ' name='valor_un' placeholder='R$'>
+                                    <small>Utilize ponto no lugar da vírgula</small>
+                                <?php } else { ?>
+                                    <input type='text' class='form-control ' name='valor_un' placeholder=''
+                                           disabled>
+                                <?php } ?>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Endereço</label>
-                            <textarea class="form-control" rows="3" placeholder="Onde ele se localiza?"
-                                      name="endereco_fornecedor"></textarea>
                         </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="submit" class="btn btn-primary col-md-2">Cadastrar</button>
                     </div>
                 </form>
             </div>
             <!-- /.card -->
-            <div class="card" id="tabela" style="display: none">
+            <div class="card" id="tabela">
                 <div class="card-header">
-                    <h3 class="card-title">Fornecedores Cadastrados</h3>
+                    <h3 class="card-title">Materiais do Almoxarifado</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Fornecedor</th>
-                            <th></th>
-                            <th></th>
+                            <th class="">Material</th>
+                            <th class="">Quantidade</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        require_once('../../back/controllers/FornecedorController.php');
-                        $f = new FornecedorController();
-                        $fornecedores = $f->verFornecedores();
-                        foreach ($fornecedores as $v) {
+                        require_once('../../back/controllers/EstoqueController.php');
+                        $view_estoque = new EstoqueController();
+                        $all_estoque = $view_estoque->verProdDiversos();
+                        foreach ($all_estoque as $v) {
                             ?>
                             <tr>
-                                <td><?= $v->nome_fornecedor ?></td>
-                                <td class="text-center">
-                                    <a href="e_fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"><i
-                                            class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
-                                </td>
-                                <td class="text-center"><a
-                                            href="../../back/response/fornecedores/d_fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"
-                                    <i class="fas fa-window-close text-danger"></i></a>
-                                </td>
+                                <td><a href=editEstoque.php?idp=<?= $v->id_estoque ?>><?=$v->produto_e ?></td>
+                                <td><?= $v->quantidade_e ?></td>
                             </tr>
                         <?php } ?>
                     </table>
                 </div>
                 <!-- /.card-body -->
             </div>
+
         </div>
     </div>
+    <!-- /.content-wrapper -->
 
     <?php include('../componentes/footer.php'); ?>
 </div>
@@ -162,7 +163,6 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
-
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>

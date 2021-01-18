@@ -17,6 +17,7 @@ $produto = array(
 );
 
 if (@$_POST['new'] == 1) {
+    var_dump($produto);
     $estoque->newProduto($produto);
     /*echo "<script language=\"javascript\">window.history.back();</script>";*/
 } elseif (@$_POST['edit'] == 1) {

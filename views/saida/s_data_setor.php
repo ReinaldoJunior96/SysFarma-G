@@ -56,19 +56,21 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" method="GET" action="n_saida_setor.php">
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-9">
                                 <label>Setor</label>
-                                <select class="form-control select2">
-                                    <option selected="selected">Alabama</option>
-                                    <option>Alaska</option>
-                                    <option>California</option>
-                                    <option>Delaware</option>
-                                    <option>Tennessee</option>
-                                    <option>Texas</option>
-                                    <option>Washington</option>
+                                <select class="form-control select2" name="nomesetor">
+                                    <<option selected></option>
+                                    <?php
+                                    include_once '../../back/controllers/setoresController.php';
+                                    $s = new SetorController();
+                                    $setores = $s->verSetores();
+                                    foreach ($setores as $values) {
+                                        ?>
+                                        <option value="<?= $values->setor_s ?>"><?= str_replace("-", " ", $values->setor_s) ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -78,14 +80,14 @@
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
                                     <input type="date" class="form-control" data-inputmask-alias="datetime"
-                                           data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                           data-inputmask-inputformat="dd/mm/yyyy" data-mask name="data_s">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Iniciar</button>
+                        <button type="submit" class="btn btn-primary col-md-2">Saída</button>
                         <a href="" class="float-md-right">Histórico</a>
                     </div>
                 </form>

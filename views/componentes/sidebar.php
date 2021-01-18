@@ -26,13 +26,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="../ordem/compra.php" class="nav-link">
                                 <i class="fas fa-shopping-bag nav-icon"></i>
                                 <p>Ordem de compra</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../nf/n_nota_fiscal.php" class="nav-link">
+                            <a href="../notaFiscal/notaF.php" class="nav-link">
                                 <i class="far fa-file-alt nav-icon"></i>
                                 <p>Nota Fiscal</p>
                             </a>
@@ -40,7 +40,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="../farmacia" class="nav-link">
+                    <a href="../estoque" class="nav-link">
                         <i class="nav-icon fas fa-cubes"></i>
                         <p>
                             Estoque
@@ -49,13 +49,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../farmacia/nv_estoque.php" class="nav-link">
+                            <a href="../estoque/farmacia.php" class="nav-link">
                                 <i class="fas fa-prescription-bottle-alt nav-icon"></i>
                                 <p>Fármacia</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="../estoque/almoxarifado.php" class="nav-link">
                                 <i class="fas fa-box-open nav-icon"></i>
                                 <p>Almoxarifado</p>
                             </a>
