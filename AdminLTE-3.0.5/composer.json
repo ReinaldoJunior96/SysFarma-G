@@ -21,5 +21,8 @@
   "license": "MIT",
   "support": {
     "issues": "https://github.com/ColorlibHQ/AdminLTE/issues"
+  },
+  "require": {
+    "ext-pdo": "*"
   }
 }

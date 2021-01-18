@@ -1,3 +1,11 @@
+<?php
+session_start();
+if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
+    header("location: ../user/login.php");
+}
+require_once('../../back/controllers/configCRUD.php');
+$s = new ConfigCRUD();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -56,19 +64,22 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" method="POST" action="">
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-8">
                                 <label>Setor</label>
-                                <select class="form-control select2">
-                                    <option selected="selected">Alabama</option>
-                                    <option>Alaska</option>
-                                    <option>California</option>
-                                    <option>Delaware</option>
-                                    <option>Tennessee</option>
-                                    <option>Texas</option>
-                                    <option>Washington</option>
+                                <select class="form-control select2" name="setor">
+                                    <option selected></option>
+                                    <option value="todos">Todos os Setores</option>
+                                    <?php
+                                    require_once('../../back/controllers/configCRUD.php');
+                                    $s = new ConfigCRUD();
+                                    $setores = $s->ver_setores();
+                                    foreach ($setores as $v) {
+                                        ?>
+                                        <option value="<?= $v->setor_s ?>"><?= str_replace("-", " ", $v->setor_s) ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
@@ -77,8 +88,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" data-inputmask-alias="datetime"
-                                           data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                    <input type="date" class="form-control" data-inputmask-alias="datetime"
+                                           data-inputmask-inputformat="dd/mm/yyyy" name="dataI" data-mask>
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
@@ -87,8 +98,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" data-inputmask-alias="datetime"
-                                           data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                    <input type="date" class="form-control" data-inputmask-alias="datetime"
+                                           data-inputmask-inputformat="dd/mm/yyyy" name="dataF" data-mask>
                                 </div>
                             </div>
                         </div>
@@ -105,19 +116,45 @@
                     <h3 class="card-title">DataTable with default features</h3>
                 </div>
                 <!-- /.card-header -->
+                <?php
+                require_once('../../back/controllers/EstoqueController.php');
+                $viewRelatorio = new EstoqueController();
+                $relatorio = (@$_POST['setor'] == 'todos')
+                    ? $viewRelatorio->relatorioGeral(@$_POST['dataI'], @$_POST['dataF'])
+                    : $viewRelatorio->gerarRelatorio(@$_POST['setor'], @$_POST['dataI'], @$_POST['dataF']);
+                $dados = array(
+                    'nomep' => array(),
+                    'produtos' => array(),
+                    'quantidade' => array(),
+                );
+
+                foreach ($relatorio as $v):
+                    if (array_search($v->item_s, $dados['produtos']) != false) {
+                        $chave = array_search($v->item_s, $dados['produtos']);
+                        $qtdeAntiga = $dados['quantidade'][$chave];
+                        $dados['quantidade'][$chave] = $qtdeAntiga + $v->quantidade_s;
+                    } else {
+                        array_push($dados['produtos'], $v->item_s);
+                        array_push($dados['nomep'], $v->produto_e);
+                        array_push($dados['quantidade'], $v->quantidade_s);
+                    }
+                endforeach;
+                ?>
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Setor</th>
+                            <th>Produto</th>
                             <th>Quantidade</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>ENTRADA HOSP /CORREDOR FARMA/ S.COMPRAS / VIDROS</td>
-                            <td><i class="fas fa-trash"></i></td>
-                        </tr>
+                        <?php for ($i = 0; $i < count($dados['produtos']); $i++): ?>
+                            <tr>
+                                <td><?= $dados['nomep'][$i] ?></td>
+                                <td><?= $dados['quantidade'][$i] ?></td>
+                            </tr>
+                        <?php endfor; ?>
                     </table>
                 </div>
                 <!-- /.card-body -->

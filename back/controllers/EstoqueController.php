@@ -156,7 +156,7 @@ class EstoqueController
             $buscarRelatorio = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
             INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
             WHERE setor_s='$setor'
-            AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY item_s ASC");
+            AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
             $buscarRelatorio->execute();
             return $buscarRelatorio->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
@@ -169,7 +169,7 @@ class EstoqueController
         try {
             $buscarRelatorio = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
             INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
-            WHERE data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY item_s ASC");
+            WHERE data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
             $buscarRelatorio->execute();
             return $buscarRelatorio->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
