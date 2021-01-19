@@ -69,12 +69,28 @@ switch ($_SESSION['user']) {
                     ?>
                     <div class="card-header">
                         <h3 class="card-title"><i class="fas fa-file-invoice"></i>
-                            Alterar produto - <?= $v->produto_e ?>
+                            Produto: <?= $v->produto_e ?>
                         </h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-
+                    <ul class="nav nav-tabs mt-2">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="editEstoque.php?idp=<?= $_GET['idp'] ?>">Infomações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
+                        </li>
+                    </ul>
                     <form role="form" method="POST" action="../../back/response/estoque/estoque_r.php">
                         <input type="hidden" name="edit" value="1">
                         <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">

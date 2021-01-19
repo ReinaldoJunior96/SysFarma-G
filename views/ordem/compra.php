@@ -128,7 +128,7 @@ switch ($_SESSION['user']) {
                                             href="../notaf/n_produtos_nota_fiscal.php?idnf=<?= $v->id_fk_nf ?>"><?= $v->id_fk_nf ?></a>
                                 </td>
                                 <td class="text-primary"><a
-                                            href="n_prod_oc.php?id_ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
+                                            href="produtos.php?ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
                                 <td class=""><?= date("d/m/Y H:i:s", strtotime($v->data_c)) ?></td>
 
                                 <td><a href="../../back/response/compra/d_ordem_compra.php?idordem=<?= $v->id_ordem ?>"><i
@@ -157,7 +157,6 @@ switch ($_SESSION['user']) {
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- Select2 -->
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
-
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
