@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/editEstoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/editEstoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AdminLTE-3.0.5/pages/examples/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/AdminLTE-3.0.5/pages/examples/contacts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpdf/fpdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/fpdf/fpdf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/notaF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/notaF.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/ordem/compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/ordempdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/ordempdf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +52,7 @@
       <recent name="C:\xampp\htdocs\gstock2.0\views\ordem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\gstock2.0\dist\img" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\saida" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\usuario" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\componentes" />
@@ -72,6 +76,8 @@
       <workItem from="1610968256425" duration="10506000" />
       <workItem from="1611007735429" duration="737000" />
       <workItem from="1611008513782" duration="6615000" />
+      <workItem from="1611094259332" duration="919000" />
+      <workItem from="1611096258304" duration="5352000" />
     </task>
     <servers />
   </component>

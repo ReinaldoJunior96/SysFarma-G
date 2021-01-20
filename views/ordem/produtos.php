@@ -77,7 +77,7 @@ switch ($_SESSION['user']) {
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item active"><a href="#" data-toggle="modal" data-target="#modal-lg">Ver
                                     Produtos</a></li>
-                            <li class="breadcrumb-item active"><a href="ordem_pdf.php?id_ordem=<?= $_GET['ordem'] ?>">Imprimir</a></li>
+                            <li class="breadcrumb-item active"><a href="ordempdf.php?id_ordem=<?= $_GET['ordem'] ?>">Imprimir</a></li>
                         </ol>
                     </div>
                 </div>

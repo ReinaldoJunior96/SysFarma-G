@@ -8,28 +8,11 @@ if (empty($dados_ordem['0']->item_compra)) {
     echo "<script language=\"javascript\">alert(\"Ordem sem itens!!\")</script>";
     echo "<script language=\"javascript\">window.history.back();</script>";
 } else {
-    require_once "../../fpdf/fpdf.php";
+    require_once ("../../fpdf/fpdf.php");
     $pdf = new FPDF("P", "pt", "A4");
     $pdf->AddPage();
     $file = "Ordem_de_compra.pdf";
     $tipo_pdf = "I";
-    //$pdf->setDados($_GET['id_ordem']), $dados_ordem['0']->nome_f, $dados_ordem['0']->data_c);
-    /*Parâmetros da função SetFont('Fonte', 'Estilo', Tamanho)*/
-    // $pdf->SetFont('Arial', 'B', 20);
-    // $pdf->Cell(0, 20, '', '', '1', '');
-    // $pdf->Ln(30);
-    /*Parâmetros da função Cell(Tamanho da celula, Altura da celula, 'Texto', 'bordas', 'Quebra de linha', 'Alinhamento')*/
-    //$pdf->setDados('42', $dados_ordem['0']->nome_f, $dados_ordem['0']->data_c);
-    /*
-    $pdf->Image('../../images/logo.png', 385, 15, -300);
-    $pdf->SetFont('arial', '', 10);
-    $pdf->Cell(0, 40, utf8_decode('Ordem de Compra - ' . $_GET['id_ordem']), '', '1', 'L');
-    $pdf->Cell(0, 0, utf8_decode('Fornecedor: ' . mb_strtoupper($dados_ordem['0']->nome_f, 'UTF-8')), '', '1', 'L');
-    $date = date_create($dados_ordem['0']->data_c);
-    $pdf->SetFont('arial', '', 10);
-    $pdf->Cell(0, 30, utf8_decode('Gerada em: ' . date_format(@$date, 'd/m/Y H:s:i')), '', '1', 'L');
-    */
-
 
     $pdf->setDados($_GET['id_ordem'], $dados_ordem['0']->nome_f, $dados_ordem['0']->data_c);
     $pdf->SetFont('arial', '', 10);

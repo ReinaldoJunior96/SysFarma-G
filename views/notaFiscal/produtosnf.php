@@ -66,73 +66,96 @@ switch ($_SESSION['user']) {
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
-            <!-- general form elements -->
-            <div class="card card-green">
-                <div class="card-header">
-                    <h3 class="card-title">Ordens de Compra</h3>
+            <?php
+            require_once('../../back/controllers/NotaFController.php');
+            $dados_nf = new NotaFController();
+            $nf = $dados_nf->verNF($_GET['idnf']);
+            $textNFNE = "";
+            foreach ($nf as $v) {
+                $textNFNE = ($v->nota_entrega == 1) ? 'Nota de Entrega ' : 'Nota Fiscal';
+            } ?>
+            <div class="card">
+                <div class="card-header text-muted border-bottom-0">
+                    <?= $textNFNE ?>
+                    <a href="e_nota_fiscal.php?idnf=<?= $_GET['idnf'] ?>">
+                        <i class='fas fa-edit fa-1x color-icon-nf text-black-50 float-right'></i></a>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form role="form" method="post" action="../../back/response/compra/n_ordem_compra.php">
-                    <div class="card-body">
-                        <div class="form-group col-md-12">
-                            <label>Setor</label>
-                            <select class="form-control select2" name="nome_f">
-                                <option selected></option>
-                                <?php
-                                require_once('../../back/controllers/FornecedorController.php');
-                                $fornecedorController = new FornecedorController();
-                                $fornecedores = $fornecedorController->verFornecedores();
-                                foreach ($fornecedores as $v) {
-                                    ?>
-                                    <option class="roboto-condensed"
-                                            value="<?= $v->nome_fornecedor ?>"><?= str_replace("-", " ", $v->nome_fornecedor) ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <?php
+                        foreach ($nf as $v) {
+                            ?>
+                            <div class="col-7">
+                                <h2 class="lead"><b><?= $v->fornecedor ?></b> - <i
+                                            class="fas fa-money-bill-wave"></i></i> Valor:
+                                    R$ <?= $v->valor_total ?></h2>
+                                <p class="text-muted text-sm"><b>Data de
+                                        Emissão: </b> <?= date("d/m/Y", strtotime($v->data_emissao)) ?>
+                                    <br>
+                                    <b> Data de Lançamento: </b> <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
+                                </p>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-left">
+                        <a href="nv_lotes.php?idnf=<?= $_GET['idnf'] ?>" class="btn btn-sm btn-primary">
+                            <i class="fas fa-calendar-day"></i> Lotes & Validades
+                        </a>
+                        <?php
+                        require_once('../../back/controllers/NotaFController.php');
+                        $n = new NotaFController();
+                        $attNota = $n->verificarNota($_GET['idnf']);
+                        if ($attNota >= 1) {
+                            $text = "Adicione a quantidade comprada ao estoque";
+                            $class = "";
+                            $link = "../../back/response/compra/import_from_ordem.php?idnf=" . $_GET['idnf'];
+                        } else {
+                            $text = "Quantidade já foi lançada";
+                            $class = "disabled";
+                            $link = "#";
+                        }
+                        ?>
+                        <div class="float-right">
+                            <?= $text ?>
+                            <a href="<?= $link ?>" class="btn btn-sm bg-teal <?= $class ?>">
+                                <i class="fas fa-calendar-day"></i>
+                            </a>
                         </div>
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
-                    </div>
-                </form>
+
+                </div>
             </div>
             <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
                 <div class="card-header">
-                    <h3 class="card-title">Ordens de compra</h3>
+                    <h3 class="card-title">Produtos</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr class="">
-                            <th class="">NºOrdem</th>
-                            <th class="">N.F / N.E</th>
-                            <th class="">Fornecedor</th>
-                            <th class="">Criada em</th>
-                            <th></th>
+                            <th class="">Produto / Material</th>
+                            <th class="">Quantidade</th>
+                            <th class="">Valor Unitário</th>
+                            <th class="">Valor Total</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        include '../../back/controllers/CompraController.php';
-                        $view_ordens = new CompraController();
-                        $all_ordens = $view_ordens->verOrdens();
-                        foreach ($all_ordens as $v) {
+                        require_once('../../back/controllers/NotaFController.php');
+                        $nf = new NotaFController();
+                        $ver_nf = $nf->verProdNF($_GET['idnf']);
+                        foreach ($ver_nf as $v) {
                             ?>
                             <tr>
-                                <td class=""><?= $v->id_ordem ?></td>
-                                <td class=""><a
-                                            href="../notaFiscal/produtosnf.php?idnf=<?= $v->id_fk_nf ?>"><?= $v->id_fk_nf ?></a>
-                                </td>
-                                <td class="text-primary"><a
-                                            href="produtos.php?ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
-                                <td class=""><?= date("d/m/Y H:i:s", strtotime($v->data_c)) ?></td>
-
-                                <td><a href="../../back/response/compra/d_ordem_compra.php?idordem=<?= $v->id_ordem ?>"><i
-                                                class='fas fa-trash text-danger'></i></a></td>
+                                <td><?= $v->produto_e ?></td>
+                                <td><?= $v->qtde_compra ?></td>
+                                <td>R$ <?= $v->valor_un_c ?></td>
+                                <td>R$ <?= $v->qtde_compra * $v->valor_un_c ?></td>
+                                <!--                                    --><?php //echo "<td><a href=../../back/response/notaf/d_produto_nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
                             </tr>
                         <?php } ?>
                     </table>

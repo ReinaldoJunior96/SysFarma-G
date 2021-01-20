@@ -64,7 +64,7 @@
                         $data_lancamento = date_create($v->data_lancamento);
                         ?>
                         <tr>
-                            <td class=''><a class='text-primary' href=n_produtos_nota_fiscal.php?idnf="<?=$v->id_nf?>><?=$v->numero_nf?></a></td>
+                            <td class=''><a class='text-primary' href=produtosnf.php?idnf=<?=$v->id_nf?>><?=$v->numero_nf?></a></td>
                             <td><a class='text-primary' href="../compra/n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"</a><?=$v->id_ordem?></td>
                             <td><?= $v->fornecedor ?></td>
                             <td><?= date_format($data_emisao, 'd/m/Y') ?> </td>

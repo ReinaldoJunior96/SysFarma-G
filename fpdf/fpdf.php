@@ -365,7 +365,7 @@ class FPDF
 
     function Header()
     {
-        $this->Image('../../images/logo.png', 240, 15, -300);
+        $this->Image('../../dist/img/logo.png', 240, 15, -300);
         $this->Ln(50);
         $this->SetFont('arial', '', 10);
         $this->Cell(550, 20, utf8_decode("ORDEM DE COMPRA"), 1, 0, "C");
