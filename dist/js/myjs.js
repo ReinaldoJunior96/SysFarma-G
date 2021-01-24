@@ -27,16 +27,6 @@ $(document).ready(function () {
                 data;
     };
 });
-(function () {
-    if (window.localStorage) {
-        if (!localStorage.getItem('firstLoad')) {
-            localStorage['firstLoad'] = true;
-            window.location.reload();
-        } else
-            localStorage.removeItem('firstLoad');
-    }
-})
-();
 $(function () {
     $(document).ready(function () {
         $('#tabela').fadeIn().css("display", "block");
@@ -44,7 +34,6 @@ $(function () {
     $("#example1").DataTable({
         "responsive": true,
         "autoWidth": false,
-
     });
     $('#example2').DataTable({
         "paging": true,
@@ -55,5 +44,14 @@ $(function () {
         "autoWidth": false,
         "responsive": true,
     });
-
 });
+(function () {
+    if (window.localStorage) {
+        if (!localStorage.getItem('firstLoad')) {
+            localStorage['firstLoad'] = true;
+            window.location.reload();
+        } else
+            localStorage.removeItem('firstLoad');
+    }
+})
+();

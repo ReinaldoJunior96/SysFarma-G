@@ -36,6 +36,7 @@ switch ($_SESSION['user']) {
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../dist/css/mycss.css">
 
+
 </head>
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
@@ -70,7 +71,7 @@ switch ($_SESSION['user']) {
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome</label>
-                            <input type="text" class="form-control" id="fornecedor"
+                            <input type="text" class="form-control"
                                    placeholder="Qual nome do forncedor?" name="fornecedor">
                         </div>
                         <div class="row">
@@ -87,7 +88,7 @@ switch ($_SESSION['user']) {
                                 <div class="form-group">
                                     <label>E-mail</label>
                                     <input type="text" class="form-control" placeholder="E-mail p/ contato"
-                                           name="email_fornecedor" id="email">
+                                           name="email_fornecedor">
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -95,24 +96,24 @@ switch ($_SESSION['user']) {
                                 <div class="form-group">
                                     <label>CPF/CNPJ</label>
                                     <input type="text" class="form-control" placeholder="Identificação do fornecedor"
-                                           name="cnpj_fornecedor" id="cnpj">
+                                           name="cnpj_fornecedor">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Endereço</label>
                             <textarea class="form-control" rows="3" placeholder="Onde ele se localiza?"
-                                      name="endereco_fornecedor" id="endreco"></textarea>
+                                      name="endereco_fornecedor"></textarea>
                         </div>
                     </div>
+
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success" ">Cadastrar</button>
+                        <button type="submit" class="btn btn-success"
+                        ">Cadastrar</button>
                     </div>
                 </form>
-                <h2>Resultados da pesquisa:</h2>
-                <div id="Resultado"></div>
-                <hr>
+
             </div>
             <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
@@ -165,16 +166,15 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
-
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../dist/js/myjs.js"></script>
 <script src="ajax.js"></script>
-
 
 
 </body>

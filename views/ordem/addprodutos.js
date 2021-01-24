@@ -1,6 +1,5 @@
 // Variable to hold request
 var request;
-var result = document.getElementById("resultado");
 
 // Bind to the submit event of our form
 $("#foo").submit(function (event) {
@@ -28,7 +27,7 @@ $("#foo").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/fornecedores/fornecedores_n.php",
+        url: "../../back/response/compra/n_prod_ordem_compra.php",
         type: "post",
         data: serializedData
     });
@@ -37,16 +36,16 @@ $("#foo").submit(function (event) {
     request.done(function (response, textStatus, jqXHR) {
         // Log a message to the console
         console.log("Hooray, it worked!");
-        (function () {
-            if (window.localStorage) {
-                if (!localStorage.getItem('firstLoad')) {
-                    localStorage['firstLoad'] = true;
-                    window.location.reload();
-                } else
-                    localStorage.removeItem('firstLoad');
-            }
-        })
-        ();
+        // (function () {
+        //     if (window.localStorage) {
+        //         if (!localStorage.getItem('firstLoad')) {
+        //             localStorage['firstLoad'] = true;
+        //             window.location.reload();
+        //         } else
+        //             localStorage.removeItem('firstLoad');
+        //     }
+        // })
+        // ();
     });
     // Callback handler that will be called on failure
     request.fail(function (jqXHR, textStatus, errorThrown) {

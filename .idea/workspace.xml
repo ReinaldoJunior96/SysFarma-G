@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/n_prod_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/n_prod_ordem_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/fornecedores/fornecedores_n.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/fornecedores/fornecedores_n.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/myjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/myjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/ajax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/setor/n_setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setor/n_setores.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +40,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.last.introduce.type" value="CONST" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -47,6 +56,7 @@
       <recent name="C:\xampp\htdocs\gstock2.0\views\ordem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\gstock2.0\back\response\compra" />
       <recent name="C:\xampp\htdocs\gstock2.0\dist\img" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\saida" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\usuario" />
@@ -76,6 +86,7 @@
       <workItem from="1611228181780" duration="28000" />
       <workItem from="1611316063205" duration="977000" />
       <workItem from="1611318165362" duration="5544000" />
+      <workItem from="1611520304320" duration="102000" />
     </task>
     <servers />
   </component>
@@ -93,5 +104,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/dist/js/myjs.js</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

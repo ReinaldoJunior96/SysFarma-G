@@ -1,6 +1,5 @@
 <?php
-
-include '../../controllers/FornecedorController.php';
+require_once('../../controllers/FornecedorController.php');
 $f = new FornecedorController();
 $fornecedor = array(
     'nome' => @$_POST['fornecedor'],
@@ -14,4 +13,3 @@ if (@$_POST['new'] == 1) {
 } elseif (@$_POST['edit'] == 1) {
     $f->editFornecedor($fornecedor, $_POST['idfornecedor']);
 }
-echo "<script language=\"javascript\">window.history.back();</script>";

@@ -74,6 +74,11 @@ switch ($_SESSION['user']) {
                             <input type="text" class="form-control" id="exampleInputEmail1" name="novo_setor"
                                    placeholder="Qual setor você deseja cadastrar?">
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="font-weight-normal ">Informe o nome dos setor</label>
+                            <input type="text" class="form-control" id="setor" name="novo_setor" onkeyup="myFunction()"
+                                   placeholder="Qual setor você deseja cadastrar?">
+                        </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
@@ -136,7 +141,17 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../dist/js/myjs.js"></script>
+<script>
+        function myFunction() {
+            var x = document.getElementById("setor");
+            x.value = x.value.toUpperCase();
 
+            var b = document.getElementById("exampleInputEmail1");
+
+            b.value = x.value;
+
+        }
+</script>
 
 </body>
 </html>

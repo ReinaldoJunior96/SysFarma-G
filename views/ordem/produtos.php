@@ -77,7 +77,8 @@ switch ($_SESSION['user']) {
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item active"><a href="#" data-toggle="modal" data-target="#modal-lg">Ver
                                     Produtos</a></li>
-                            <li class="breadcrumb-item active"><a href="ordempdf.php?id_ordem=<?= $_GET['ordem'] ?>">Imprimir</a></li>
+                            <li class="breadcrumb-item active"><a href="ordempdf.php?id_ordem=<?= $_GET['ordem'] ?>">Imprimir</a>
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -140,60 +141,76 @@ switch ($_SESSION['user']) {
                     </div>
                 <?php } ?>
 
-
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card" id="tabela" style="display: none">
-                    <!-- /.card-header -->
+                <form role="form" method="POST" action="../../back/response/compra/n_prod_ordem_compra.php">
+                    <input type="hidden" name="ordem" value="<?= $_GET['ordem'] ?>">
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <tr class="">
-                                <th class="">Produto / Material</th>
-                                <th>Qtde Un (Compra)</th>
-                                <th class="">Valor Unitário</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            require_once('../../back/controllers/EstoqueController.php');
-                            $view_estoque = new EstoqueController();
-                            $all_estoque = $view_estoque->verEstoqueTotal();
-                            foreach ($all_estoque as $v) {
-                                ?>
-                                <tr>
-                                    <form method="POST" action="../../back/response/compra/n_prod_ordem_compra.php">
-                                        <input type="hidden" name="produto_c" value="<?= $v->id_estoque ?>">
-                                        <input type="hidden" name="ordem" value="<?= $_GET['ordem'] ?>">
-                                        <td class="text-center"><?= $v->produto_e ?></td>
-                                        <td>
-                                            <input type="number" class="form-control" name="saidaqte_p"
-                                                   id="inputPassword4"
-                                                   placeholder="">
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" required name="valor_un_c"
-                                                   id="inputPassword4"
-                                                   placeholder="R$" value="<?= $v->valor_un_e ?>">
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="btn roboto-condensed text-white mt-1">
-                                                <i class="fas fa-file-import text-secondary"></i>
-                                            </button>
-                                        </td>
-                                    </form>
-                                </tr>
-                            <?php } ?>
-                        </table>
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <label>Setor</label>
+                                <select class="form-control select2" name="produtoid" id="produtoid"
+                                        onchange="getValores()">
+                                    <
+                                    <option selected></option>
+                                    <?php
+                                    require_once('../../back/controllers/EstoqueController.php');
+                                    $view_estoque = new EstoqueController();
+                                    $all_estoque = $view_estoque->verEstoqueTotal();
+                                    foreach ($all_estoque as $values) {
+                                        ?>
+                                        <option value="<?= $values->id_estoque ?>"><?= $values->produto_e ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Quantiade(Unitária)</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" value="" name="saidaqte_p" id="saidaqte_p">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Valor Unitário</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="valor_un_c" value="" id="valor_un_c">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary col-md-2">Adicionar</button>
+                    </div>
+                </form>
             </div>
             <!-- /.card -->
+            <ul class="list-group">
+                <?php
+                require_once('../../back/controllers/CompraController.php');
+                $dados = new CompraController();
+                $dados_ordem = $dados->verOrdemTotal($_GET['ordem']);
+                $somaValor = 0;
+                foreach ($dados_ordem as $value) {
+                    $somaValor += $value->valor_un_c * $value->qtde_compra;
+                    ?>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <?php $valorUNCompraDisplay = floatval($value->valor_un_c) ?>
+                        <?= $value->produto_e ?> - <?= "Q " . $value->qtde_compra ?>
+                        - <?= "T(R$) " . $value->qtde_compra * $valorUNCompraDisplay ?>
+
+                        <a href="../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
+                                    class='fas fa-ban fa-lg' style='color: red;'></i></a>
+                    </li>
+                <?php } ?>
+                <li class="list-group-item active"><?= "R$ " . number_format($somaValor, 2, ',', '.') ?></li>
+            </ul>
 
         </div>
     </div>
-
     <?php include('../componentes/footer.php'); ?>
 </div>
 <!-- ./wrapper -->
@@ -214,6 +231,8 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../dist/js/myjs.js"></script>
+<script src="addprodutos.js"></script>
+<script src="searchproduto.js"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements
