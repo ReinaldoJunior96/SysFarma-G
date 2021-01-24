@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminLTE-3.0.5/pages/examples/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/AdminLTE-3.0.5/pages/examples/contacts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpdf/fpdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/fpdf/fpdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/notaF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/notaF.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/ordempdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/ordempdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +34,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/ordem" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -78,6 +73,9 @@
       <workItem from="1611008513782" duration="6615000" />
       <workItem from="1611094259332" duration="919000" />
       <workItem from="1611096258304" duration="5352000" />
+      <workItem from="1611228181780" duration="28000" />
+      <workItem from="1611316063205" duration="977000" />
+      <workItem from="1611318165362" duration="5544000" />
     </task>
     <servers />
   </component>

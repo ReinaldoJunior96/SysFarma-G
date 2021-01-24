@@ -35,6 +35,7 @@ switch ($_SESSION['user']) {
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../dist/css/mycss.css">
+
 </head>
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
@@ -63,12 +64,13 @@ switch ($_SESSION['user']) {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="../../back/response/fornecedores/fornecedores_n.php">
+
+                <form role="form" id="foo">
                     <input type="hidden" name="new" value="1">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nome</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1"
+                            <input type="text" class="form-control" id="fornecedor"
                                    placeholder="Qual nome do forncedor?" name="fornecedor">
                         </div>
                         <div class="row">
@@ -77,7 +79,7 @@ switch ($_SESSION['user']) {
                                 <div class="form-group">
                                     <label>Telefone</label>
                                     <input type="text" class="form-control" placeholder="Número p/ contato"
-                                           name="telefone_fornecedor">
+                                           name="telefone_fornecedor" id="telefone">
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -85,7 +87,7 @@ switch ($_SESSION['user']) {
                                 <div class="form-group">
                                     <label>E-mail</label>
                                     <input type="text" class="form-control" placeholder="E-mail p/ contato"
-                                           name="email_fornecedor">
+                                           name="email_fornecedor" id="email">
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -93,21 +95,24 @@ switch ($_SESSION['user']) {
                                 <div class="form-group">
                                     <label>CPF/CNPJ</label>
                                     <input type="text" class="form-control" placeholder="Identificação do fornecedor"
-                                           name="cnpj_fornecedor">
+                                           name="cnpj_fornecedor" id="cnpj">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Endereço</label>
                             <textarea class="form-control" rows="3" placeholder="Onde ele se localiza?"
-                                      name="endereco_fornecedor"></textarea>
+                                      name="endereco_fornecedor" id="endreco"></textarea>
                         </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="submit" class="btn btn-success" ">Cadastrar</button>
                     </div>
                 </form>
+                <h2>Resultados da pesquisa:</h2>
+                <div id="Resultado"></div>
+                <hr>
             </div>
             <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
@@ -135,7 +140,7 @@ switch ($_SESSION['user']) {
                                 <td><?= $v->nome_fornecedor ?></td>
                                 <td class="text-center">
                                     <a href="e_fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"><i
-                                            class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
+                                                class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
                                 </td>
                                 <td class="text-center"><a
                                             href="../../back/response/fornecedores/d_fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"
@@ -154,8 +159,8 @@ switch ($_SESSION['user']) {
 </div>
 <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
 
+<!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -168,5 +173,9 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../dist/js/myjs.js"></script>
+<script src="ajax.js"></script>
+
+
+
 </body>
 </html>
