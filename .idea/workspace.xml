@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/searchreqprod.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/requestajax/searchreqprod.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/searchproduto.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/searchproduto.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,11 +52,11 @@
       <recent name="C:\xampp\htdocs\gstock2.0\views\ordem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\gstock2.0\back\response\compra\requestajax" />
       <recent name="C:\xampp\htdocs\gstock2.0\back\response\compra" />
       <recent name="C:\xampp\htdocs\gstock2.0\dist\img" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\saida" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\usuario" />
-      <recent name="C:\xampp\htdocs\gstock2.0\views\componentes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

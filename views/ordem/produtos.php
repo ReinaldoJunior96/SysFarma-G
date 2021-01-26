@@ -155,24 +155,36 @@ switch ($_SESSION['user']) {
                     $somaValor += $value->valor_un_c * $value->qtde_compra;
                     $valorUNCompraDisplay = floatval($value->valor_un_c)
                     ?>
-                    <div class="d-flex bd-highlight align-items-center">
-                        <div class="p-2 flex-grow-1 bd-highlight"><?= $value->produto_e ?></div>
-                        <div class="p-2 bd-highlight">
-                            <input type="number" placeholder="Quantidade" class="form-control text-center"
-                                   name="" value="<?= $value->qtde_compra ?>" id="">
+                    <form method="post" action="../../back/response/compra/updateitem.php" id="alterarproduto">
+                        <div class="d-flex bd-highlight align-items-center">
+                            <input type="hidden" name="idcompra" id="idcompra" value="<?= $value->id_item_compra ?>">
+                            <input type="hidden" name="idproditem" id="idproditem" value="<?= $value->item_compra ?>">
+                            <input type="hidden" name="idordem" id="idordem" value="<?= $value->ordem_compra_id ?>">
+                            <input type="hidden" name="valoruni" id="valoruni" value="<?= $value->valor_un_c ?>">
+                            <div class="p-2 bd-highlight">
+                                <a href=../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>>
+                                    <i class="fas fa-minus-circle text-danger"></i>
+                                </a>
+                            </div>
+                            <div class="p-2 flex-grow-1 bd-highlight"><?= $value->produto_e ?></div>
+                            <div class="p-2 bd-highlight">
+                                <input type="number" placeholder="Quantidade" id="qtdecomprada"
+                                       class="form-control text-center"
+                                       name="qtdecomprada" value="<?= $value->qtde_compra ?>">
+                            </div>
+
+                            <div class="p-2 bd-highlight col-2">
+                                <strong>Valor Unitário: </strong>
+                                <span> <?= (strlen($valorUNCompraDisplay) <= 3) ? $valorUNCompraDisplay . "33" : $valorUNCompraDisplay ?></span>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <strong>Valor total:</strong> <span id="valortotal"><?= $somaValor?></span>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <button type="submit" class="btn btn-success"><i class="fas fa-save text-white"></i></button>
+                            </div>
                         </div>
-                        <div class="p-2 bd-highlight col-2">
-                            <span>Valor Unitário: </span> <?= (strlen($valorUNCompraDisplay) <= 3) ? $valorUNCompraDisplay . "33" : $valorUNCompraDisplay ?>
-                        </div>
-                        <div class="p-2 bd-highlight">
-                            <span>R$: <?= $somaValor ?></span>
-                        </div>
-                        <div class="p-2 bd-highlight">
-                            <a href=../../back/response/compra/d_prod_compra.php?idprod=<?=$value->id_item_compra?>>
-                                <i class="fas fa-minus-circle text-danger"></i>
-                            </a>
-                        </div>
-                    </div>
+                    </form>
                 <?php } ?>
             </div>
 
@@ -200,7 +212,7 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../dist/js/myjs.js"></script>
-<script src="addprodutos.js"></script>
+<script src="alterarprodutos.js"></script>
 <script src="searchproduto.js"></script>
 <script>
     $(function () {
