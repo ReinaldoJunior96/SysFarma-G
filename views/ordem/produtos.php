@@ -85,47 +85,6 @@ switch ($_SESSION['user']) {
             </div><!-- /.container-fluid -->
         </section>
 
-
-        <div class="modal fade" id="modal-lg">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Produtos Adicionados</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="list-group">
-                            <?php
-                            require_once('../../back/controllers/CompraController.php');
-                            $dados = new CompraController();
-                            $dados_ordem = $dados->verOrdemTotal($_GET['ordem']);
-                            $somaValor = 0;
-                            foreach ($dados_ordem as $value) {
-                                $somaValor += $value->valor_un_c * $value->qtde_compra;
-                                ?>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <?php $valorUNCompraDisplay = floatval($value->valor_un_c) ?>
-                                    <?= $value->produto_e ?> / <?= "Qtde: " . $value->qtde_compra ?>
-                                    / <?= "Total (R$): " . $value->qtde_compra * $valorUNCompraDisplay ?>
-                                    <a href="../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
-                                                class='fas fa-ban fa-lg' style='color: red;'></i></a>
-                                </li>
-                            <?php } ?>
-                            <li class="list-group-item active"><?= "R$ " . number_format($somaValor, 2, ',', '.') ?></li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-
-
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
 
@@ -186,9 +145,7 @@ switch ($_SESSION['user']) {
                         <button type="submit" class="btn btn-primary col-md-2">Adicionar</button>
                     </div>
                 </form>
-            </div>
-            <!-- /.card -->
-            <ul class="list-group">
+                <hr>
                 <?php
                 require_once('../../back/controllers/CompraController.php');
                 $dados = new CompraController();
@@ -196,18 +153,30 @@ switch ($_SESSION['user']) {
                 $somaValor = 0;
                 foreach ($dados_ordem as $value) {
                     $somaValor += $value->valor_un_c * $value->qtde_compra;
+                    $valorUNCompraDisplay = floatval($value->valor_un_c)
                     ?>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <?php $valorUNCompraDisplay = floatval($value->valor_un_c) ?>
-                        <?= $value->produto_e ?> - <?= "Q " . $value->qtde_compra ?>
-                        - <?= "T(R$) " . $value->qtde_compra * $valorUNCompraDisplay ?>
-
-                        <a href="../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>"><i
-                                    class='fas fa-ban fa-lg' style='color: red;'></i></a>
-                    </li>
+                    <div class="d-flex bd-highlight align-items-center">
+                        <div class="p-2 flex-grow-1 bd-highlight"><?= $value->produto_e ?></div>
+                        <div class="p-2 bd-highlight">
+                            <input type="number" placeholder="Quantidade" class="form-control text-center"
+                                   name="" value="<?= $value->qtde_compra ?>" id="">
+                        </div>
+                        <div class="p-2 bd-highlight col-2">
+                            <span>Valor Unitário: </span> <?= (strlen($valorUNCompraDisplay) <= 3) ? $valorUNCompraDisplay . "33" : $valorUNCompraDisplay ?>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <span>R$: <?= $somaValor ?></span>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <a href=../../back/response/compra/d_prod_compra.php?idprod=<?=$value->id_item_compra?>>
+                                <i class="fas fa-minus-circle text-danger"></i>
+                            </a>
+                        </div>
+                    </div>
                 <?php } ?>
-                <li class="list-group-item active"><?= "R$ " . number_format($somaValor, 2, ',', '.') ?></li>
-            </ul>
+            </div>
+
+            <!-- /.card -->
 
         </div>
     </div>
