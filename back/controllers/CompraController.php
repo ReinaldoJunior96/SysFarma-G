@@ -116,5 +116,32 @@ class CompraController
         $selectQuery->execute();
         return $selectQuery->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function alterarItemCompra($iditemcompra, $produto,$qtde, $idordem, $valoruni)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $queryUpdate = /** @lang text */
+                "UPDATE tbl_items_compra SET 
+            item_compra=:item_compra,
+			ordem_compra_id=:ordem_compra_id,
+			qtde_compra=:qtde_compra,
+			valor_un_c=:valor_un_c
+			WHERE id_item_compra='$iditemcompra'";
+            $newValue = $this->conn->prepare($queryUpdate);
+            $newValue->bindValue('item_compra', $produto);
+            $newValue->bindValue(':ordem_compra_id', $idordem);
+            $newValue->bindValue(':qtde_compra', $qtde);
+            $newValue->bindValue(':valor_un_c', $valoruni );
+            $newValue->execute();
+            if ($newValue) {
+                $this->conn->commit();
+            }
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+
+    }
 }
 

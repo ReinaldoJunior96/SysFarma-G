@@ -13,3 +13,4 @@ if (@$_POST['new'] == 1) {
 } elseif (@$_POST['edit'] == 1) {
     $f->editFornecedor($fornecedor, $_POST['idfornecedor']);
 }
+?>

@@ -1,9 +1,7 @@
 // Variable to hold request
 var request;
-var result = document.getElementById("resultado");
-
 // Bind to the submit event of our form
-$("#foo").submit(function (event) {
+$("#novofornecedor").submit(function (event) {
 
     // Prevent default posting of form - put here to work in case of errors
     event.preventDefault();
@@ -36,17 +34,40 @@ $("#foo").submit(function (event) {
     // Callback handler that will be called on success
     request.done(function (response, textStatus, jqXHR) {
         // Log a message to the console
-        console.log("Hooray, it worked!");
-        (function () {
-            if (window.localStorage) {
-                if (!localStorage.getItem('firstLoad')) {
-                    localStorage['firstLoad'] = true;
-                    window.location.reload();
-                } else
-                    localStorage.removeItem('firstLoad');
+        //console.log("Hooray, it worked!");
+        let timerInterval
+        Swal.fire({
+            title: 'Cadastrando Fornecedor',
+            html: 'Aguarde <b></b>.',
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                }, 100)
+            },
+            willClose: () => {
+                Swal.fire(
+                    'Good job!',
+                    'You clicked the button!',
+                    'success'
+                )
+                clearInterval(timerInterval);
+                window.location.reload(true);
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('Tudo certo...')
             }
         })
-        ();
     });
     // Callback handler that will be called on failure
     request.fail(function (jqXHR, textStatus, errorThrown) {

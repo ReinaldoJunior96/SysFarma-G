@@ -3,18 +3,6 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../user/login.php");
 }
-require_once('../../back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
-switch ($_SESSION['user']) {
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,20 +11,17 @@ switch ($_SESSION['user']) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="shortcut icon" href="../../dist/img/logo-single.png" type="image/x-icon">
-    <title>g-stock</title>
+    <title>GStock</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <!-- MeuCSS -->
     <link rel="stylesheet" href="../../dist/css/mycss.css">
-
-
 </head>
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
@@ -66,7 +51,7 @@ switch ($_SESSION['user']) {
                 <!-- /.card-header -->
                 <!-- form start -->
 
-                <form role="form" id="foo">
+                <form role="form" id="novofornecedor" method="post">
                     <input type="hidden" name="new" value="1">
                     <div class="card-body">
                         <div class="form-group">
@@ -140,7 +125,7 @@ switch ($_SESSION['user']) {
                             <tr>
                                 <td><?= $v->nome_fornecedor ?></td>
                                 <td class="text-center">
-                                    <a href="e_fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"><i
+                                    <a href="editFornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"><i
                                                 class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
                                 </td>
                                 <td class="text-center"><a
@@ -166,16 +151,26 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
+<!-- DataTable -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../dist/js/myjs.js"></script>
-<script src="ajax.js"></script>
-
+<script src="../../dist/js/dataTableCustom.js"></script>
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- RequestAJAX -->
+<script src="requestFornecedor.js"></script>
+<script>
+    $("#novofornecedor").submit(function (event) {
+        //Swal.fire('Any fool can use a computer');
+        //setTimeout(function () {
+        // window.location.reload(1);
+        //}, 10000);
+    });
+</script>
 
 </body>
 </html>

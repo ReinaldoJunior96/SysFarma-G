@@ -26,6 +26,7 @@ class FornecedorController
             $sql->execute();
             if ($sql) {
                 $this->conn->commit();
+                echo "<script language=\"javascript\">window.history.back();</script>";
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
@@ -54,6 +55,7 @@ class FornecedorController
             $editFornecedor->execute();
             if ($editFornecedor) {
                 $this->conn->commit();
+                echo "<script language=\"javascript\">window.history.back();</script>";
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();

@@ -106,9 +106,8 @@ switch ($_SESSION['user']) {
                         <div class="row">
                             <div class="form-group col-md-8">
                                 <label>Setor</label>
-                                <select class="form-control select2" name="produtoid" id="produtoid"
-                                        onchange="getValores()">
-                                    <
+                                <select class="form-control select2" name="selectprodid" id="selectprodid"
+                                        onchange="getValores();">
                                     <option selected></option>
                                     <?php
                                     require_once('../../back/controllers/EstoqueController.php');
@@ -149,42 +148,45 @@ switch ($_SESSION['user']) {
                 <?php
                 require_once('../../back/controllers/CompraController.php');
                 $dados = new CompraController();
-                $dados_ordem = $dados->verOrdemTotal($_GET['ordem']);
+                $dadosOrdem = $dados->verOrdemTotal($_GET['ordem']);
                 $somaValor = 0;
-                foreach ($dados_ordem as $value) {
-                    $somaValor += $value->valor_un_c * $value->qtde_compra;
-                    $valorUNCompraDisplay = floatval($value->valor_un_c)
+                foreach ($dadosOrdem as $value) {
+                    $valorTotalProduto = $value->valor_un_c * $value->qtde_compra;
+                    $valorUnCompra = floatval($value->valor_un_c);
                     ?>
                     <form method="post" action="../../back/response/compra/updateitem.php" id="alterarproduto">
+                        <input type="hidden" value="<?=$value->id_item_compra?>" name="idcompra">
+                        <input type="hidden" value="<?=$value->item_compra?>" name="idproditem">
+                        <input type="hidden" value="<?=$value->ordem_compra_id?>" name="idordem">
+                        <input type="hidden" value="<?=$value->valor_un_c?>" name="valoruni">
                         <div class="d-flex bd-highlight align-items-center">
-                            <input type="hidden" name="idcompra" id="idcompra" value="<?= $value->id_item_compra ?>">
-                            <input type="hidden" name="idproditem" id="idproditem" value="<?= $value->item_compra ?>">
-                            <input type="hidden" name="idordem" id="idordem" value="<?= $value->ordem_compra_id ?>">
-                            <input type="hidden" name="valoruni" id="valoruni" value="<?= $value->valor_un_c ?>">
                             <div class="p-2 bd-highlight">
-                                <a href=../../back/response/compra/d_prod_compra.php?idprod=<?= $value->id_item_compra ?>>
+                                <a href=../../back/response/compra/d_prod_compra.php?deleteprod=<?= $value->id_item_compra ?>>
                                     <i class="fas fa-minus-circle text-danger"></i>
                                 </a>
                             </div>
                             <div class="p-2 flex-grow-1 bd-highlight"><?= $value->produto_e ?></div>
                             <div class="p-2 bd-highlight">
-                                <input type="number" placeholder="Quantidade" id="qtdecomprada"
+                                <input type="number" placeholder="Quantidade"
                                        class="form-control text-center"
-                                       name="qtdecomprada" value="<?= $value->qtde_compra ?>">
+                                       name="qtdecomprada" id="qtdecomprada" value="<?= $value->qtde_compra ?>">
                             </div>
 
                             <div class="p-2 bd-highlight col-2">
                                 <strong>Valor Unitário: </strong>
-                                <span> <?= (strlen($valorUNCompraDisplay) <= 3) ? $valorUNCompraDisplay . "33" : $valorUNCompraDisplay ?></span>
+                                <span><?=$valorUnCompra?> </span>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <strong>Valor total:</strong> <span id="valortotal"><?= $somaValor?></span>
+                                <strong>Valor total:</strong> <span><?= $valorTotalProduto ?></span>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <button type="submit" class="btn btn-success"><i class="fas fa-save text-white"></i></button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save text-white"></i>
+                                </button>
                             </div>
                         </div>
                     </form>
+
                 <?php } ?>
             </div>
 
