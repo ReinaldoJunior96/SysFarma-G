@@ -35,37 +35,13 @@ $("#novofornecedor").submit(function (event) {
     request.done(function (response, textStatus, jqXHR) {
         // Log a message to the console
         //console.log("Hooray, it worked!");
-        let timerInterval
-        Swal.fire({
-            title: 'Cadastrando Fornecedor',
-            html: 'Aguarde <b></b>.',
-            timer: 1500,
-            timerProgressBar: true,
-            didOpen: () => {
-                Swal.showLoading()
-                timerInterval = setInterval(() => {
-                    const content = Swal.getContent()
-                    if (content) {
-                        const b = content.querySelector('b')
-                        if (b) {
-                            b.textContent = Swal.getTimerLeft()
-                        }
-                    }
-                }, 100)
-            },
-            willClose: () => {
-                Swal.fire(
-                    'Good job!',
-                    'You clicked the button!',
-                    'success'
-                )
-                clearInterval(timerInterval);
-                window.location.reload(true);
-            }
-        }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('Tudo certo...')
+        Swal.fire(
+            'Sucesso!',
+            'Fornecedor Cadastrado',
+            'success'
+        ).then((result) => {
+            if (result.isConfirmed) {
+                document.location.reload(false);
             }
         })
     });
