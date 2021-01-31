@@ -3,23 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/CompraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/CompraController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/FornecedorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/FornecedorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/compra/d_prod_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/d_prod_compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/compra/n_prod_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/n_prod_ordem_compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/compra/requestajax/alteraquantidade.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/requestajax/alteraquantidade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/compra/requestajax/searchreqprod.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/requestajax/searchreqprod.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/compra/updateitem.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/updateitem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/fornecedores/fornecedores_n.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/fornecedores/fornecedores_n.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/myjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/myjs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/ajax.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/e_fornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/script.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/addprodutos.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/alterarprodutos.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/alterarprodutos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/searchproduto.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/searchproduto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/requestFornecedor.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/requestFornecedor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +84,8 @@
       <workItem from="1611577679662" duration="104000" />
       <workItem from="1611581054750" duration="4958000" />
       <workItem from="1611768811204" duration="15892000" />
+      <workItem from="1611880463944" duration="27000" />
+      <workItem from="1611880530875" duration="2637000" />
     </task>
     <servers />
   </component>
