@@ -67,7 +67,7 @@ $s = new ConfigCRUD();
                 <form role="form" method="POST" action="">
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-md-8">
+                            <div class="form-group col-md-6">
                                 <label>Setor</label>
                                 <select class="form-control select2" name="setor">
                                     <option selected></option>
@@ -82,7 +82,7 @@ $s = new ConfigCRUD();
                                     <?php } ?>
                                 </select>
                             </div>
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-3">
                                 <label>Data Inicial</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -92,7 +92,7 @@ $s = new ConfigCRUD();
                                            data-inputmask-inputformat="dd/mm/yyyy" name="dataI" data-mask>
                                 </div>
                             </div>
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-3">
                                 <label>Data Final</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -113,7 +113,7 @@ $s = new ConfigCRUD();
             <!-- /.card -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">DataTable with default features</h3>
+                    <h3 class="card-title">Relaótiro Gerado</h3>
                 </div>
                 <!-- /.card-header -->
                 <?php

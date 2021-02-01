@@ -51,7 +51,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <!-- /.card-header -->
                 <!-- form start -->
 
-                <form role="form" id="novofornecedor" method="post">
+                <form role="form" id="fornecedorform" method="post">
                     <input type="hidden" name="new" value="1">
                     <div class="card-body">
                         <div class="form-group">
@@ -163,14 +163,6 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- RequestAJAX -->
 <script src="requestFornecedor.js"></script>
-<script>
-    $("#novofornecedor").submit(function (event) {
-        //Swal.fire('Any fool can use a computer');
-        //setTimeout(function () {
-        // window.location.reload(1);
-        //}, 10000);
-    });
-</script>
 
 </body>
 </html>

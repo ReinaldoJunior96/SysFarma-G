@@ -1,7 +1,7 @@
 // Variable to hold request
 var request;
 // Bind to the submit event of our form
-$("#fornecedorform").submit(function (event) {
+$("#setorform").submit(function (event) {
 
     // Prevent default posting of form - put here to work in case of errors
     event.preventDefault();
@@ -26,7 +26,7 @@ $("#fornecedorform").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/fornecedores/fornecedores_n.php",
+        url: "../../back/response/setor/n_setor.php",
         type: "post",
         data: serializedData
     });

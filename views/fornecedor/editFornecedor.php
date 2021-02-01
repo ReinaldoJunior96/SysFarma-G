@@ -69,14 +69,15 @@ switch ($_SESSION['user']) {
                 $fornecedores = $f->verFornecedor($_GET['idfornecedor']);
                 foreach ($fornecedores as $value) {
                     ?>
-                    <form role="form" method="POST" action="../../back/response/fornecedores/fornecedores_n.php">
+                    <form role="form" id="fornecedorform" method="post">
                         <input type="hidden" name="edit" value="1">
-                        <input type="hidden" name="idfornecedor" value="<?=$_GET['idfornecedor']?>">
+                        <input type="hidden" name="idfornecedor" value="<?= $_GET['idfornecedor'] ?>">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nome</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
-                                       placeholder="Qual nome do forncedor?" name="fornecedor" value="<?=$value->nome_fornecedor?>">
+                                       placeholder="Qual nome do forncedor?" name="fornecedor"
+                                       value="<?= $value->nome_fornecedor ?>">
                             </div>
                             <div class="row">
                                 <div class="col-sm-4">
@@ -84,7 +85,7 @@ switch ($_SESSION['user']) {
                                     <div class="form-group">
                                         <label>Telefone</label>
                                         <input type="text" class="form-control" placeholder="Número p/ contato"
-                                               name="telefone_fornecedor" value="<?=$value->contato_fornecedor?>">
+                                               name="telefone_fornecedor" value="<?= $value->contato_fornecedor ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -92,7 +93,7 @@ switch ($_SESSION['user']) {
                                     <div class="form-group">
                                         <label>E-mail</label>
                                         <input type="text" class="form-control" placeholder="E-mail p/ contato"
-                                               name="email_fornecedor" value="<?=$value->email_fornecedor?>">
+                                               name="email_fornecedor" value="<?= $value->email_fornecedor ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -101,14 +102,14 @@ switch ($_SESSION['user']) {
                                         <label>CPF/CNPJ</label>
                                         <input type="text" class="form-control"
                                                placeholder="Identificação do fornecedor"
-                                               name="cnpj_fornecedor" value="<?=$value->cnpj_f?>">
+                                               name="cnpj_fornecedor" value="<?= $value->cnpj_f ?>">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Endereço</label>
                                 <textarea class="form-control" rows="3" placeholder="Onde ele se localiza?"
-                                          name="endereco_fornecedor"><?=$value->endereco_f?></textarea>
+                                          name="endereco_fornecedor"><?= $value->endereco_f ?></textarea>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -137,6 +138,9 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../dist/js/myjs.js"></script>
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- RequestAJAX -->
+<script src="requestFornecedor.js"></script>
 </body>
 </html>

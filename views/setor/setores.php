@@ -66,17 +66,12 @@ switch ($_SESSION['user']) {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="../../back/response/config_r.php">
+                <form role="form" id="setorform" method="post">
                     <input type="hidden" name="setor" value="1">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="font-weight-normal ">Informe o nome dos setor</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" name="novo_setor"
-                                   placeholder="Qual setor você deseja cadastrar?">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="font-weight-normal ">Informe o nome dos setor</label>
-                            <input type="text" class="form-control" id="setor" name="novo_setor" onkeyup="myFunction()"
                                    placeholder="Qual setor você deseja cadastrar?">
                         </div>
                     </div>
@@ -140,18 +135,11 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../dist/js/myjs.js"></script>
-<script>
-        function myFunction() {
-            var x = document.getElementById("setor");
-            x.value = x.value.toUpperCase();
-
-            var b = document.getElementById("exampleInputEmail1");
-
-            b.value = x.value;
-
-        }
-</script>
+<script src="../../dist/js/dataTableCustom.js"></script>
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- RequestAJAX -->
+<script src="requestSetor.js"></script>
 
 </body>
 </html>

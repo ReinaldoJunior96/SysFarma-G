@@ -85,11 +85,11 @@ switch ($_SESSION['user']) {
                             <label for="inputEmail3"
                                    class="col-sm-5 col-form-label text-left font-weight-light"><?= $value->produto_e ?></label>
                             <div class="col-sm-2">
-                                <input type="number" class="form-control" name="saidaqte_p[]">
+                                <input type="number" id="qtedesolicitada" class="form-control" name="saidaqte_p[]">
                             </div>
-                            <label for="inputEmail3"
-                                   class="col-sm-2 col-form-label text-left font-weight-normal">Em
-                                Estoque: <?= $value->quantidade_e ?></label>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label text-left font-weight-normal">
+                                <strong>Em Estoque: <span id="valorestoque"><?= $value->quantidade_e ?></span></strong>
+                            </label>
                         </div>
                         <hr>
                     <?php } ?>
@@ -205,6 +205,13 @@ switch ($_SESSION['user']) {
         });
 
     })
+</script>
+
+<script>
+    $('#qtedesolicitada').keyup(function(){
+        var teste = document.getElementById('valorestoque');
+        console.log(teste);
+    });
 </script>
 </body>
 </html>

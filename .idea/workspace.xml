@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/fornecedor/requestFornecedor.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/requestFornecedor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/n_relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/n_saida_setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/setor/n_setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setor/setores.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +92,8 @@
       <workItem from="1611768811204" duration="15892000" />
       <workItem from="1611880463944" duration="27000" />
       <workItem from="1611880530875" duration="2637000" />
+      <workItem from="1612124323283" duration="213000" />
+      <workItem from="1612142946058" duration="4926000" />
     </task>
     <servers />
   </component>

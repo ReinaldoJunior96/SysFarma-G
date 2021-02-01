@@ -69,13 +69,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../relatorio/n_relatorio.php" class="nav-link">
+                    <a href="../relatorio/relatorio.php" class="nav-link">
                         <i class="fas fa-file-invoice nav-icon"></i>
                         <p>Relatório</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../setor/n_setores.php" class="nav-link">
+                    <a href="../setor/setores.php" class="nav-link">
                         <i class="fas fa-share-alt-square nav-icon"></i>
                         <p>Setores</p>
                     </a>
