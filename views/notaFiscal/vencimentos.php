@@ -86,67 +86,47 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <?php } ?>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="text-left">
-                        <a href="lotes.php?idnf=<?= $_GET['idnf'] ?>" class="btn btn-sm btn-primary">
-                            <i class="fas fa-calendar-day"></i> Lotes & Validades
-                        </a>
-                        <?php
-                        require_once('../../back/controllers/NotaFiscalController.php');
-                        $n = new NotaFiscalController();
-                        $attNota = $n->verificarNota($_GET['idnf']);
-                        if ($attNota >= 1) {
-                            $text = "Adicione a quantidade comprada ao estoque";
-                            $class = "";
-                            $link = "../../back/response/compra/import_from_ordem.php?idnf=" . $_GET['idnf'];
-                        } else {
-                            $text = "Quantidade já foi lançada";
-                            $class = "disabled";
-                            $link = "#";
-                        }
-                        ?>
-                        <div class="float-right">
-                            <?= $text ?>
-                            <a href="<?= $link ?>" class="btn btn-sm bg-teal <?= $class ?>">
-                                <i class="fas fa-calendar-day"></i>
-                            </a>
+                <hr>
+                <div class="p-3">
+                    <form method="POST" action="../../back/response/notaf/vencimento_parcelas_r.php">
+                        <input type="hidden" name="new" value="1">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Data de vencimento</label>
+                            <div class="col-sm-8">
+                                <input type="date" name="d_vencimento" class="form-control" id="inputEmail3">
+                                <input type="hidden" name="idnf" value="<?= $_GET['idnf'] ?>">
+                            </div>
                         </div>
-                    </div>
-
+                        <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Cadastrar<i
+                                    class="fas fa-plus ml-2"></i></button>
+                    </form>
                 </div>
+
             </div>
-            <!-- /.card -->
-            <div class="card" id="tabela" style="display: none">
+            <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Produtos</h3>
+                    <h3 class="card-title">Vencimentos</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr class="">
-                            <th class="">Produto / Material</th>
-                            <th class="">Quantidade</th>
-                            <th class="">Valor Unitário</th>
-                            <th class="">Valor Total</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                    <ul class="list-group">
                         <?php
-                        require_once('../../back/controllers/NotaFiscalController.php');
-                        $nf = new NotaFiscalController();
-                        $ver_nf = $nf->verProdNF($_GET['idnf']);
-                        foreach ($ver_nf as $v) {
+                        require_once ('../../back/controllers/NotaFiscalController.php');
+                        $notaf = new NotaFiscalController();
+                        $notas = $notaf->buscarVencimentos($_GET['idnf']);
+
+                        foreach ($notas as $value) {
+                            $data = date_create($value->vencimento);
                             ?>
-                            <tr>
-                                <td><?= $v->produto_e ?></td>
-                                <td><?= $v->qtde_compra ?></td>
-                                <td>R$ <?= $v->valor_un_c ?></td>
-                                <td>R$ <?= $v->qtde_compra * $v->valor_un_c ?></td>
-                                <!--                                    --><?php //echo "<td><a href=../../back/response/notaf/d_produto_nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
-                            </tr>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <?= date_format($data, "d/m/Y") ?>
+                                <a href="../../back/response/notaf/d_vencimento_parcelas.php?idv=<?=$value->id?>">
+                                    <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
+                                </a>
+                            </li>
                         <?php } ?>
-                    </table>
+
+                    </ul>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -172,7 +152,6 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../dist/js/dataTableCustom.js"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements

@@ -161,7 +161,7 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../dist/js/myjs.js"></script>
+<script src="../../dist/js/dataTableCustom.js"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements

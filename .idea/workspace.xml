@@ -3,13 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/requestFornecedor.js" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/requestFornecedor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/relatorio/n_relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/n_saida_setor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/setor/n_setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setor/setores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/NotaFController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/NotaFiscalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/import_from_ordem.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/import_from_ordem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_lotes.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_lotes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_nf_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_nf_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_produto_nf.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_produto_nf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_vencimento_parcelas.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_vencimento_parcelas.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/lotes_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/lotes_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/n_produtos_nfr.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/n_produtos_nfr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/nota_fiscal_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/nota_fiscal_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/vencimento_parcelas_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/vencimento_parcelas_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/almoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/almoxarifado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/compras.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/compras.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/editEstoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/editEstoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/farmacia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/fornecedores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/lote.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/lote.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/transacoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/notaF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/notaF.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/s_data_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/s_data_setor.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +57,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/notaFiscal" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,14 +69,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\gstock2.0\views\notaFiscal" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\ordem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\gstock2.0\views\notaFiscal" />
+      <recent name="C:\xampp\htdocs\gstock2.0\views\estoque\nav" />
+      <recent name="C:\xampp\htdocs\gstock2.0\views\estoque" />
       <recent name="C:\xampp\htdocs\gstock2.0\dist\js" />
       <recent name="C:\xampp\htdocs\gstock2.0\back\response\compra\requestajax" />
-      <recent name="C:\xampp\htdocs\gstock2.0\back\response\compra" />
-      <recent name="C:\xampp\htdocs\gstock2.0\dist\img" />
-      <recent name="C:\xampp\htdocs\gstock2.0\views\saida" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -94,6 +111,8 @@
       <workItem from="1611880530875" duration="2637000" />
       <workItem from="1612124323283" duration="213000" />
       <workItem from="1612142946058" duration="4926000" />
+      <workItem from="1612177059686" duration="786000" />
+      <workItem from="1612178039795" duration="20540000" />
     </task>
     <servers />
   </component>

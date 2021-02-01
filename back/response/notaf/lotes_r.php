@@ -1,5 +1,5 @@
 <?php
-require_once('../../controllers/NotaFController.php');
+require_once('../../controllers/NotaFiscalController.php');
 $loteValidade = array(
     'notaFiscal' => $_POST['idnf'],
     'produto' => $_POST['prod_nf'],
@@ -7,7 +7,7 @@ $loteValidade = array(
     'validade' => $_POST['validade_prof_nf'],
 );
 
-$lote = new NotaFController();
+$lote = new NotaFiscalController();
 $lote->cadLote($loteValidade);
 echo "<script language=\"javascript\">window.history.back();</script>";
 

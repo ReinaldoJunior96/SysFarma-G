@@ -2,7 +2,7 @@
 require_once('conexao.php');
 require_once ('EstoqueController.php');
 
-class NotaFController
+class NotaFiscalController
 {
     public $conn = null;
 

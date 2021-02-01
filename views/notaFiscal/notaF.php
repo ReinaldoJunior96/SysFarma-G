@@ -56,8 +56,8 @@
                     </thead>
                     <tbody>
                     <?php
-                    require_once ('../../back/controllers/NotaFController.php');
-                    $view_nf = new NotaFController();
+                    require_once('../../back/controllers/NotaFiscalController.php');
+                    $view_nf = new NotaFiscalController();
                     $allnf = $view_nf->index();
                     foreach ($allnf as $v) {
                         $data_emisao = date_create($v->data_emissao);
@@ -65,12 +65,12 @@
                         ?>
                         <tr>
                             <td class=''><a class='text-primary' href=produtosnf.php?idnf=<?=$v->id_nf?>><?=$v->numero_nf?></a></td>
-                            <td><a class='text-primary' href="../compra/n_prod_oc.php?id_ordem=<?=$v->id_ordem?>"</a><?=$v->id_ordem?></td>
+                            <td><a class='text-primary' href="../ordem/produtos.php?ordem=<?=$v->id_ordem?>"</a><?=$v->id_ordem?></td>
                             <td><?= $v->fornecedor ?></td>
                             <td><?= date_format($data_emisao, 'd/m/Y') ?> </td>
                             <td><?= date_format($data_lancamento, 'd/m/Y') ?></td>
                             <td>R$ <?= $v->valor_nf ?></td>
-                            <td><a href=e_nota_fiscal.php?idnf="<?=$v->id_nf?>><i class='fas fa-pen fa-1x color-icon-nf text-success'></i></a></td>
+                            <td><a href=editNF.php?idnf=<?=$v->id_nf?>><i class='fas fa-pen fa-1x color-icon-nf text-success'></i></a></td>
                             <td><a href=../../back/response/notaf/d_nf_r.php?idnf="<?=$v->id_nf?>><i class='fas fa-trash-alt fa-1x text-danger'></i></a></td>
                         </tr>
                     <?php } ?>
@@ -108,6 +108,6 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../dist/js/myjs.js"></script>
+<script src="../../dist/js/dataTableCustom.js"></script>
 </body>
 </html>

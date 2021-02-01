@@ -68,7 +68,7 @@ switch ($_SESSION['user']) {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="../../back/response/estoque/estoque_r.php">
+                <form role="form" id="estoqueform" method="post">
                     <input type="hidden" name="new" value="1">
                     <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
                     <div class="card-body">
@@ -79,7 +79,7 @@ switch ($_SESSION['user']) {
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="exampleInputEmail1">Nome Comercial</label>
-                                <input type='text' class='form-control' name='produto_e' placeholder=''>
+                                <input type='text' class='form-control' name='produto_e' placeholder='' required>
                             </div>
                         </div>
                         <div class="row">
@@ -155,7 +155,7 @@ switch ($_SESSION['user']) {
                             ?>
                             <tr>
                                 <td><?= $v->principio_ativo ?></td>
-                                <td><a href=editEstoque.php?idp=<?= $v->id_estoque ?>><?=$v->produto_e ?></td>
+                                <td><a href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?=$v->produto_e ?></td>
                                 <td><?= $v->quantidade_e ?></td>
                             </tr>
                         <?php } ?>
@@ -184,6 +184,10 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../dist/js/myjs.js"></script>
+<script src="../../dist/js/dataTableCustom.js"></script>
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- RequestAJAX -->
+<script src="requestProduto.js"></script>
 </body>
 </html>

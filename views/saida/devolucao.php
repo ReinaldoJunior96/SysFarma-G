@@ -1,21 +1,3 @@
-<?php
-session_start();
-if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
-    header("location: ../user/login.php");
-}
-require_once('../../back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
-switch ($_SESSION['user']) {
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -67,88 +49,76 @@ switch ($_SESSION['user']) {
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
             <div class="card card-primary">
-                <?php
-                require_once '../../back/controllers/EstoqueController.php';
-                $p = new EstoqueController();
-                $produtos = $p->estoqueID($_GET['idp']);
-                foreach ($produtos as $v) {
-                    ?>
-                    <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-file-invoice"></i>
-                            Produto: <?= $v->produto_e ?>
-                        </h3>
-                    </div>
-                <?php } ?>
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Informe o setor e a data que desejar
+                        iniciar o procedimento de saída
+                    </h3>
+                </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <ul class="nav nav-tabs mt-2">
-                    <li class="nav-item">
-                        <a class="nav-link " href="editEstoque.php?idp=<?= $_GET['idp'] ?>">Infomações</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
-                    </li>
-                </ul>
-                <form role="form" method="POST" action="../../back/response/estoque/n_prod_fornecedor.php">
-                    <input type="hidden" value="<?= $_GET['idp'] ?>" name="produto">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-9">
-                                <label>Setor</label>
-                                <select class="form-control select2" name="fornecedor">
-                                    <option selected></option>
-                                    <?php
-                                    require_once('../../back/controllers/FornecedorController.php');
-                                    $f = new FornecedorController();
-                                    $fornecedores = $f->verFornecedores();
-                                    foreach ($fornecedores as $listf) {
-                                        ?>
-                                        <option value="<?= $listf->id_fornecedor ?>"><?= $listf->nome_fornecedor ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Cadastrar</button>
-                    </div>
-                </form>
-                <div class="mt-3 p-3">
+
+                <form role="form" method="post" action="../../back/response/saidasetor/devolucao.php">
                     <?php
                     require_once('../../back/controllers/EstoqueController.php');
-                    $forProdutor = new EstoqueController();
-                    $for = $forProdutor->searchFornecedorProduto($_GET['idp']);
+                    $d = new EstoqueController();
+                    $devolucao = $d->searchDevolucao($_GET['idsaida']);
+                    foreach ($devolucao
 
-                    foreach ($for as $value) {
+                             as $k):
                         ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= $value->nome_fornecedor ?>
-                            <a href="../../back/response/estoque/d_fornecedor_prod.php?idpf=<?= $value->idfp ?>">
-                                <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                </div>
-
+                        <div class="card-body">
+                            <input type="hidden" name="idsaida" value="<?= $k->id_saida ?>">
+                            <input type="hidden" name="itemsaida" value="<?= $k->item_s ?>">
+                            <input type="hidden" name="quantidadesaida" value="<?= $k->quantidade_s ?>">
+                            <input type="hidden" name="setorsaida" value="<?= $k->setor_s ?>">
+                            <input type="hidden" name="datas" value="<?= $k->data_s ?>">
+                            <input type="hidden" name="datadiasaida" value="<?= $k->data_dia_s ?>">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="exampleInputEmail1">Produto / Meterial</label>
+                                    <input type='text' class='form-control' value="<?= $k->produto_e ?>" disabled
+                                           name='produtosaida'>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <label for="exampleInputEmail1">Quantidade Devolvida</label>
+                                    <input type="number" class='form-control' name="quantidadedevolvida">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="exampleInputEmail1">Setor</label>
+                                    <input type="text" class="form-control" disabled value="<?= $k->setor_s ?>">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="exampleInputEmail1">Data / Hora</label>
+                                    <input type="text" class="form-control"
+                                           disabled
+                                           value="<?= $k->data_s ?>">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="exampleInputEmail1">Confirme</label>
+                                    <input type="password" class="form-control" name="autorizacao">
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary col-md-2">Realizar Devolução</button>
+                    </div>
+                </form>
 
             </div>
-
         </div>
     </div>
     <!-- /.content-wrapper -->
 
     <?php include('../componentes/footer.php'); ?>
 </div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

@@ -86,66 +86,81 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <?php } ?>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="text-left">
-                        <a href="lotes.php?idnf=<?= $_GET['idnf'] ?>" class="btn btn-sm btn-primary">
-                            <i class="fas fa-calendar-day"></i> Lotes & Validades
-                        </a>
-                        <?php
-                        require_once('../../back/controllers/NotaFiscalController.php');
-                        $n = new NotaFiscalController();
-                        $attNota = $n->verificarNota($_GET['idnf']);
-                        if ($attNota >= 1) {
-                            $text = "Adicione a quantidade comprada ao estoque";
-                            $class = "";
-                            $link = "../../back/response/compra/import_from_ordem.php?idnf=" . $_GET['idnf'];
-                        } else {
-                            $text = "Quantidade já foi lançada";
-                            $class = "disabled";
-                            $link = "#";
-                        }
-                        ?>
-                        <div class="float-right">
-                            <?= $text ?>
-                            <a href="<?= $link ?>" class="btn btn-sm bg-teal <?= $class ?>">
-                                <i class="fas fa-calendar-day"></i>
-                            </a>
+                <hr>
+                <div class="p-3">
+                    <form role="form" id="lotesform" method="post">
+                        <input type='hidden' class='form-control ' name='idnf' value="<?= $_GET['idnf'] ?>"
+                               placeholder=''>
+                        <div class="form-group row">
+                            <label for="inputEmail3"
+                                   class="col-sm-1 col-form-label">Produto</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="prod_nf" required>
+                                    <option selected></option>
+                                    <?php
+                                    require_once('../../back/controllers/NotaFiscalController.php');
+                                    $produtos = new NotaFiscalController();
+                                    $ver_produtos = $produtos->verProdNF($_GET['idnf']);
+                                    foreach ($ver_produtos as $v):?>
+                                        <option value="<?= $v->id_estoque ?>"><?= $v->produto_e ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-1 col-form-label">Lote</label>
+                            <div class="col-sm-3">
+                                <input type='text' class='form-control ' name='lote_prod_nf' placeholder=''>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-1 col-form-label">Validade</label>
+                            <div class="col-sm-3">
+                                <input type='date' class='form-control ' name='validade_prof_nf' placeholder=''>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Adicionar <i
+                                    class="fas fa-plus ml-2"></i></button>
+                    </form>
                 </div>
+
             </div>
-            <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
                 <div class="card-header">
-                    <h3 class="card-title">Produtos</h3>
+                    <h3 class="card-title">Lotes & Validades</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table class="table table-sm">
                         <thead>
-                        <tr class="">
-                            <th class="">Produto / Material</th>
-                            <th class="">Quantidade</th>
-                            <th class="">Valor Unitário</th>
-                            <th class="">Valor Total</th>
+                        <tr>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Lote</th>
+                            <th scope="col">Validade</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        require_once('../../back/controllers/NotaFiscalController.php');
-                        $nf = new NotaFiscalController();
-                        $ver_nf = $nf->verProdNF($_GET['idnf']);
-                        foreach ($ver_nf as $v) {
+                        require_once '../../back/controllers/NotaFiscalController.php';
+                        $nfProd = new NotaFiscalController();
+                        $nfLotes = $nfProd->buscarLote($_GET['idnf']);
+
+                        foreach ($nfLotes as $prodLotes):
+                            $data = date_create($prodLotes->validade);
                             ?>
                             <tr>
-                                <td><?= $v->produto_e ?></td>
-                                <td><?= $v->qtde_compra ?></td>
-                                <td>R$ <?= $v->valor_un_c ?></td>
-                                <td>R$ <?= $v->qtde_compra * $v->valor_un_c ?></td>
-                                <!--                                    --><?php //echo "<td><a href=../../back/response/notaf/d_produto_nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
+                                <td><?= $prodLotes->produto_e ?></td>
+                                <td> <?= $prodLotes->lote ?></td>
+                                <td> <?= date_format($data, "d/m/Y") ?></td>
+                                <td>
+                                    <a href="../../back/response/notaf/d_lotes.php?idl=<?= $prodLotes->id_nf_lote ?>">
+                                        <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
+                                    </a>
+                                </td>
                             </tr>
-                        <?php } ?>
+                        <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -173,6 +188,10 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../dist/js/dataTableCustom.js"></script>
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- RequestAJAX -->
+<script src="requestLote.js"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements

@@ -1,10 +1,10 @@
 <?php
-require_once('../../controllers/NotaFController.php');
+require_once('../../controllers/NotaFiscalController.php');
 $dataVencimento = array(
     'notaid'=>$_POST['idnf'],
     'vencimento'=>$_POST['d_vencimento'],
 );
-$venciemento = new NotaFController();
+$venciemento = new NotaFiscalController();
 $venciemento->venciementoParcelas($dataVencimento);
 echo "<script language=\"javascript\">window.history.back();</script>";
 

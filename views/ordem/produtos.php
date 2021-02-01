@@ -123,7 +123,7 @@ switch ($_SESSION['user']) {
                                 <label>Quantiade(Unitária)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-sort-numeric-up-alt"></i></span>
                                     </div>
                                     <input type="text" class="form-control" value="" name="saidaqte_p" id="saidaqte_p">
                                 </div>
@@ -213,7 +213,6 @@ switch ($_SESSION['user']) {
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../dist/js/myjs.js"></script>
 <script src="alterarprodutos.js"></script>
 <script src="searchproduto.js"></script>
 <script>

@@ -1,7 +1,7 @@
 <?php
-require_once('../../controllers/NotaFController.php');
+require_once('../../controllers/NotaFiscalController.php');
 
-$deleteL = new NotaFController();
+$deleteL = new NotaFiscalController();
 $deleteL->deleteLote($_GET['idl']);
 echo "<script language=\"javascript\">window.history.back();</script>";
 

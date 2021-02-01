@@ -1,6 +1,6 @@
 <?php
-require_once('../../controllers/NotaFController.php');
-$notaData = new NotaFController();
+require_once('../../controllers/NotaFiscalController.php');
+$notaData = new NotaFiscalController();
 $nf = array(
     'numero' => $_POST['numero_nf'],
     'data_e' => $_POST['datae_nf'],

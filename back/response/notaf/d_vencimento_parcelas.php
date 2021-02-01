@@ -1,7 +1,7 @@
 <?php
-require_once('../../controllers/NotaFController.php');
+require_once('../../controllers/NotaFiscalController.php');
 
-$deleteVencimento = new NotaFController();
+$deleteVencimento = new NotaFiscalController();
 $deleteVencimento->deleteVencimento($_GET['idv']);
 echo "<script language=\"javascript\">window.history.back();</script>";
 
