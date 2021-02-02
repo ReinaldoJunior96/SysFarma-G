@@ -45,7 +45,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span><?=$_SESSION['user']?></span>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
                 </a>
             </li>
         </ul>
@@ -57,77 +57,71 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-file-invoice"></i>
-                        Cadastro de Materiais & Medicamentos
-                    </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form role="form" id="estoqueform" method="post">
-                    <input type="hidden" name="new" value="1">
-                    <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Principio Ativo</label>
-                                <input type="text" name="p_ativo" class="form-control" id="inputEmail3">
+            <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-file-invoice"></i>
+                            Cadastro de Materiais & Medicamentos
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <form role="form" id="estoqueform" method="post">
+                        <input type="hidden" name="new" value="1">
+                        <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="exampleInputEmail1">Principio Ativo</label>
+                                    <input type="text" name="p_ativo" class="form-control" id="inputEmail3">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="exampleInputEmail1">Nome Comercial</label>
+                                    <input type='text' class='form-control' name='produto_e' placeholder='' required>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Nome Comercial</label>
-                                <input type='text' class='form-control' name='produto_e' placeholder='' required>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label for="exampleInputEmail1">Apresentação</label>
+                                    <input type='text' class='form-control ' name='apresentacao' placeholder=''>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="exampleInputEmail1">Forma Farmacêutica</label>
+                                    <input type="text" class="form-control" name="forma_farmaceutica" id="inputEmail4"
+                                           placeholder="">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="exampleInputEmail1">Concentração</label>
+                                    <input type="text" class="form-control" name="concentracao" id="inputEmail4"
+                                           placeholder="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-5">
-                                <label for="exampleInputEmail1">Apresentação</label>
-                                <input type='text' class='form-control ' name='apresentacao' placeholder=''>
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="exampleInputEmail1">Forma Farmacêutica</label>
-                                <input type="text" class="form-control" name="forma_farmaceutica" id="inputEmail4"
-                                       placeholder="">
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="exampleInputEmail1">Concentração</label>
-                                <input type="text" class="form-control" name="concentracao" id="inputEmail4"
-                                       placeholder="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Estoque Mínimo</label>
-                                <input type="number" class="form-control" name="estoque_minimo_e" id="inputEmail4"
-                                       placeholder="">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Quantidade</label>
-                                <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="exampleInputEmail1">Estoque Mínimo</label>
+                                    <input type="number" class="form-control" name="estoque_minimo_e" id="inputEmail4"
+                                           placeholder="">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="exampleInputEmail1">Quantidade</label>
                                     <input type="number" class="form-control" name="quantidade_e" id="inputEmail4">
-                                <?php } else { ?>
-                                    <input type='text' class='form-control ' name='valor_un' placeholder=''
-                                           disabled>
-                                <?php } ?>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Valor Unitário</label>
-                                <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="exampleInputEmail1">Valor Unitário</label>
                                     <input type='text' class='form-control ' name='valor_un' placeholder='R$'>
                                     <small>Utilize ponto no lugar da vírgula</small>
-                                <?php } else { ?>
-                                    <input type='text' class='form-control ' name='valor_un' placeholder=''
-                                           disabled>
-                                <?php } ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Cadastrar</button>
-                    </div>
-                </form>
-            </div>
+
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary col-md-2">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+            <?php endif; ?>
             <!-- /.card -->
             <div class="card" id="tabela">
                 <div class="card-header">
@@ -152,7 +146,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             ?>
                             <tr>
                                 <td><?= $v->principio_ativo ?></td>
-                                <td><a href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?=$v->produto_e ?></td>
+                                <td><a href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?= $v->produto_e ?></td>
                                 <td><?= $v->quantidade_e ?></td>
                             </tr>
                         <?php } ?>

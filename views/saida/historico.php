@@ -52,9 +52,15 @@ switch ($_SESSION['user']) {
                 <a disabled="" class="nav-link"></a>
             </li>
         </ul>
-        <form class="form-inline">
-            <a disabled="" class="nav-link"></a>
-        </form>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Usuário: <?=$_SESSION['user']?></span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
@@ -63,6 +69,11 @@ switch ($_SESSION['user']) {
     <div class="content-wrapper p-3">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
+            <?php if(isset($_GET['status'])):  ?>
+            <div class="alert alert-success" role="alert">
+                Sucesso! Devolução realizada.
+            </div>
+            <?php endif;?>
             <div class="card card-cyan">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-share-alt-square"></i></h3>

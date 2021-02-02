@@ -52,6 +52,15 @@ switch ($_SESSION['user']) {
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Usuário: <?=$_SESSION['user']?></span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
@@ -60,6 +69,7 @@ switch ($_SESSION['user']) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
+            <?php if ($_SESSION['user'] == 'compras.hvu' OR $_SESSION['user'] == 'admin'): ?>
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-file-invoice"></i>
@@ -91,22 +101,12 @@ switch ($_SESSION['user']) {
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Quantidade</label>
-                                <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
                                     <input type="number" class="form-control" name="quantidade_e" id="inputEmail4">
-                                <?php } else { ?>
-                                    <input type='text' class='form-control ' name='valor_un' placeholder=''
-                                           disabled>
-                                <?php } ?>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="exampleInputEmail1">Valor Unitário</label>
-                                <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
                                     <input type='text' class='form-control ' name='valor_un' placeholder='R$'>
                                     <small>Utilize ponto no lugar da vírgula</small>
-                                <?php } else { ?>
-                                    <input type='text' class='form-control ' name='valor_un' placeholder=''
-                                           disabled>
-                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -116,6 +116,7 @@ switch ($_SESSION['user']) {
                     </div>
                 </form>
             </div>
+            <?php endif; ?>
             <!-- /.card -->
             <div class="card" id="tabela">
                 <div class="card-header">

@@ -46,12 +46,22 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
     <aside class="main-sidebar sidebar-dark-primary elevation-2">
         <!-- Brand Logo -->
         <a disabled="" class="brand-link">
-            <img src="../../../dist/img/logo-single-branco.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="../../../dist/img/logo-single-branco.png" alt="AdminLTE Logo"
+                 class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light text-white">G-Stock</span>
         </a>
@@ -65,29 +75,31 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-truck-loading nav-icon"></i>
-                            <p>
-                                Entrada
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="../../ordem/compra.php" class="nav-link">
-                                    <i class="fas fa-shopping-bag nav-icon"></i>
-                                    <p>Ordem de compra</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../notaFiscal/notaF.php" class="nav-link">
-                                    <i class="far fa-file-alt nav-icon"></i>
-                                    <p>Nota Fiscal</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    <?php if ($_SESSION['user'] == 'compras.hvu' OR $_SESSION['user'] == 'admin'): ?>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-truck-loading nav-icon"></i>
+                                <p>
+                                    Entrada
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../../ordem/compra.php" class="nav-link">
+                                        <i class="fas fa-shopping-bag nav-icon"></i>
+                                        <p>Ordem de compra</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../../notaFiscal/notaF.php" class="nav-link">
+                                        <i class="far fa-file-alt nav-icon"></i>
+                                        <p>Nota Fiscal</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-cubes"></i>
@@ -129,12 +141,14 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <p>Setores</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="../../fornecedor/fornecedores.php" class="nav-link">
-                            <i class="fas fa-people-arrows nav-icon"></i>
-                            <p>Fornecedores</p>
-                        </a>
-                    </li>
+                    <?php if ($_SESSION['user'] == 'compras.hvu' OR $_SESSION['user'] == 'admin'): ?>
+                        <li class="nav-item">
+                            <a href="../../fornecedor/fornecedores.php" class="nav-link">
+                                <i class="fas fa-people-arrows nav-icon"></i>
+                                <p>Fornecedores</p>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a href="../../back/response/user/destroy_sessao.php" class="nav-link">
                             <i class="fas fa-power-off nav-icon"></i>
@@ -184,9 +198,11 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <a class="nav-link " href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
                     </li>
                 </ul>
+
                 <form role="form" method="POST" action="../../../back/response/estoque/n_prod_fornecedor.php">
                     <input type="hidden" value="<?= $_GET['idp'] ?>" name="produto">
                     <div class="card-body">
+                        <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
                         <div class="row">
                             <div class="form-group col-md-9">
                                 <label>Setor</label>
@@ -208,23 +224,27 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary col-md-2">Cadastrar</button>
                     </div>
+                    <?php endif; ?>
                 </form>
-                <div class="mt-3 p-3">
-                    <?php
-                    require_once('../../../back/controllers/EstoqueController.php');
-                    $forProdutor = new EstoqueController();
-                    $for = $forProdutor->searchFornecedorProduto($_GET['idp']);
 
-                    foreach ($for as $value) {
-                        ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= $value->nome_fornecedor ?>
-                            <a href="../../../back/response/estoque/d_fornecedor_prod.php?idpf=<?= $value->idfp ?>">
-                                <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
-                            </a>
-                        </li>
-                    <?php } ?>
-                </div>
+                <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
+                    <div class="mt-3 p-3">
+                        <?php
+                        require_once('../../../back/controllers/EstoqueController.php');
+                        $forProdutor = new EstoqueController();
+                        $for = $forProdutor->searchFornecedorProduto($_GET['idp']);
+
+                        foreach ($for as $value) {
+                            ?>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <?= $value->nome_fornecedor ?>
+                                <a href="../../../back/response/estoque/d_fornecedor_prod.php?idpf=<?= $value->idfp ?>">
+                                    <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </div>
+                <?php endif; ?>
 
 
             </div>
@@ -233,7 +253,6 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     </div>
     <!-- /.content-wrapper -->
 
-    <?php include('../componentes/footer.php'); ?>
 </div>
 <!-- jQuery -->
 <script src="../../../plugins/jquery/jquery.min.js"></script>

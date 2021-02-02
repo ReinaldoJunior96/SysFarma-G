@@ -61,6 +61,15 @@ switch ($_SESSION['user']) {
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Usuário: <?=$_SESSION['user']?></span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
@@ -85,7 +94,7 @@ switch ($_SESSION['user']) {
                             <label for="inputEmail3"
                                    class="col-sm-5 col-form-label text-left font-weight-light"><?= $value->produto_e ?></label>
                             <div class="col-sm-2">
-                                <input type="number" id="qtedesolicitada" class="form-control" name="saidaqte_p[]" onkeyup="testando();">
+                                <input type="number" id="qtedesolicitada" class="form-control" name="saidaqte_p[]" >
                             </div>
                             <label for="inputEmail3" class="col-sm-2 col-form-label text-left font-weight-normal">
                                 <strong>Em Estoque: <span id="valorestoque"><?= $value->quantidade_e ?></span></strong>

@@ -460,10 +460,13 @@ class EstoqueController
 
             if ($request['quantidadedevolvida'] > $request['quantidadesaida']) {
                 echo "<script language=\"javascript\">alert(\"Quantidade devolvida é maior que a saída!!\")</script>";
+                echo "<script language=\"javascript\">window.history.back();</script>";
             } elseif ($request['quantidadedevolvida'] == $request['quantidadesaida']) {
                 echo "<script language=\"javascript\">alert(\"Quantidades iguais, cancele a saída!!\")</script>";
+                echo "<script language=\"javascript\">window.history.back();</script>";
             } elseif ($request['quantidadedevolvida'] <= 0) {
                 echo "<script language=\"javascript\">alert(\"Quantidade Inválida\")</script>";
+                echo "<script language=\"javascript\">window.history.back();</script>";
             } elseif (($request['quantidadedevolvida'] < $request['quantidadesaida']) && ($request['quantidadedevolvida'] > 0)) {
                 self::editProdutoDevolucao($produto);
 
@@ -499,7 +502,7 @@ class EstoqueController
                         'user' => $request['user']);
                     self::transacaoRegistro($transacao);
                 }
-                echo "<script language=\"javascript\">window.history.back();</script>";
+                header("location: ../../../views/saida/historico.php?status=ok");
             }
 
 

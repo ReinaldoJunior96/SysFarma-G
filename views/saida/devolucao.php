@@ -46,6 +46,15 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Usuário: <?=$_SESSION['user']?></span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
@@ -54,6 +63,11 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
+            <?php if(isset($_GET['status']) &&  $_GET['status'] == 0):  ?>
+                <div class="alert alert-danger" role="alert">
+                    Autorização Inválida!!
+                </div>
+            <?php endif;?>
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-file-invoice"></i> Informe o setor e a data que desejar
@@ -91,7 +105,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <div class="row">
                                 <div class="form-group col-md-3">
                                     <label for="exampleInputEmail1">Quantidade Devolvida</label>
-                                    <input type="number" class='form-control' name="quantidadedevolvida">
+                                    <input type="number" class='form-control' required name="quantidadedevolvida">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="exampleInputEmail1">Setor</label>
@@ -105,7 +119,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="exampleInputEmail1">Confirme</label>
-                                    <input type="password" class="form-control" name="autorizacao">
+                                    <input type="password" class="form-control" required name="autorizacao">
                                 </div>
                             </div>
                         </div>

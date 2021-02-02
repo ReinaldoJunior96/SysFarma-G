@@ -40,6 +40,15 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Usuário: <?=$_SESSION['user']?></span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
@@ -60,29 +69,31 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="fas fa-truck-loading nav-icon"></i>
-                            <p>
-                                Entrada
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="../../ordem/compra.php" class="nav-link">
-                                    <i class="fas fa-shopping-bag nav-icon"></i>
-                                    <p>Ordem de compra</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../../notaFiscal/notaF.php" class="nav-link">
-                                    <i class="far fa-file-alt nav-icon"></i>
-                                    <p>Nota Fiscal</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    <?php if ($_SESSION['user'] == 'compras.hvu' OR $_SESSION['user'] == 'admin'): ?>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-truck-loading nav-icon"></i>
+                                <p>
+                                    Entrada
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../../ordem/compra.php" class="nav-link">
+                                        <i class="fas fa-shopping-bag nav-icon"></i>
+                                        <p>Ordem de compra</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../../notaFiscal/notaF.php" class="nav-link">
+                                        <i class="far fa-file-alt nav-icon"></i>
+                                        <p>Nota Fiscal</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-cubes"></i>
@@ -124,12 +135,14 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <p>Setores</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="../../fornecedor/fornecedores.php" class="nav-link">
-                            <i class="fas fa-people-arrows nav-icon"></i>
-                            <p>Fornecedores</p>
-                        </a>
-                    </li>
+                    <?php if ($_SESSION['user'] == 'compras.hvu' OR $_SESSION['user'] == 'admin'): ?>
+                        <li class="nav-item">
+                            <a href="../../fornecedor/fornecedores.php" class="nav-link">
+                                <i class="fas fa-people-arrows nav-icon"></i>
+                                <p>Fornecedores</p>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a href="../../back/response/user/destroy_sessao.php" class="nav-link">
                             <i class="fas fa-power-off nav-icon"></i>
@@ -178,11 +191,14 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <a class="nav-link " href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
                         </li>
                     </ul>
+
                     <form role="form" id="estoqueform" method="post">
                         <input type="hidden" name="edit" value="1">
                         <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
                         <input type="hidden" name="id" value="<?= $_GET['idp'] ?>">
+
                         <div class="card-body">
+                    <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="exampleInputEmail1">Principio Ativo</label>
@@ -238,25 +254,14 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleInputEmail1">Quantidade</label>
-                                    <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
                                         <input type="number" class="form-control" value="<?= $v->quantidade_e ?>"
                                                name="quantidade_e" id="inputEmail4">
-                                    <?php } else { ?>
-                                        <input type="hidden" class="form-control" value="<?= $v->quantidade_e ?>"
-                                               name="quantidade_e" id="inputEmail4">
-                                    <?php } ?>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleInputEmail1">Valor Unitário (R$)</label>
-                                    <?php if ($_SESSION['user'] == 'compras.hvu') { ?>
                                         <input type='text' class='form-control' value="<?= $v->valor_un_e ?>"
                                                name='valor_un' placeholder='R$'>
                                         <small class="roboto-condensed">Ex: 24.23 / 1253.65 / 14256.25</small>
-                                    <?php } else { ?>
-                                        <input type='hidden' class='form-control ' name='valor_un'
-                                               placeholder='' value="<?= $v->valor_un_e ?>"
-                                        >
-                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -265,6 +270,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <button type="submit" class="btn btn-primary col-md-2">Alterar</button>
                         </div>
                     </form>
+                    <?php endif; ?>
                 <?php } ?>
             </div>
 

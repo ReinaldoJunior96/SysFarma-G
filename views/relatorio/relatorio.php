@@ -3,8 +3,6 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../user/login.php");
 }
-require_once('../../back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -53,7 +51,7 @@ $s = new ConfigCRUD();
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span><?=$_SESSION['user']?></span>
+                    <span>Usuário: <?=$_SESSION['user']?></span>
                 </a>
             </li>
         </ul>

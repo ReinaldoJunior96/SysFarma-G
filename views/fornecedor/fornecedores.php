@@ -33,15 +33,13 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
-        <form class="form-inline">
-            <a disabled="" class="nav-link"></a>
-        </form>
+
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span><?=$_SESSION['user']?></span>
+                    <span>Usuário: <?=$_SESSION['user']?></span>
                 </a>
             </li>
         </ul>
