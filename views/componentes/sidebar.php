@@ -9,7 +9,6 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -63,7 +62,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="../saida/s_data_setor.php" class="nav-link">
+                    <a href="../saida/iniciar.php" class="nav-link">
                         <i class="fas fa-bezier-curve nav-icon"></i>
                         <p>Saída</p>
                     </a>

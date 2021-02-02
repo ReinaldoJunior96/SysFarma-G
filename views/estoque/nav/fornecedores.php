@@ -112,7 +112,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="../../saida/s_data_setor.php" class="nav-link">
+                        <a href="../../saida/iniciar.php" class="nav-link">
                             <i class="fas fa-bezier-curve nav-icon"></i>
                             <p>Saída</p>
                         </a>

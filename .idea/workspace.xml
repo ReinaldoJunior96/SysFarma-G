@@ -4,28 +4,23 @@
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/NotaFController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/NotaFiscalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/compra/import_from_ordem.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/import_from_ordem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_lotes.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_lotes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_nf_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_nf_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_produto_nf.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_produto_nf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_vencimento_parcelas.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_vencimento_parcelas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/lotes_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/lotes_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/n_produtos_nfr.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/n_produtos_nfr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/nota_fiscal_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/nota_fiscal_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/vencimento_parcelas_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/vencimento_parcelas_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/almoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/almoxarifado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/compras.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/compras.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/editEstoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/editEstoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/UsuarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/UsuarioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/devolucao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/estoque/farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/farmacia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/fornecedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/lote.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/lote.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/transacoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/notaF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/notaF.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/s_data_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/s_data_setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/compras.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/compras.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/editEstoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/editEstoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/fornecedores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/lote.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/lote.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/devolucao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/n_saida_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/s_data_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/iniciar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/setor/setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setor/setores.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +108,7 @@
       <workItem from="1612142946058" duration="4926000" />
       <workItem from="1612177059686" duration="786000" />
       <workItem from="1612178039795" duration="20540000" />
+      <workItem from="1612217902885" duration="15667000" />
     </task>
     <servers />
   </component>

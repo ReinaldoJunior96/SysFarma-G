@@ -1,6 +1,6 @@
 <?php
-include_once '../../controllers/configCRUD.php';
-include_once('../../controllers/EstoqueController.php');
+require_once ('../../controllers/configCRUD.php');
+require_once ('../../controllers/EstoqueController.php');
 date_default_timezone_set('America/Sao_Paulo');
 
 
@@ -28,9 +28,7 @@ for ($i = 0; $i < count($saida['produto']); $i++):
         $new_saida->registrarSaida($vrrSaida);
     endif;
 endfor;
-
-
-
+echo "<script language=\"javascript\">alert(\"Saída Registrada\")</script>";
 echo "<script language=\"javascript\">window.history.go(-2);</script>";
 
 ?>

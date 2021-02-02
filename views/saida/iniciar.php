@@ -56,7 +56,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="GET" action="n_saida_setor.php">
+                <form role="form" method="GET" action="registrar.php">
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-9">
@@ -94,6 +94,15 @@
                         </a>
                     </div>
                 </form>
+                <div class="p-3">
+<!--                    <div class="alert alert-danger alert-dismissible fade show" role="alert">-->
+<!--                        <strong>--><?//=var_dump($_GET['aParam'][0])?><!--</strong> Olha esse alerta animado, como é chique!-->
+<!--                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+                </div>
+
             </div>
         </div>
     </div>
@@ -128,7 +137,6 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- Page script -->
 <script>
     $(function () {
         //Initialize Select2 Elements

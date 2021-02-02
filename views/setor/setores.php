@@ -50,8 +50,17 @@ switch ($_SESSION['user']) {
             </li>
         </ul>
         <form class="form-inline">
-            <a disabled="" class="nav-link">Cadastro & Visualização de Setores</a>
+            <a disabled="" class="nav-link"></a>
         </form>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span><?=$_SESSION['user']?></span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>

@@ -347,7 +347,6 @@ class EstoqueController
                     );
                     $registrarTransaocao = new EstoqueController();
                     $registrarTransaocao->transacaoRegistro($transacao);
-                    echo "<script language=\"javascript\">alert(\"Saída Registrada\")</script>";
                 }
             }
         } catch (PDOException $erro) {
@@ -415,6 +414,7 @@ class EstoqueController
             self::transacaoRegistro($transacao);
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+
         }
     }
 
@@ -431,6 +431,83 @@ class EstoqueController
         }
     }
 
+
+    public function registrarDevolucao($request)
+    {
+        try {
+            $produtoID = $request['itemsaida'];
+            $produto = "";
+            $quantidadeInicial = 0;
+
+            $buscarProd = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque=$produtoID");
+            $buscarProd->execute();
+            $queryResult = $buscarProd->fetchAll(PDO::FETCH_OBJ);
+            foreach ($queryResult as $p) {
+                $produto = array(
+                    'idp' => $produtoID,
+                    'nomep' => $p->produto_e,
+                    'quatidadef' => $p->quantidade_e + $request['quantidadedevolvida'],
+                    'valorunitario' => $p->valor_un_e,
+                    'estoqueminimo' => $p->estoque_minimo_e,
+                    'apresentacao' => $p->apresentacao,
+                    'concentracao' => $p->concentracao,
+                    'formaf' => $p->forma_farmaceutica,
+                    'principio' => $p->principio_ativo,
+                    'tipo' => $p->tipo,
+                );
+                $quantidadeInicial = $p->quantidade_e;
+            }
+
+            if ($request['quantidadedevolvida'] > $request['quantidadesaida']) {
+                echo "<script language=\"javascript\">alert(\"Quantidade devolvida é maior que a saída!!\")</script>";
+            } elseif ($request['quantidadedevolvida'] == $request['quantidadesaida']) {
+                echo "<script language=\"javascript\">alert(\"Quantidades iguais, cancele a saída!!\")</script>";
+            } elseif ($request['quantidadedevolvida'] <= 0) {
+                echo "<script language=\"javascript\">alert(\"Quantidade Inválida\")</script>";
+            } elseif (($request['quantidadedevolvida'] < $request['quantidadesaida']) && ($request['quantidadedevolvida'] > 0)) {
+                self::editProdutoDevolucao($produto);
+
+                $idsaida = $request['idsaida'];
+
+                $this->conn->beginTransaction();
+                $queryUpdate = /** @lang text * */
+                    "UPDATE tbl_saida SET
+            item_s=:item_s,
+            quantidade_s=:quantidade_s,
+            setor_s=:setor_s,
+            data_s=:data_s,
+            data_dia_s=:data_dia_s
+			WHERE id_saida='$idsaida'";
+                $newValue = $this->conn->prepare($queryUpdate);
+                $newValue->bindValue(':item_s', $request['itemsaida']);
+                $newValue->bindValue(':quantidade_s', $request['quantidadesaida'] - $request['quantidadedevolvida']);
+                $newValue->bindValue(':setor_s', $request['setorsaida']);
+                $newValue->bindValue(':data_s', $request['datas']);
+                $newValue->bindValue(':data_dia_s', $request['datadiasaida']);
+                $newValue->execute();
+                if ($newValue) {
+                    $this->conn->commit();
+                    date_default_timezone_set('America/Sao_Paulo');
+                    $transacao = array(
+                        'produto' => $request['itemsaida'],
+                        'data' => date("Y-m-d H:i:s"),
+                        'tipo' => 'Devolução',
+                        'estoqueini' => $quantidadeInicial,
+                        'quantidade' => $request['quantidadedevolvida'],
+                        'estoquefi' => $quantidadeInicial + $request['quantidadedevolvida'],
+                        'cancelada' => ' ',
+                        'user' => $request['user']);
+                    self::transacaoRegistro($transacao);
+                }
+                echo "<script language=\"javascript\">window.history.back();</script>";
+            }
+
+
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro ao alterar produto!!\")</script>";
+        }
+    }
 
     public function editProdutoDevolucao($produto)
     {
@@ -465,81 +542,6 @@ class EstoqueController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-        }
-    }
-
-
-    public function registrarDevolucao($request)
-    {
-        try {
-            $produtoID = $request['itemsaida'];
-            $produto = "";
-            $quantidadeInicial = 0;
-            $buscarProd = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque=$produtoID");
-            $buscarProd->execute();
-            $queryResult = $buscarProd->fetchAll(PDO::FETCH_OBJ);
-            foreach ($queryResult as $p) {
-                $produto = array(
-                    'idp' => $produtoID,
-                    'nomep' => $p->produto_e,
-                    'quatidadef' => $p->quantidade_e + $request['quantidadedevolvida'],
-                    'valorunitario' => $p->valor_un_e,
-                    'estoqueminimo' => $p->estoque_minimo_e,
-                    'apresentacao' => $p->apresentacao,
-                    'concentracao' => $p->concentracao,
-                    'formaf' => $p->forma_farmaceutica,
-                    'principio' => $p->principio_ativo,
-                    'tipo' => $p->tipo,
-                );
-                $quantidadeInicial = $p->quantidade_e;
-            }
-            if ($request['quantidadedevolvida'] > $request['quantidadesaida']) {
-                echo "<script language=\"javascript\">alert(\"Quantidade devolvida é maior que a saída!!\")</script>";
-            } elseif ($request['quantidadedevolvida'] == $request['quantidadesaida']) {
-                echo "<script language=\"javascript\">alert(\"Quantidades iguais, cancele a saída!!\")</script>";
-            } elseif ($request['quantidadedevolvida'] < $request['quantidadesaida']) {
-                self::editProdutoDevolucao($produto);
-
-                $idsaida = $request['idsaida'];
-                $qtdeAntigaSaida = $request['quantidadesaida'];
-
-                $this->conn->beginTransaction();
-                $queryUpdate = /** @lang text * */
-                    "UPDATE tbl_saida SET
-            item_s=:item_s,
-            quantidade_s=:quantidade_s,
-            setor_s=:setor_s,
-            data_s=:data_s,
-            data_dia_s=:data_dia_s,
-			WHERE id_estoque='$idsaida'";
-                $newValue = $this->conn->prepare($queryUpdate);
-                $newValue->bindValue(':item_s', $request['itemsaida']);
-                $newValue->bindValue(':quantidade_s', $request['quantidadesaida'] - $request['quantidadedevolvida']);
-                $newValue->bindValue(':setor_s', $request['setorsaida']);
-                $newValue->bindValue(':data_s', $request['datas']);
-                $newValue->bindValue(':data_dia_s', $request['datadiasaida']);
-                $newValue->execute();
-                if ($newValue) {
-                    $this->conn->commit();
-                    date_default_timezone_set('America/Sao_Paulo');
-                    $transacao = array(
-                        'produto' => $request['itemsaida'],
-                        'data' => date("Y-m-d H:i:s"),
-                        'tipo' => 'Devolução',
-                        'estoqueini' => $quantidadeInicial,
-                        'quantidade' => $request['quantidadedevolvida'],
-                        'estoquefi' => $quantidadeInicial + $request['quantidadedevolvida'],
-                        'cancelada' => ' ',
-                        'user' => $produto['user']);
-                    self::transacaoRegistro($transacao);
-                }
-                //echo "<script language=\"javascript\">window.history.back();</script>";
-            }
-
-
-        } catch (PDOException $erro) {
-            $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro ao alterar produto!!\")</script>";
         }
     }
 }
