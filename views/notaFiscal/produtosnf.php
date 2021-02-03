@@ -69,24 +69,24 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 $textNFNE = ($v->nota_entrega == 1) ? 'Nota de Entrega ' : 'Nota Fiscal';
             } ?>
             <div class="card">
-                <div class="card-header text-muted border-bottom-0">
+                <div class="card-header text-muted border-bottom-0 bg-olive"><i class="fas fa-file"></i>
                     <?= $textNFNE ?>
                     <a href="editNF.php?idnf=<?= $_GET['idnf'] ?>">
-                        <i class='fas fa-edit fa-1x color-icon-nf text-black-50 float-right'></i></a>
+                        <i class='fas fa-edit fa-1x color-icon-nf float-right'></i></a>
                 </div>
-                <div class="card-body pt-0">
+                <div class="card-body pt-0 mt-3">
                     <div class="row">
                         <?php
                         foreach ($nf as $v) {
                             ?>
-                            <div class="col-7">
+                            <div class="col-7 text-gray">
                                 <h2 class="lead"><b><?= $v->fornecedor ?></b> - <i
                                             class="fas fa-money-bill-wave"></i></i> Valor:
                                     R$ <?= $v->valor_total ?></h2>
-                                <p class="text-muted text-sm"><b>Data de
-                                        Emissão: </b> <?= date("d/m/Y", strtotime($v->data_emissao)) ?>
+                                <p class="">Data de
+                                        Emissão:  <?= date("d/m/Y", strtotime($v->data_emissao)) ?>
                                     <br>
-                                    <b> Data de Lançamento: </b> <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
+                                    Data de Lançamento:  <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
                                 </p>
                             </div>
                         <?php } ?>
@@ -94,7 +94,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 </div>
                 <div class="card-footer">
                     <div class="text-left">
-                        <a href="lotes.php?idnf=<?= $_GET['idnf'] ?>" class="btn btn-sm btn-primary">
+                        <a href="lotes.php?idnf=<?= $_GET['idnf'] ?>" class="btn btn-sm btn-outline-secondary">
                             <i class="fas fa-calendar-day"></i> Lotes & Validades
                         </a>
                         <?php
@@ -123,21 +123,21 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             </div>
             <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
-                <div class="card-header">
+                <div class="card-header bg-olive">
                     <h3 class="card-title">Produtos</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                        <tr class="">
+                        <tr class="text-gray">
                             <th class="">Produto / Material</th>
                             <th class="">Quantidade</th>
                             <th class="">Valor Unitário</th>
                             <th class="">Valor Total</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-olive">
                         <?php
                         require_once('../../back/controllers/NotaFiscalController.php');
                         $nf = new NotaFiscalController();

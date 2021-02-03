@@ -73,16 +73,16 @@ switch ($_SESSION['user']) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-green">
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title">Ordens de Compra</h3>
+                    <h3 class="card-title"><i class="fas fa-file-import"></i> Ordem de compra</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form role="form" method="post" action="../../back/response/compra/n_ordem_compra.php">
                     <div class="card-body">
                         <div class="form-group col-md-12">
-                            <label>Setor</label>
+                            <label class="font-weight-normal">Fornecedor</label>
                             <select class="form-control select2" name="nome_f">
                                 <option selected></option>
                                 <?php
@@ -96,24 +96,36 @@ switch ($_SESSION['user']) {
                                     </option>
                                 <?php } ?>
                             </select>
+                            <div class="form-inline mt-3">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="radio" class="form-check-input" name="info_ne" value="0"
+                                           id="exampleCheck1" required>
+                                    <label class="form-check-label" for="exampleCheck1">Nota Fiscal</label>
+                                </div>
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input type="radio" class="form-check-input" name="info_ne" value="1"
+                                           id="exampleCheck2" required>
+                                    <label class="form-check-label" for="exampleCheck2">Nota de Entrega</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="submit" class="btn btn-outline-success">Cadastrar</button>
                     </div>
                 </form>
             </div>
             <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
-                <div class="card-header">
-                    <h3 class="card-title">Ordens de compra</h3>
+                <div class="card-header bg-olive">
+                    <h3 class="card-title"></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                        <tr class="">
+                        <tr class="text-gray">
                             <th class="">NºOrdem</th>
                             <th class="">N.F / N.E</th>
                             <th class="">Fornecedor</th>
@@ -121,7 +133,7 @@ switch ($_SESSION['user']) {
                             <th></th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-olive">
                         <?php
                         include '../../back/controllers/CompraController.php';
                         $view_ordens = new CompraController();
@@ -130,10 +142,10 @@ switch ($_SESSION['user']) {
                             ?>
                             <tr>
                                 <td class=""><?= $v->id_ordem ?></td>
-                                <td class=""><a
+                                <td ><a class="text-olive font-weight-bold"
                                             href="../notaFiscal/produtosnf.php?idnf=<?= $v->id_fk_nf ?>"><?= $v->id_fk_nf ?></a>
                                 </td>
-                                <td class="text-primary"><a
+                                <td ><a class="text-olive"
                                             href="produtos.php?ordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
                                 <td class=""><?= date("d/m/Y H:i:s", strtotime($v->data_c)) ?></td>
 

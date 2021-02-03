@@ -29,7 +29,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
         }
     </style>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -143,7 +143,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a href="../../back/response/user/destroy_sessao.php" class="nav-link">
+                        <a href="../../../back/response/user/destroy_sessao.php" class="nav-link">
                             <i class="fas fa-power-off nav-icon"></i>
                             <p>Sair</p>
                         </a>
@@ -159,7 +159,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-olive">
                 <?php
                 require_once '../../../back/controllers/EstoqueController.php';
                 $p = new EstoqueController();
@@ -167,7 +167,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 foreach ($produtos as $v) {
                     ?>
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-file-invoice"></i>
+                        <h3 class="card-title"><i class="fas fa-edit"></i>
                             Produto: <?= $v->produto_e ?>
                         </h3>
                     </div>
@@ -175,23 +175,23 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <!-- form start -->
                     <ul class="nav nav-tabs mt-2">
                         <li class="nav-item">
-                            <a class="nav-link " href="editEstoque.php?idp=<?= $_GET['idp'] ?>">Infomações</a>
+                            <a class="nav-link text-olive" href="editEstoque.php?idp=<?= $_GET['idp'] ?>">Infomações</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
+                            <a class="nav-link text-olive active" href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
+                            <a class="nav-link text-olive" href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
+                            <a class="nav-link text-olive" href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
+                            <a class="nav-link text-olive" href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
                         </li>
                     </ul>
                     <div class="mt-3 p-3">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped text-olive">
                             <thead>
                             <tr>
                                 <th scope="col">Lote</th>
@@ -221,7 +221,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     </div>
     <!-- /.content-wrapper -->
 
-    <?php include('../componentes/footer.php'); ?>
+    <?php include('../../componentes/footer.php'); ?>
 </div>
 <!-- ./wrapper -->
 

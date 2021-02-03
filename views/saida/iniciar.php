@@ -32,10 +32,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -63,10 +62,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Informe o setor e a data que desejar
-                        iniciar o procedimento de saída
+                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Saída
                     </h3>
                 </div>
                 <!-- /.card-header -->
@@ -75,7 +73,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-9">
-                                <label>Setor</label>
+                                <label  class="font-weight-normal">Setor</label>
                                 <select class="form-control select2" name="nomesetor">
                                     <
                                     <option selected></option>
@@ -90,10 +88,10 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label>Data Inicial</label>
+                                <label  class="font-weight-normal">Data</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        <span class="input-group-text bg-olive"><i class="far fa-calendar-alt"></i></span>
                                     </div>
                                     <input type="date" class="form-control" data-inputmask-alias="datetime"
                                            data-inputmask-inputformat="dd/mm/yyyy" data-mask name="data_s">
@@ -103,8 +101,8 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Saída</button>
-                        <a href="historico.php" class="btn btn-sm btn-primary float-md-right">
+                        <button type="submit" class="btn bg-gradient-teal col-md-2">Iniciar</button>
+                        <a href="historico.php" class="btn btn-sm btn-outline-dark float-md-right">
                             <i class="fas fa-history"></i> Histórico
                         </a>
                     </div>

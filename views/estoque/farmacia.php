@@ -29,7 +29,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
         }
     </style>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -58,9 +58,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
             <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
-                <div class="card card-primary">
+                <div class="card card-olive">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-file-invoice"></i>
+                        <h3 class="card-title"><i class="fas fa-flask"></i>
                             Cadastro de Materiais & Medicamentos
                         </h3>
                     </div>
@@ -73,42 +73,42 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="exampleInputEmail1">Principio Ativo</label>
+                                    <label class="font-weight-normal" for="exampleInputEmail1">Principio Ativo</label>
                                     <input type="text" name="p_ativo" class="form-control" id="inputEmail3">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="exampleInputEmail1">Nome Comercial</label>
+                                    <label class="font-weight-normal"  for="exampleInputEmail1">Nome Comercial</label>
                                     <input type='text' class='form-control' name='produto_e' placeholder='' required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-5">
-                                    <label for="exampleInputEmail1">Apresentação</label>
+                                    <label class="font-weight-normal"  for="exampleInputEmail1">Apresentação</label>
                                     <input type='text' class='form-control ' name='apresentacao' placeholder=''>
                                 </div>
                                 <div class="form-group col-md-5">
-                                    <label for="exampleInputEmail1">Forma Farmacêutica</label>
+                                    <label class="font-weight-normal"  for="exampleInputEmail1">Forma Farmacêutica</label>
                                     <input type="text" class="form-control" name="forma_farmaceutica" id="inputEmail4"
                                            placeholder="">
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="exampleInputEmail1">Concentração</label>
+                                    <label class="font-weight-normal"  for="exampleInputEmail1">Concentração</label>
                                     <input type="text" class="form-control" name="concentracao" id="inputEmail4"
                                            placeholder="">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4">
-                                    <label for="exampleInputEmail1">Estoque Mínimo</label>
+                                    <label class="font-weight-normal"  for="exampleInputEmail1">Estoque Mínimo</label>
                                     <input type="number" class="form-control" name="estoque_minimo_e" id="inputEmail4"
                                            placeholder="">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="exampleInputEmail1">Quantidade</label>
+                                    <label class="font-weight-normal"  for="exampleInputEmail1">Quantidade</label>
                                     <input type="number" class="form-control" name="quantidade_e" id="inputEmail4">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="exampleInputEmail1">Valor Unitário</label>
+                                    <label class="font-weight-normal"  for="exampleInputEmail1">Valor Unitário</label>
                                     <input type='text' class='form-control ' name='valor_un' placeholder='R$'>
                                     <small>Utilize ponto no lugar da vírgula</small>
                                 </div>
@@ -117,14 +117,14 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary col-md-2">Cadastrar</button>
+                            <button type="submit" class="btn btn-outline-success col-md-2">Cadastrar</button>
                         </div>
                     </form>
                 </div>
             <?php endif; ?>
             <!-- /.card -->
             <div class="card" id="tabela">
-                <div class="card-header">
+                <div class="card-header bg-olive">
                     <h3 class="card-title">Produtos & Materiais Farmacêuticos</h3>
                 </div>
                 <!-- /.card-header -->
@@ -146,7 +146,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             ?>
                             <tr>
                                 <td><?= $v->principio_ativo ?></td>
-                                <td><a href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?= $v->produto_e ?></td>
+                                <td><a class="text-olive" href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?= $v->produto_e ?></td>
                                 <td><?= $v->quantidade_e ?></td>
                             </tr>
                         <?php } ?>

@@ -1,3 +1,9 @@
+<?php
+session_start();
+if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
+    header("location: ../user/login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,7 +24,7 @@
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -43,27 +49,26 @@
     <?php include('../componentes/sidebar.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper p-2">
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Notas Fiscais</h3>
+            <div class="card-header bg-olive">
+                <h3 class="card-title"><i class="fas fa-file"></i> Nota Fical</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
-                    <tr class="">
+                    <tr class="text-gray">
                         <th class="">Nota Fiscal</th>
                         <th class="">Nº Ordem</th>
                         <th class="">Fornecedor</th>
                         <th class="">Data de Emissão</th>
                         <th class="">Data Lançamento</th>
-                        <th class="">Valor</th>
                         <th></th>
                         <th></th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-olive">
                     <?php
                     require_once('../../back/controllers/NotaFiscalController.php');
                     $view_nf = new NotaFiscalController();
@@ -73,12 +78,11 @@
                         $data_lancamento = date_create($v->data_lancamento);
                         ?>
                         <tr>
-                            <td class=''><a class='text-primary' href=produtosnf.php?idnf=<?=$v->id_nf?>><?=$v->numero_nf?></a></td>
-                            <td><a class='text-primary' href="../ordem/produtos.php?ordem=<?=$v->id_ordem?>"</a><?=$v->id_ordem?></td>
+                            <td><a class='text-olive' href=produtosnf.php?idnf=<?=$v->id_nf?>><?=$v->numero_nf?></a></td>
+                            <td><a class='text-olive' href="../ordem/produtos.php?ordem=<?=$v->id_ordem?>"</a><?=$v->id_ordem?></td>
                             <td><?= $v->fornecedor ?></td>
                             <td><?= date_format($data_emisao, 'd/m/Y') ?> </td>
                             <td><?= date_format($data_lancamento, 'd/m/Y') ?></td>
-                            <td>R$ <?= $v->valor_nf ?></td>
                             <td><a href=editNF.php?idnf=<?=$v->id_nf?>><i class='fas fa-pen fa-1x color-icon-nf text-success'></i></a></td>
                             <td><a href=../../back/response/notaf/d_nf_r.php?idnf="<?=$v->id_nf?>><i class='fas fa-trash-alt fa-1x text-danger'></i></a></td>
                         </tr>

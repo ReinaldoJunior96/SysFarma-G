@@ -3,18 +3,6 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../user/login.php");
 }
-require_once('../../back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
-switch ($_SESSION['user']) {
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,7 +29,7 @@ switch ($_SESSION['user']) {
         }
     </style>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -70,9 +58,9 @@ switch ($_SESSION['user']) {
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
             <?php if ($_SESSION['user'] == 'compras.hvu' OR $_SESSION['user'] == 'admin'): ?>
-            <div class="card card-primary">
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-file-invoice"></i>
+                    <h3 class="card-title"><i class="fas fa-box-open"></i>
                         Estoque Almoxarifado
                     </h3>
                 </div>
@@ -85,26 +73,26 @@ switch ($_SESSION['user']) {
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Nome Comercial</label>
+                                <label class="font-weight-normal" for="exampleInputEmail1">Nome Comercial</label>
                                 <input type='text' class='form-control' name='produto_e' placeholder='' required>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="exampleInputEmail1">Apresentação</label>
+                                <label class="font-weight-normal" for="exampleInputEmail1">Apresentação</label>
                                 <input type='text' class='form-control ' name='apresentacao' placeholder=''>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Estoque Mínimo</label>
+                                <label class="font-weight-normal" for="exampleInputEmail1">Estoque Mínimo</label>
                                 <input type="number" class="form-control" name="estoque_minimo_e" id="inputEmail4"
                                        placeholder="">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Quantidade</label>
+                                <label class="font-weight-normal" for="exampleInputEmail1">Quantidade</label>
                                     <input type="number" class="form-control" name="quantidade_e" id="inputEmail4">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="exampleInputEmail1">Valor Unitário</label>
+                                <label class="font-weight-normal" for="exampleInputEmail1">Valor Unitário</label>
                                     <input type='text' class='form-control ' name='valor_un' placeholder='R$'>
                                     <small>Utilize ponto no lugar da vírgula</small>
                             </div>
@@ -112,14 +100,14 @@ switch ($_SESSION['user']) {
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Cadastrar</button>
+                        <button type="submit" class="btn btn-outline-success col-md-2">Cadastrar</button>
                     </div>
                 </form>
             </div>
             <?php endif; ?>
             <!-- /.card -->
             <div class="card" id="tabela">
-                <div class="card-header">
+                <div class="card-header bg-olive">
                     <h3 class="card-title">Materiais do Almoxarifado</h3>
                 </div>
                 <!-- /.card-header -->
@@ -139,7 +127,7 @@ switch ($_SESSION['user']) {
                         foreach ($all_estoque as $v) {
                             ?>
                             <tr>
-                                <td><a href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?=$v->produto_e ?></td>
+                                <td><a class="text-olive" href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?=$v->produto_e ?></td>
                                 <td><?= $v->quantidade_e ?></td>
                             </tr>
                         <?php } ?>

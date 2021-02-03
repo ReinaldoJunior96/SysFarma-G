@@ -61,7 +61,7 @@ switch ($_SESSION['user']) {
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
                 </a>
             </li>
         </ul>
@@ -75,15 +75,12 @@ switch ($_SESSION['user']) {
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>
-                            <small>Ordem de compra</small>
-                        </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item active"><a href="#" data-toggle="modal" data-target="#modal-lg">Ver
-                                    Produtos</a></li>
-                            <li class="breadcrumb-item active"><a href="ordempdf.php?id_ordem=<?= $_GET['ordem'] ?>">Imprimir</a>
+                            <li class="breadcrumb-item active "><a class="text-olive"
+                                                                   href="ordempdf.php?id_ordem=<?= $_GET['ordem'] ?>">
+                                    <i class="fas fa-print"></i> Imprimir</a>
                             </li>
                         </ol>
                     </div>
@@ -91,18 +88,20 @@ switch ($_SESSION['user']) {
             </div><!-- /.container-fluid -->
         </section>
 
-        <div class="col-md-12 mt-3">
+        <div class="col-md-12">
             <!-- general form elements -->
 
-            <div class="card card-green">
+            <div class="card card-olive">
                 <?php
                 require_once('../../back/controllers/CompraController.php');
                 $c = new CompraController();
                 $compra = $c->verOrdem($_GET['ordem']);
                 foreach ($compra as $v) {
                     ?>
+
                     <div class="card-header">
-                        <h3 class="card-title">Fornecedor: <?= $v->nome_f ?></h3>
+                        <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i>
+                            Fornecedor: <?= $v->nome_f ?></h3>
                     </div>
                 <?php } ?>
 
@@ -111,7 +110,7 @@ switch ($_SESSION['user']) {
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-8">
-                                <label>Setor</label>
+                                <label class="font-weight-normal">Produto</label>
                                 <select class="form-control select2" name="selectprodid" id="selectprodid"
                                         onchange="getValores();">
                                     <option selected></option>
@@ -126,19 +125,19 @@ switch ($_SESSION['user']) {
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
-                                <label>Quantiade(Unitária)</label>
+                                <label class="font-weight-normal">Quantiade(Unitária)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-sort-numeric-up-alt"></i></span>
+                                        <span class="input-group-text bg-olive"><i class="fas fa-sort-numeric-up-alt"></i></span>
                                     </div>
                                     <input type="text" class="form-control" value="" name="saidaqte_p" id="saidaqte_p">
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label>Valor Unitário</label>
+                                <label class="font-weight-normal">Valor Unitário</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        <span class="input-group-text bg-olive"><i class="far fa-calendar-alt "></i></span>
                                     </div>
                                     <input type="text" class="form-control" name="valor_un_c" value="" id="valor_un_c">
                                 </div>
@@ -147,7 +146,7 @@ switch ($_SESSION['user']) {
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Adicionar</button>
+                        <button type="submit" class="btn btn-outline-success col-md-2">Adicionar</button>
                     </div>
                 </form>
                 <hr>
@@ -161,17 +160,17 @@ switch ($_SESSION['user']) {
                     $valorUnCompra = floatval($value->valor_un_c);
                     ?>
                     <form method="post" action="../../back/response/compra/updateitem.php" id="alterarproduto">
-                        <input type="hidden" value="<?=$value->id_item_compra?>" name="idcompra">
-                        <input type="hidden" value="<?=$value->item_compra?>" name="idproditem">
-                        <input type="hidden" value="<?=$value->ordem_compra_id?>" name="idordem">
-                        <input type="hidden" value="<?=$value->valor_un_c?>" name="valoruni">
-                        <div class="d-flex bd-highlight align-items-center">
+                        <input type="hidden" value="<?= $value->id_item_compra ?>" name="idcompra">
+                        <input type="hidden" value="<?= $value->item_compra ?>" name="idproditem">
+                        <input type="hidden" value="<?= $value->ordem_compra_id ?>" name="idordem">
+                        <input type="hidden" value="<?= $value->valor_un_c ?>" name="valoruni">
+                        <div class="d-flex bd-highlight align-items-center ">
                             <div class="p-2 bd-highlight">
                                 <a href=../../back/response/compra/d_prod_compra.php?deleteprod=<?= $value->id_item_compra ?>>
                                     <i class="fas fa-minus-circle text-danger"></i>
                                 </a>
                             </div>
-                            <div class="p-2 flex-grow-1 bd-highlight"><?= $value->produto_e ?></div>
+                            <div class="p-2 flex-grow-1 bd-highlight text-olive"><?= $value->produto_e ?></div>
                             <div class="p-2 bd-highlight">
                                 <input type="number" placeholder="Quantidade"
                                        class="form-control text-center"
@@ -179,15 +178,14 @@ switch ($_SESSION['user']) {
                             </div>
 
                             <div class="p-2 bd-highlight col-2">
-                                <strong>Valor Unitário: </strong>
-                                <span><?=$valorUnCompra?> </span>
+                                <span class="text-gray">Valor Unitário: <?= $valorUnCompra ?> </span>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <strong>Valor total:</strong> <span><?= $valorTotalProduto ?></span>
+                                <span class="text-gray">Valor total: <?= $valorTotalProduto ?></span>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fas fa-save text-white"></i>
+                                <button type="submit" class="btn btn-outline-success">
+                                    <i class="fas fa-save"></i>
                                 </button>
                             </div>
                         </div>

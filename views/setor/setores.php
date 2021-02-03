@@ -66,9 +66,9 @@ switch ($_SESSION['user']) {
     <div class="content-wrapper p-3">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-cyan">
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-share-alt-square"></i></h3>
+                    <h3 class="card-title"><i class="fas fa-share-alt-square"></i> Setores</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -83,7 +83,7 @@ switch ($_SESSION['user']) {
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Adicionar</button>
+                        <button type="submit" class="btn btn-outline-success">Adicionar</button>
                     </div>
                 </form>
             </div>

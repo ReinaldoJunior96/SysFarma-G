@@ -32,10 +32,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -68,10 +67,10 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     Autorização Inválida!!
                 </div>
             <?php endif;?>
-            <div class="card card-primary">
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Informe o setor e a data que desejar
-                        iniciar o procedimento de saída
+                    <h3 class="card-title"><i
+                                class="fas fa-exchange-alt"></i> Devolução
                     </h3>
                 </div>
                 <!-- /.card-header -->
@@ -97,28 +96,28 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <input type="hidden" name="datadiasaida" value="<?= $k->data_dia_s ?>">
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="exampleInputEmail1">Produto / Meterial</label>
+                                    <label class="font-weight-normal" for="exampleInputEmail1">Produto / Meterial</label>
                                     <input type='text' class='form-control' value="<?= $k->produto_e ?>" disabled
                                            name='produtosaida'>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-3">
-                                    <label for="exampleInputEmail1">Quantidade Devolvida</label>
+                                    <label class="font-weight-normal" for="exampleInputEmail1">Quantidade Devolvida</label>
                                     <input type="number" class='form-control' required name="quantidadedevolvida">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="exampleInputEmail1">Setor</label>
+                                    <label class="font-weight-normal" for="exampleInputEmail1">Setor</label>
                                     <input type="text" class="form-control" disabled value="<?= $k->setor_s ?>">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="exampleInputEmail1">Data / Hora</label>
+                                    <label class="font-weight-normal" for="exampleInputEmail1">Data / Hora</label>
                                     <input type="text" class="form-control"
                                            disabled
                                            value="<?= $k->data_s ?>">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="exampleInputEmail1">Confirme</label>
+                                    <label class="font-weight-normal" for="exampleInputEmail1">Confirme</label>
                                     <input type="password" class="form-control" required name="autorizacao">
                                 </div>
                             </div>
@@ -126,7 +125,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <?php endforeach; ?>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Realizar Devolução</button>
+                        <button type="submit" class="btn btn-outline-success col-md-2">Realizar Devolução</button>
                     </div>
                 </form>
 

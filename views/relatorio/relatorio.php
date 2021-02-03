@@ -32,10 +32,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -51,7 +50,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
                 </a>
             </li>
         </ul>
@@ -63,10 +62,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Informe os dados para gerar o relatório
-                        de consumo entre datas
+                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Relatório
                     </h3>
                 </div>
                 <!-- /.card-header -->
@@ -75,7 +73,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label>Setor</label>
+                                <label class="font-weight-normal">Setor</label>
                                 <select class="form-control select2" name="setor">
                                     <option selected></option>
                                     <option value="todos">Todos os Setores</option>
@@ -90,20 +88,20 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label>Data Inicial</label>
+                                <label  class="font-weight-normal">Data Inicial</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        <span class="input-group-text bg-olive border-0"><i class="far fa-calendar-alt"></i></span>
                                     </div>
                                     <input type="date" class="form-control" data-inputmask-alias="datetime"
                                            data-inputmask-inputformat="dd/mm/yyyy" name="dataI" data-mask>
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label>Data Final</label>
+                                <label  class="font-weight-normal">Data Final</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        <span class="input-group-text bg-olive border-0"><i class="far fa-calendar-alt"></i></span>
                                     </div>
                                     <input type="date" class="form-control" data-inputmask-alias="datetime"
                                            data-inputmask-inputformat="dd/mm/yyyy" name="dataF" data-mask>
@@ -113,7 +111,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Gerar</button>
+                        <button type="submit" class="btn btn-outline-success col-md-2">Gerar</button>
                     </div>
                 </form>
             </div>

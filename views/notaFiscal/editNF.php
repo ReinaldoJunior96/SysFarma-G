@@ -49,7 +49,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
                 </a>
             </li>
         </ul>
@@ -69,26 +69,24 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 $textNFNE = ($v->nota_entrega == 1) ? 'Nota de Entrega ' : 'Nota Fiscal';
             } ?>
             <div class="card">
-                <div class="card-header text-muted border-bottom-0">
+                <div class="card-header text-muted border-bottom-0 bg-olive"><i class="fas fa-file"></i>
                     <?= $textNFNE ?>
                 </div>
-                <div class="card-body pt-0">
-                    <div class="row">
-                        <?php
-                        foreach ($nf as $v) {
-                            ?>
-                            <div class="col-7">
-                                <h2 class="lead"><b><?= $v->fornecedor ?></b> - <i
-                                            class="fas fa-money-bill-wave"></i></i> Valor:
-                                    R$ <?= $v->valor_total ?></h2>
-                                <p class="text-muted text-sm"><b>Data de
-                                        Emissão: </b> <?= date("d/m/Y", strtotime($v->data_emissao)) ?>
-                                    <br>
-                                    <b> Data de Lançamento: </b> <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
-                                </p>
-                            </div>
-                        <?php } ?>
-                    </div>
+                <div class="card-body pt-0 mt-3">
+                    <?php
+                    foreach ($nf as $v) {
+                        ?>
+                        <div class="col-7 text-gray">
+                            <h2 class="lead"><b><?= $v->fornecedor ?></b> - <i
+                                        class="fas fa-money-bill-wave"></i></i> Valor:
+                                R$ <?= $v->valor_total ?></h2>
+                            <p class="">Data de
+                                    Emissão: <?= date("d/m/Y", strtotime($v->data_emissao)) ?>
+                                <br>
+                                Data de Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
+                            </p>
+                        </div>
+                    <?php } ?>
                 </div>
                 <hr>
                 <div class="p-3">
@@ -103,26 +101,26 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <input type="hidden" name="idnf" value="<?= $_GET['idnf'] ?>">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail4" class="exo">Número NE/NF</label>
+                                    <label for="inputEmail4" class="font-weight-normal">Número NE/NF</label>
                                     <input type="text" class="form-control" value="<?= $v->numero_nf ?>"
                                            name="numero_nf" id="inputEmail4" placeholder="">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail4" class="exo">Data de Emissão</label>
+                                    <label for="inputEmail4" class="font-weight-normal">Data de Emissão</label>
                                     <input type="date" class="form-control" value="<?= $v->data_emissao ?>"
                                            name="datae_nf" id="inputEmail4" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4" class="exo">Data de Lançamento</label>
+                                    <label for="inputPassword4" class="font-weight-normal">Data de Lançamento</label>
                                     <input type="date" class="form-control" value="<?= $v->data_lancamento ?>"
                                            name="datal_nf" id="inputPassword4" placeholder="">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-3">
-                                    <label for="inputEmail4" class="exo">Fornecedor</label>
+                                    <label for="inputEmail4" class="font-weight-normal">Fornecedor</label>
                                     <select class="form-control" name="fornecedor_nf">
                                         <option value="<?= $v->fornecedor ?>"><?= $v->fornecedor ?></option>
                                         <?php
@@ -136,24 +134,24 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="inputEmail4" class="exo">Valor total dos produtos R$</label>
+                                    <label for="inputEmail4" class="font-weight-normal">Valor total dos produtos R$</label>
                                     <input type="text" class="form-control" value="<?= $v->valor_nf ?>"
                                            name="valor_nf" id=""
                                            placeholder="">
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="inputEmail4" class="exo">Desconto</label>
+                                    <label for="inputEmail4" class="font-weight-normal">Desconto</label>
                                     <input type="text" class="form-control" value="<?= $v->desconto ?>"
                                            name="desconto" id=""
                                            placeholder="">
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="inputEmail4" class="exo">Frete R$</label>
+                                    <label for="inputEmail4" class="font-weight-normal">Frete R$</label>
                                     <input type="text" class="form-control"
                                            name="frete" value="<?= $v->frete ?>">
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="inputEmail4" class="exo">Valor Total R$</label>
+                                    <label for="inputEmail4" class="font-weight-normal">Valor Total R$</label>
                                     <input type="text" class="form-control"
                                            name="valor_total" value="<?= $v->valor_total ?>">
                                 </div>
@@ -161,7 +159,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-sm-12">
-                                    <label for="exampleFormControlTextarea1">Observação</label>
+                                    <label class="font-weight-normal" for="exampleFormControlTextarea1">Observação</label>
                                     <textarea class="form-control" name="obs_nf" id="exampleFormControlTextarea1"
                                               rows="3"><?= $v->obs_nf ?></textarea>
                                 </div>
@@ -181,11 +179,11 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </div>
                             </div>
                             <hr>
-                            <button type="submit" class="btn bg-primary text-white col-sm-2 roboto-condensed mt-1">
-                                Alterar <i class="fas fa-pen"></i>
+                            <button type="submit" class="btn btn-outline-success col-sm-2 mt-1">
+                                Alterar
                             </button>
                             <a href="vencimentos.php?idnf=<?= $_GET['idnf'] ?>"
-                            <button class="btn btn-outline-secondary float-right text-black-50">Vencimentos
+                            <button class="btn btn-outline-dark float-right">Vencimentos
                                 <i class="fas fa-calendar-week"></i>
                             </button>
                             </a>

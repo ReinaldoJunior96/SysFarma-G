@@ -55,9 +55,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-gray-dark">
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i></h3>
+                    <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i> Aletar Fornecedor</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -72,7 +72,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <input type="hidden" name="idfornecedor" value="<?= $_GET['idfornecedor'] ?>">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Nome</label>
+                                <label  class="font-weight-normal" for="exampleInputEmail1">Nome</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                        placeholder="Qual nome do forncedor?" name="fornecedor"
                                        value="<?= $value->nome_fornecedor ?>">
@@ -81,7 +81,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 <div class="col-sm-4">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <label>Telefone</label>
+                                        <label  class="font-weight-normal" >Telefone</label>
                                         <input type="text" class="form-control" placeholder="Número p/ contato"
                                                name="telefone_fornecedor" value="<?= $value->contato_fornecedor ?>">
                                     </div>
@@ -89,15 +89,15 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 <div class="col-sm-4">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <label>E-mail</label>
-                                        <input type="text" class="form-control" placeholder="E-mail p/ contato"
+                                        <label  class="font-weight-normal">E-mail</label>
+                                        <input type="email" class="form-control" placeholder="E-mail p/ contato"
                                                name="email_fornecedor" value="<?= $value->email_fornecedor ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <label>CPF/CNPJ</label>
+                                        <label  class="font-weight-normal">CPF/CNPJ</label>
                                         <input type="text" class="form-control"
                                                placeholder="Identificação do fornecedor"
                                                name="cnpj_fornecedor" value="<?= $value->cnpj_f ?>">
@@ -105,7 +105,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Endereço</label>
+                                <label  class="font-weight-normal">Endereço</label>
                                 <textarea class="form-control" rows="3" placeholder="Onde ele se localiza?"
                                           name="endereco_fornecedor"><?= $value->endereco_f ?></textarea>
                             </div>

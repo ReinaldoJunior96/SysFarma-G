@@ -3,18 +3,6 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../user/login.php");
 }
-require_once('../../back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
-switch ($_SESSION['user']) {
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -57,7 +45,7 @@ switch ($_SESSION['user']) {
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
                 </a>
             </li>
         </ul>
@@ -69,23 +57,23 @@ switch ($_SESSION['user']) {
     <div class="content-wrapper p-3">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <?php if(isset($_GET['status'])):  ?>
-            <div class="alert alert-success" role="alert">
-                Sucesso! Devolução realizada.
-            </div>
-            <?php endif;?>
-            <div class="card card-cyan">
+            <?php if (isset($_GET['status'])): ?>
+                <div class="alert alert-success" role="alert">
+                    Sucesso! Devolução realizada.
+                </div>
+            <?php endif; ?>
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-share-alt-square"></i></h3>
+                    <h3 class="card-title"><i class="fas fa-share-alt-square"></i> Histórico de Saída</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <div class="p-3">
+                <div class="p-4">
                     <form method="GET" action="">
                         <div class="form-group row">
                             <label>Setor</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" name="nomesetor" id="exampleFormControlSelect1"
+                                <select class="form-control select2" name="filtro" id="exampleFormControlSelect1"
                                         onChange="this.form.submit()">
                                     <
                                     <option selected></option>
@@ -101,14 +89,11 @@ switch ($_SESSION['user']) {
                             </div>
                         </div>
                     </form>
-                    <div class="mt-3">
-                        <h5 class="">Histórico de Saída</h5>
-                    </div>
-                    <hr>
-                </div>
 
+                </div>
+                <hr>
                 <!-- /.card -->
-                <div class="p-1" id="tabela" style="display: none">
+                <div class="p-2" id="tabela" style="display: none">
                     <div class="" id="tabela">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead class="bg-shadow-it bg-nav">
@@ -138,8 +123,9 @@ switch ($_SESSION['user']) {
                                     <td><?= $v->quantidade_s ?></td>
                                     <td><?= str_replace("-", " ", $v->setor_s) ?></td>
                                     <td><?= ($v->data_s == '0000-00-00 00:00:00') ? date("d/m/Y H:i:s", strtotime($v->data_dia_s)) : date("d/m/Y H:i:s", strtotime($v->data_s)) ?></td>
-                                    <td class="text-center"><a href=devolucao.php?idsaida=<?=$v->id_saida?>><i class="fas fa-exchange-alt"></i></a></td>
-                                    <?php echo "<td class='text-center'><a href=../../back/response/saidasetor/d_saida_r.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "&user=" . $_SESSION['user'] . "><i class='fas fa-ban fa-lg' style='color: red;'></i></a></td>" ?>
+                                    <td class="text-center"><a href=devolucao.php?idsaida=<?= $v->id_saida ?>><i
+                                                    class="fas fa-exchange-alt text-teal"></i></a></td>
+                                    <?php echo "<td class='text-center'><a href=../../back/response/saidasetor/d_saida_r.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "&user=" . $_SESSION['user'] . "><i class='fas fa-backspace text-danger'></i></a></td>" ?>
 
                                 </tr>
                             <?php } ?>

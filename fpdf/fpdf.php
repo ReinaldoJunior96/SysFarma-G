@@ -382,9 +382,9 @@ class FPDF
         $date = date_create($this->dataGerada);
         $this->Cell(550, -50, 'CRIADA EM: ' . date_format(@$date, 'd/m/Y H:s:i'), 0, 0, 'C');
         $this->Ln(1);
-        $this->Cell(550, -25, utf8_encode("ORDEM DE COMPRA N " . $this->ordemCompra), 0, 0, 'C');
+        $this->Cell(550, -25, utf8_decode("ORDEM DE COMPRA N " . $this->ordemCompra), 0, 0, 'C');
         $this->Ln(1);
-        $this->Cell(550, 0, utf8_encode("FORNECEDOR: " . $this->fornecedor), 0, 0, 'C');
+        $this->Cell(550, 0, "FORNECEDOR: " . utf8_decode($this->fornecedor), 0, 0, 'C');
 
 
     }

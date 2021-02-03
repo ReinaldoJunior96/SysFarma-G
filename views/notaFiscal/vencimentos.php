@@ -49,7 +49,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
                 </a>
             </li>
         </ul>
@@ -69,24 +69,24 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 $textNFNE = ($v->nota_entrega == 1) ? 'Nota de Entrega ' : 'Nota Fiscal';
             } ?>
             <div class="card">
-                <div class="card-header text-muted border-bottom-0">
+                <div class="card-header text-muted border-bottom-0 bg-olive"><i class="fas fa-file"></i>
                     <?= $textNFNE ?>
                     <a href="editNF.php?idnf=<?= $_GET['idnf'] ?>">
-                        <i class='fas fa-edit fa-1x color-icon-nf text-black-50 float-right'></i></a>
+                        <i class='fas fa-edit fa-1x color-icon-nf float-right'></i></a>
                 </div>
-                <div class="card-body pt-0">
+                <div class="card-body pt-0 mt-3">
                     <div class="row">
                         <?php
                         foreach ($nf as $v) {
                             ?>
-                            <div class="col-7">
+                            <div class="col-7 text-gray">
                                 <h2 class="lead"><b><?= $v->fornecedor ?></b> - <i
                                             class="fas fa-money-bill-wave"></i></i> Valor:
                                     R$ <?= $v->valor_total ?></h2>
-                                <p class="text-muted text-sm"><b>Data de
+                                <p class="">Data de
                                         Emissão: </b> <?= date("d/m/Y", strtotime($v->data_emissao)) ?>
                                     <br>
-                                    <b> Data de Lançamento: </b> <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
+                                     Data de Lançamento: <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
                                 </p>
                             </div>
                         <?php } ?>
@@ -97,13 +97,13 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <form method="POST" action="../../back/response/notaf/vencimento_parcelas_r.php">
                         <input type="hidden" name="new" value="1">
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Data de vencimento</label>
+                            <label for="inputEmail3" class="col-sm-2 col-form-label font-weight-normal">Data de vencimento</label>
                             <div class="col-sm-8">
                                 <input type="date" name="d_vencimento" class="form-control" id="inputEmail3">
                                 <input type="hidden" name="idnf" value="<?= $_GET['idnf'] ?>">
                             </div>
                         </div>
-                        <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Cadastrar<i
+                        <button type="submit" class="btn btn-outline-success col-sm-2">Cadastrar<i
                                     class="fas fa-plus ml-2"></i></button>
                     </form>
                 </div>
@@ -117,16 +117,16 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <div class="card-body">
                     <ul class="list-group">
                         <?php
-                        require_once ('../../back/controllers/NotaFiscalController.php');
+                        require_once('../../back/controllers/NotaFiscalController.php');
                         $notaf = new NotaFiscalController();
                         $notas = $notaf->buscarVencimentos($_GET['idnf']);
 
                         foreach ($notas as $value) {
                             $data = date_create($value->vencimento);
                             ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <li class="list-group-item d-flex justify-content-between align-items-center text-olive">
                                 <?= date_format($data, "d/m/Y") ?>
-                                <a href="../../back/response/notaf/d_vencimento_parcelas.php?idv=<?=$value->id?>">
+                                <a href="../../back/response/notaf/d_vencimento_parcelas.php?idv=<?= $value->id ?>">
                                     <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
                                 </a>
                             </li>

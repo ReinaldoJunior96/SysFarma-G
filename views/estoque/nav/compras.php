@@ -144,7 +144,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a href="../../back/response/user/destroy_sessao.php" class="nav-link">
+                        <a href="../../../back/response/user/destroy_sessao.php" class="nav-link">
                             <i class="fas fa-power-off nav-icon"></i>
                             <p>Sair</p>
                         </a>
@@ -160,7 +160,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-olive">
                 <?php
                 require_once '../../../back/controllers/EstoqueController.php';
                 $p = new EstoqueController();
@@ -168,7 +168,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 foreach ($produtos as $v) {
                     ?>
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-file-invoice"></i>
+                        <h3 class="card-title"><i class="fas fa-edit"></i>
                             Produto: <?= $v->produto_e ?>
                         </h3>
                     </div>
@@ -176,19 +176,19 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <!-- form start -->
                     <ul class="nav nav-tabs mt-2">
                         <li class="nav-item">
-                            <a class="nav-link " href="editEstoque.php?idp=<?= $_GET['idp'] ?>">Infomações</a>
+                            <a class="nav-link text-olive" href="editEstoque.php?idp=<?= $_GET['idp'] ?>">Infomações</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
+                            <a class="nav-link text-olive " href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
+                            <a class="nav-link text-olive " href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
+                            <a class="nav-link text-olive active" href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
+                            <a class="nav-link text-olive" href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
                         </li>
                     </ul>
 
@@ -196,15 +196,15 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                            <tr>
-                                <th scope="col">Ordem</th>
-                                <th scope="col">Emissão</th>
-                                <th scope="col">Fornecedor</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Valor Un</th>
+                            <tr class="text-gray-dark">
+                                <td scope="">Ordem</td>
+                                <td scope="col">Emissão</td>
+                                <td scope="col">Fornecedor</td>
+                                <td scope="col">Quantidade</td>
+                                <td scope="col">Valor Un</td>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-olive">
                             <?php
                             require_once '../../../back/controllers/EstoqueController.php';
                             $p = new EstoqueController();
@@ -213,7 +213,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 $data = date_create($historico->data_emissao)
                                 ?>
                                 <tr>
-                                    <th scope="row"><a
+                                    <th scope="row"><a  class="text-olive"
                                                 href="../../notafiscal/produtosnf.php?idnf=<?= $historico->id_nf ?>"><?= $historico->numero_nf ?></a>
                                     </th>
                                     <td><?= date_format($data, 'd/m/Y') ?></td>
@@ -232,7 +232,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
         </div>
     </div>
     <!-- /.content-wrapper -->
-
+    <?php include('../../componentes/footer.php'); ?>
 </div>
 <!-- ./wrapper -->
 

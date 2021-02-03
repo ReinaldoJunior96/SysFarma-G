@@ -51,9 +51,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-green">
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i></h3>
+                    <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i> Fornecedores</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -62,7 +62,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <input type="hidden" name="new" value="1">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nome</label>
+                            <label  class="font-weight-normal" for="exampleInputEmail1">Nome</label>
                             <input type="text" class="form-control"
                                    placeholder="Qual nome do forncedor?" name="fornecedor">
                         </div>
@@ -70,7 +70,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <div class="col-sm-4">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Telefone</label>
+                                    <label  class="font-weight-normal">Telefone</label>
                                     <input type="text" class="form-control" placeholder="Número p/ contato"
                                            name="telefone_fornecedor" id="telefone">
                                 </div>
@@ -78,22 +78,22 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <div class="col-sm-4">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>E-mail</label>
-                                    <input type="text" class="form-control" placeholder="E-mail p/ contato"
+                                    <label  class="font-weight-normal">E-mail</label>
+                                    <input type="email" class="form-control" placeholder="E-mail p/ contato"
                                            name="email_fornecedor">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>CPF/CNPJ</label>
+                                    <label  class="font-weight-normal">CPF/CNPJ</label>
                                     <input type="text" class="form-control" placeholder="Identificação do fornecedor"
                                            name="cnpj_fornecedor">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Endereço</label>
+                            <label  class="font-weight-normal">Endereço</label>
                             <textarea class="form-control" rows="3" placeholder="Onde ele se localiza?"
                                       name="endereco_fornecedor"></textarea>
                         </div>
@@ -101,7 +101,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success"
+                        <button type="submit" class="btn btn-outline-success"
                         ">Cadastrar</button>
                     </div>
                 </form>

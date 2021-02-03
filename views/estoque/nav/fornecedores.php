@@ -32,10 +32,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <link rel="stylesheet" href="../../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../../dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../../dist/css/mycss.css">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -150,7 +149,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a href="../../back/response/user/destroy_sessao.php" class="nav-link">
+                        <a href="../../../back/response/user/destroy_sessao.php" class="nav-link">
                             <i class="fas fa-power-off nav-icon"></i>
                             <p>Sair</p>
                         </a>
@@ -166,7 +165,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-olive">
                 <?php
                 require_once '../../../back/controllers/EstoqueController.php';
                 $p = new EstoqueController();
@@ -174,7 +173,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 foreach ($produtos as $v) {
                     ?>
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-file-invoice"></i>
+                        <h3 class="card-title"><i class="fas fa-edit"></i>
                             Produto: <?= $v->produto_e ?>
                         </h3>
                     </div>
@@ -183,19 +182,19 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 <!-- form start -->
                 <ul class="nav nav-tabs mt-2">
                     <li class="nav-item">
-                        <a class="nav-link " href="editEstoque.php?idp=<?= $_GET['idp'] ?>">Infomações</a>
+                        <a class="nav-link text-olive" href="editEstoque.php?idp=<?= $_GET['idp'] ?>">Infomações</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
+                        <a class="nav-link text-olive " href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
+                        <a class="nav-link text-olive active" href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
+                        <a class="nav-link text-olive" href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
+                        <a class="nav-link text-olive" href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
                     </li>
                 </ul>
 
@@ -205,7 +204,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
                         <div class="row">
                             <div class="form-group col-md-9">
-                                <label>Setor</label>
+                                <label class="font-weight-normal">Fornecedor</label>
                                 <select class="form-control select2" name="fornecedor">
                                     <option selected></option>
                                     <?php
@@ -222,7 +221,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary col-md-2">Cadastrar</button>
+                        <button type="submit" class="btn btn-outline-success col-md-2">Cadastrar</button>
                     </div>
                     <?php endif; ?>
                 </form>
@@ -236,7 +235,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 
                         foreach ($for as $value) {
                             ?>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <li class="list-group-item d-flex justify-content-between align-items-center text-olive">
                                 <?= $value->nome_fornecedor ?>
                                 <a href="../../../back/response/estoque/d_fornecedor_prod.php?idpf=<?= $value->idfp ?>">
                                     <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
@@ -252,7 +251,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
         </div>
     </div>
     <!-- /.content-wrapper -->
-
+    <?php include('../../componentes/footer.php'); ?>
 </div>
 <!-- jQuery -->
 <script src="../../../plugins/jquery/jquery.min.js"></script>

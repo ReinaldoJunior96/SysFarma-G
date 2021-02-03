@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-2">
+<aside class="main-sidebar sidebar-dark-fuchsia elevation-2">
     <!-- Brand Logo -->
     <a disabled="" class="brand-link">
         <img src="../../dist/img/logo-single-branco.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
