@@ -27,6 +27,8 @@ $(document).ready(function () {
                 data;
     };
 });
+
+
 $(function () {
     $(document).ready(function () {
         $('#tabela').fadeIn().css("display", "block");

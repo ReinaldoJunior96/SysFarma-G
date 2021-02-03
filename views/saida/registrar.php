@@ -47,10 +47,9 @@ switch ($_SESSION['user']) {
     <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -66,7 +65,7 @@ switch ($_SESSION['user']) {
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
                 </a>
             </li>
         </ul>
@@ -75,38 +74,58 @@ switch ($_SESSION['user']) {
     <?php include('../componentes/sidebar.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper p-3">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-olive">
                 <?php $date = date_create($_GET['data_s']); ?>
                 <h3 class="card-title">Setor: <?= str_replace("-", " ", $_GET['nomesetor']) ?> -
                     Data: <?= date_format($date, 'd/m/Y') ?></h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 250px;">
+                        <input type="text" name="table_search" class="form-control float-right"
+                               placeholder="Pesquisar" id="myInput" onkeyup="filtro();">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i
+                                        class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
-                <form method="POST" action="../../back/response/saidasetor/n_saida_r.php">
-                    <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
-                    <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
-                    <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
-                    <?php foreach ($all_estoque as $value) { ?>
-                        <input type="hidden" name="produto_s[]"  value="<?= $value->id_estoque ?>">
-                        <div class="form-group row">
-                            <label for="inputEmail3"
-                                   class="col-sm-5 col-form-label text-left font-weight-light"><?= $value->produto_e ?></label>
-                            <div class="col-sm-2">
-                                <input type="number" id="qtedesolicitada" class="form-control" name="saidaqte_p[]" >
-                            </div>
-                            <label for="inputEmail3" class="col-sm-2 col-form-label text-left font-weight-normal">
-                                <strong>Em Estoque: <span id="valorestoque"><?= $value->quantidade_e ?></span></strong>
-                            </label>
-                        </div>
-                        <hr>
-                    <?php } ?>
-                    <button type="submit" class="btn bg-primary col-sm-2 roboto-condensed text-white">Registrar
-                        Saída
-                        <i class="far fa-edit ml-2"></i>
-                </form>
-            </div>
+            <form method="POST" action="../../back/response/saidasetor/n_saida_r.php">
+                <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
+                <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
+                <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
+                <div class="card-body table-responsive p-0" style="height: 420px; display: none" id="tabela">
+
+                    <table id="myTable" class="table table-bordered table-striped">
+                        <thead class="bg-shadow-it bg-nav">
+                        <tr class="text-gray">
+                            <th class="">Produto / Meterial</th>
+                            <th class="">Quantidade</th>
+                            <th class="">Setor</th>
+                        </tr>
+                        </thead>
+                        <tbody class="p-3">
+                        <?php foreach ($all_estoque as $value) { ?>
+                            <input type="hidden" name="produto_s[]" value="<?= $value->id_estoque ?>">
+                            <tr>
+                                <td class="text-olive"><?= $value->produto_e ?></td>
+                                <td><input type="number" id="qtedesolicitada" class="form-control text-center"
+                                           name="saidaqte_p[]"></td>
+                                <td class="text-center"><strong>Em Estoque: <span
+                                                id="valorestoque"><?= $value->quantidade_e ?></span></strong>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-3">
+                    <button type="submit" class="btn btn-outline-secondary col-sm-2">Registrar Saída
+                    </button>
+                </div>
+            </form>
             <!-- /.card-body -->
         </div>
     </div>
@@ -143,12 +162,32 @@ switch ($_SESSION['user']) {
 <script src="../../dist/js/demo.js"></script>
 <!-- Page script -->
 
-
 <script>
-    function testando() {
-        var str = $("input[name*='saidaqte_p']").val();
-        console.log(str);
+    function filtro() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
     }
+</script>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('#tabela').fadeIn().css("display", "block");
+        });
+    });
 </script>
 </body>
 </html>

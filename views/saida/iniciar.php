@@ -50,7 +50,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
                 </a>
             </li>
         </ul>
@@ -73,7 +73,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-9">
-                                <label  class="font-weight-normal">Setor</label>
+                                <label class="font-weight-normal">Setor</label>
                                 <select class="form-control select2" name="nomesetor">
                                     <
                                     <option selected></option>
@@ -88,10 +88,11 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label  class="font-weight-normal">Data</label>
+                                <label class="font-weight-normal">Data</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text bg-olive"><i class="far fa-calendar-alt"></i></span>
+                                        <span class="input-group-text bg-olive"><i
+                                                    class="far fa-calendar-alt"></i></span>
                                     </div>
                                     <input type="date" class="form-control" data-inputmask-alias="datetime"
                                            data-inputmask-inputformat="dd/mm/yyyy" data-mask name="data_s">
@@ -107,15 +108,22 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </a>
                     </div>
                 </form>
-                <div class="p-3">
-<!--                    <div class="alert alert-danger alert-dismissible fade show" role="alert">-->
-<!--                        <strong>--><?//=var_dump($_GET['aParam'][0])?><!--</strong> Olha esse alerta animado, como é chique!-->
-<!--                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-<!--                            <span aria-hidden="true">&times;</span>-->
-<!--                        </button>-->
-<!--                    </div>-->
-                </div>
-
+                <?php if (isset($_GET['erroprod']) && count($_GET['erroprod']) > 0): ?>
+                    <div class="p-2">
+                        <div class="alert alert-default-danger" role="alert">
+                            <h5>Ops!! Alguns produtos não foram registrado</h5> <br>
+                            <ul class="list-group">
+                                <?php foreach ($_GET['erroprod'] as $k): ?>
+                                    <li class="list-group-item disabled"><?= $k ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    </div>
+                <?php elseif (isset($_GET['erroprod']) && count($_GET['erroprod']) == 0): ?>
+                    <div class="alert alert-default-success" role="alert">
+                        Sucesso! Todos os produtos foram registrados.
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

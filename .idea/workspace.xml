@@ -3,28 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpdf/fpdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/fpdf/fpdf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/almoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/almoxarifado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/farmacia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/compras.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/compras.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/editEstoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/editEstoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/fornecedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/lote.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/lote.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/editNF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/editNF.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/notaF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/notaF.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/vencimentos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/vencimentos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/relatorio/relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/devolucao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/historico.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/historico.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/dataTableCustom.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/dataTableCustom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/componentes/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/saida/iniciar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/iniciar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/setor/setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setor/setores.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/registrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +42,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/notaFiscal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dist/img" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -68,6 +54,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\gstock2.0\dist\img" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\notaFiscal" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\ordem" />
     </key>
@@ -115,6 +102,8 @@
       <workItem from="1612217902885" duration="15667000" />
       <workItem from="1612265658576" duration="8477000" />
       <workItem from="1612306393554" duration="8485000" />
+      <workItem from="1612350882838" duration="1514000" />
+      <workItem from="1612352818459" duration="15632000" />
     </task>
     <servers />
   </component>
