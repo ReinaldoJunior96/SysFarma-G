@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/iniciar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/iniciar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/dashboard.php" afterDir="false" />
-    </list>
+    <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,6 +94,7 @@
       <workItem from="1612306393554" duration="8485000" />
       <workItem from="1612350882838" duration="1514000" />
       <workItem from="1612352818459" duration="15632000" />
+      <workItem from="1612400470388" duration="238000" />
     </task>
     <servers />
   </component>
