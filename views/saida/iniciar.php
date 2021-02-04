@@ -119,9 +119,11 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             </ul>
                         </div>
                     </div>
-                <?php elseif (isset($_GET['erroprod']) && count($_GET['erroprod']) == 0): ?>
-                    <div class="alert alert-default-success" role="alert">
-                        Sucesso! Todos os produtos foram registrados.
+                <?php elseif (isset($_GET['produtos']) && $_GET['produtos'] == "success"): ?>
+                    <div class="p-2">
+                        <div class="alert alert-default-success" role="alert">
+                            Sucesso! Todos os produtos foram registrados.
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>

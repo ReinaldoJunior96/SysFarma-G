@@ -40,10 +40,12 @@ foreach ($produtosErro as $prod){
         array_push($erro ,$i->produto_e);
     }
 }
+if(count($erro) == 0){
+    header("location: ../../../views/saida/iniciar.php?produtos=success");
+}else{
+    $query = http_build_query(array('erroprod' => $erro));
+    header("location: ../../../views/saida/iniciar.php?". $query);
+}
 
 
 
-
-
-$query = http_build_query(array('erroprod' => $erro));
-header("location: ../../../views/saida/iniciar.php?" . $query);

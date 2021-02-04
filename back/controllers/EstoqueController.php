@@ -303,7 +303,7 @@ class EstoqueController
         try {
             $historicoSaida = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
 				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque 
-				ORDER BY tbl_saida.id_saida DESC LIMIT 0,5000");
+				ORDER BY tbl_saida.id_saida DESC LIMIT 0,2500");
             $historicoSaida->execute();
             return $historicoSaida->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
@@ -317,7 +317,7 @@ class EstoqueController
             $historicoSaida = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
 				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque 
 				WHERE setor_s = '$setor'
-				ORDER BY tbl_saida.id_saida DESC LIMIT 0,500");
+				ORDER BY tbl_saida.id_saida DESC LIMIT 0,2500");
             $historicoSaida->execute();
             return $historicoSaida->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {

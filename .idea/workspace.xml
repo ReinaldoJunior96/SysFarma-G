@@ -5,12 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/dataTableCustom.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/js/dataTableCustom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/componentes/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/saida/iniciar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/iniciar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/registrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/user/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
