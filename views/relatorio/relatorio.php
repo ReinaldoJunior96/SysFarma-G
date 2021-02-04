@@ -12,7 +12,6 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="shortcut icon" href="../../dist/img/logo-single.png" type="image/x-icon">
     <title>g-stock</title>
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -88,20 +87,22 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label  class="font-weight-normal">Data Inicial</label>
+                                <label class="font-weight-normal">Data Inicial</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text bg-olive border-0"><i class="far fa-calendar-alt"></i></span>
+                                        <span class="input-group-text bg-olive border-0"><i
+                                                    class="far fa-calendar-alt"></i></span>
                                     </div>
                                     <input type="date" class="form-control" data-inputmask-alias="datetime"
                                            data-inputmask-inputformat="dd/mm/yyyy" name="dataI" data-mask>
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label  class="font-weight-normal">Data Final</label>
+                                <label class="font-weight-normal">Data Final</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text bg-olive border-0"><i class="far fa-calendar-alt"></i></span>
+                                        <span class="input-group-text bg-olive border-0"><i
+                                                    class="far fa-calendar-alt"></i></span>
                                     </div>
                                     <input type="date" class="form-control" data-inputmask-alias="datetime"
                                            data-inputmask-inputformat="dd/mm/yyyy" name="dataF" data-mask>
@@ -118,53 +119,59 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             <!-- /.card -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Relaótiro Gerado</h3>
+                    <h3 class="card-title">Resultado</h3>
                 </div>
                 <!-- /.card-header -->
-                <?php
-                require_once('../../back/controllers/EstoqueController.php');
-                $viewRelatorio = new EstoqueController();
-                $relatorio = (@$_POST['setor'] == 'todos')
-                    ? $viewRelatorio->relatorioGeral(@$_POST['dataI'], @$_POST['dataF'])
-                    : $viewRelatorio->gerarRelatorio(@$_POST['setor'], @$_POST['dataI'], @$_POST['dataF']);
-                $dados = array(
-                    'nomep' => array(),
-                    'produtos' => array(),
-                    'quantidade' => array(),
-                );
 
-                foreach ($relatorio as $v):
-                    if (array_search($v->item_s, $dados['produtos']) != false) {
-                        $chave = array_search($v->item_s, $dados['produtos']);
-                        $qtdeAntiga = $dados['quantidade'][$chave];
-                        $dados['quantidade'][$chave] = $qtdeAntiga + $v->quantidade_s;
-                    } else {
-                        array_push($dados['produtos'], $v->item_s);
-                        array_push($dados['nomep'], $v->produto_e);
-                        array_push($dados['quantidade'], $v->quantidade_s);
-                    }
-                endforeach;
-                ?>
+
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
+                            <th style="width: 10px">#</th>
                             <th>Produto</th>
-                            <th>Quantidade</th>
+                            <th style="width: 40px">Quanitdade</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php for ($i = 0; $i < count($dados['produtos']); $i++): ?>
-                            <tr>
-                                <td><?= $dados['nomep'][$i] ?></td>
-                                <td><?= $dados['quantidade'][$i] ?></td>
-                            </tr>
-                        <?php endfor; ?>
+                        <?php if (isset($_POST['setor']) && isset($_POST['dataI']) && isset($_POST['dataF'])): ?>
+                            <?php
+                            require_once('../../back/controllers/EstoqueController.php');
+                            $produto = new EstoqueController();
+                            $todosProdutos = $produto->verEstoqueTotal();
+                            if (isset($_POST['setor']) && isset($_POST['dataI']) && isset($_POST['dataF'])):
+                                $seguraItem = array(
+                                    'produto' => array(),
+                                    'quantidade' => array()
+                                );
+                                foreach ($todosProdutos as $v) {
+                                    $soma = 0;
+                                    $saidasDoProduto = $produto->relatorioConsumo($_POST['setor'], $_POST['dataI'], $_POST['dataF'], $v->id_estoque);
+
+                                    foreach ($saidasDoProduto as $s) {
+                                        $soma += $s->quantidade_s;
+                                    }
+                                    if ($soma != 0):
+                                        array_push($seguraItem['produto'], $v->produto_e);
+                                        array_push($seguraItem['quantidade'], $soma);
+                                    endif;
+
+
+                                }
+                                for ($i = 0; $i < count($seguraItem['produto']); $i++):
+                                    ?>
+                                    <tr>
+                                        <td><?= $i ?></td>
+                                        <td><?= $seguraItem['produto'][$i] ?></td>
+                                        <td class="bg-olive text-white text-center"><?= $seguraItem['quantidade'][$i] ?></td>
+                                    </tr>
+                                <?php endfor; ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        </tbody>
                     </table>
                 </div>
-                <!-- /.card-body -->
             </div>
-
         </div>
     </div>
     <!-- /.content-wrapper -->

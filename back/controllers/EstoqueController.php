@@ -150,32 +150,6 @@ class EstoqueController
         }
     }
 
-    public function gerarRelatorio($setor, $dataI, $dataF)
-    {
-        try {
-            $buscarRelatorio = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
-            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
-            WHERE setor_s='$setor'
-            AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
-            $buscarRelatorio->execute();
-            return $buscarRelatorio->fetchAll(PDO::FETCH_OBJ);
-        } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro ao gerar relatório!!\")</script>";
-        }
-    }
-
-    public function relatorioGeral($dataI, $dataF)
-    {
-        try {
-            $buscarRelatorio = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
-            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
-            WHERE data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
-            $buscarRelatorio->execute();
-            return $buscarRelatorio->fetchAll(PDO::FETCH_OBJ);
-        } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro ao gerar relatório!!\")</script>";
-        }
-    }
 
     public function destroyProduto($id)
     {
@@ -488,6 +462,27 @@ class EstoqueController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
+        }
+    }
+
+    /* relatório de consumo */
+    public function relatorioConsumo($setor, $dataI, $dataF, $idproduto)
+    {
+        try {
+            $querySearchRelatorio = "";
+            if ($setor == 'todos'):
+                $querySearchRelatorio = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
+            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
+            WHERE item_s='$idproduto' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
+            else:
+                $querySearchRelatorio = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
+            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
+            WHERE item_s='$idproduto' AND setor_s='$setor' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
+            endif;
+            $querySearchRelatorio->execute();
+            return $querySearchRelatorio->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro ao gerar relatório!!\")</script>";
         }
     }
 

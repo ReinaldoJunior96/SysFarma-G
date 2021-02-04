@@ -5,7 +5,7 @@ $novaSaida = new EstoqueController();
 
 /* Pegos o resto da hora exata da saída dos produtos*/
 $horarioEntrada = new DateTime('NOW');
-
+$dataAtual = date_create();
 /* Recebe os todos os produtos*/
 $produtosGerais = array(
     'produto' => $_POST['produto_s'],
@@ -19,7 +19,7 @@ $produtoFiltrado = array(
     'produto' => array(),
     'quantidade' => array(),
     'setor' => $_POST['setor_s'],
-    'data' => date('Y-m-d', strtotime($_POST['data_s'])) . " " . $horarioEntrada->format('H:i:s'),
+    'data' => (empty($_POST['data_s'])) ? date_format($dataAtual,'Y-m-d H:i:s') : date('Y-m-d', strtotime($_POST['data_s'])) . " " . $horarioEntrada->format('H:i:s'),
     'user' => $_POST['user'],
 );
 /* Recebe os produtos inválidos */
@@ -32,6 +32,7 @@ for ($i = 0; $i < count($produtosGerais['produto']); $i++):
         array_push($produtoFiltrado['quantidade'], $produtosGerais['quantidade'][$i]);
     endif;
 endfor;
+var_dump($produtoFiltrado['data']);
 $produtosErro = $novaSaida->registrarSaida($produtoFiltrado);
 $erro = array();
 foreach ($produtosErro as $prod){

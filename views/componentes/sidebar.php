@@ -15,7 +15,7 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <?php if ($_SESSION['user'] == 'compras.hvu' OR $_SESSION['user'] == 'admin'): ?>
+                <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="fas fa-truck-loading nav-icon"></i>
@@ -70,26 +70,51 @@
                         <p>Saída</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="../relatorio/relatorio.php" class="nav-link">
-                        <i class="fas fa-file-invoice nav-icon"></i>
-                        <p>Relatório</p>
-                    </a>
-                </li>
+                <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
+                    <li class="nav-item">
+                        <a href="../fornecedor/fornecedores.php" class="nav-link">
+                            <i class="fas fa-people-arrows nav-icon"></i>
+                            <p>Fornecedores</p>
+                        </a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a href="../setor/setores.php" class="nav-link">
                         <i class="fas fa-share-alt-square nav-icon"></i>
                         <p>Setores</p>
                     </a>
                 </li>
-                <?php if ($_SESSION['user'] == 'compras.hvu' OR $_SESSION['user'] == 'admin'): ?>
-                <li class="nav-item">
-                    <a href="../fornecedor/fornecedores.php" class="nav-link">
-                        <i class="fas fa-people-arrows nav-icon"></i>
-                        <p>Fornecedores</p>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-file-import"></i>
+                        <p>
+                            Relatórios
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-notes-medical"></i>
+                                <p>Estoque Farmácia</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-inbox"></i>
+                                <p>Estoque Almoxarifado</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../relatorio/relatorio.php" class="nav-link">
+                                <i class="fas fa-file-export"></i>
+                                <p>Consumo</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <?php endif; ?>
+
+
                 <li class="nav-item">
                     <a href="../../back/response/user/destroy_sessao.php" class="nav-link">
                         <i class="fas fa-power-off nav-icon"></i>
