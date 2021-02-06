@@ -131,7 +131,7 @@ class EstoqueController
     public function verProdDiversos()
     {
         try {
-            $queryBuscaEstoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE tipo='material'");
+            $queryBuscaEstoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE tipo='material' AND produto_e != ''");
             $queryBuscaEstoque->execute();
             return $queryBuscaEstoque->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {

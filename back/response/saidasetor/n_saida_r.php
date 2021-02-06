@@ -1,27 +1,33 @@
 <?php
 require_once('../../controllers/EstoqueController.php');
 date_default_timezone_set('America/Sao_Paulo');
-$novaSaida = new EstoqueController();
+/* ================ Váriaveis de Iníncio ================= */
+$estoqueClass = null;
+$data = null;
+/* ================  */
 
-/* Pegos o resto da hora exata da saída dos produtos*/
-$horarioEntrada = new DateTime('NOW');
-$dataAtual = date_create();
-/* Recebe os todos os produtos*/
+/* Importa classe Estoque */
+$estoqueClass = new EstoqueController();
+
+/* Pega a hora exata da saída dos produtos*/
+$data = new DateTime('NOW');
+
+/* Recebe os todos os produtos e as quantidades*/
 $produtosGerais = array(
     'produto' => $_POST['produto_s'],
     'quantidade' => $_POST['saidaqte_p'],
-    'setor' => $_POST['setor_s'],
-    'data' => $_POST['data_s'],
-    'user' => $_POST['user'],
 );
-/* Recebe os produtos filtrados */
+
+
+/* Array que vai recerber apenas os produtos com quantidade diferente de vazio */
 $produtoFiltrado = array(
     'produto' => array(),
     'quantidade' => array(),
     'setor' => $_POST['setor_s'],
-    'data' => (empty($_POST['data_s'])) ? date_format($dataAtual,'Y-m-d H:i:s') : date('Y-m-d', strtotime($_POST['data_s'])) . " " . $horarioEntrada->format('H:i:s'),
+    'data' => (empty($_POST['data_s'])) ? date_format($data, 'Y-m-d H:i:s') : date('Y-m-d', strtotime($_POST['data_s'])) . " " . $data->format('H:i:s'),
     'user' => $_POST['user'],
 );
+
 /* Recebe os produtos inválidos */
 $produtoInvalidos = array();
 
@@ -32,20 +38,37 @@ for ($i = 0; $i < count($produtosGerais['produto']); $i++):
         array_push($produtoFiltrado['quantidade'], $produtosGerais['quantidade'][$i]);
     endif;
 endfor;
-var_dump($produtoFiltrado['data']);
-$produtosErro = $novaSaida->registrarSaida($produtoFiltrado);
+/*
+ * Manda para o back os produtos filtrados no ponto de inserir no banco
+ * Retorna os produtos [id] que não foram registrados
+ */
+$produtosErro = $estoqueClass->registrarSaida($produtoFiltrado);
+
+/*
+ * Array que armazena os produtos que tiveram
+ * provavelmente a quantidade solicitada maior que do estoque
+ */
 $erro = array();
-foreach ($produtosErro as $prod){
-    $produtoTotal = $novaSaida->estoqueID($prod);
-    foreach ($produtoTotal as $i){
-        array_push($erro ,$i->produto_e);
+
+/*
+ * Pega o nome dos produtos para retorno para o front
+ */
+foreach ($produtosErro as $prod) {
+    $produtoTotal = $estoqueClass->estoqueID($prod);
+    foreach ($produtoTotal as $i) {
+        array_push($erro, $i->produto_e);
     }
 }
-if(count($erro) == 0){
+
+/*
+ * Se não tiver erros ele retorna o success, caso contrário retorno os erros
+ */
+
+if (count($erro) == 0) {
     header("location: ../../../views/saida/iniciar.php?produtos=success");
-}else{
+} else {
     $query = http_build_query(array('erroprod' => $erro));
-    header("location: ../../../views/saida/iniciar.php?". $query);
+    header("location: ../../../views/saida/iniciar.php?" . $query);
 }
 
 

@@ -3,9 +3,6 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../user/login.php");
 }
-require_once('../../back/controllers/setoresController.php');
-$s = new SetorController();
-$setores = $s->verSetores();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,7 +12,6 @@ $setores = $s->verSetores();
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="shortcut icon" href="../../dist/img/logo-single.png" type="image/x-icon">
     <title>g-stock</title>
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -41,7 +37,23 @@ $setores = $s->verSetores();
 <div class="wrapper">
 
     <!-- Navbar -->
-    <?php include('../componentes/nav.php') ?>
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
 
@@ -51,61 +63,53 @@ $setores = $s->verSetores();
             <!-- general form elements -->
             <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Saída </h3>
+                    <?php
+                    date_default_timezone_set('America/Sao_Paulo');
+                    $today = new DateTime();
+                    ?>
+                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Relatório
+                        . <?= date_format($today, 'd/m/Y H:i:s'); ?>
+                    </h3>
                 </div>
-                <form role="form" method="GET" action="registrar.php">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-9">
-                                <label class="font-weight-normal">Setor</label>
-                                <select class="form-control select2 col-md-12" name="nomesetor" required>
-                                    <option selected></option>
-                                    <?php foreach ($setores as $values): ?>
-                                        <option value="<?= $values->setor_s ?>"><?= str_replace("-", " ", $values->setor_s) ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="font-weight-normal">Data</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-olive"><i
-                                                    class="far fa-calendar-alt"></i></span>
-                                    </div>
-                                    <input type="date" class="form-control" data-inputmask-alias="datetime"
-                                           data-inputmask-inputformat="dd/mm/yyyy" data-mask name="data_s">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Iniciar</button>
-                        <!--<a href="historico.php" class="float-right ">
-                            <i class="fas fa-history"></i> Histórico
-                        </a>-->
-                    </div>
-                </form>
-                <?php if (isset($_GET['erroprod']) && count($_GET['erroprod']) > 0): ?>
-                    <div class="p-3">
-                        <div class="alert alert-default-danger elevation-2" role="alert">
-                            <h3 class="text-danger font-weight-bold"><i class="fas fa-exclamation-circle"></i> Atenção!!
-                            </h3>
-                            <h5>Alguns produtos não foram registrados. &#128556;</h5>
-                            <hr>
-                            <?php foreach ($_GET['erroprod'] as $k): ?>
-                                <span class=""><?= $k ?></span><br>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                <?php elseif (isset($_GET['produtos']) && $_GET['produtos'] == "success"): ?>
-                    <div class="p-2">
-                        <div class="alert alert-default-success" role="alert">
-                            <h3 class="text-success font-weight-bold"><i class="fas fa-check-circle"></i> Sucesso!!</h3>
-                            <h5>Todos os produtos foram registrados. &#128513;</h5>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                <!-- /.card-header -->
+                <!-- form start -->
+            </div>
+            <!-- /.card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Resultado</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Produto</th>
+                            <th style="width: 40px">Quanitdade</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        require_once('../../back/controllers/EstoqueController.php');
+                        $produto = new EstoqueController();
+                        $todosProdutosFarmacia = $produto->verProdDiversos();
+                        $contagem = 0;
+                        foreach ($todosProdutosFarmacia as $v) :
+                            ?>
+                            <tr>
+                                <td><?= $contagem?></td>
+                                <td><?= $v->produto_e?></td>
+                                <td><?= $v->quantidade_e ?></td>
+                                <td></td>
+                            </tr>
+                            <?php
+                            $contagem++;
+                        endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -140,6 +144,7 @@ $setores = $s->verSetores();
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- Page script -->
 <script>
     $(function () {
         //Initialize Select2 Elements

@@ -68,7 +68,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="">
+                <form role="form" method="GET" action="">
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -117,9 +117,12 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 </form>
             </div>
             <!-- /.card -->
+            <?php if (isset($_GET['setor']) && isset($_GET['dataI']) && isset($_GET['dataF'])):  ?>
+            <?php $dataI = date_create($_GET['dataI']);  ?>
+            <?php $dataF = date_create($_GET['dataF']);  ?>
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Resultado</h3>
+                    <h3 class="card-title">Setor: <?=@$_GET['setor']?> / Data Inicial: <?=date_format($dataI,"d/m/Y");?>  / Data Final: <?=date_format($dataF,"d/m/Y");?> </h3>
                 </div>
                 <!-- /.card-header -->
 
@@ -134,44 +137,47 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($_POST['setor']) && isset($_POST['dataI']) && isset($_POST['dataF'])): ?>
+                        <?php if (isset($_GET['setor']) && isset($_GET['dataI']) && isset($_GET['dataF'])): ?>
                             <?php
-                            require_once('../../back/controllers/EstoqueController.php');
-                            $produto = new EstoqueController();
-                            $todosProdutos = $produto->verEstoqueTotal();
-                            if (isset($_POST['setor']) && isset($_POST['dataI']) && isset($_POST['dataF'])):
-                                $seguraItem = array(
-                                    'produto' => array(),
-                                    'quantidade' => array()
-                                );
-                                foreach ($todosProdutos as $v) {
-                                    $soma = 0;
-                                    $saidasDoProduto = $produto->relatorioConsumo($_POST['setor'], $_POST['dataI'], $_POST['dataF'], $v->id_estoque);
+                        require_once ('../../back/controllers/EstoqueController.php');
+                        $produto = new EstoqueController();
+                        $todosProdutos = $produto->verEstoqueTotal();
+                        if (isset($_GET['setor']) && isset($_GET['dataI']) && isset($_GET['dataF'])):
+                        $seguraItem = array(
+                        'produto' => array(),
+                        'quantidade' => array()
+                        );
+                        foreach ($todosProdutos as $v) {
+                        $soma = 0;
+                        $saidasDoProduto = $produto->relatorioConsumo($_GET['setor'], $_GET['dataI'], $_GET['dataF'], $v->id_estoque);
 
-                                    foreach ($saidasDoProduto as $s) {
-                                        $soma += $s->quantidade_s;
-                                    }
-                                    if ($soma != 0):
-                                        array_push($seguraItem['produto'], $v->produto_e);
-                                        array_push($seguraItem['quantidade'], $soma);
-                                    endif;
+                        foreach ($saidasDoProduto as $s) {
+                        $soma += $s->quantidade_s;
+                        }
+                        if ($soma != 0):
+                        array_push($seguraItem['produto'], $v->produto_e);
+                        array_push($seguraItem['quantidade'], $soma);
+                        endif;
 
 
-                                }
-                                for ($i = 0; $i < count($seguraItem['produto']); $i++):
-                                    ?>
-                                    <tr>
-                                        <td><?= $i ?></td>
-                                        <td><?= $seguraItem['produto'][$i] ?></td>
-                                        <td class="bg-olive text-white text-center"><?= $seguraItem['quantidade'][$i] ?></td>
-                                    </tr>
-                                <?php endfor; ?>
+                        }
+                        for ($i = 0;
+                        $i < count($seguraItem['produto']);
+                        $i++):
+                        ?>
+                        <tr>
+                            <td><?= $i ?></td>
+                            <td><?= $seguraItem['produto'][$i] ?></td>
+                            <td class="bg-olive text-white text-center"><?= $seguraItem['quantidade'][$i] ?></td>
+                        </tr>
+                        <?php endfor; ?>
                             <?php endif; ?>
                         <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
+            <?php endif;  ?>
         </div>
     </div>
     <!-- /.content-wrapper -->

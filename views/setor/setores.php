@@ -39,26 +39,7 @@ switch ($_SESSION['user']) {
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a disabled="" class="nav-link"></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <!-- Messages Dropdown Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <?php include('../componentes/nav.php') ?>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
 
@@ -89,8 +70,8 @@ switch ($_SESSION['user']) {
             </div>
             <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
-                <div class="card-header">
-                    <h3 class="card-title">Setores Cadastrados</h3>
+                <div class="card-header bg-olive">
+                    <h3 class="card-title"></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

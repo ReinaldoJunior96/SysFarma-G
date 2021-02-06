@@ -1,22 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
-    header("location: login.php");
-}
-require_once('../../back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
-require_once('../../back/controllers/EstoqueController.php');
-$view_estoque = new EstoqueController();
-$all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
-switch ($_SESSION['user']) {
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
+    header("location: ../user/login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +12,6 @@ switch ($_SESSION['user']) {
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="shortcut icon" href="../../dist/img/logo-single.png" type="image/x-icon">
     <title>g-stock</title>
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -47,10 +31,9 @@ switch ($_SESSION['user']) {
     <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -61,58 +44,73 @@ switch ($_SESSION['user']) {
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Usuário: <?= $_SESSION['user'] ?></span>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <div class="card">
-            <!-- /.card-header -->
-            <div class="card card-default">
+        <div class="col-md-12 mt-3">
+            <!-- general form elements -->
+            <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title">Bootstrap Duallistbox</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                    </div>
+                    <?php
+                    date_default_timezone_set('America/Sao_Paulo');
+                    $today = new DateTime();
+                    ?>
+                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Relatório
+                        . <?= date_format($today, 'd/m/Y H:i:s'); ?>
+                    </h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">f
-                    <form action="" method="get">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label>Multiple</label>
-                                    <select class="duallistbox" multiple="multiple" name="selectado[]">
-                                        <?=
-                                        require_once('../../back/controllers/EstoqueController.php');
-                                        $view_estoque = new EstoqueController();
-                                        $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
-                                        foreach ($all_estoque as $value) {
-                                        ?>
-                                        <option value="<?=$value->id_estoque?>"><?=$value->produto_e?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <!-- /.form-group -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <input type="submit" value="vai">
-                    </form>
-
-                    <!-- /.row -->
+                <!-- form start -->
+            </div>
+            <!-- /.card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Resultado</h3>
                 </div>
-                <?=var_dump(@$_GET['selectado'])?>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    Visit <a href="https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox#readme">Bootstrap Duallistbox</a> for more examples and information about
-                    the plugin.
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Produto</th>
+                            <th style="width: 40px">Quanitdade</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        require_once('../../back/controllers/EstoqueController.php');
+                        $produto = new EstoqueController();
+                        $todosProdutosFarmacia = $produto->verEstoqueFarmacia();
+                        $contagem = 0;
+                        foreach ($todosProdutosFarmacia as $v) :
+                            ?>
+                            <tr>
+                                <td><?= $contagem?></td>
+                                <td><?= $v->produto_e?></td>
+                                <td><?= $v->quantidade_e ?></td>
+                                <td></td>
+                            </tr>
+                        <?php
+                        $contagem++;
+                        endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <!-- /.card-body -->
         </div>
     </div>
     <!-- /.content-wrapper -->
@@ -158,9 +156,9 @@ switch ($_SESSION['user']) {
         })
 
         //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'})
         //Datemask2 mm/dd/yyyy
-        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+        $('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'})
         //Money Euro
         $('[data-mask]').inputmask()
 
@@ -181,16 +179,16 @@ switch ($_SESSION['user']) {
         //Date range as a button
         $('#daterange-btn').daterangepicker(
             {
-                ranges   : {
-                    'Today'       : [moment(), moment()],
-                    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
                     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 },
                 startDate: moment().subtract(29, 'days'),
-                endDate  : moment()
+                endDate: moment()
             },
             function (start, end) {
                 $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
@@ -210,11 +208,11 @@ switch ($_SESSION['user']) {
         //color picker with addon
         $('.my-colorpicker2').colorpicker()
 
-        $('.my-colorpicker2').on('colorpickerChange', function(event) {
+        $('.my-colorpicker2').on('colorpickerChange', function (event) {
             $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
         });
 
-        $("input[data-bootstrap-switch]").each(function(){
+        $("input[data-bootstrap-switch]").each(function () {
             $(this).bootstrapSwitch('state', $(this).prop('checked'));
         });
 

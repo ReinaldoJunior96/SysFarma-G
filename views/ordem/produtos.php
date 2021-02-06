@@ -3,18 +3,21 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../user/login.php");
 }
-require_once('../../back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
-switch ($_SESSION['user']) {
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
+require_once('../../back/controllers/CompraController.php');
+require_once('../../back/controllers/NotaFiscalController.php');
+$nfController = new NotaFiscalController();
+$dados = new CompraController();
+$dadosOrdem = $dados->verOrdemTotal($_GET['ordem']);
+$idenNF = 0;
+$statusNF = 0;
+foreach ($dadosOrdem as $p) {
+    $idenNF = $p->id_fk_nf;
 }
+foreach ($nfController->verNF($idenNF) as $status) {
+    $statusNF = $status->status_nf;
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -125,10 +128,11 @@ switch ($_SESSION['user']) {
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
-                                <label class="font-weight-normal">Quantiade(Unitária)</label>
+                                <label class="font-weight-normal">Quantiade(Unitáaaria)</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text bg-olive"><i class="fas fa-sort-numeric-up-alt"></i></span>
+                                        <span class="input-group-text bg-olive"><i
+                                                    class="fas fa-sort-numeric-up-alt"></i></span>
                                     </div>
                                     <input type="text" class="form-control" value="" name="saidaqte_p" id="saidaqte_p">
                                 </div>
@@ -137,7 +141,8 @@ switch ($_SESSION['user']) {
                                 <label class="font-weight-normal">Valor Unitário</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text bg-olive"><i class="far fa-calendar-alt "></i></span>
+                                        <span class="input-group-text bg-olive"><i
+                                                    class="far fa-calendar-alt "></i></span>
                                     </div>
                                     <input type="text" class="form-control" name="valor_un_c" value="" id="valor_un_c">
                                 </div>
@@ -145,16 +150,14 @@ switch ($_SESSION['user']) {
                         </div>
                     </div>
                     <!-- /.card-body -->
+                    <?php if ($statusNF == 0): ?>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-outline-success col-md-2">Adicionar</button>
                     </div>
+                    <?php endif; ?>
                 </form>
                 <hr>
                 <?php
-                require_once('../../back/controllers/CompraController.php');
-                $dados = new CompraController();
-                $dadosOrdem = $dados->verOrdemTotal($_GET['ordem']);
-                $somaValor = 0;
                 foreach ($dadosOrdem as $value) {
                     $valorTotalProduto = $value->valor_un_c * $value->qtde_compra;
                     $valorUnCompra = floatval($value->valor_un_c);
@@ -165,16 +168,22 @@ switch ($_SESSION['user']) {
                         <input type="hidden" value="<?= $value->ordem_compra_id ?>" name="idordem">
                         <input type="hidden" value="<?= $value->valor_un_c ?>" name="valoruni">
                         <div class="d-flex bd-highlight align-items-center ">
+                    <?php if ($statusNF == 0): ?>
                             <div class="p-2 bd-highlight">
                                 <a href=../../back/response/compra/d_prod_compra.php?deleteprod=<?= $value->id_item_compra ?>>
                                     <i class="fas fa-minus-circle text-danger"></i>
                                 </a>
                             </div>
+                        <?php endif; ?>
                             <div class="p-2 flex-grow-1 bd-highlight text-olive"><?= $value->produto_e ?></div>
-                            <div class="p-2 bd-highlight">
-                                <input type="number" placeholder="Quantidade"
-                                       class="form-control text-center"
-                                       name="qtdecomprada" id="qtdecomprada" value="<?= $value->qtde_compra ?>">
+                            <div class="p-2 bd-highlight col-2">
+                                <?php if ($statusNF == 0): ?>
+                                    <input type="number" placeholder="Quantidade"
+                                           class="form-control text-center"
+                                           name="qtdecomprada" id="qtdecomprada" value="<?= $value->qtde_compra ?>">
+                                <?php else: ?>
+                                    <span class="text-gray"><?= $value->qtde_compra ?> </span>
+                                <?php endif; ?>
                             </div>
 
                             <div class="p-2 bd-highlight col-2">
@@ -183,19 +192,18 @@ switch ($_SESSION['user']) {
                             <div class="p-2 bd-highlight">
                                 <span class="text-gray">Valor total: <?= $valorTotalProduto ?></span>
                             </div>
-                            <div class="p-2 bd-highlight">
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="fas fa-save"></i>
-                                </button>
-                            </div>
+                            <?php if ($statusNF == 0): ?>
+                                <div class="p-2 bd-highlight">
+                                    <button type="submit" class="btn btn-outline-success">
+                                        <i class="fas fa-save"></i>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </form>
-
                 <?php } ?>
             </div>
-
             <!-- /.card -->
-
         </div>
     </div>
     <?php include('../componentes/footer.php'); ?>

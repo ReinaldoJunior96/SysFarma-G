@@ -26,24 +26,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
-
-        <ul class="navbar-nav ml-auto">
-            <!-- Messages Dropdown Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <?php include('../componentes/nav.php') ?>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
 
@@ -64,7 +47,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                         <div class="form-group">
                             <label  class="font-weight-normal" for="exampleInputEmail1">Nome</label>
                             <input type="text" class="form-control"
-                                   placeholder="Qual nome do forncedor?" name="fornecedor">
+                                   placeholder="Qual nome do forncedor?" name="fornecedor" required>
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
@@ -72,7 +55,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 <div class="form-group">
                                     <label  class="font-weight-normal">Telefone</label>
                                     <input type="text" class="form-control" placeholder="Número p/ contato"
-                                           name="telefone_fornecedor" id="telefone">
+                                           name="telefone_fornecedor" id="telefone" required>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -88,7 +71,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 <div class="form-group">
                                     <label  class="font-weight-normal">CPF/CNPJ</label>
                                     <input type="text" class="form-control" placeholder="Identificação do fornecedor"
-                                           name="cnpj_fornecedor">
+                                           name="cnpj_fornecedor" required>
                                 </div>
                             </div>
                         </div>
@@ -101,8 +84,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-outline-success"
-                        ">Cadastrar</button>
+                        <button type="submit" class="btn btn-outline-success elevation-1">Cadastrar</button>
                     </div>
                 </form>
 
@@ -110,7 +92,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
                 <div class="card-header">
-                    <h3 class="card-title">Fornecedores Cadastrados</h3>
+                    <h3 class="card-title"></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
