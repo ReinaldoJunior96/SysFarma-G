@@ -79,12 +79,20 @@ $setores = $s->verSetores();
                         </div>
                     </div>
                     <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Iniciar</button>
-                        <!--<a href="historico.php" class="float-right ">
-                            <i class="fas fa-history"></i> Histórico
-                        </a>-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="card-footer col-md-10">
+                                <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Iniciar</button>
+                            </div>
+                            <div class="card-footer col-md-2 d-flex align-items-center">
+                                <a href="historico.php" class="float-right btn bg-gradient-olive elevation-1">
+                                    <i class="fas fa-history"></i> Histórico
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
+
                 </form>
                 <?php if (isset($_GET['erroprod']) && count($_GET['erroprod']) > 0): ?>
                     <div class="p-3">

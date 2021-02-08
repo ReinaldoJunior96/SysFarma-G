@@ -52,23 +52,7 @@ foreach ($nfController->verNF($idenNF) as $status) {
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <!-- Messages Dropdown Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fas fa-user"></i>
-                    <span>Usuário: <?= $_SESSION['user'] ?></span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <?php include('../componentes/nav.php') ?>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
 
@@ -81,9 +65,7 @@ foreach ($nfController->verNF($idenNF) as $status) {
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item active "><a class="text-olive"
-                                                                   href="ordempdf.php?id_ordem=<?= $_GET['ordem'] ?>">
-                                    <i class="fas fa-print"></i> Imprimir</a>
+                            <li class="breadcrumb-item active ">
                             </li>
                         </ol>
                     </div>
@@ -104,7 +86,9 @@ foreach ($nfController->verNF($idenNF) as $status) {
 
                     <div class="card-header">
                         <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i>
-                            Fornecedor: <?= $v->nome_f ?></h3>
+                            Fornecedor: <?= $v->nome_f ?></h3><a class="text-white float-lg-right"
+                                                                 href="ordempdf.php?id_ordem=<?= $_GET['ordem'] ?>">
+                            <i class="fas fa-print"></i> Imprimir</a>
                     </div>
                 <?php } ?>
 
@@ -151,9 +135,9 @@ foreach ($nfController->verNF($idenNF) as $status) {
                     </div>
                     <!-- /.card-body -->
                     <?php if ($statusNF == 0): ?>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-outline-success col-md-2">Adicionar</button>
-                    </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-outline-success col-md-2">Adicionar</button>
+                        </div>
                     <?php endif; ?>
                 </form>
                 <hr>
@@ -167,39 +151,53 @@ foreach ($nfController->verNF($idenNF) as $status) {
                         <input type="hidden" value="<?= $value->item_compra ?>" name="idproditem">
                         <input type="hidden" value="<?= $value->ordem_compra_id ?>" name="idordem">
                         <input type="hidden" value="<?= $value->valor_un_c ?>" name="valoruni">
-                        <div class="d-flex bd-highlight align-items-center ">
-                    <?php if ($statusNF == 0): ?>
-                            <div class="p-2 bd-highlight">
-                                <a href=../../back/response/compra/d_prod_compra.php?deleteprod=<?= $value->id_item_compra ?>>
-                                    <i class="fas fa-minus-circle text-danger"></i>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                            <div class="p-2 flex-grow-1 bd-highlight text-olive"><?= $value->produto_e ?></div>
-                            <div class="p-2 bd-highlight col-2">
+                        <div class="container p-2">
+                            <div class="row mt-1">
                                 <?php if ($statusNF == 0): ?>
-                                    <input type="number" placeholder="Quantidade"
-                                           class="form-control text-center"
-                                           name="qtdecomprada" id="qtdecomprada" value="<?= $value->qtde_compra ?>">
+                                    <div class="col-md-1">
+                                        <a href=../../back/response/compra/d_prod_compra.php?deleteprod=<?= $value->id_item_compra ?>>
+                                            <i class="fas fa-minus-circle text-danger"></i>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($statusNF == 0): ?>
+                                    <div class="col-md-4 text-olive">
+                                        <span><?= $value->produto_e ?></span>
+                                    </div>
                                 <?php else: ?>
-                                    <span class="text-gray"><?= $value->qtde_compra ?> </span>
+                                    <div class="col-md-6 text-olive">
+                                        <span><?= $value->produto_e ?></span>
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($statusNF == 0): ?>
+                                    <div class="col-md-2 ">
+                                        <input type="number" placeholder="Quantidade"
+                                               class="form-control text-center"
+                                               name="qtdecomprada" id="qtdecomprada" value="<?= $value->qtde_compra ?>">
+                                    </div>
+                                <?php else: ?>
+                                    <div class="col-md-2 ">
+                                        <span class="text-gray"><?= $value->qtde_compra ?> </span>
+                                    </div>
+
+                                <?php endif; ?>
+                                <div class="col-md-2">
+                                    <span class="text-gray">Unitário: R$ <?= $valorUnCompra ?> </span>
+                                </div>
+                                <div class="col-md-2">
+                                    <span class="text-gray">Total: R$ <?= $valorTotalProduto ?></span>
+                                </div>
+                                <?php if ($statusNF == 0): ?>
+                                    <div class="col-md-1">
+                                        <button type="submit" class="btn btn-outline-success">
+                                            <i class="fas fa-save"></i>
+                                        </button>
+                                    </div>
                                 <?php endif; ?>
                             </div>
-
-                            <div class="p-2 bd-highlight col-2">
-                                <span class="text-gray">Valor Unitário: <?= $valorUnCompra ?> </span>
-                            </div>
-                            <div class="p-2 bd-highlight">
-                                <span class="text-gray">Valor total: <?= $valorTotalProduto ?></span>
-                            </div>
-                            <?php if ($statusNF == 0): ?>
-                                <div class="p-2 bd-highlight">
-                                    <button type="submit" class="btn btn-outline-success">
-                                        <i class="fas fa-save"></i>
-                                    </button>
-                                </div>
-                            <?php endif; ?>
                         </div>
+                        <hr>
                     </form>
                 <?php } ?>
             </div>

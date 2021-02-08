@@ -37,23 +37,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <!-- Messages Dropdown Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fas fa-user"></i>
-                    <span>Usuário: <?=$_SESSION['user']?></span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <?php include('../componentes/nav.php') ?>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
 
@@ -69,24 +53,24 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                 $textNFNE = ($v->nota_entrega == 1) ? 'Nota de Entrega ' : 'Nota Fiscal';
             } ?>
             <div class="card">
-                <div class="card-header text-muted border-bottom-0">
+                <div class="card-header bg-olive text-muted border-bottom-0"><i class="fas fa-file"></i>
                     <?= $textNFNE ?>
                     <a href="editNF.php?idnf=<?= $_GET['idnf'] ?>">
-                        <i class='fas fa-edit fa-1x color-icon-nf text-black-50 float-right'></i></a>
+                        <i class='fas fa-edit fa-1x color-icon-nf text-white float-right'></i></a>
                 </div>
-                <div class="card-body pt-0">
+                <div class="card-body pt-0 mt-3">
                     <div class="row">
                         <?php
                         foreach ($nf as $v) {
                             ?>
-                            <div class="col-7">
+                            <div class="col-7 text-gray">
                                 <h2 class="lead"><b><?= $v->fornecedor ?></b> - <i
                                             class="fas fa-money-bill-wave"></i></i> Valor:
                                     R$ <?= $v->valor_total ?></h2>
-                                <p class="text-muted text-sm"><b>Data de
-                                        Emissão: </b> <?= date("d/m/Y", strtotime($v->data_emissao)) ?>
+                                <p class="">Data de
+                                    Emissão:  <?= date("d/m/Y", strtotime($v->data_emissao)) ?>
                                     <br>
-                                    <b> Data de Lançamento: </b> <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
+                                    Data de Lançamento:  <?= date("d/m/Y", strtotime($v->data_lancamento)) ?>
                                 </p>
                             </div>
                         <?php } ?>
@@ -99,7 +83,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                placeholder=''>
                         <div class="form-group row">
                             <label for="inputEmail3"
-                                   class="col-sm-1 col-form-label">Produto</label>
+                                   class="col-sm-1 col-form-label font-weight-normal">Produto</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="prod_nf" required>
                                     <option selected></option>
@@ -114,25 +98,25 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-1 col-form-label">Lote</label>
+                            <label for="inputEmail3" class="col-sm-1 col-form-label font-weight-normal">Lote</label>
                             <div class="col-sm-3">
                                 <input type='text' class='form-control ' name='lote_prod_nf' placeholder=''>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-1 col-form-label">Validade</label>
+                            <label for="inputEmail3" class="col-sm-1 col-form-label font-weight-normal">Validade</label>
                             <div class="col-sm-3">
                                 <input type='date' class='form-control ' name='validade_prof_nf' placeholder=''>
                             </div>
                         </div>
-                        <button type="submit" class="btn bg-primary shadow col-sm-2 exo mt-1 text-white">Adicionar <i
+                        <button type="submit" class="btn btn-outline-success shadow col-sm-2">Adicionar <i
                                     class="fas fa-plus ml-2"></i></button>
                     </form>
                 </div>
 
             </div>
             <div class="card" id="tabela" style="display: none">
-                <div class="card-header">
+                <div class="card-header bg-olive">
                     <h3 class="card-title">Lotes & Validades</h3>
                 </div>
                 <!-- /.card-header -->

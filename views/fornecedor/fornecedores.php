@@ -91,7 +91,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
             </div>
             <!-- /.card -->
             <div class="card" id="tabela" style="display: none">
-                <div class="card-header">
+                <div class="card-header bg-olive">
                     <h3 class="card-title"></h3>
                 </div>
                 <!-- /.card-header -->

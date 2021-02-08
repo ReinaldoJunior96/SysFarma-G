@@ -37,23 +37,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <!-- Messages Dropdown Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fas fa-user"></i>
-                    <span>Usuário: <?= $_SESSION['user'] ?></span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <?php include('../componentes/nav.php') ?>
     <!-- /.navbar -->
     <?php include('../componentes/sidebar.php') ?>
 
@@ -110,7 +94,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 
             </div>
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-olive">
                     <h3 class="card-title">Vencimentos</h3>
                 </div>
                 <!-- /.card-header -->
