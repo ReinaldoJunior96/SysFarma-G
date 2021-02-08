@@ -101,7 +101,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-outline-success col-md-2">Cadastrar</button>
+                            <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Cadastrar</button>
                         </div>
                     </form>
                 </div>

@@ -3,17 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/devolucao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/myjs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/almoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/almoxarifado.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/estoque/farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/farmacia.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/editNF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/editNF.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/lotes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/lotes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/notaF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/notaF.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notaFiscal/vencimentos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/notaFiscal/vencimentos.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/ordem/compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/compra.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/estoquealmoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/estoquealmoxarifado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/estoquefarma.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/estoquefarma.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/devolucao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/historico.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/historico.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/saida/iniciar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/iniciar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/registrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/setor/setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setor/setores.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +116,7 @@
       <workItem from="1612400470388" duration="238000" />
       <workItem from="1612441306450" duration="31995000" />
       <workItem from="1612613852611" duration="4231000" />
+      <workItem from="1612783750412" duration="14309000" />
     </task>
     <servers />
   </component>
@@ -131,10 +138,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/dist/js/myjs.js</url>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/back/response/compra/updateitem.php</url>
           <option name="timeStamp" value="3" />

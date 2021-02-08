@@ -136,7 +136,7 @@ foreach ($nfController->verNF($idenNF) as $status) {
                     <!-- /.card-body -->
                     <?php if ($statusNF == 0): ?>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-outline-success col-md-2">Adicionar</button>
+                            <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Adicionar</button>
                         </div>
                     <?php endif; ?>
                 </form>

@@ -45,7 +45,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                     <input type="hidden" name="new" value="1">
                     <div class="card-body">
                         <div class="form-group">
-                            <label  class="font-weight-normal" for="exampleInputEmail1">Nome</label>
+                            <label class="font-weight-normal" for="exampleInputEmail1">Nome</label>
                             <input type="text" class="form-control"
                                    placeholder="Qual nome do forncedor?" name="fornecedor" required>
                         </div>
@@ -53,7 +53,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <div class="col-sm-4">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label  class="font-weight-normal">Telefone</label>
+                                    <label class="font-weight-normal">Telefone</label>
                                     <input type="text" class="form-control" placeholder="Número p/ contato"
                                            name="telefone_fornecedor" id="telefone" required>
                                 </div>
@@ -61,7 +61,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <div class="col-sm-4">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label  class="font-weight-normal">E-mail</label>
+                                    <label class="font-weight-normal">E-mail</label>
                                     <input type="email" class="form-control" placeholder="E-mail p/ contato"
                                            name="email_fornecedor">
                                 </div>
@@ -69,14 +69,14 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <div class="col-sm-4">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label  class="font-weight-normal">CPF/CNPJ</label>
+                                    <label class="font-weight-normal">CPF/CNPJ</label>
                                     <input type="text" class="form-control" placeholder="Identificação do fornecedor"
                                            name="cnpj_fornecedor" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="font-weight-normal">Endereço</label>
+                            <label class="font-weight-normal">Endereço</label>
                             <textarea class="form-control" rows="3" placeholder="Onde ele se localiza?"
                                       name="endereco_fornecedor"></textarea>
                         </div>
@@ -84,48 +84,44 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-outline-success elevation-1">Cadastrar</button>
+                        <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Cadastrar</button>
                     </div>
                 </form>
-
-            </div>
-            <!-- /.card -->
-            <div class="card" id="tabela" style="display: none">
-                <div class="card-header bg-olive">
-                    <h3 class="card-title"></h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Fornecedor</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        require_once('../../back/controllers/FornecedorController.php');
-                        $f = new FornecedorController();
-                        $fornecedores = $f->verFornecedores();
-                        foreach ($fornecedores as $v) {
-                            ?>
-                            <tr>
-                                <td><?= $v->nome_fornecedor ?></td>
-                                <td class="text-center">
-                                    <a href="editFornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"><i
-                                                class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
-                                </td>
-                                <td class="text-center"><a
-                                            href="../../back/response/fornecedores/d_fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"
-                                    <i class="fas fa-window-close text-danger"></i></a>
-                                </td>
+                <hr>
+                <!-- /.card -->
+                <div class="" id="tabela" style="display: none">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr class="bg-teal ">
+                                <th class="font-weight-light">Fornecedores Cadastrados</th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                        <?php } ?>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <?php
+                            require_once('../../back/controllers/FornecedorController.php');
+                            $f = new FornecedorController();
+                            $fornecedores = $f->verFornecedores();
+                            foreach ($fornecedores as $v) {
+                                ?>
+                                <tr>
+                                    <td class="text-olive"><?= $v->nome_fornecedor ?></td>
+                                    <td class="text-center">
+                                        <a href="editFornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"><i
+                                                    class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
+                                    </td>
+                                    <td class="text-center"><a
+                                                href="../../back/response/fornecedores/d_fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"
+                                        <i class="fas fa-window-close text-danger"></i></a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+                    </div>
                 </div>
-                <!-- /.card-body -->
             </div>
         </div>
     </div>

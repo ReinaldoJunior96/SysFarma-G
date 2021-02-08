@@ -18,6 +18,7 @@ $produtosGerais = array(
     'quantidade' => $_POST['saidaqte_p'],
 );
 
+var_dump($produtosGerais);
 
 /* Array que vai recerber apenas os produtos com quantidade diferente de vazio */
 $produtoFiltrado = array(
@@ -65,10 +66,10 @@ foreach ($produtosErro as $prod) {
  */
 
 if (count($erro) == 0) {
-    header("location: ../../../views/saida/iniciar.php?produtos=success");
+    //header("location: ../../../views/saida/iniciar.php?produtos=success");
 } else {
-    $query = http_build_query(array('erroprod' => $erro));
-    header("location: ../../../views/saida/iniciar.php?" . $query);
+    //$query = http_build_query(array('erroprod' => $erro));
+    //header("location: ../../../views/saida/iniciar.php?" . $query);
 }
 
 

@@ -3,18 +3,6 @@ session_start();
 if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../user/login.php");
 }
-require_once('../../back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
-switch ($_SESSION['user']) {
-    case 'farma.hvu':
-        $permissao = 'disabled';
-        break;
-    case 'compras.hvu':
-        $permissao = '';
-        break;
-    default:
-        $permissao = '';
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,22 +17,20 @@ switch ($_SESSION['user']) {
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- DataTables -->
     <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
+
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
-    <!-- Navbar -->
+    <!-- Navbar cima -->
     <?php include('../componentes/nav.php') ?>
-    <!-- /.navbar -->
+    <!-- /.navbar sidebar -->
     <?php include('../componentes/sidebar.php') ?>
-
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper p-3">
+    <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
             <div class="card card-olive">
@@ -64,43 +50,41 @@ switch ($_SESSION['user']) {
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-outline-success">Adicionar</button>
+                        <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Adicionar</button>
                     </div>
                 </form>
-            </div>
-            <!-- /.card -->
-            <div class="card" id="tabela" style="display: none">
-                <div class="card-header bg-olive">
-                    <h3 class="card-title"></h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Setor</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        require_once('../../back/controllers/configCRUD.php');
-                        $s = new ConfigCRUD();
-                        $setores = $s->ver_setores();
-                        foreach ($setores as $v) {
-                            ?>
+                <hr>
+                <!-- /.card -->
+
+                <div class="" id="tabela" style="display: none">
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped text-olive">
+                            <thead>
                             <tr>
-                                <td><?= str_replace("-", " ", $v->setor_s) ?></td>
-                                <td class="text-center">
-                                    <a href="../../back/response/config_r.php?id_setor=<?= $v->id_setor ?>">
-                                        <i class="fas fa-window-close text-danger"></i>
-                                    </a>
-                                </td>
+                                <td class="bg-teal">Setores Cadastrados</td>
+                                <td class="bg-teal"></td>
                             </tr>
-                        <?php } ?>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <?php
+                            require_once('../../back/controllers/configCRUD.php');
+                            $s = new ConfigCRUD();
+                            $setores = $s->ver_setores();
+                            foreach ($setores as $v) {
+                                ?>
+                                <tr>
+                                    <td class="font-weight-lighter"><?= str_replace("-", " ", $v->setor_s) ?></td>
+                                    <td class="text-center">
+                                        <a href="../../back/response/config_r.php?id_setor=<?= $v->id_setor ?>">
+                                            <i class="fas fa-window-close text-danger"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
             </div>
 
         </div>
@@ -108,10 +92,6 @@ switch ($_SESSION['user']) {
 
     <?php include('../componentes/footer.php'); ?>
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
