@@ -3,23 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/devolucao.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/js/myjs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/almoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/almoxarifado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/farmacia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem/produtos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/relatorio/estoquealmoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/estoquealmoxarifado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/relatorio/estoquefarma.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/estoquefarma.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/relatorio/relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/devolucao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/historico.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/historico.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/iniciar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/iniciar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/saida/registrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/setor/setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setor/setores.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +25,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1mbj8mxQpME7gZ2po8QbSAQPudd" />
   <component name="ProjectViewState">
@@ -117,6 +110,7 @@
       <workItem from="1612441306450" duration="31995000" />
       <workItem from="1612613852611" duration="4231000" />
       <workItem from="1612783750412" duration="14309000" />
+      <workItem from="1612828849375" duration="2953000" />
     </task>
     <servers />
   </component>

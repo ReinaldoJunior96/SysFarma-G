@@ -17,8 +17,9 @@ $produtosGerais = array(
     'produto' => $_POST['produto_s'],
     'quantidade' => $_POST['saidaqte_p'],
 );
-
-var_dump($produtosGerais);
+echo "<pre>";
+var_dump($produtosGerais['produto']);
+echo "</pre>";
 
 /* Array que vai recerber apenas os produtos com quantidade diferente de vazio */
 $produtoFiltrado = array(
@@ -39,6 +40,8 @@ for ($i = 0; $i < count($produtosGerais['produto']); $i++):
         array_push($produtoFiltrado['quantidade'], $produtosGerais['quantidade'][$i]);
     endif;
 endfor;
+
+
 /*
  * Manda para o back os produtos filtrados no ponto de inserir no banco
  * Retorna os produtos [id] que não foram registrados
