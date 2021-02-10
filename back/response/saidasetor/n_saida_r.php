@@ -17,9 +17,7 @@ $produtosGerais = array(
     'produto' => $_POST['produto_s'],
     'quantidade' => $_POST['saidaqte_p'],
 );
-echo "<pre>";
-var_dump($produtosGerais['produto']);
-echo "</pre>";
+
 
 /* Array que vai recerber apenas os produtos com quantidade diferente de vazio */
 $produtoFiltrado = array(
@@ -41,22 +39,23 @@ for ($i = 0; $i < count($produtosGerais['produto']); $i++):
     endif;
 endfor;
 
-
 /*
  * Manda para o back os produtos filtrados no ponto de inserir no banco
  * Retorna os produtos [id] que não foram registrados
  */
+
 $produtosErro = $estoqueClass->registrarSaida($produtoFiltrado);
 
 /*
  * Array que armazena os produtos que tiveram
  * provavelmente a quantidade solicitada maior que do estoque
  */
+
 $erro = array();
 
 /*
  * Pega o nome dos produtos para retorno para o front
- */
+*/
 foreach ($produtosErro as $prod) {
     $produtoTotal = $estoqueClass->estoqueID($prod);
     foreach ($produtoTotal as $i) {
@@ -69,10 +68,10 @@ foreach ($produtosErro as $prod) {
  */
 
 if (count($erro) == 0) {
-    //header("location: ../../../views/saida/iniciar.php?produtos=success");
+    header("location: ../../../views/saida/iniciar.php?produtos=success");
 } else {
-    //$query = http_build_query(array('erroprod' => $erro));
-    //header("location: ../../../views/saida/iniciar.php?" . $query);
+    $query = http_build_query(array('erroprod' => $erro));
+    header("location: ../../../views/saida/iniciar.php?" . $query);
 }
 
 

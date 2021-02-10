@@ -10,7 +10,7 @@ class PDOconectar
     {
     }
 
-    public static function conectar()
+    public static function conectar(): PDO
     {
         try {
             return new PDO("mysql:host=localhost;dbname=boxhub;charset=utf8","root","",
