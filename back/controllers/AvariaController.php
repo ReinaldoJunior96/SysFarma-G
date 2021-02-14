@@ -1,4 +1,5 @@
 <?php
+require_once('EstoqueController.php');
 require_once('conexao.php');
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -33,6 +34,45 @@ class AvariaController
         } catch (PDOException $erro) {
             $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro ao cadastrar produto\")</script>";
+        }
+    }
+
+    public function removerQuantidadeAvaria($produto, $quantidade)
+    {
+        try {
+            $estoqueClass = new EstoqueController();
+            if ($estoqueClass->verificarQuantidade($produto, $quantidade, 0) == 1):
+                header("location: ../../views/saida/saida-almoxarifado.php?qtderro=fail");
+            else:
+                $emEstoque = $estoqueClass->verificarQuantidade($produto, $quantidade, 0);
+                $this->conn->beginTransaction();
+                $alteraQuantidadeSQL = /** @lang text **/
+                    "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
+                $fazer_alteracao = $this->conn->prepare($alteraQuantidadeSQL);
+                $fazer_alteracao->bindValue(':quantidade', $emEstoque - $quantidade);
+                $fazer_alteracao->execute();
+                if ($fazer_alteracao) {
+                    $this->conn->commit();
+                    $data = new DateTime('NOW');
+                    /* transacao */
+                    $arrayTempTransacao = array(
+                        'produto' => $produto,
+                        'data' => date_format($data, 'Y-m-d H:i:s'),
+                        'tipo' => 'Avaria',
+                        'estoqueini' => $emEstoque,
+                        'quantidade' => $quantidade,
+                        'estoquefi' => $emEstoque - $quantidade,
+                        'cancelada' => ' ',
+                        'user' => $saida['user']
+                    );
+                    $transacao = new EstoqueController();
+                    $transacao->transacaoRegistro($arrayTempTransacao);
+                }
+            endif;
+        } catch
+        (PDOException $erro) {
+            $this->conn->rollBack();
+            $status = "fail";
         }
     }
 

@@ -502,8 +502,6 @@ class EstoqueController
             $status = 1;
         endif;
         return ($aux == 0) ? $status : $inEstoque;
-
-
     }
 
     public function inseirSaida($dadosSaida)

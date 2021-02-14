@@ -60,6 +60,7 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                     <h3 class="card-title"><i class="fas fa-dumpster-fire nav-icon"></i> Avaria & Vencidos </h3>
                 </div>
                 <form role="form" method="POST" action="../../back/response/avaria/avariaresponse.php">
+                    <input type="hidden" value="<?=$_SESSION['user']?>" name="user">
                     <div class="card-body">
                         <div class="form-group col-md-12 mx-auto">
                             <label class="font-weight-normal">Produtos</label>

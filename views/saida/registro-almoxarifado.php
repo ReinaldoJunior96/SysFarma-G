@@ -7,7 +7,7 @@ require_once('../../back/controllers/configCRUD.php');
 $s = new ConfigCRUD();
 require_once('../../back/controllers/EstoqueController.php');
 $view_estoque = new EstoqueController();
-$all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
+$all_estoque = $view_estoque->verProdDiversos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -76,7 +76,7 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
                                placeholder="Pesquisar" id="myInput" onkeyup="filtro();">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default"><i
-                                        class="fas fa-search"></i></button>
+                                    class="fas fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
                                 <td><input type="number" id="qtedesolicitada" class="form-control text-center"
                                            name="saidaqte_p[]"></td>
                                 <td class="text-center"><strong>Em Estoque: <span
-                                                id="valorestoque"><?= $value->quantidade_e ?></span></strong>
+                                            id="valorestoque"><?= $value->quantidade_e ?></span></strong>
                                 </td>
                             </tr>
                         <?php } ?>

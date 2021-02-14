@@ -70,10 +70,16 @@
                         <p>Saída</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="../saida/saida-almoxarifado.php" class="nav-link">
+                        <i class="fas fa-people-carry nav-icon"></i>
+                        <p>Saída Almoxarifado</p>
+                    </a>
+                </li>
                 <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
                     <li class="nav-item">
                         <a href="../fornecedor/fornecedores.php" class="nav-link">
-                            <i class="fas fa-people-arrows nav-icon"></i>
+                            <i class="fas fa-user-friends nav-icon"></i>
                             <p>Fornecedores</p>
                         </a>
                     </li>
