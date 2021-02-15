@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/AvariaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/AvariaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/response/avaria/avariaresponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/avaria/avariaresponse.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/avaria/cadastro.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/avaria/cadastro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/registrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +117,7 @@
       <workItem from="1612828849375" duration="2953000" />
       <workItem from="1612959598135" duration="15289000" />
       <workItem from="1613130592832" duration="8297000" />
+      <workItem from="1613343625540" duration="7650000" />
     </task>
     <servers />
   </component>

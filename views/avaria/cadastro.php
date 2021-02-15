@@ -115,6 +115,7 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                             <td class="bg-teal">Lote</td>
                             <td class="bg-teal">Vencimento</td>
                             <td class="bg-teal">Observação</td>
+                            <td class="bg-teal"></td>
                         </tr>
                         </thead>
                         <tbody>
@@ -128,6 +129,7 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                                 <td class="font-weight-lighter"><?= $v->lote_avaria ?></td>
                                 <td class="font-weight-lighter"><?= $v->vencimento_avaria ?></td>
                                 <td class="font-weight-lighter"><?= text_limiter_caracter($v->obs_avaria,30)?></td>
+                                <td class="text-center"><a href=../../back/response/avaria/delete-avaria.php?user=<?=$_SESSION['user']?>&avaria=<?=$v->id_avaria?>><i class="fas fa-minus-circle text-danger"></i></a></td>
                             </tr>
                         <?php } ?>
                     </table>

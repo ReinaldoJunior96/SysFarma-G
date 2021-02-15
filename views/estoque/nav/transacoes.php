@@ -51,7 +51,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
         </ul>
     </nav>
     <!-- /.navbar -->
-    <?php include('sidebarestoque.php')?>
+    <?php include('sidebarestoque.php') ?>
 
 
     <!-- Content Wrapper. Contains page content -->
@@ -80,7 +80,8 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <a class="nav-link text-olive " href="lote.php?idp=<?= $_GET['idp'] ?>">Lote / Validade</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-olive " href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
+                            <a class="nav-link text-olive "
+                               href="fornecedores.php?idp=<?= $_GET['idp'] ?>">Fornecedores</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-olive " href="compras.php?idp=<?= $_GET['idp'] ?>">Compras</a>
@@ -89,10 +90,10 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <a class="nav-link text-olive active" href="transacoes.php?idp=<?= $_GET['idp'] ?>">Transações</a>
                         </li>
                     </ul>
-                    <div class="mt-3 p-3">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <tr class="text-olive">
+                    <div class="card-body table-responsive p-0 mt-2" style="height: 600px; display: none" id="tabela">
+                        <table id="myTable" class="table table-bordered table-striped mt-2">
+                            <thead class="bg-shadow-it bg-nav">
+                            <tr class="text-white bg-olive">
                                 <td scope="">Data Transação</td>
                                 <td scope="">Tipo</td>
                                 <td scope="">Estoque Inicial</td>
@@ -102,7 +103,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 <td scope="">Realizada Por</td>
                             </tr>
                             </thead>
-                            <tbody class="text-olive">
+                            <tbody class="">
                             <?php
                             require_once '../../../back/controllers/EstoqueController.php';
                             $p = new EstoqueController();
@@ -121,9 +122,9 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                     <td class="font-weight-bold"><?= $historico->realizadapor_t ?></td>
                                 </tr>
                             <?php } ?>
+                            </tbody>
                         </table>
                     </div>
-
                 <?php } ?>
             </div>
 
@@ -148,5 +149,12 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../../dist/js/myjs.js"></script>
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('#tabela').fadeIn().css("display", "block");
+        });
+    });
+</script>
 </body>
 </html>
