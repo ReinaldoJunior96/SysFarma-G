@@ -497,9 +497,11 @@ class EstoqueController
         foreach ($resultado as $p):
             $inEstoque = $p->quantidade_e;
         endforeach;
+        /* Se auxiliar passado como 0 vai retornar se a quantidade menor ou maior*/
         if ($inEstoque < $quantidade):
             $status = 1;
         endif;
+        /* Se auxiliar passado como 1 vai retornar apenas a quantidade em estoque*/
         return ($aux == 0) ? $status : $inEstoque;
     }
 

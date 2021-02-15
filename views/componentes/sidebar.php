@@ -85,7 +85,7 @@
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">
-                    <a href="../avaria/cadastro.php" class="nav-link">
+                    <a href="../avaria/cadastro-avaria.php" class="nav-link">
                         <i class="fas fa-dumpster-fire nav-icon"></i>
                         <p>Avaria & Vencidos</p>
                     </a>

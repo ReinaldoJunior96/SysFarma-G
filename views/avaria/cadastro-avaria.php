@@ -59,8 +59,8 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-dumpster-fire nav-icon"></i> Avaria & Vencidos </h3>
                 </div>
-                <form role="form" method="POST" action="../../back/response/avaria/avariaresponse.php">
-                    <input type="hidden" value="<?=$_SESSION['user']?>" name="user">
+                <form role="form" id="avariaform" method="POST" action="../../back/response/avaria/avariaresponse.php">
+                    <input type="hidden" value="<?= $_SESSION['user'] ?>" name="user">
                     <div class="card-body">
                         <div class="form-group col-md-12 mx-auto">
                             <label class="font-weight-normal">Produtos</label>
@@ -75,7 +75,7 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                             <div class="form-group col-md-4">
                                 <label for="inputEmail4" class="font-weight-normal">Quantidade</label>
                                 <input type="number" class="form-control"
-                                       name="quantidadeavaria" id="inputEmail4" placeholder="">
+                                       name="quantidadeavaria" id="inputEmail4" placeholder="" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputPassword4" class="font-weight-normal">Lote</label>
@@ -105,6 +105,21 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                         </div>
                     </div>
                 </form>
+                <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Tudo Certo!!</strong> Avaria Registrada.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php elseif (isset($_GET['status']) && $_GET['status'] == 'fail'): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Erro!</strong> Quantidade de avaria não existe no sistema.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif; ?>
                 <hr>
                 <div class="p-3" id="tabela">
                     <table id="example1" class="table table-bordered table-striped text-olive">
@@ -128,8 +143,10 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                                 <td class="font-weight-lighter"><?= $v->quantidade_avaria ?></td>
                                 <td class="font-weight-lighter"><?= $v->lote_avaria ?></td>
                                 <td class="font-weight-lighter"><?= $v->vencimento_avaria ?></td>
-                                <td class="font-weight-lighter"><?= text_limiter_caracter($v->obs_avaria,30)?></td>
-                                <td class="text-center"><a href=../../back/response/avaria/delete-avaria.php?user=<?=$_SESSION['user']?>&avaria=<?=$v->id_avaria?>><i class="fas fa-minus-circle text-danger"></i></a></td>
+                                <td class="font-weight-lighter"><?= text_limiter_caracter($v->obs_avaria, 30) ?></td>
+                                <td class="text-center"><a
+                                            href=../../back/response/avaria/delete-avaria.php?user=<?= $_SESSION['user'] ?>&avaria=<?= $v->id_avaria ?>><i
+                                                class="fas fa-minus-circle text-danger"></i></a></td>
                             </tr>
                         <?php } ?>
                     </table>

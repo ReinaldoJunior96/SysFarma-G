@@ -1,31 +1,55 @@
 <?php
 require_once('conexao.php');
 require_once('EstoqueController.php');
+date_default_timezone_set('America/Sao_Paulo');
 
 class CompraController
 {
     public $conn = null;
+    public $estoqueClass = null;
+    public $data = null;
 
     function __construct()
     {
         $this->conn = PDOconectar::conectar();
+        $this->estoqueClass = new EstoqueController();
+        $this->data = new DateTime('NOW');
     }
 
-    public function cadOrdemCompra($forcenedor, $infoNE, $data)
+    /**
+     * @param $forcenedor
+     * @param $infoNE
+     *
+     */
+    public function cadastroOrdemCompra($forcenedor, $infoNE)
     {
         try {
             $this->conn->beginTransaction();
             $cadOrdemSQL = /** @lang text */
                 "INSERT INTO tbl_nf(numero_nf,fornecedor,nota_entrega) VALUES (:numero_nf,:fornecedor,:nota_entrega)";
-            $sql = $this->conn->prepare($cadOrdemSQL);
-            $sql->bindValue(':numero_nf', 'temp' . rand(0, 99999));
-            $sql->bindValue(':fornecedor', $forcenedor);
-            $sql->bindValue(':nota_entrega', $infoNE);
-            $sql->execute();
+            $queryExecute = $this->conn->prepare($cadOrdemSQL);
+            $queryExecute->bindValue(':numero_nf', 'temp' . rand(0, 99999));
+            $queryExecute->bindValue(':fornecedor', $forcenedor);
+            $queryExecute->bindValue(':nota_entrega', $infoNE);
+            $queryExecute->execute();
             $lastID = $this->conn->lastInsertId();
-            $query_Sql = /** @lang text */
+            if ($queryExecute) {
+                $this->conn->commit();
+                self::cadastroNFTemp($forcenedor, $this->data->format('Y-m-d H:i:s'), $lastID);
+            }
+
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+        }
+    }
+
+    public function cadastroNFTemp($forcenedor, $data, $lastID)
+    {
+        try {
+            $this->conn->beginTransaction();
+            $querySql = /** @lang text */
                 "INSERT INTO tbl_ordem_compra(nome_f,data_c,id_fk_nf) VALUES (:nome_f,:data_c,:id_fk_nf)";
-            $sql = $this->conn->prepare($query_Sql);
+            $sql = $this->conn->prepare($querySql);
             $sql->bindValue(':nome_f', $forcenedor);
             $sql->bindValue(':data_c', $data);
             $sql->bindValue(':id_fk_nf', $lastID);
@@ -35,9 +59,13 @@ class CompraController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
+
+
+
+
 
     public function deleteOrdem($id)
     {
@@ -117,7 +145,7 @@ class CompraController
         return $selectQuery->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function alterarItemCompra($iditemcompra, $produto,$qtde, $idordem, $valoruni)
+    public function alterarItemCompra($iditemcompra, $produto, $qtde, $idordem, $valoruni)
     {
         try {
             $this->conn->beginTransaction();
@@ -132,7 +160,7 @@ class CompraController
             $newValue->bindValue('item_compra', $produto);
             $newValue->bindValue(':ordem_compra_id', $idordem);
             $newValue->bindValue(':qtde_compra', $qtde);
-            $newValue->bindValue(':valor_un_c', $valoruni );
+            $newValue->bindValue(':valor_un_c', $valoruni);
             $newValue->execute();
             if ($newValue) {
                 $this->conn->commit();
