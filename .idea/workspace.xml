@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/AvariaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/AvariaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/CompraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/CompraController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/avaria/avariaresponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/avaria/avariaresponse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/avaria/delete-avaria.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/avaria/delete-avaria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/compra/n_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/compra/n_ordem_compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/avaria/cadastro.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/avaria/cadastro-avaria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/sidebarestoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/sidebarestoque.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +43,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dist/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laradev" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -123,6 +114,8 @@
       <workItem from="1613130592832" duration="8297000" />
       <workItem from="1613343625540" duration="7650000" />
       <workItem from="1613391690359" duration="15247000" />
+      <workItem from="1613482527429" duration="645000" />
+      <workItem from="1613488600543" duration="79000" />
     </task>
     <servers />
   </component>
