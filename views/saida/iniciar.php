@@ -66,6 +66,12 @@ $setores = $s->verSetores();
                                            data-inputmask-inputformat="dd/mm/yyyy" data-mask name="data_s">
                                 </div>
                             </div>
+                            <!--<div class="form-group col-md-2">
+                                <label class="font-weight-normal">Quantidade</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" name="input_qtde">
+                                </div>
+                            </div>-->
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -136,8 +142,8 @@ $setores = $s->verSetores();
         $('.select2bs4').select2({
             theme: 'bootstrap4'
         })
-
     })
+
 </script>
 </body>
 </html>

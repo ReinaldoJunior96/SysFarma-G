@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/iniciar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/iniciar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/registrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laradev" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/saida/ajax-saida" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -55,6 +57,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\gstock2.0\views\saida\ajax-saida" />
       <recent name="C:\xampp\htdocs\gstock2.0\dist\img" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\notaFiscal" />
       <recent name="C:\xampp\htdocs\gstock2.0\views\ordem" />
@@ -116,6 +119,8 @@
       <workItem from="1613391690359" duration="15247000" />
       <workItem from="1613482527429" duration="645000" />
       <workItem from="1613488600543" duration="79000" />
+      <workItem from="1614174949481" duration="297000" />
+      <workItem from="1614175314927" duration="12913000" />
     </task>
     <servers />
   </component>
