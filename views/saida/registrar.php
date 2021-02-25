@@ -64,7 +64,7 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
                             class="text-olive fas fa-star-half"></i><?= date_format($date, 'd/m/Y') ?></span>
             </div>
             <!--<form method="POST" action="../../back/response/saidasetor/n_saida_r.php">-->
-            <form method="POST" action="../../back/response/saidasetor/novasaida.php">
+            <form method="POST" id="insertSaida">
                 <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
                 <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
                 <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
@@ -84,7 +84,7 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
                             <label class="font-weight-normal">Quantidade</label>
                             <div class="input-group">
                                 <input type="number" class="form-control"
-                                       id="qtdesolicitada" name="quantidade_solicitada">
+                                       id="qtdesolicitada" name="quantidade_solicitada" required>
                             </div>
                         </div>
                         <div class="form-group col-md-2">
@@ -135,6 +135,8 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
 <script src="../../dist/js/demo.js"></script>
 <!-- Page script -->
 <script src="ajax-saida/searchproduto.js"></script>
+<script src="ajax-saida/insertProduto.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     $(function (qualifiedName, value) {
         //Initialize Select2 Elements
@@ -150,7 +152,7 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
     $('#qtdesolicitada').keyup(function () {
         var qtdesolicitada = document.getElementById('qtdesolicitada');
         var qtdeInEstoque = document.getElementById('estoque');
-        if (qtdesolicitada.value > qtdeInEstoque.value) {
+        if (qtdesolicitada.value > qtdeInEstoque.value || qtdesolicitada.value <= 0) {
             document.getElementById('registrar').setAttribute('disabled', 'disabled');
         } else {
             document.getElementById('registrar').removeAttribute('disabled')

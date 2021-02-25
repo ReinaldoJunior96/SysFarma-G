@@ -594,5 +594,7 @@ class EstoqueController
         endfor;
         return $produtosErro;
     }
+
     /* /Combo de registro de saída */
+
 }
