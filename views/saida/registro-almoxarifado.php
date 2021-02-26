@@ -8,6 +8,7 @@ $s = new ConfigCRUD();
 require_once('../../back/controllers/EstoqueController.php');
 $view_estoque = new EstoqueController();
 $all_estoque = $view_estoque->verProdDiversos();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -20,16 +21,6 @@ $all_estoque = $view_estoque->verProdDiversos();
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
-    <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -68,55 +59,48 @@ $all_estoque = $view_estoque->verProdDiversos();
         <div class="card">
             <div class="card-header bg-olive">
                 <?php $date = date_create($_GET['data_s']); ?>
-                <h3 class="card-title">Setor: <?= str_replace("-", " ", $_GET['nomesetor']) ?> -
-                    Data: <?= date_format($date, 'd/m/Y') ?></h3>
-                <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 250px;">
-                        <input type="text" name="table_search" class="form-control float-right"
-                               placeholder="Pesquisar" id="myInput" onkeyup="filtro();">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default"><i
-                                    class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
+                <span class="badge badge-pill bg-white text-olive"><i
+                            class="text-olive fas fa-star-half"></i><?= str_replace("-", " ", $_GET['nomesetor']) ?></span>
+                <span class="badge badge-pill bg-white text-olive"><i
+                            class="text-olive fas fa-star-half"></i><?= date_format($date, 'd/m/Y') ?></span>
             </div>
-            <!-- /.card-header -->
-            <form method="POST" action="../../back/response/saidasetor/n_saida_r.php">
+            <!--<form method="POST" action="../../back/response/saidasetor/registrar-saida-back.php">-->
+            <form method="POST" id="insertSaida">
                 <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
                 <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
                 <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
-                <div class="card-body table-responsive p-0" style="height: 420px; display: none" id="tabela">
-
-                    <table id="myTable" class="table table-bordered table-striped">
-                        <thead class="bg-shadow-it bg-nav">
-                        <tr class="text-gray">
-                            <th class="">Produto / Meterial</th>
-                            <th class="">Quantidade</th>
-                            <th class="">Setor</th>
-                        </tr>
-                        </thead>
-                        <tbody class="p-3">
-                        <?php foreach ($all_estoque as $value) { ?>
-                            <input type="hidden" name="produto_s[]" value="<?= $value->id_estoque ?>">
-                            <tr>
-                                <td class="text-olive"><?= $value->produto_e ?></td>
-                                <td><input type="number" id="qtedesolicitada" class="form-control text-center"
-                                           name="saidaqte_p[]"></td>
-                                <td class="text-center"><strong>Em Estoque: <span
-                                            id="valorestoque"><?= $value->quantidade_e ?></span></strong>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label class="font-weight-normal">Produto</label>
+                            <select class="form-control select2 col-md-12" id="produtoid" name="produtoid" required
+                                    onchange="getInEstoque();">
+                                <option selected></option>
+                                <?php foreach ($all_estoque as $values): ?>
+                                    <option value="<?= $values->id_estoque ?>"><?= str_replace("-", " ", $values->produto_e) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="font-weight-normal">Quantidade</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control"
+                                       id="qtdesolicitada" name="quantidade_solicitada" required onkeyup="validacao();">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="font-weight-normal">Em Estoque</label>
+                            <div class="input-group">
+                                <input class="form-control" id="estoque" type="text" value="">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="p-3">
-                    <button type="submit" class="btn btn-outline-secondary col-sm-2">Registrar Saída
+                    <button type="submit" id="registrar" class="btn btn-success col-sm-2">Registrar Saída
                     </button>
                 </div>
             </form>
-            <!-- /.card-body -->
         </div>
     </div>
     <!-- /.content-wrapper -->
@@ -151,39 +135,31 @@ $all_estoque = $view_estoque->verProdDiversos();
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page script -->
-
+<script src="ajax-saida/buscar-produto.js"></script>
+<script src="ajax-saida/post-produto.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-    function filtro() {
-        function removerAcentos(s) {
-            return s.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-        }
-        var input, filter, table, tr, td, i, txtValue, txtValNoAccents;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = removerAcentos(td.textContent) || td.innerText;
-                txtValNoAccents = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else if (txtValNoAccents.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
+    $(function (qualifiedName, value) {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+    })
 </script>
 <script>
-    $(function () {
-        $(document).ready(function () {
-            $('#tabela').fadeIn().css("display", "block");
-        });
-    });
+    function validacao() {
+        const solicitada = parseInt(document.getElementById('qtdesolicitada').value);
+        const estoque = parseInt(document.getElementById('estoque').value);
+        if (solicitada > estoque || solicitada === 0) {
+            document.getElementById('registrar').setAttribute('disabled', 'disabled');
+        } else {
+            document.getElementById('registrar').removeAttribute('disabled')
+        }
+    }
 </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ $s = new ConfigCRUD();
 require_once('../../back/controllers/EstoqueController.php');
 $view_estoque = new EstoqueController();
 $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
+$view_estoque->verProdDiversos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -63,7 +64,7 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
                 <span class="badge badge-pill bg-white text-olive"><i
                             class="text-olive fas fa-star-half"></i><?= date_format($date, 'd/m/Y') ?></span>
             </div>
-            <!--<form method="POST" action="../../back/response/saidasetor/n_saida_r.php">-->
+            <!--<form method="POST" action="../../back/response/saidasetor/registrar-saida-back.php">-->
             <form method="POST" id="insertSaida">
                 <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
                 <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
@@ -134,8 +135,8 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page script -->
-<script src="ajax-saida/searchproduto.js"></script>
-<script src="ajax-saida/insertProduto.js"></script>
+<script src="ajax-saida/buscar-produto.js"></script>
+<script src="ajax-saida/post-produto.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     $(function (qualifiedName, value) {
@@ -150,12 +151,12 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
     })
 </script>
 <script>
-    function validacao(){
+    function validacao() {
         const solicitada = parseInt(document.getElementById('qtdesolicitada').value);
         const estoque = parseInt(document.getElementById('estoque').value);
-        if(solicitada > estoque || solicitada === 0){
-            document.getElementById('registrar').setAttribute('disabled','disabled');
-        }else{
+        if (solicitada > estoque || solicitada === 0) {
+            document.getElementById('registrar').setAttribute('disabled', 'disabled');
+        } else {
             document.getElementById('registrar').removeAttribute('disabled')
         }
     }

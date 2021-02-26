@@ -16,4 +16,4 @@ $produtoFiltrado = array(
 
 
 $estoqueClass = new EstoqueController();
-var_dump($estoqueClass->inseirSaida($produtoFiltrado));
+$estoqueClass->inseirSaida($produtoFiltrado);

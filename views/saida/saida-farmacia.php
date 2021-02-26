@@ -18,8 +18,6 @@ $setores = $s->verSetores();
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -41,13 +39,14 @@ $setores = $s->verSetores();
             <!-- general form elements -->
             <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-file-invoice"></i> Saída </h3>
+                    <span class="badge badge-pill bg-white text-olive">
+                        <i class="fas fa-external-link-alt text-olive"></i> Saída Farmácia</span>
                 </div>
-                <form role="form" method="GET" action="registrar.php">
+                <form role="form" method="GET" action="registrar-farmacia.php">
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-9">
-                                <label class="font-weight-normal">Setor</label>
+                                <label class="font-weight-normal"><i class="fas fa-long-arrow-alt-right"></i> Escolha um setor</label>
                                 <select class="form-control select2 col-md-12" name="nomesetor" required>
                                     <option selected></option>
                                     <?php foreach ($setores as $values): ?>
@@ -56,7 +55,7 @@ $setores = $s->verSetores();
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="font-weight-normal">Data</label>
+                                <label class="font-weight-normal"><i class="fas fa-long-arrow-alt-right"></i> Data de registro</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-olive"><i
@@ -79,10 +78,10 @@ $setores = $s->verSetores();
                     <div class="card-footer">
                         <div class="d-flex bd-highlight">
                             <div class="p-2 flex-grow-1 bd-highlight">
-                                <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Iniciar</button>
+                                <button type="submit" class="btn btn-outline-success col-md-2">Próximo</button>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <a href="historico.php" class="float-right btn bg-gradient-olive elevation-1">
+                                <a href="list-historico.php" class="float-right btn bg-gradient-olive elevation-1">
                                     <i class="fas fa-history"></i> Histórico
                                 </a></div>
                         </div>

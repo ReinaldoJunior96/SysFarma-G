@@ -76,7 +76,7 @@ $setores = $s->verSetores();
                                 <button type="submit" class="btn bg-gradient-teal col-md-2 elevation-2">Iniciar</button>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <a href="historico.php" class="float-right btn bg-gradient-olive elevation-1">
+                                <a href="list-historico.php" class="float-right btn bg-gradient-olive elevation-1">
                                     <i class="fas fa-history"></i> Histórico
                                 </a></div>
                         </div>

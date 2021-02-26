@@ -26,7 +26,7 @@ $("#insertSaida").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/saidasetor/novasaida.php",
+        url: "../../back/response/saidasetor/registrar-saida-back.php",
         type: "post",
         data: serializedData
     });
@@ -43,7 +43,7 @@ $("#insertSaida").submit(function (event) {
             if (result.isConfirmed) {
                 $('#insertSaida').each(function () {
                     this.reset();
-                    $('#produtoid').prop('selectedIndex',0)
+                    $('#produtoid').prop('selectedIndex', 0)
                 });
 
             }
@@ -56,11 +56,11 @@ $("#insertSaida").submit(function (event) {
             "The following error occurred: " +
             textStatus, errorThrown
         );
-        Swal.fire(
-            'Sucesso!',
-            'Operação realizada',
-            'success'
-        )
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Erro ao realizar operação',
+        })
     });
 
     // Callback handler that will be called regardless

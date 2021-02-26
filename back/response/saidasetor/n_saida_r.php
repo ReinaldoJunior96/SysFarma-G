@@ -68,10 +68,10 @@ foreach ($produtosErro as $prod) {
  */
 
 if (count($erro) == 0) {
-    header("location: ../../../views/saida/iniciar.php?produtos=success");
+    header("location: ../../../views/saida/saida-farmacia.php?produtos=success");
 } else {
     $query = http_build_query(array('erroprod' => $erro));
-    header("location: ../../../views/saida/iniciar.php?" . $query);
+    header("location: ../../../views/saida/saida-farmacia.php?" . $query);
 }
 
 

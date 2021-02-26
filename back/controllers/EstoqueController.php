@@ -1,6 +1,6 @@
 <?php
 require_once('conexao.php');
-
+date_default_timezone_set('America/Sao_Paulo');
 class EstoqueController
 {
     public $conn = null;
@@ -418,7 +418,7 @@ class EstoqueController
                         'user' => $request['user']);
                     self::transacaoRegistro($transacao);
                 }
-                header("location: ../../../views/saida/historico.php?status=ok");
+                header("location: ../../../views/saida/list-historico.php?status=ok");
             }
 
 
@@ -486,28 +486,11 @@ class EstoqueController
     }
 
 
-    /* Combo de registro de saída */
-    public function verificarQuantidade($produto, $quantidade, $aux)
-    {
-        $status = 0;
-        $inEstoque = 0;
-        $buscarProduto = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque=$produto");
-        $buscarProduto->execute();
-        $resultado = $buscarProduto->fetchAll(PDO::FETCH_OBJ);
-        foreach ($resultado as $p):
-            $inEstoque = $p->quantidade_e;
-        endforeach;
-        /* Se auxiliar passado como 0 vai retornar se a quantidade menor ou maior*/
-        if ($inEstoque < $quantidade):
-            $status = 1;
-        endif;
-        /* Se auxiliar passado como 1 vai retornar apenas a quantidade em estoque*/
-        return ($aux == 0) ? $status : $inEstoque;
-    }
-
+    /**
+     *
+     */
     public function inseirSaida($dadosSaida)
     {
-        $status = "";
         try {
             $this->conn->beginTransaction();
             $query_Sql = /** @lang text */
@@ -521,11 +504,11 @@ class EstoqueController
             $sql->execute();
             if ($sql) {
                 $this->conn->commit();
-                $status = "success";
                 $qtdeInicial = self::verificarQuantidade($dadosSaida['produto'], $dadosSaida['quantidade'], 1);
+                $data = new DateTime('NOW');
                 $transacaoInsert = array(
                     'produto' => $dadosSaida['produto'],
-                    'data' => $dadosSaida['data'],
+                    'data' => date_format($data,"Y-m-d H:i:s"),
                     'tipo' => 'Saída',
                     'estoqueini' => $qtdeInicial,
                     'quantidade' => $dadosSaida['quantidade'],
@@ -534,20 +517,31 @@ class EstoqueController
                     'user' => $dadosSaida['user']
                 );
                 self::removeQuantidadeSaida($dadosSaida['produto'], $qtdeInicial - $dadosSaida['quantidade']);
-                $transacao = new EstoqueController();
-                $transacao->transacaoRegistro($transacaoInsert);
-
+                $this->transacaoRegistro($transacaoInsert);
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            $status = "fail";
         }
-        return $status;
+    }
+
+    public function verificarQuantidade($produto, $quantidade, $aux)
+    {
+        $verificacao = null;
+        $inEstoque = null;
+        $buscarProduto = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque=$produto");
+        $buscarProduto->execute();
+        $resultado = $buscarProduto->fetchAll(PDO::FETCH_OBJ);
+        foreach ($resultado as $p):
+            $inEstoque = $p->quantidade_e;
+        endforeach;
+        if ($inEstoque < $quantidade):
+            $verificacao = 1;
+        endif;
+        return ($aux == 0) ? $verificacao : $inEstoque;
     }
 
     public function removeQuantidadeSaida($produto, $quantidade)
     {
-        $status = "";
         try {
             $this->conn->beginTransaction();
             $alteraQuantidadeSQL = /** @lang text * */
@@ -562,11 +556,7 @@ class EstoqueController
         (PDOException $erro) {
             $this->conn->rollBack();
         }
-        return $status;
     }
-
-
-
 
 
     public function registrarSaida($saida)
