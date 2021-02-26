@@ -522,6 +522,21 @@ class EstoqueController
             if ($sql) {
                 $this->conn->commit();
                 $status = "success";
+                $qtdeInicial = self::verificarQuantidade($dadosSaida['produto'], $dadosSaida['quantidade'], 1);
+                $transacaoInsert = array(
+                    'produto' => $dadosSaida['produto'],
+                    'data' => $dadosSaida['data'],
+                    'tipo' => 'Saída',
+                    'estoqueini' => $qtdeInicial,
+                    'quantidade' => $dadosSaida['quantidade'],
+                    'estoquefi' => $qtdeInicial - $dadosSaida['quantidade'],
+                    'cancelada' => ' ',
+                    'user' => $dadosSaida['user']
+                );
+                self::removeQuantidadeSaida($dadosSaida['produto'], $qtdeInicial - $dadosSaida['quantidade']);
+                $transacao = new EstoqueController();
+                $transacao->transacaoRegistro($transacaoInsert);
+
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
@@ -542,15 +557,17 @@ class EstoqueController
             $fazer_alteracao->execute();
             if ($fazer_alteracao) {
                 $this->conn->commit();
-                $status = "success";
             }
         } catch
         (PDOException $erro) {
             $this->conn->rollBack();
-            $status = "fail";
         }
         return $status;
     }
+
+
+
+
 
     public function registrarSaida($saida)
     {
@@ -594,6 +611,7 @@ class EstoqueController
         endfor;
         return $produtosErro;
     }
+
 
     /* /Combo de registro de saída */
 

@@ -4,7 +4,6 @@
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/novasaida.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/novasaida.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/saida/registrar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,6 +146,15 @@
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/back/response/compra/updateitem.php</url>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/back/controllers/EstoqueController.php</url>
+          <line>489</line>
+          <properties>
+            <option name="className" value="\EstoqueController" />
+            <option name="methodName" value="verificarQuantidade" />
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

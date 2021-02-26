@@ -84,13 +84,13 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
                             <label class="font-weight-normal">Quantidade</label>
                             <div class="input-group">
                                 <input type="number" class="form-control"
-                                       id="qtdesolicitada" name="quantidade_solicitada" required>
+                                       id="qtdesolicitada" name="quantidade_solicitada" required onkeyup="validacao();">
                             </div>
                         </div>
                         <div class="form-group col-md-2">
                             <label class="font-weight-normal">Em Estoque</label>
                             <div class="input-group">
-                                <input class="form-control" id="estoque" type="text" readonly>
+                                <input class="form-control" id="estoque" type="text" value="">
                             </div>
                         </div>
                     </div>
@@ -148,17 +148,17 @@ $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
         })
 
     })
-
-    $('#qtdesolicitada').keyup(function () {
-        var qtdesolicitada = document.getElementById('qtdesolicitada');
-        var qtdeInEstoque = document.getElementById('estoque');
-        if (qtdesolicitada.value > qtdeInEstoque.value || qtdesolicitada.value <= 0) {
-            document.getElementById('registrar').setAttribute('disabled', 'disabled');
-        } else {
+</script>
+<script>
+    function validacao(){
+        const solicitada = parseInt(document.getElementById('qtdesolicitada').value);
+        const estoque = parseInt(document.getElementById('estoque').value);
+        if(solicitada > estoque || solicitada === 0){
+            document.getElementById('registrar').setAttribute('disabled','disabled');
+        }else{
             document.getElementById('registrar').removeAttribute('disabled')
         }
-
-    })
+    }
 </script>
 </body>
 </html>
