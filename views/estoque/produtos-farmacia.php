@@ -119,6 +119,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             <th class="">Princípio Ativo</th>
                             <th class="">Nome Comercial / Material</th>
                             <th class="">Quantidade</th>
+                            <th class="">Valor Uni.</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -132,6 +133,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                                 <td><?= $v->principio_ativo ?></td>
                                 <td><a class="text-olive" href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?= $v->produto_e ?></td>
                                 <td><?= $v->quantidade_e ?></td>
+                                <td><?= $v->valor_un_e ?></td>
                             </tr>
                         <?php } ?>
                     </table>

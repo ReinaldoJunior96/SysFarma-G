@@ -51,7 +51,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../estoque/farmacia.php" class="nav-link">
+                            <a href="../estoque/produtos-farmacia.php" class="nav-link">
                                 <i class="fas fa-prescription-bottle-alt nav-icon"></i>
                                 <p>Fármacia</p>
                             </a>

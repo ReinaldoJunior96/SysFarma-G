@@ -91,7 +91,7 @@ $view_estoque->verProdDiversos();
                         <div class="form-group col-md-2">
                             <label class="font-weight-normal">Em Estoque</label>
                             <div class="input-group">
-                                <input class="form-control" id="estoque" type="text" value="">
+                                <input class="form-control" id="estoque" type="text" value="" disabled>
                             </div>
                         </div>
                     </div>
