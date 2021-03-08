@@ -2,15 +2,162 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/response/usuario/destruir-sessao.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/response/usuario/start-sessao.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/conexao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/conexao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/estoque/d_produto.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/estoque/d_produto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/AvariaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/AvariaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/CompraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/CompraController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/FornecedorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/FornecedorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/NotaFiscalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/NotaFiscalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/UsuarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/UsuarioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/configCRUD.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/setoresController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/SetorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/avaria/avariaresponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/avaria/post-avaria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/avaria/delete-avaria.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/avaria/delete-avaria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/d_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/ordem-compra/delete-ordem-compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/d_prod_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/ordem-compra/delete-prod-compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/import_from_ordem.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/ordem-compra/import-prod-estoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/n_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/ordem-compra/post-ordem-compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/n_prod_ordem_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/ordem-compra/post-prod-compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/requestajax/alteraquantidade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/requestajax/searchreqprod.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/ordem-compra/request-ajax-response/buscar-produto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/compra/updateitem.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/ordem-compra/update-prod-compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/config_r.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/estoque/estoque_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/estoque/estoque_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/fornecedores/d_fornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/fornecedores/d_fornecedor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/fornecedores/fornecedores_n.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/fornecedores/fornecedores_n.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_lotes.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_lotes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/d_nf_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/d_nf_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/lotes_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/lotes_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/n_produtos_nfr.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/n_produtos_nfr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/nota_fiscal_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/nota_fiscal_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/notaf/vencimento_parcelas_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/notaf/vencimento_parcelas_r.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/relatorio/relatorio_r.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/d_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saida-setor/delete-saida.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saida-setor/post-devolucao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/n_saida_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saida-setor/post-saida.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/saidasetor/registrar-saida-back.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/saida-setor/registrar-saida-back.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/setor/n_setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/response/setor/post-setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/user/destroy_sessao.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/response/user/sessao.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fpdf/fpdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/fpdf/fpdf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/bootstrap/js/bootstrap.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/bootstrap/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/chart.js/Chart.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/chart.js/Chart.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/chart.js/Chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/chart.js/Chart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-autofill/js/dataTables.autoFill.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-autofill/js/dataTables.autoFill.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-buttons/js/buttons.flash.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-buttons/js/buttons.flash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-buttons/js/buttons.html5.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-buttons/js/buttons.html5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-colreorder/js/dataTables.colReorder.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-colreorder/js/dataTables.colReorder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-fixedcolumns/js/dataTables.fixedColumns.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-fixedcolumns/js/dataTables.fixedColumns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-keytable/js/dataTables.keyTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-keytable/js/dataTables.keyTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-responsive/js/dataTables.responsive.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-responsive/js/dataTables.responsive.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-rowgroup/js/dataTables.rowGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-rowgroup/js/dataTables.rowGroup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-rowreorder/js/dataTables.rowReorder.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-rowreorder/js/dataTables.rowReorder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-scroller/js/dataTables.scroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-scroller/js/dataTables.scroller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-select/js/dataTables.select.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-select/js/dataTables.select.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables-select/js/dataTables.select.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables-select/js/dataTables.select.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables/jquery.dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables/jquery.dataTables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/datatables/jquery.dataTables.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/datatables/jquery.dataTables.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/daterangepicker/daterangepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/daterangepicker/daterangepicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/ekko-lightbox/ekko-lightbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/ekko-lightbox/ekko-lightbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fastclick/fastclick.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fastclick/fastclick.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/filterizr/BrowserWindow.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/filterizr/BrowserWindow.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/filterizr/FilterItem.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/filterizr/FilterItem.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/filterizr/FilterItem/FilterItem.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/filterizr/FilterItem/FilterItem.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.crosshair.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.crosshair.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.errorbars.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.errorbars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.navigate.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.navigate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.pie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.selection.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/flot-old/jquery.flot.selection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar-daygrid/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar-daygrid/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar-daygrid/main.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar-daygrid/main.esm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar-daygrid/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar-daygrid/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar-interaction/main.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar-interaction/main.esm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar-interaction/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar-interaction/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar-timegrid/main.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar-timegrid/main.esm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar-timegrid/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar-timegrid/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar/main.esm.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar/main.esm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fullcalendar/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fullcalendar/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery-mapael/jquery.mapael.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery-mapael/jquery.mapael.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery-mapael/maps/world_countries_mercator.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery-mapael/maps/world_countries_mercator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery-mapael/maps/world_countries_miller.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery-mapael/maps/world_countries_miller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery-ui/external/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery-ui/external/jquery/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery-ui/jquery-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery-ui/jquery-ui.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery-validation/jquery.validate.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery-validation/jquery.validate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery/jquery.slim.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery/jquery.slim.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jquery/jquery.slim.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jquery/jquery.slim.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/jszip/jszip.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jszip/jszip.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/moment/locale/uk.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/moment/locale/uk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/moment/locales.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/moment/locales.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/moment/moment-with-locales.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/moment/moment-with-locales.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/pdfmake/pdfmake.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pdfmake/pdfmake.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/pdfmake/pdfmake.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pdfmake/pdfmake.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/pdfmake/vfs_fonts.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pdfmake/vfs_fonts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/popper/esm/popper.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/popper/esm/popper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/popper/popper.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/popper/popper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/popper/umd/popper.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/popper/umd/popper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/select2/js/select2.full.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/select2/js/select2.full.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/select2/js/select2.full.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/select2/js/select2.full.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/select2/js/select2.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/select2/js/select2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/select2/js/select2.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/select2/js/select2.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/summernote/plugin/hello/summernote-ext-hello.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/summernote/plugin/hello/summernote-ext-hello.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/sweetalert2/sweetalert2.all.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/sweetalert2/sweetalert2.all.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/sweetalert2/sweetalert2.all.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/sweetalert2/sweetalert2.all.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/sweetalert2/sweetalert2.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/sweetalert2/sweetalert2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/sweetalert2/sweetalert2.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/sweetalert2/sweetalert2.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tbl_avaria.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/avaria/cadastro-avaria.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/avaria/cadastro-avaria.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/avaria/request-avaria.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/avaria-ajax/post-avaria-request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/componentes/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/componentes/nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/nav.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/produtos-farmacia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/sidebarestoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/sidebarestoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/saida/registrar-farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/saida/registrar-farmacia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/almoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/produtos-almoxarifado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/compras.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/historico-compra-produto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/editEstoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/put-produto-view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/editProduto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/produtos-ajax/put-produtos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/fornecedores-produto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/lote.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/lote-produto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/sidebarestoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/menu-estoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/transacoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/transacao-produto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/produtos-farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/produtos-farmacia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/requestProduto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/produtos-ajax/post-cadastro-produto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/editFornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/edit-fornecedor-view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/fornecedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/cadastro-fornecedor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/fornecedor/requestFornecedor.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/fornecedores-ajax/post-fornecedores.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/editNF.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/nota-fiscal-ajax/put-nota-fiscal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/editNF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/edit-nf-view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/lotes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/cadastro-lote.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/notaF.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/nota-fiscal-list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/produtosnf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/produtos-nota-fiscal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/requestLote.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/nota-fiscal-ajax/post-lote-produto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notaFiscal/vencimentos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/vencimentos-prod-nf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/alterarprodutos.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem-compra/cadastro-ordem-compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/ordempdf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem-compra/ordem-compra-pdf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem-compra/adicionar-produtos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordem/searchproduto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/ordem-compra-ajax/buscar-produtos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/estoquealmoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio-produtos-almoxarifado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/estoquefarma.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio-produtos-farmacia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/relatorio.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio-consumo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/ajax-saida/buscar-produto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/saida-setor-ajax/buscar-produto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/ajax-saida/post-produto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/saida-setor-ajax/post-produto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/list-historico.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/list-historico.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/registrar-devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/registrar-devolucao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/registrar-farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/registrar-farmacia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/registro-almoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/registro-almoxarifado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/saida-almoxarifado.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/saida-almoxarifado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/saida/saida-farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/saida-farmacia.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/setor/requestSetor.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/setores-ajax/post-setor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/setor/setores.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setores/cadastro-setor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/usuario/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/usuario/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +198,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="CONST" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel-shop-cart" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -69,11 +216,11 @@
       <recent name="C:\xampp\htdocs\gstock2.0\views\ordem" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\gstock2.0\views\notaFiscal" />
-      <recent name="C:\xampp\htdocs\gstock2.0\views\estoque\nav" />
-      <recent name="C:\xampp\htdocs\gstock2.0\views\estoque" />
-      <recent name="C:\xampp\htdocs\gstock2.0\dist\js" />
-      <recent name="C:\xampp\htdocs\gstock2.0\back\response\compra\requestajax" />
+      <recent name="C:\xampp\htdocs\gstock2.0\requests" />
+      <recent name="C:\xampp\htdocs\gstock2.0\views\fornecedor\fornecedores-ajax" />
+      <recent name="C:\xampp\htdocs\gstock2.0\views\notaFiscal\nota-fiscal-ajax" />
+      <recent name="C:\xampp\htdocs\gstock2.0\views\ordem\ordem-compra-ajax" />
+      <recent name="C:\xampp\htdocs\gstock2.0\requests\setores-ajax" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -129,6 +276,7 @@
       <workItem from="1614175314927" duration="12913000" />
       <workItem from="1614278761716" duration="3596000" />
       <workItem from="1615153808769" duration="1768000" />
+      <workItem from="1615203780520" duration="20797000" />
     </task>
     <servers />
   </component>
@@ -151,8 +299,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/back/response/compra/updateitem.php</url>
+          <url>file://$PROJECT_DIR$/back/response/ordem-compra/update-prod-compra.php</url>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/back/controllers/CompraController.php</url>
+          <line>5</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

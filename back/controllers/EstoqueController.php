@@ -83,7 +83,7 @@ class EstoqueController
                         'quantidade' => ($produto['quantidade'] >= $qtdeAntigaEdit) ? $produto['quantidade'] - $qtdeAntigaEdit : $qtdeAntigaEdit - $produto['quantidade'],
                         'estoquefi' => $produto['quantidade'],
                         'cancelada' => ' ',
-                        'user' => $produto['user']
+                        'usuario' => $produto['usuario']
                     );
                     self::transacaoRegistro($transacao);
                 }
@@ -248,7 +248,7 @@ class EstoqueController
             $tranSQL->bindValue(':quantidade_t', $dados['quantidade']);
             $tranSQL->bindValue(':estoquefi_t', $dados['estoquefi']);
             $tranSQL->bindValue(':cancelada_t', $dados['cancelada']);
-            $tranSQL->bindValue(':realizadapor_t', $dados['user']);
+            $tranSQL->bindValue(':realizadapor_t', $dados['usuario']);
             $tranSQL->execute();
             if ($tranSQL) {
                 $this->conn->commit();
@@ -325,7 +325,7 @@ class EstoqueController
                 'quantidade' => $qtde,
                 'estoquefi' => $qtdeA + $qtde,
                 'cancelada' => 'Sim',
-                'user' => $user
+                'usuario' => $user
             );
             self::transacaoRegistro($transacao);
         } catch (PDOException $erro) {
@@ -415,10 +415,10 @@ class EstoqueController
                         'quantidade' => $request['quantidadedevolvida'],
                         'estoquefi' => $quantidadeInicial + $request['quantidadedevolvida'],
                         'cancelada' => ' ',
-                        'user' => $request['user']);
+                        'usuario' => $request['usuario']);
                     self::transacaoRegistro($transacao);
                 }
-                header("location: ../../../views/saida/list-historico.php?status=ok");
+                header("location: ../../../views/cadastro-saida/list-historico.php?status=ok");
             }
 
 
@@ -498,7 +498,7 @@ class EstoqueController
             $sql = $this->conn->prepare($query_Sql);
             $sql->bindValue(':item_s', $dadosSaida['produto']);
             $sql->bindValue(':quantidade_s', $dadosSaida['quantidade']);
-            $sql->bindValue(':setor_s', $dadosSaida['setor']);
+            $sql->bindValue(':setor_s', $dadosSaida['setores']);
             $sql->bindValue(':data_s', $dadosSaida['data']);
             $sql->bindValue(':data_dia_s', $dadosSaida['data']);
             $sql->execute();
@@ -514,7 +514,7 @@ class EstoqueController
                     'quantidade' => $dadosSaida['quantidade'],
                     'estoquefi' => $qtdeInicial - $dadosSaida['quantidade'],
                     'cancelada' => ' ',
-                    'user' => $dadosSaida['user']
+                    'usuario' => $dadosSaida['usuario']
                 );
                 self::removeQuantidadeSaida($dadosSaida['produto'], $qtdeInicial - $dadosSaida['quantidade']);
                 $this->transacaoRegistro($transacaoInsert);
@@ -561,7 +561,7 @@ class EstoqueController
 
     public function registrarSaida($saida)
     {
-        /* Array para armazenamento de produtos com quantidade de saida maior que o estoque*/
+        /* Array para armazenamento de produtos com quantidade de cadastro-saida maior que o estoque*/
         $produtosErro = array();
         for ($i = 0; $i < count($saida['produto']); $i++):
             /* O valor 0 passado no metodo é para auxiliar e retorna apenas se  quantidade é menor ou maior*/
@@ -572,7 +572,7 @@ class EstoqueController
                 $arrayTemp = array(
                     'produto' => $saida['produto'][$i],
                     'quantidade' => $saida['quantidade'][$i],
-                    'setor' => $saida['setor'],
+                    'setores' => $saida['setores'],
                     'data' => $saida['data'],
                 );
                 $insertSaida = self::inseirSaida($arrayTemp);
@@ -591,7 +591,7 @@ class EstoqueController
                             'quantidade' => $saida['quantidade'][$i],
                             'estoquefi' => $quantidadeInEstoque - $saida['quantidade'][$i],
                             'cancelada' => ' ',
-                            'user' => $saida['user']
+                            'usuario' => $saida['usuario']
                         );
                         $transacao = new EstoqueController();
                         $transacao->transacaoRegistro($arrayTempTransacao);

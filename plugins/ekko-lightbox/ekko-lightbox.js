@@ -473,7 +473,7 @@ var Lightbox = (function ($) {
 				this._toggleLoading(false);
 
 				// external urls are loading into an iframe
-				// local ajax can be loaded into the container itself
+				// local avaria-ordem-ordem-compra-ordem-compra-ajax can be loaded into the container itself
 				if (!disableExternalCheck && !this._isExternal(url)) {
 					$containerForElement.load(url, $.proxy(function () {
 						return _this3._$element.trigger('loaded.bs.modal');l;

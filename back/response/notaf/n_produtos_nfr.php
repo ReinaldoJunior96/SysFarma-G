@@ -6,7 +6,7 @@ $produto_nf = array(
 );
 
 $edit = new NotaFiscalController();
-$edit->editProfNF($produto_nf,$_POST['id_item']);
+$edit->updateProdNF($produto_nf,$_POST['id_item']);
 //echo "<script language=\"javascript\">window.history.back();</script>";
 
 

@@ -276,10 +276,10 @@
          *   - Set the container back to the way it was before mapael instanciation
          *   - Remove all data associated to it (memory can then be free'ed by browser)
          *
-         * This method can be call directly by user:
+         * This method can be call directly by usuario:
          *     $(".mapcontainer").data("mapael").destroy();
          *
-         * This method is also automatically called if the user try to call mapael
+         * This method is also automatically called if the usuario try to call mapael
          * on a container already containing a mapael instance
          */
         destroy: function () {
@@ -351,7 +351,7 @@
             self.onResizeEvent = function() {
                 // Clear any previous setTimeout (avoid too much triggering)
                 clearTimeout(resizeTO);
-                // setTimeout to wait for the user to finish its resizing
+                // setTimeout to wait for the usuario to finish its resizing
                 resizeTO = setTimeout(function () {
                     handleResize();
                 }, self.resizeFilteringTO);
@@ -365,13 +365,13 @@
         },
 
         /*
-         * Extend the user option with the default one
-         * @param options the user options
+         * Extend the usuario option with the default one
+         * @param options the usuario options
          * @return new options object
          */
         extendDefaultOptions: function (options) {
 
-            // Extend default options with user options
+            // Extend default options with usuario options
             options = $.extend(true, {}, Mapael.prototype.defaultOptions, options);
 
             // Extend legend default options
@@ -512,7 +512,7 @@
                     {
                         // Get back related elem
                         var elem = self.customEventHandlers[eventName][type][id];
-                        // Run callback provided by user
+                        // Run callback provided by usuario
                         elem.options.eventHandlers[eventName](e, id, elem.mapElem, elem.textElem, elem.options);
                     }
                 });
@@ -567,7 +567,7 @@
                 });
             }
 
-            // Set user event handlers
+            // Set usuario event handlers
             if (elem.options.eventHandlers) self.setEventHandlers(id, type, elem);
 
             // Set hover option for mapElem
@@ -670,7 +670,7 @@
                 });
             }
 
-            // When the user drag the map, prevent to move the clicked element instead of dragging the map (behaviour seen with Firefox)
+            // When the usuario drag the map, prevent to move the clicked element instead of dragging the map (behaviour seen with Firefox)
             self.$map.on("dragstart", function() {
                 return false;
             });
@@ -845,7 +845,7 @@
 
             } else {
 
-                // Get user defined zoom level
+                // Get usuario defined zoom level
                 if (zoomOptions.level !== undefined) {
                     if (typeof zoomOptions.level === "string") {
                         // level is a string, either "n", "+n" or "-n"
@@ -945,8 +945,8 @@
         },
 
         /*
-         * Show some element in range defined by user
-         * Triggered by user $(".mapcontainer").trigger("showElementsInRange", [opt]);
+         * Show some element in range defined by usuario
+         * Triggered by usuario $(".mapcontainer").trigger("showElementsInRange", [opt]);
          *
          * @param opt the options
          *  opt.hiddenOpacity opacity for hidden element (default = 0.3)
@@ -998,7 +998,7 @@
                 self.showElemByRange(opt.ranges.link, self.links, opt.hiddenOpacity, opt.animDuration);
             }
 
-            // Call user callback
+            // Call usuario callback
             if (opt.afterShowRange) opt.afterShowRange();
         },
 
@@ -1023,7 +1023,7 @@
             // Loop through each valueIndex
             $.each(ranges, function (valueIndex) {
                 var range = ranges[valueIndex];
-                // Check if user defined at least a min or max value
+                // Check if usuario defined at least a min or max value
                 if (range.min === undefined && range.max === undefined) {
                     return true; // skip this iteration (each loop), goto next range
                 }
@@ -1651,7 +1651,7 @@
         },
 
         /*
-         * Set user defined handlers for events on areas and plots
+         * Set usuario defined handlers for events on areas and plots
          * @param id the id of the element
          * @param type the type of the element (area, plot, link)
          * @param elem the element object {mapElem, textElem, options, ...}
@@ -1879,9 +1879,9 @@
                         textElem: legendLabel
                     };
 
-                    // Hide map elements when the user clicks on a legend item
+                    // Hide map elements when the usuario clicks on a legend item
                     if (legendOptions.hideElemsOnClick.enabled) {
-                        // Hide/show elements when user clicks on a legend element
+                        // Hide/show elements when usuario clicks on a legend element
                         legendLabel.attr({cursor: "pointer"});
                         legendElem.attr({cursor: "pointer"});
 
@@ -1910,7 +1910,7 @@
         },
 
         /*
-         * Allow to hide elements of the map when the user clicks on a related legend item
+         * Allow to hide elements of the map when the usuario clicks on a related legend item
          * @param elem legend element
          * @param id legend element ID
          * @param legendIndex corresponding legend index
@@ -2311,7 +2311,7 @@
             var computeNextStep = function () {
                 // Cancel any remaining animationFrame
                 // It means this new step will take precedence over the old one scheduled
-                // This is the case when the user is triggering the zoom fast (e.g. with a big mousewheel run)
+                // This is the case when the usuario is triggering the zoom fast (e.g. with a big mousewheel run)
                 // This actually does nothing when performing a single zoom action
                 self.cancelAnimationFrame(self.zoomAnimID);
                 // Compute elapsed time
@@ -2325,19 +2325,19 @@
                     //  1. If the target ViewBox has changed between steps (=> ADAPTATION step)
                     //  2. Or if the target ViewBox is the same (=> NORMAL step)
                     //
-                    // A change of ViewBox target between steps means the user is triggering
+                    // A change of ViewBox target between steps means the usuario is triggering
                     // the zoom fast (like a big scroll with its mousewheel)
                     //
                     // The new animation step with the new target will always take precedence over the
                     // last one and start from 0 (we overwrite zoomAnimStartTime and cancel the scheduled frame)
                     //
                     // So if we don't detect the change of target and adapt our computation,
-                    // the user will see a delay at beginning the ratio will stays at 0 for some frames
+                    // the usuario will see a delay at beginning the ratio will stays at 0 for some frames
                     //
                     // Hence when detecting the change of target, we animate from the previous target.
                     //
                     // The next step will then take the lead and continue from there, achieving a nicer
-                    // experience for user.
+                    // experience for usuario.
 
                     // Change of target IF: an old animation start value exists AND the target has actually changed
                     if (oldZoomAnimStartTime && self.zoomAnimCVBTarget && self.zoomAnimCVBTarget.w !== targetW) {
@@ -2381,11 +2381,11 @@
                     if (zoomDir === 'in' && (w > self.currentViewBox.w || w < targetW)) {
                         // Zooming IN and the new ViewBox seems larger than the current value, or smaller than target value
                         // We do NOT set the ViewBox with this value
-                        // Otherwise, the user would see the camera going back and forth
+                        // Otherwise, the usuario would see the camera going back and forth
                     } else if (zoomDir === 'out' && (w < self.currentViewBox.w || w > targetW)) {
                         // Zooming OUT and the new ViewBox seems smaller than the current value, or larger than target value
                         // We do NOT set the ViewBox with this value
-                        // Otherwise, the user would see the camera going back and forth
+                        // Otherwise, the usuario would see the camera going back and forth
                     } else {
                         // New values look good, applying
                         self.setViewBox(x, y, w, h);

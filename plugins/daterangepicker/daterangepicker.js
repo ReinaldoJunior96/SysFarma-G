@@ -88,7 +88,7 @@
         this.leftCalendar = {};
         this.rightCalendar = {};
 
-        //custom options from user
+        //custom options from usuario
         if (typeof options !== 'object' || options === null)
             options = {};
 
@@ -1142,7 +1142,7 @@
                 this.endDate = this.oldEndDate.clone();
             }
 
-            //if a new date range was selected, invoke the user callback function
+            //if a new date range was selected, invoke the usuario callback function
             if (!this.startDate.isSame(this.oldStartDate) || !this.endDate.isSame(this.oldEndDate))
                 this.callback(this.startDate.clone(), this.endDate.clone(), this.chosenLabel);
 

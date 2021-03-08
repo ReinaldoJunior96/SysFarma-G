@@ -1,6 +1,6 @@
 <?php
 require_once('conexao.php');
-require_once ('EstoqueController.php');
+require_once('EstoqueController.php');
 
 class NotaFiscalController
 {
@@ -11,7 +11,7 @@ class NotaFiscalController
         $this->conn = PDOconectar::conectar();
     }
 
-    public function insert($nf)
+    public function storeNF($nf)
     {
         try {
             $this->conn->beginTransaction();
@@ -25,18 +25,16 @@ class NotaFiscalController
             $sql->bindValue(':fornecedor', $nf['fornecedor']);
             $sql->bindValue(':valor_nf', $nf['valor']);
             $sql->bindValue(':obs_nf', $nf['obs']);
-
             $sql->execute();
             if ($sql) {
                 $this->conn->commit();
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
-    public function delete_NF($id)
+    public function deleteNF($id)
     {
         try {
             $itensNF = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_itens_nf WHERE id_nf='$id'");
@@ -57,18 +55,20 @@ class NotaFiscalController
         }
     }
 
-    public function verNF($id)
+    public function listUniqueNF($id): array
     {
+        $notas = null;
         try {
             $find_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_nf WHERE id_nf='$id'");
             $find_nf->execute();
-            return $find_nf->fetchAll(PDO::FETCH_OBJ);
+            $notas = $find_nf->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
+        return $notas;
     }
 
-    public function edit_NF($nf, $id)
+    public function updateNF($nf, $id)
     {
         try {
             $this->conn->beginTransaction();
@@ -102,12 +102,11 @@ class NotaFiscalController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
 
-    public function verificarNota($idnf)
+    public function verificarStatusNF($idnf): int
     {
         $verificar = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
         INNER JOIN tbl_ordem_compra
@@ -119,7 +118,7 @@ class NotaFiscalController
         return $verificar->rowCount();
     }
 
-    public function importData($idnf)
+    public function lancarQtdeNFinEstoque($idnf)
     {
         $importOrdem = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
         INNER JOIN tbl_ordem_compra
@@ -135,14 +134,14 @@ class NotaFiscalController
                 'quantidade' => $v->qtde_compra,
                 'lote' => "",
                 'validade' => "",
-                'notaFiscal' => $idnf
+                'nota-fiscal' => $idnf
             );
-            self::addProdNf($produto);
+            self::storeProdNF($produto);
         }
-        self::alterarStatus($idnf);
+        self::updateStatusNF($idnf);
     }
 
-    public function addProdNf($produto_nf)
+    public function storeProdNF($produto_nf)
     {
         try {
             $this->conn->beginTransaction();
@@ -154,7 +153,7 @@ class NotaFiscalController
             $sql->bindValue(':qtde_nf', $produto_nf['quantidade']);
             $sql->bindValue(':lote_e', $produto_nf['lote']);
             $sql->bindValue(':valiadde_prod_nf', $produto_nf['validade']);
-            $sql->bindValue(':id_nf', $produto_nf['notaFiscal']);
+            $sql->bindValue(':id_nf', $produto_nf['nota-fiscal']);
             $sql->execute();
             $produto = $produto_nf['produto'];
             $qtde_antiga_sql = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
@@ -185,7 +184,7 @@ class NotaFiscalController
                     'quantidade' => $produto_nf['quantidade'],
                     'estoquefi' => $qtde_nova,
                     'cancelada' => ' ',
-                    'user' => 'compras.hvu'
+                    'usuario' => 'compras.hvu'
                 );
 
                 $registrarTransaocao = new EstoqueController();
@@ -194,7 +193,6 @@ class NotaFiscalController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
@@ -228,7 +226,7 @@ class NotaFiscalController
         }
     }
 
-    public function alterarStatus($idnf)
+    public function updateStatusNF($idnf)
     {
         try {
             $this->conn->beginTransaction();
@@ -244,26 +242,26 @@ class NotaFiscalController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
-    public function verProdNF($nf)
+    public function listProdNF($nf): array
     {
+        $produtosNF = null;
         try {
             $view_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
             INNER JOIN tbl_ordem_compra ON tbl_items_compra.ordem_compra_id = tbl_ordem_compra.id_ordem
             INNER JOIN tbl_estoque ON tbl_items_compra.item_compra = tbl_estoque.id_estoque
             WHERE tbl_ordem_compra.id_fk_nf = '$nf'");
             $view_nf->execute();
-            return $view_nf->fetchAll(PDO::FETCH_OBJ);
+            $produtosNF = $view_nf->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
+        return $produtosNF;
     }
 
 
-    public function editProfNF($produto, $idprod)
+    public function updateProdNF($produto, $idprod)
     {
         try {
             $this->conn->beginTransaction();
@@ -285,7 +283,7 @@ class NotaFiscalController
         }
     }
 
-    public function venciementoParcelas($data)
+    public function storeVencimentoNF($data)
     {
         try {
             $this->conn->beginTransaction();
@@ -301,19 +299,19 @@ class NotaFiscalController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
-    public function buscarVencimentos($id)
+    public function listVencimento($id): array
     {
+        $vencimento = null;
         try {
             $viewVencimento = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_vencimento_boleto WHERE nota_fiscal_id = '$id'");
             $viewVencimento->execute();
-            return $viewVencimento->fetchAll(PDO::FETCH_OBJ);
+            $vencimento = $viewVencimento->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
+        return $vencimento;
     }
 
     public function deleteVencimento($id)
@@ -321,13 +319,11 @@ class NotaFiscalController
         try {
             $deleteVencimento = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_vencimento_boleto WHERE id='$id'");
             $deleteVencimento->execute();
-            return $deleteVencimento->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
-    public function cadLote($produto)
+    public function storeLoteProdNF($produto)
     {
         try {
             $this->conn->beginTransaction();
@@ -335,7 +331,7 @@ class NotaFiscalController
                 "INSERT INTO tbl_nf_lotes(id_nf,id_prod,lote,validade) 
                 VALUES (:id_nf,:id_prod,:lote,:validade)";
             $sql = $this->conn->prepare($query_Sql);
-            $sql->bindValue(':id_nf', $produto['notaFiscal']);
+            $sql->bindValue(':id_nf', $produto['nota-fiscal']);
             $sql->bindValue(':id_prod', $produto['produto']);
             $sql->bindValue(':lote', $produto['lote']);
             $sql->bindValue(':validade', $produto['validade']);
@@ -345,49 +341,44 @@ class NotaFiscalController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
-    public function deleteLote($id)
+    public function deleteLoteProdNF($id)
     {
+
         try {
             $deleteL = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_nf_lotes WHERE id_nf_lote='$id'");
             $deleteL->execute();
-            return $deleteL->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
-    public function buscarLote($idnf)
+    public function listLote($idnf): array
     {
+        $lotes = null;
         try {
             $viewlotes = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque
              INNER JOIN  tbl_nf_lotes ON tbl_nf_lotes.id_prod = tbl_estoque.id_estoque
              WHERE tbl_nf_lotes.id_nf = '$idnf'");
             $viewlotes->execute();
-            return $viewlotes->fetchAll(PDO::FETCH_OBJ);
+            $lotes = $viewlotes->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
+        return $lotes;
     }
 
-    public function index()
+    public function listNF(): array
     {
+        $notas = null;
         try {
-            $view_nf = $this->conn->prepare(/** @lang text */"SELECT * FROM tbl_nf
-                                                    INNER JOIN tbl_ordem_compra
-                                                ON tbl_nf.id_nf = tbl_ordem_compra.id_fk_nf");
+            $view_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_nf INNER JOIN tbl_ordem_compra ON tbl_nf.id_nf = tbl_ordem_compra.id_fk_nf");
             $view_nf->execute();
-            return $view_nf->fetchAll(PDO::FETCH_OBJ);
+            $notas = $view_nf->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
+        return $notas;
     }
-
-
-
 
 
 }

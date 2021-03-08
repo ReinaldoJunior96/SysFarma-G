@@ -18,7 +18,7 @@ class FPDF
     protected $pages;              // array containing pages
     protected $state;              // current document state
     protected $compress;           // compression flag
-    protected $k;                  // scale factor (number of points in user unit)
+    protected $k;                  // scale factor (number of points in usuario unit)
     protected $DefOrientation;     // default orientation
     protected $CurOrientation;     // current orientation
     protected $StdPageSizes;       // standard page sizes
@@ -27,15 +27,15 @@ class FPDF
     protected $CurRotation;        // current page rotation
     protected $PageInfo;           // page-related data
     protected $wPt, $hPt;          // dimensions of current page in points
-    protected $w, $h;              // dimensions of current page in user unit
+    protected $w, $h;              // dimensions of current page in usuario unit
     protected $lMargin;            // left margin
     protected $tMargin;            // top margin
     protected $rMargin;            // right margin
     protected $bMargin;            // page break margin
     protected $cMargin;            // cell margin
-    protected $x, $y;              // current position in user unit
+    protected $x, $y;              // current position in usuario unit
     protected $lasth;              // height of last printed cell
-    protected $LineWidth;          // line width in user unit
+    protected $LineWidth;          // line width in usuario unit
     protected $fontpath;           // path containing fonts
     protected $CoreFonts;          // array of core font names
     protected $fonts;              // array of used fonts
@@ -47,7 +47,7 @@ class FPDF
     protected $underline;          // underlining flag
     protected $CurrentFont;        // current font info
     protected $FontSizePt;         // current font size in points
-    protected $FontSize;           // current font size in user unit
+    protected $FontSize;           // current font size in usuario unit
     protected $DrawColor;          // commands for drawing color
     protected $FillColor;          // commands for filling color
     protected $TextColor;          // commands for text color

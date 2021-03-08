@@ -31,7 +31,7 @@
             world_countries_mercator: {
                 /*
                  * map-specific constants
-                 * (set by user)
+                 * (set by usuario)
                  */
                 // Width of the map, in pixel
                 width: 1008.77,

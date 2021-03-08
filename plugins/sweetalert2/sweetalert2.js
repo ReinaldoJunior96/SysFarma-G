@@ -1906,7 +1906,7 @@
   };
 
   // Adding aria-hidden="true" to elements outside of the active modal dialog ensures that
-  // elements not within the active modal dialog will not be surfaced if a user opens a screen
+  // elements not within the active modal dialog will not be surfaced if a usuario opens a screen
   // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
 
   var setAriaHidden = function setAriaHidden() {
@@ -2673,7 +2673,7 @@
       handleToastClick(instance, domCache, dismissWith);
     } else {
       // Ignore click events that had mousedown on the popup but mouseup on the container
-      // This can happen when the user drags a slider
+      // This can happen when the usuario drags a slider
       handleModalMousedown(domCache); // Ignore click events that had mousedown on the container but mouseup on the popup
 
       handleContainerMousedown(domCache);

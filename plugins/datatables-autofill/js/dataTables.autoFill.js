@@ -269,7 +269,7 @@ $.extend( AutoFill.prototype, {
 
 	/**
 	 * Determine can the fill type should be. This can be automatic, or ask the
-	 * end user.
+	 * end usuario.
 	 *
 	 * @param {array} cells Information about the selected cells from the key
 	 *     up function
@@ -295,7 +295,7 @@ $.extend( AutoFill.prototype, {
 			this._update( result, cells );
 		}
 		else {
-			// Multiple actions available - ask the end user what they want to do
+			// Multiple actions available - ask the end usuario what they want to do
 			var list = this.dom.list.children('ul').empty();
 
 			// Add a cancel option
@@ -675,7 +675,7 @@ $.extend( AutoFill.prototype, {
 
 	/**
 	 * Mouse drag - selects the end cell and update the selection display for
-	 * the end user
+	 * the end usuario
 	 *
 	 * @param  {object} e Mouse move event
 	 * @private
@@ -930,7 +930,7 @@ $.extend( AutoFill.prototype, {
 
 
 	/**
-	 * Update the DataTable after the user has selected what they want to do
+	 * Update the DataTable after the usuario has selected what they want to do
 	 *
 	 * @param  {false|undefined} result Return from the `execute` method - can
 	 *   be false internally to do nothing. This is not documented for plug-ins
@@ -985,7 +985,7 @@ $.extend( AutoFill.prototype, {
 
 /**
  * AutoFill actions. The options here determine how AutoFill will fill the data
- * in the table when the user has selected a range of cells. Please see the
+ * in the table when the usuario has selected a range of cells. Please see the
  * documentation on the DataTables site for full details on how to create plug-
  * ins.
  *
@@ -1111,7 +1111,7 @@ AutoFill.version = '2.3.4';
  * @namespace
  */
 AutoFill.defaults = {
-	/** @type {Boolean} Ask user what they want to do, even for a single option */
+	/** @type {Boolean} Ask usuario what they want to do, even for a single option */
 	alwaysAsk: false,
 
 	/** @type {string|null} What will trigger a focus */

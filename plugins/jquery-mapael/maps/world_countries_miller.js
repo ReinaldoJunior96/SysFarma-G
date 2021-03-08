@@ -31,7 +31,7 @@
             world_countries_miller: {
                 /*
                  * map-specific constants
-                 * (set by user)
+                 * (set by usuario)
                  */
                 // Width of the map, in pixel
                 width : 700.9375,

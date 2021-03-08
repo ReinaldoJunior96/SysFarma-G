@@ -1,7 +1,7 @@
 <?php
 session_start();
-if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
-    header("location: ../user/login.php");
+if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
+    header("location: ../usuario/login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
     <div class="content-wrapper">
         <div class="col-md-12 mt-3">
             <!-- general form elements -->
-            <?php if ($_SESSION['user'] == 'compras.hvu' or $_SESSION['user'] == 'admin'): ?>
+            <?php if ($_SESSION['usuario'] == 'compras.hvu' or $_SESSION['usuario'] == 'admin'): ?>
                 <div class="card card-olive">
                     <div class="card-header">
                         <h3 class="card-title"><i class="fas fa-flask"></i>
@@ -53,7 +53,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 
                     <form role="form" id="estoqueform" method="post">
                         <input type="hidden" name="new" value="1">
-                        <input type="hidden" name="user" value="<?= $_SESSION['user'] ?>">
+                        <input type="hidden" name="user" value="<?= $_SESSION['usuario'] ?>">
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
@@ -131,7 +131,7 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
                             ?>
                             <tr>
                                 <td><?= $v->principio_ativo ?></td>
-                                <td><a class="text-olive" href=nav/editEstoque.php?idp=<?= $v->id_estoque ?>><?= $v->produto_e ?></td>
+                                <td><a class="text-olive" href=nav/put-produto-view.php?idp=<?= $v->id_estoque ?>><?= $v->produto_e ?></td>
                                 <td><?= $v->quantidade_e ?></td>
                                 <td><?= $v->valor_un_e ?></td>
                             </tr>
@@ -165,6 +165,6 @@ if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
 <!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- RequestAJAX -->
-<script src="requestProduto.js"></script>
+<script src="../../requests/produtos-ajax/post-cadastro-produto.js"></script>
 </body>
 </html>

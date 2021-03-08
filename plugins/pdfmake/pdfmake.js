@@ -4469,7 +4469,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
       return;
     }
 
-    // backward compatibility, the user is explicitly
+    // backward compatibility, the usuario is explicitly
     // managing destroyed
     this._readableState.destroyed = value;
     this._writableState.destroyed = value;
@@ -5960,7 +5960,7 @@ EventEmitter.prototype.emit = function emit(type) {
       // up in Node's output if this results in an unhandled exception.
       throw er; // Unhandled 'error' event
     }
-    // At least give some kind of context to the user
+    // At least give some kind of context to the usuario
     var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));
     err.context = er;
     throw err; // Unhandled 'error' event
@@ -8267,7 +8267,7 @@ function WritableState(options, stream) {
     onwrite(stream, er);
   };
 
-  // the callback that the user supplies to write(chunk,encoding,cb)
+  // the callback that the usuario supplies to write(chunk,encoding,cb)
   this.writecb = null;
 
   // the amount that is being written when _write is called.
@@ -8276,7 +8276,7 @@ function WritableState(options, stream) {
   this.bufferedRequest = null;
   this.lastBufferedRequest = null;
 
-  // number of pending user-supplied write callbacks
+  // number of pending usuario-supplied write callbacks
   // this must be 0 before 'finish' can be emitted
   this.pendingcb = 0;
 
@@ -8378,7 +8378,7 @@ function writeAfterEnd(stream, cb) {
   pna.nextTick(cb, er);
 }
 
-// Checks that a user-supplied chunk is valid, especially for the particular
+// Checks that a usuario-supplied chunk is valid, especially for the particular
 // mode the stream is in. Currently this means that `null` is never accepted
 // and undefined/non-string values are only allowed in object mode.
 function validChunk(stream, state, chunk, cb) {
@@ -8760,7 +8760,7 @@ Object.defineProperty(Writable.prototype, 'destroyed', {
       return;
     }
 
-    // backward compatibility, the user is explicitly
+    // backward compatibility, the usuario is explicitly
     // managing destroyed
     this._writableState.destroyed = value;
   }
@@ -9301,7 +9301,7 @@ function arrayToHash(array) {
 
 
 function formatValue(ctx, value, recurseTimes) {
-  // Provide a hook for user-specified inspect functions.
+  // Provide a hook for usuario-specified inspect functions.
   // Check that value is an object with an inspect function on it
   if (ctx.customInspect &&
       value &&
@@ -9753,7 +9753,7 @@ function callbackify(original) {
     throw new TypeError('The "original" argument must be of type Function');
   }
 
-  // We DO NOT return the promise as it gives the user a false sense that
+  // We DO NOT return the promise as it gives the usuario a false sense that
   // the promise is actually somehow related to the callback's execution
   // and that the callback throwing will reject the promise.
   function callbackified() {
@@ -13073,7 +13073,7 @@ Object.defineProperty(Readable.prototype, 'destroyed', {
       return;
     }
 
-    // backward compatibility, the user is explicitly
+    // backward compatibility, the usuario is explicitly
     // managing destroyed
     this._readableState.destroyed = value;
   }
@@ -13177,7 +13177,7 @@ function chunkInvalid(state, chunk) {
 // Also, if we have no data yet, we can stand some
 // more bytes.  This is to work around cases where hwm=0,
 // such as the repl.  Also, if the push() triggered a
-// readable event, and the user called read(largeNumber) such that
+// readable event, and the usuario called read(largeNumber) such that
 // needReadable was set, then we ought to push more, so that another
 // 'readable' event will be triggered.
 function needMoreData(state) {
@@ -13308,7 +13308,7 @@ Readable.prototype.read = function (n) {
     this._read(state.highWaterMark);
     state.sync = false;
     // If _read pushed data synchronously, then `reading` will be false,
-    // and we need to re-evaluate how much data we can return to the user.
+    // and we need to re-evaluate how much data we can return to the usuario.
     if (!state.reading) n = howMuchToRead(nOrig, state);
   }
 
@@ -13370,7 +13370,7 @@ function emitReadable_(stream) {
   flow(stream);
 }
 
-// at this point, the user has presumably seen the 'readable' event,
+// at this point, the usuario has presumably seen the 'readable' event,
 // and called read() to consume some data.  that may have triggered
 // in turn another _read(n) call, in which case reading = true if
 // it's in progress.
@@ -13472,7 +13472,7 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
     if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain)) ondrain();
   }
 
-  // If the user pushes more data while we're writing to dest then we'll end up
+  // If the usuario pushes more data while we're writing to dest then we'll end up
   // in ondata again. However, we only want to increase awaitDrain once because
   // dest will only emit one 'drain' event for the multiple writes.
   // => Introduce a guard on increasing awaitDrain.
@@ -13483,7 +13483,7 @@ Readable.prototype.pipe = function (dest, pipeOpts) {
     increasedAwaitDrain = false;
     var ret = dest.write(chunk);
     if (false === ret && !increasedAwaitDrain) {
-      // If the user unpiped during `dest.write()`, it is possible
+      // If the usuario unpiped during `dest.write()`, it is possible
       // to get stuck in a permanently paused state if that write
       // also returned false.
       // => Check whether `dest` is still a piping destination.
@@ -13631,7 +13631,7 @@ function nReadingNextTick(self) {
 }
 
 // pause() and resume() are remnants of the legacy readable stream API
-// If the user uses them, then switch into old mode.
+// If the usuario uses them, then switch into old mode.
 Readable.prototype.resume = function () {
   var state = this._readableState;
   if (!state.flowing) {
@@ -21252,7 +21252,7 @@ var PDFSecurity = /*#__PURE__*/function () {
     _classCallCheck(this, PDFSecurity);
 
     if (!options.ownerPassword && !options.userPassword) {
-      throw new Error('None of owner password and user password is defined.');
+      throw new Error('None of owner password and usuario password is defined.');
     }
 
     this.document = document;
@@ -23521,7 +23521,7 @@ var EmbeddedFont = /*#__PURE__*/function (_PDFFont) {
   }, {
     key: "layout",
     value: function layout(text, features, onlyWidth) {
-      // Skip the cache if any user defined features are applied
+      // Skip the cache if any usuario defined features are applied
       if (features) {
         return this.layoutRun(text, features);
       }
@@ -23918,7 +23918,7 @@ var LineWrapper = /*#__PURE__*/function (_EventEmitter) {
     _this.on('firstLine', function (options) {
       // if this is the first line of the text segment, and
       // we're continuing where we left off, indent that much
-      // otherwise use the user specified indent option
+      // otherwise use the usuario specified indent option
       var indent = _this.continuedX || _this.indent;
       _this.document.x += indent;
       _this.lineWidth -= indent;
@@ -24101,7 +24101,7 @@ var LineWrapper = /*#__PURE__*/function (_EventEmitter) {
         }
 
         if (bk.required || w > _this2.spaceLeft) {
-          // if the user specified a max height and an ellipsis, and is about to pass the
+          // if the usuario specified a max height and an ellipsis, and is about to pass the
           // max height and max columns after the next line, append the ellipsis
           var lh = _this2.document.currentLineHeight(true);
 
@@ -24197,7 +24197,7 @@ var LineWrapper = /*#__PURE__*/function (_EventEmitter) {
       this.emit('sectionEnd', options, this);
 
       if (++this.column > this.columns) {
-        // if a max height was specified by the user, we're done.
+        // if a max height was specified by the usuario, we're done.
         // otherwise, the default is to make a new page at the bottom.
         if (this.height != null) {
           return false;
@@ -29288,7 +29288,7 @@ function DeflateState() {
    */
 
   this.window_size = 0;
-  /* Actual size of window: 2*wSize, except when the user input buffer
+  /* Actual size of window: 2*wSize, except when the usuario input buffer
    * is directly used as sliding window.
    */
 
@@ -41854,7 +41854,7 @@ var GlyphRun = function () {
     this.direction = direction$$ || direction(script);
 
     /**
-     * The features requested during shaping. This is a combination of user
+     * The features requested during shaping. This is a combination of usuario
      * specified features and features chosen by the shaper.
      * @type {object}
      */
@@ -42140,7 +42140,7 @@ var features = {
     exclusive: true,
     noAlternates: 0
   },
-  // user defined options
+  // usuario defined options
   designComplexity: {
     code: 18,
     exclusive: true,
@@ -54475,7 +54475,7 @@ module.exports = {
         table: function() { return __webpack_require__(109) },
     },
 
-    // GBK (~22000 chars) is an extension of CP936 that added user-mapped chars and some other.
+    // GBK (~22000 chars) is an extension of CP936 that added usuario-mapped chars and some other.
     'gbk': {
         type: '_dbcs',
         table: function() { return __webpack_require__(109).concat(__webpack_require__(176)) },

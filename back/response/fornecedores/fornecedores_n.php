@@ -9,8 +9,8 @@ $fornecedor = array(
     'endereco' => @$_POST['endereco_fornecedor'],
 );
 if (@$_POST['new'] == 1) {
-    $f->novoFornecedor($fornecedor);
+    $f->storeFornecedor($fornecedor);
 } elseif (@$_POST['edit'] == 1) {
-    $f->editFornecedor($fornecedor, $_POST['idfornecedor']);
+    $f->updateFornecedor($fornecedor, $_POST['idfornecedor']);
 }
 ?>

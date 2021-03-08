@@ -464,7 +464,7 @@ $.extend( KeyTable.prototype, {
 
 	/**
 	 * Get an array of the column indexes that KeyTable can operate on. This
-	 * is a merge of the user supplied columns and the visible columns.
+	 * is a merge of the usuario supplied columns and the visible columns.
 	 *
 	 * @private
 	 */

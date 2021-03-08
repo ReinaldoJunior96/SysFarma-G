@@ -509,7 +509,7 @@ $.extend( ColReorder.prototype, {
 	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 	/**
-	 * Enable / disable end user interaction
+	 * Enable / disable end usuario interaction
 	 */
 	fnEnable: function ( flag )
 	{
@@ -521,7 +521,7 @@ $.extend( ColReorder.prototype, {
 	},
 
 	/**
-	 * Disable end user interaction
+	 * Disable end usuario interaction
 	 */
 	fnDisable: function ()
 	{
@@ -985,7 +985,7 @@ $.extend( ColReorder.prototype, {
 		if ( this.dom.drag === null )
 		{
 			/* Only create the drag element if the mouse has moved a specific distance from the start
-			 * point - this allows the user to make small mouse movements when sorting and not have a
+			 * point - this allows the usuario to make small mouse movements when sorting and not have a
 			 * possibly confusing drag element showing up
 			 */
 			if ( Math.pow(
@@ -1206,7 +1206,7 @@ $.extend( ColReorder.prototype, {
 
 
 	/**
-	 * Copy the TH element that is being drags so the user has the idea that they are actually
+	 * Copy the TH element that is being drags so the usuario has the idea that they are actually
 	 * moving it around the page.
 	 *  @method  _fnCreateDragNode
 	 *  @returns void
@@ -1324,7 +1324,7 @@ ColReorder.defaults = {
 	bEnable: true,
 
 	/**
-	 * Redraw the table's column ordering as the end user draws the column
+	 * Redraw the table's column ordering as the end usuario draws the column
 	 * (`true`) or wait until the mouse is released (`false` - default). Note
 	 * that this will perform a redraw on each reordering, which involves an
 	 * Ajax request each time if you are using server-side processing in

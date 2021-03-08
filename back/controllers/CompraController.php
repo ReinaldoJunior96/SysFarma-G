@@ -16,12 +16,7 @@ class CompraController
         $this->data = new DateTime('NOW');
     }
 
-    /**
-     * @param $forcenedor
-     * @param $infoNE
-     *
-     */
-    public function cadastroOrdemCompra($forcenedor, $infoNE)
+    public function storeOC($forcenedor, $infoNE)
     {
         try {
             $this->conn->beginTransaction();
@@ -35,7 +30,7 @@ class CompraController
             $lastID = $this->conn->lastInsertId();
             if ($queryExecute) {
                 $this->conn->commit();
-                self::cadastroNFTemp($forcenedor, $this->data->format('Y-m-d H:i:s'), $lastID);
+                self::storeNFTemp($forcenedor, $this->data->format('Y-m-d H:i:s'), $lastID);
             }
 
         } catch (PDOException $erro) {
@@ -43,7 +38,7 @@ class CompraController
         }
     }
 
-    public function cadastroNFTemp($forcenedor, $data, $lastID)
+    public function storeNFTemp($forcenedor, $data, $lastID)
     {
         try {
             $this->conn->beginTransaction();
@@ -62,15 +57,10 @@ class CompraController
         }
     }
 
-
-
-
-
-
-    public function deleteOrdem($id)
+    public function deleteOC($id)
     {
         try {
-            $search = self::verOrdem($id);
+            $search = self::listUniqueOC($id);
             $idNF = $search[0]->id_fk_nf;
             $deleteNF = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_nf WHERE id_nf='$idNF' AND status_nf='0'");
             $deleteNF->execute();
@@ -83,7 +73,7 @@ class CompraController
         }
     }
 
-    public function addProdCompra($produto, $ordemCompra, $qtdeCompra, $valorUn)
+    public function adicionarPOC($produto, $ordemCompra, $qtdeCompra, $valorUn)
     {
         try {
             $this->conn->beginTransaction();
@@ -109,7 +99,7 @@ class CompraController
         }
     }
 
-    public function deleteProdOrdem($id)
+    public function deletePOC($id)
     {
         try {
             $deleteProd = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_items_compra WHERE id_item_compra='$id'");
@@ -119,21 +109,21 @@ class CompraController
         }
     }
 
-    public function verOrdens()
+    public function listOC(): array
     {
         $ver = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra");
         $ver->execute();
         return $ver->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function verOrdem($id)
+    public function listUniqueOC($id): array
     {
         $ver = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra WHERE id_ordem='$id'");
         $ver->execute();
         return $ver->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function verOrdemTotal($idOrdem)
+    public function listOCwithEstoque($idOrdem): array
     {
         $selectQuery = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra
 		INNER JOIN tbl_items_compra 
@@ -145,7 +135,7 @@ class CompraController
         return $selectQuery->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function alterarItemCompra($iditemcompra, $produto, $qtde, $idordem, $valoruni)
+    public function updateItemOC($iditemcompra, $produto, $qtde, $idordem, $valoruni)
     {
         try {
             $this->conn->beginTransaction();

@@ -10,7 +10,7 @@ class FornecedorController
         $this->conn = PDOconectar::conectar();
     }
 
-    public function novoFornecedor($fornecedor)
+    public function storeFornecedor($fornecedor)
     {
         try {
             $this->conn->beginTransaction();
@@ -26,7 +26,6 @@ class FornecedorController
             $sql->execute();
             if ($sql) {
                 $this->conn->commit();
-                echo "<script language=\"javascript\">window.history.back();</script>";
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
@@ -34,7 +33,7 @@ class FornecedorController
         }
     }
 
-    public function editFornecedor($fornecedor, $id)
+    public function updateFornecedor($fornecedor, $id)
     {
         try {
             $this->conn->beginTransaction();
@@ -55,43 +54,42 @@ class FornecedorController
             $editFornecedor->execute();
             if ($editFornecedor) {
                 $this->conn->commit();
-                echo "<script language=\"javascript\">window.history.back();</script>";
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
-    public function verFornecedores()
+    public function listFornecedores(): array
     {
+        $fornecedores = null;
         try {
             $viewFornecedores = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_fornecedores ORDER BY nome_fornecedor ASC");
             $viewFornecedores->execute();
-            return $viewFornecedores->fetchAll(PDO::FETCH_OBJ);
+            $fornecedores = $viewFornecedores->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
+        return $fornecedores;
     }
 
-    public function verFornecedor($id)
+    public function listUniqueFornecedor($id): array
     {
+        $uniqueFornecedor = null;
         try {
             $viewFornecedor = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_fornecedores WHERE id_fornecedor='$id'");
             $viewFornecedor->execute();
-            return $viewFornecedor->fetchAll(PDO::FETCH_OBJ);
+            $uniqueFornecedor = $viewFornecedor->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
+        return $uniqueFornecedor;
     }
 
-    public function destroyFornecedor($id)
+    public function deleteFornecedor($id)
     {
         try {
             $deleteFornecedor = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_fornecedores WHERE id_fornecedor='$id'");
             $deleteFornecedor->execute();
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 

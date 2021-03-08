@@ -10,7 +10,7 @@
         <li class="nav-item dropdown ">
             <a class="nav-link text-white" data-toggle="dropdown" href="#">
                 <i class="fas fa-user"></i>
-                <span>Usuário: <?= $_SESSION['user'] ?></span>
+                <span>Usuário: <?= $_SESSION['usuario'] ?></span>
             </a>
         </li>
     </ul>

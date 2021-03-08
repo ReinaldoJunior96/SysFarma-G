@@ -1,16 +1,14 @@
 <?php
 session_start();
-if ($_SESSION['user'] == NULL || $_SESSION['password'] == NULL) {
-    header("location: views/user/login.php");
+if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
+    header("location: views/usuario/login.php");
 }
-require_once('back/controllers/configCRUD.php');
-$s = new ConfigCRUD();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <meta http-equiv="refresh" content="0; URL=views/user/dashboard.php"/>
+    <meta http-equiv="refresh" content="0; URL=views/usuario/dashboard.php"/>
 </head>
 
 <body>

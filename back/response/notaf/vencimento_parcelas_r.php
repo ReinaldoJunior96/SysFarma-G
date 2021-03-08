@@ -5,7 +5,7 @@ $dataVencimento = array(
     'vencimento'=>$_POST['d_vencimento'],
 );
 $venciemento = new NotaFiscalController();
-$venciemento->venciementoParcelas($dataVencimento);
+$venciemento->storeVencimentoNF($dataVencimento);
 echo "<script language=\"javascript\">window.history.back();</script>";
 
 
