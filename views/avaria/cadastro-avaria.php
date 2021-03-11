@@ -104,22 +104,7 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
 
                             </div>
                             <div class="p-2 flex-shrink-1 bd-highlight">
-                                <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Sucesso!!</strong> Avaria Registrada.
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                <?php elseif (isset($_GET['status']) && $_GET['status'] == 'fail'): ?>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Erro!</strong> Quantidade avariada é maior que a quantidade existente no
-                                        sistema.
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                <?php endif; ?>
+
 
                             </div>
                         </div>
@@ -158,6 +143,23 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                         <?php } ?>
                     </table>
                 </div>
+                <div class="fixed-bottom position-sticky">
+                    <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+                        <div class="alert alert-success alert-dismissible fade show w-25 ml-3" role="alert">
+                            <strong>Sucesso!!</strong> Operação realizada.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php elseif (isset($_GET['status']) && $_GET['status'] == 'fail'): ?>
+                        <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+                            <strong>Erro!</strong> Erro ao realizar operação.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
@@ -187,6 +189,7 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../dist/js/dataTableCustom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements

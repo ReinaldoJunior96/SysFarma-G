@@ -3,6 +3,9 @@ session_start();
 if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
     header("location: ../usuario/login.php");
 }
+require_once('../../back/controllers/EstoqueController.php');
+$produto = new EstoqueController();
+$todosProdutos = $produto->verEstoqueTotal();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -91,67 +94,22 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                 </form>
             </div>
             <!-- /.card -->
-            <?php if (isset($_GET['setores']) && isset($_GET['dataI']) && isset($_GET['dataF'])): ?>
-                <?php $dataI = date_create($_GET['dataI']); ?>
-                <?php $dataF = date_create($_GET['dataF']); ?>
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Setor: <?= @$_GET['setores'] ?> / Data
-                            Inicial: <?= date_format($dataI, "d/m/Y"); ?> / Data
-                            Final: <?= date_format($dataF, "d/m/Y"); ?> </h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Produto</th>
-                                <th style="width: 40px">Quanitdade</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php if (isset($_GET['setores']) && isset($_GET['dataI']) && isset($_GET['dataF'])): ?>
-                                <?php
-                                require_once('../../back/controllers/EstoqueController.php');
-                                $produto = new EstoqueController();
-                                $todosProdutos = $produto->verEstoqueTotal();
-                                if (isset($_GET['setores']) && isset($_GET['dataI']) && isset($_GET['dataF'])):
-                                    $seguraItem = array(
-                                        'produto' => array(),
-                                        'quantidade' => array()
-                                    );
-                                    foreach ($todosProdutos as $v) {
-                                        $soma = 0;
-                                        $saidasDoProduto = $produto->relatorioConsumo($_GET['setores'], $_GET['dataI'], $_GET['dataF'], $v->id_estoque);
-
-                                        foreach ($saidasDoProduto as $s) {
-                                            $soma += $s->quantidade_s;
-                                        }
-                                        if ($soma != 0):
-                                            array_push($seguraItem['produto'], $v->produto_e);
-                                            array_push($seguraItem['quantidade'], $soma);
-                                        endif;
-
-
-                                    }
-                                    for ($i = 0;
-                                         $i < count($seguraItem['produto']);
-                                         $i++):
-                                        ?>
-                                        <tr>
-                                            <td><?= $i ?></td>
-                                            <td><?= $seguraItem['produto'][$i] ?></td>
-                                            <td class="bg-olive text-white text-center"><?= $seguraItem['quantidade'][$i] ?></td>
-                                        </tr>
-                                    <?php endfor; ?>
-                                <?php endif; ?>
+            <ul class="list-group">
+                <?php if (isset($_GET['setor']) && isset($_GET['dataI']) && isset($_GET['dataF'])): ?>
+                    <?php foreach ($todosProdutos as $prod): ?>
+                        <?php if ($produto->verificarSaidaConsumo($prod->id_estoque, $_GET['dataI'], $_GET['dataF']) >= 1): ?>
+                            <?php $filtrados = $produto->rconsumo($_GET['setor'], $_GET['dataI'], $_GET['dataF'], $prod->id_estoque); ?>
+                            <?php if (!empty($filtrados) or $filtrados!=null): ?>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <?= $filtrados[0]->produto_e ?>
+                                    <span class="badge badge-white badge-pill"><?= $filtrados[0]->somatorio ?></span>
+                                </li>
                             <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </ul>
+
         </div>
     </div>
     <!-- /.content-wrapper -->

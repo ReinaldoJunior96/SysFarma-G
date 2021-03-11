@@ -98,13 +98,11 @@ class AvariaController
     {
         $produtoID = null;
         $qtdeAvaria = null;
-        $erroLocalDelete = null;
+        $erroLocalDelete = 0;
         try {
             $dadosAvaria = self::listUniquePA($idAvaria);
-            foreach ($dadosAvaria as $k):
-                $produtoID = $k->produto_avaria;
-                $qtdeAvaria = $k->quantidade_avaria;
-            endforeach;
+            $produtoID = $dadosAvaria[0]->produto_avaria;
+            $qtdeAvaria = $dadosAvaria[0]->quantidade_avaria;
             if (self::returnQtdeForEstoque($produtoID, $qtdeAvaria, $user) == 1):
                 $deleteAvaria = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_avaria WHERE id_avaria='$idAvaria'");
                 $deleteAvaria->execute();

@@ -114,12 +114,29 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                                     class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
                                     </td>
                                     <td class="text-center"><a
-                                                href="../../back/response/fornecedores/d_fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"
+                                                href="../../back/response/fornecedores/delete-fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"
                                         <i class="fas fa-window-close text-danger"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
                         </table>
+                    </div>
+                    <div class="fixed-bottom position-sticky">
+                        <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+                            <div class="alert alert-success alert-dismissible fade show w-25 ml-3" role="alert">
+                                <strong>Sucesso!!</strong> Operação realizada.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php elseif (isset($_GET['status']) && $_GET['status'] == 'fail'): ?>
+                            <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+                                <strong>Erro!</strong> Erro ao realizar operação.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

@@ -120,12 +120,12 @@
                                 <p>Estoque Almoxarifado</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a href="../../relatorio/relatorio-consumo.php" class="nav-link">
                                 <i class="fas fa-file-export"></i>
                                 <p>Consumo</p>
                             </a>
-                        </li>
+                        </li>-->
                     </ul>
                 </li>
 

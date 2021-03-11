@@ -86,11 +86,14 @@ class FornecedorController
 
     public function deleteFornecedor($id)
     {
+        $erro = 0;
         try {
             $deleteFornecedor = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_fornecedores WHERE id_fornecedor='$id'");
             $deleteFornecedor->execute();
+            $erro = ($deleteFornecedor) ? 0 : 1;
         } catch (PDOException $erro) {
         }
+        return $erro;
     }
 
 }
