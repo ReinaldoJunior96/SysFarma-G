@@ -125,7 +125,7 @@ switch ($_SESSION['usuario']) {
                             <tr>
                                 <td class=""><?= $v->id_ordem ?></td>
                                 <td ><a class="text-olive font-weight-bold"
-                                            href="../nota-fiscal/produtos-nota-fiscal.php?idnf=<?= $v->id_fk_nf ?>"><?= $v->id_fk_nf ?></a>
+                                            href="../nota-fiscal/produtos-nota-fiscal.php?idnf=<?= $v->id_fk_nf ?>">Acessar</a>
                                 </td>
                                 <td ><a class="text-olive"
                                             href="adicionar-produtos.php?idordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>

@@ -256,7 +256,6 @@ class EstoqueController
             }
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro ao registrar transacao\")</script>";
         }
     }
 

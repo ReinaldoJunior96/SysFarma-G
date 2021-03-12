@@ -42,6 +42,9 @@ $("#cadatrar-prod-compra").submit(function (event) {
         ).then((result) => {
             if (result.isConfirmed) {
                 document.location.reload(false);
+                document.getElementById('selectprodid').selectedIndex = 0;
+                document.getElementById('saidaqte_p').value = " ";
+                document.getElementById('valor_un_c').value = " ";
             }
         })
     });

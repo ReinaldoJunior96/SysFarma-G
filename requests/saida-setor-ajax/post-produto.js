@@ -26,7 +26,7 @@ $("#insertSaida").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/saidasetor/registrar-saida-back.php",
+        url: "../../back/response/saida-setor/registrar-saida-back.php",
         type: "post",
         data: serializedData
     });

@@ -144,7 +144,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                 <td> <?= $prodLotes->lote ?></td>
                                 <td> <?= date_format($data, "d/m/Y") ?></td>
                                 <td>
-                                    <a href="../../back/response/notaf/d_lotes.php?idl=<?= $prodLotes->id_nf_lote ?>">
+                                    <a href="../../back/response/notaf/delete-lote.php?idl=<?= $prodLotes->id_nf_lote ?>">
                                         <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
                                     </a>
                                 </td>

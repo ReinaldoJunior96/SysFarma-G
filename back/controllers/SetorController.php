@@ -44,13 +44,13 @@ class SetorController
 
     public function deleteSetor($id)
     {
+        $erro = 0;
         try {
             $query_Sql = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_setores WHERE id_setor=$id");
             $query_Sql->execute();
-            if ($query_Sql) {
-                $this->conn->commit();
-            }
+            $erro = ($query_Sql) ? 0 : 1;
         } catch (PDOException $erro) {
         }
+        return $erro;
     }
 }

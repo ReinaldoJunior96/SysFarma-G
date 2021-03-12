@@ -93,7 +93,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
 
                     <form role="form" id="estoqueform" method="post">
                         <input type="hidden" name="edit" value="1">
-                        <input type="hidden" name="user" value="<?= $_SESSION['usuario'] ?>">
+                        <input type="hidden" name="usuario" value="<?= $_SESSION['usuario'] ?>">
                         <input type="hidden" name="id" value="<?= $_GET['idp'] ?>">
 
                         <div class="card-body">

@@ -97,9 +97,10 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                         <td><?= $v->quantidade_s ?></td>
                                         <td><?= str_replace("-", " ", $v->setor_s) ?></td>
                                         <td><?= ($v->data_s == '0000-00-00 00:00:00') ? date("d/m/Y H:i:s", strtotime($v->data_dia_s)) : date("d/m/Y H:i:s", strtotime($v->data_s)) ?></td>
-                                        <td class="text-center"><a href=registrar-devolucao.php?idsaida=<?= $v->id_saida ?>><i
+                                        <td class="text-center"><a
+                                                    href=registrar-devolucao.php?idsaida=<?= $v->id_saida ?>><i
                                                         class="fas fa-exchange-alt text-teal"></i></a></td>
-                                        <?php echo "<td class='text-center'><a href=../../back/response/saidasetor/d_saida_r.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "&usuario=" . $_SESSION['usuario'] . "><i class='fas fa-backspace text-danger'></i></a></td>" ?>
+                                        <?php echo "<td class='text-center'><a href=../../back/response/saida-setor/delete-saida.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "&usuario=" . $_SESSION['usuario'] . "><i class='fas fa-backspace text-danger'></i></a></td>" ?>
 
                                     </tr>
                                 <?php } ?>

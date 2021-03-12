@@ -14,6 +14,5 @@ $produtoFiltrado = array(
     'usuario' => $_POST['usuario'],
 );
 
-
 $estoqueClass = new EstoqueController();
 $estoqueClass->inseirSaida($produtoFiltrado);

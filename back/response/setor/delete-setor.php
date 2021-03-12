@@ -2,4 +2,8 @@
 require_once('../../controllers/SetorController.php');
 $s = new SetorController();
 $s->deleteSetor($_GET['setor']);
-echo "<script language=\"javascript\">window.history.back();</script>";
+if ($s->deleteSetor($_GET['setor']) == 0):
+    header("location: ../../../views/setores/cadastro-setor.php?status=success");
+else:
+    header("location: ../../../views/setores/cadastro-setor.php?status=fail");
+endif;

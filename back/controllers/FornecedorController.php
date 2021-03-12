@@ -96,4 +96,18 @@ class FornecedorController
         return $erro;
     }
 
+    public function listProdFornecedores($fornecedor): array
+    {
+        $prodFornecedores = null;
+        try {
+            $viewFornecedor = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_prod_fornecedor 
+            INNER JOIN tbl_estoque ON tbl_prod_fornecedor.idproduto = tbl_estoque.id_estoque
+            WHERE tbl_prod_fornecedor.idfornecedor='$fornecedor'");
+            $viewFornecedor->execute();
+            $prodFornecedores = $viewFornecedor->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+        }
+        return $prodFornecedores;
+    }
+
 }

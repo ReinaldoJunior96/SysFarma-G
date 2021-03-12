@@ -173,12 +173,26 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                             </a>
                             <hr>
                         </form>
-
-
                     <?php } ?>
 
                 </div>
-
+                <div class="fixed-bottom position-sticky">
+                    <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+                        <div class="alert alert-success alert-dismissible fade show w-25 ml-3" role="alert">
+                            <strong>Sucesso!!</strong> Operação realizada, não esqueça de alterar os dados da NF/NE.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php elseif (isset($_GET['status']) && $_GET['status'] == 'fail'): ?>
+                        <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
+                            <strong>Erro!</strong> Erro ao realizar operação.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>

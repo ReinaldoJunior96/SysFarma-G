@@ -120,7 +120,7 @@ foreach ($nfController->listUniqueNF($idenNF) as $status) {
                                         <span class="input-group-text bg-olive"><i
                                                     class="fas fa-sort-numeric-up-alt"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" value="" name="saidaqte_p" id="saidaqte_p">
+                                    <input type="number" class="form-control" value="" name="saidaqte_p" id="saidaqte_p">
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
@@ -144,9 +144,11 @@ foreach ($nfController->listUniqueNF($idenNF) as $status) {
                 </form>
                 <hr>
                 <?php
+                $somatorio = 0;
                 foreach ($dadosOrdem as $value) {
                     $valorTotalProduto = $value->valor_un_c * $value->qtde_compra;
                     $valorUnCompra = floatval($value->valor_un_c);
+                    $somatorio += $valorTotalProduto;
                     ?>
                     <form method="post" action="../../back/response/ordem-compra/update-prod-compra.php"
                           id="alterarproduto">
@@ -199,10 +201,14 @@ foreach ($nfController->listUniqueNF($idenNF) as $status) {
                                     </div>
                                 <?php endif; ?>
                             </div>
+
                         </div>
                         <hr>
                     </form>
                 <?php } ?>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success border-0 rounded-0 text-right"><b>Total: <?=number_format($somatorio, 2, '.', '');?></b></li>
+                </ul>
             </div>
             <!-- /.card -->
         </div>

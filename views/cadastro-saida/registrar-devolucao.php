@@ -60,7 +60,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                 <!-- /.card-header -->
                 <!-- form start -->
 
-                <form role="form" method="post" action="../../back/response/saidasetor/post-devolucao.php">
+                <form role="form" method="post" action="../../back/response/saida-setor/post-devolucao.php">
                     <?php
                     require_once('../../back/controllers/EstoqueController.php');
                     $d = new EstoqueController();
@@ -71,7 +71,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                         ?>
                         <div class="card-body">
 
-                            <input type="hidden" name="user" value="<?= $_SESSION['usuario'] ?>">
+                            <input type="hidden" name="usuario" value="<?= $_SESSION['usuario'] ?>">
                             <input type="hidden" name="idsaida" value="<?= $k->id_saida ?>">
                             <input type="hidden" name="itemsaida" value="<?= $k->item_s ?>">
                             <input type="hidden" name="quantidadesaida" value="<?= $k->quantidade_s ?>">

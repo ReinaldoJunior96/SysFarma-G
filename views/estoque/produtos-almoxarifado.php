@@ -52,7 +52,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                 <!-- form start -->
                 <form role="form" id="estoqueform" method="post">
                     <input type="hidden" name="new" value="1">
-                    <input type="hidden" name="user" value="<?= $_SESSION['usuario'] ?>">
+                    <input type="hidden" name="usuario" value="<?= $_SESSION['usuario'] ?>">
                     <input type="hidden" name="tipo" value="material">
                     <div class="card-body">
                         <div class="row">

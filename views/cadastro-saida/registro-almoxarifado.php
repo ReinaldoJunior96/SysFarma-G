@@ -62,11 +62,11 @@ $all_estoque = $view_estoque->verProdDiversos();
                 <span class="badge badge-pill bg-white text-olive"><i
                             class="text-olive fas fa-star-half"></i><?= date_format($date, 'd/m/Y') ?></span>
             </div>
-            <!--<form method="POST" action="../../back/response/saidasetor/registrar-saida-back.php">-->
+            <!--<form method="POST" action="../../back/response/saida-setor/registrar-saida-back.php">-->
             <form method="POST" id="insertSaida">
                 <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
                 <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
-                <input type="hidden" name="user" value="<?= $_SESSION['usuario'] ?>">
+                <input type="hidden" name="usuario" value="<?= $_SESSION['usuario'] ?>">
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-8">
@@ -83,13 +83,13 @@ $all_estoque = $view_estoque->verProdDiversos();
                             <label class="font-weight-normal">Quantidade</label>
                             <div class="input-group">
                                 <input type="number" class="form-control"
-                                       id="qtdesolicitada" name="quantidade_solicitada" required onkeyup="validacao();">
+                                       id="qtdesolicitada" name="quantidade_solicitada" required  onkeyup="validacao();">
                             </div>
                         </div>
                         <div class="form-group col-md-2">
                             <label class="font-weight-normal">Em Estoque</label>
                             <div class="input-group">
-                                <input class="form-control" id="estoque" type="text" value="">
+                                <input class="form-control" id="estoque"  readonly type="text" value="">
                             </div>
                         </div>
                     </div>
@@ -137,6 +137,9 @@ $all_estoque = $view_estoque->verProdDiversos();
 <script src="../../requests/saida-setor-ajax/post-produto.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
+
+</script>
+<script>
     $(function (qualifiedName, value) {
         //Initialize Select2 Elements
         $('.select2').select2()
@@ -147,8 +150,6 @@ $all_estoque = $view_estoque->verProdDiversos();
         })
 
     })
-</script>
-<script>
     function validacao() {
         const solicitada = parseInt(document.getElementById('qtdesolicitada').value);
         const estoque = parseInt(document.getElementById('estoque').value);
@@ -159,5 +160,6 @@ $all_estoque = $view_estoque->verProdDiversos();
         }
     }
 </script>
+
 </body>
 </html>

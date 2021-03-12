@@ -46,7 +46,8 @@ $setores = $s->listSetores();
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-md-9">
-                                <label class="font-weight-normal"><i class="fas fa-long-arrow-alt-right"></i> Escolha um setor</label>
+                                <label class="font-weight-normal"><i class="fas fa-long-arrow-alt-right"></i> Escolha um
+                                    setor</label>
                                 <select class="form-control select2 col-md-12" name="nomesetor" required>
                                     <option selected></option>
                                     <?php foreach ($setores as $values): ?>
@@ -55,7 +56,8 @@ $setores = $s->listSetores();
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="font-weight-normal"><i class="fas fa-long-arrow-alt-right"></i> Data de registro</label>
+                                <label class="font-weight-normal"><i class="fas fa-long-arrow-alt-right"></i> Data de
+                                    registro</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-olive"><i
@@ -133,16 +135,12 @@ $setores = $s->listSetores();
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <script>
-    $(function () {
-        //Initialize Select2 Elements
+    window.onload = function () {
         $('.select2').select2()
-
-        //Initialize Select2 Elements
         $('.select2bs4').select2({
             theme: 'bootstrap4'
         })
-    })
-
+    };
 </script>
 </body>
 </html>

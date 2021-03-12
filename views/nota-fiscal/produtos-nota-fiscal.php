@@ -133,13 +133,14 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                 <td><?= $v->qtde_compra ?></td>
                                 <td>R$ <?= $v->valor_un_c ?></td>
                                 <td>R$ <?= $v->qtde_compra * $v->valor_un_c ?></td>
-                                <!--                                    --><?php //echo "<td><a href=../../back/response/notaf/d_produto_nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
+                                <!--                                    --><?php //echo "<td><a href=../../back/response/notaf/delete-prod-nf.php?id_prod_nf=" . $v->id_itens . "&item_estoque=" . $v->item_nf . "&qtde_nf=" . $v->qtde_nf . "><i class='fas fa-trash text-danger'></i></a></td>" ?>
                             </tr>
                         <?php } ?>
                     </table>
                 </div>
                 <!-- /.card-body -->
             </div>
+
         </div>
     </div>
 

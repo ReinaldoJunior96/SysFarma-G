@@ -66,7 +66,7 @@ $view_estoque->verProdDiversos();
             <form method="POST" id="insertSaida">
                 <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
                 <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
-                <input type="hidden" name="user" value="<?= $_SESSION['usuario'] ?>">
+                <input type="hidden" name="usuario" value="<?= $_SESSION['usuario'] ?>">
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-8">

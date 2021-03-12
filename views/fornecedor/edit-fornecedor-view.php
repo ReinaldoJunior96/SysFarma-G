@@ -32,7 +32,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
             <!-- general form elements -->
             <div class="card card-olive">
                 <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i> Aletar Fornecedor</h3>
+                    <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i> Alterar Fornecedor</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -47,7 +47,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                         <input type="hidden" name="idfornecedor" value="<?= $_GET['idfornecedor'] ?>">
                         <div class="card-body">
                             <div class="form-group">
-                                <label  class="font-weight-normal" for="exampleInputEmail1">Nome</label>
+                                <label class="font-weight-normal" for="exampleInputEmail1">Nome</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                        placeholder="Qual nome do forncedor?" name="fornecedor"
                                        value="<?= $value->nome_fornecedor ?>">
@@ -56,7 +56,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                 <div class="col-sm-4">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <label  class="font-weight-normal" >Telefone</label>
+                                        <label class="font-weight-normal">Telefone</label>
                                         <input type="text" class="form-control" placeholder="Número p/ contato"
                                                name="telefone_fornecedor" value="<?= $value->contato_fornecedor ?>">
                                     </div>
@@ -64,7 +64,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                 <div class="col-sm-4">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <label  class="font-weight-normal">E-mail</label>
+                                        <label class="font-weight-normal">E-mail</label>
                                         <input type="email" class="form-control" placeholder="E-mail p/ contato"
                                                name="email_fornecedor" value="<?= $value->email_fornecedor ?>">
                                     </div>
@@ -72,7 +72,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                 <div class="col-sm-4">
                                     <!-- text input -->
                                     <div class="form-group">
-                                        <label  class="font-weight-normal">CPF/CNPJ</label>
+                                        <label class="font-weight-normal">CPF/CNPJ</label>
                                         <input type="text" class="form-control"
                                                placeholder="Identificação do fornecedor"
                                                name="cnpj_fornecedor" value="<?= $value->cnpj_f ?>">
@@ -80,7 +80,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label  class="font-weight-normal">Endereço</label>
+                                <label class="font-weight-normal">Endereço</label>
                                 <textarea class="form-control" rows="3" placeholder="Onde ele se localiza?"
                                           name="endereco_fornecedor"><?= $value->endereco_f ?></textarea>
                             </div>
@@ -91,6 +91,27 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                         </div>
                     </form>
                 <?php } ?>
+            </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <!-- general form elements -->
+            <div class="card card-olive">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-people-arrows nav-icon"></i> Produtos Fornececidos</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <?php
+                        $produtosFornecedor = $f->listProdFornecedores($_GET['idfornecedor']);
+                        foreach ($produtosFornecedor as $prod):
+                            ?>
+
+                            <li class="list-group-item"><?= $prod->produto_e ?></li>
+
+
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
