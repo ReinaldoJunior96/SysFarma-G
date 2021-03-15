@@ -865,7 +865,7 @@ DataTable.ext.buttons.copyHtml5 = {
 			catch (t) {}
 		}
 
-		// Otherwise we show the text box and instruct the usuario to use it
+		// Otherwise we show the text box and instruct the user to use it
 		var message = $('<span>'+dt.i18n( 'buttons.copyKeys',
 				'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>'+
 				'To cancel, click this message or press escape.' )+'</span>'
@@ -874,12 +874,12 @@ DataTable.ext.buttons.copyHtml5 = {
 
 		dt.buttons.info( dt.i18n( 'buttons.copyTitle', 'Copy to clipboard' ), message, 0 );
 
-		// Select the text so when the usuario activates their system clipboard
+		// Select the text so when the user activates their system clipboard
 		// it will copy that text
 		textarea[0].focus();
 		textarea[0].select();
 
-		// Event to hide the message when the usuario is done
+		// Event to hide the message when the user is done
 		var container = $(message).closest('.dt-button-info');
 		var close = function () {
 			container.off( 'click.buttons-copy' );

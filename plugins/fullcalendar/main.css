@@ -16,7 +16,7 @@ body .fc {
 /* Colors
 --------------------------------------------------------------------------------------------------*/
 .fc-highlight {
-  /* when usuario is selecting cells */
+  /* when user is selecting cells */
   background: #bce8f1;
   opacity: 0.3;
 }
@@ -317,7 +317,7 @@ temporary rendered events).
   content: "";
   position: absolute;
   z-index: 9999;
-  /* usuario of this util can scope within a lower z-index */
+  /* user of this util can scope within a lower z-index */
   top: 50%;
   left: 50%;
   width: 40px;

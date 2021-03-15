@@ -2077,7 +2077,7 @@ S2.define('select2/selection/search',[
 
     // Try to detect the IE version should the `documentMode` property that
     // is stored on the document. This is only implemented in IE and is
-    // slightly cleaner than doing a usuario agent check.
+    // slightly cleaner than doing a user agent check.
     // This property is not available in Edge, but Edge also doesn't have
     // this bug.
     var msie = document.documentMode;
@@ -4774,7 +4774,7 @@ S2.define('select2/defaults',[
 
   './data/select',
   './data/array',
-  './data/avaria-ordem-ordem-compra-ordem-compra-ajax',
+  './data/ajax',
   './data/tags',
   './data/tokenizer',
   './data/minimumInputLength',
@@ -5282,14 +5282,14 @@ S2.define('select2/options',[
     if (Utils.GetData($e[0], 'ajaxUrl')) {
       if (this.options.debug && window.console && console.warn) {
         console.warn(
-          'Select2: The `data-avaria-ordem-ordem-compra-ordem-compra-ajax-url` attribute has been changed to ' +
-          '`data-avaria-ordem-ordem-compra-ordem-compra-ajax--url` and support for the old attribute will be removed' +
+          'Select2: The `data-ajax-url` attribute has been changed to ' +
+          '`data-ajax--url` and support for the old attribute will be removed' +
           ' in future versions of Select2.'
         );
       }
 
-      $e.attr('avaria-ordem-ordem-compra-ordem-compra-ajax--url', Utils.GetData($e[0], 'ajaxUrl'));
-      Utils.StoreData($e[0], 'avaria-ordem-ordem-compra-ordem-compra-ajax-Url', Utils.GetData($e[0], 'ajaxUrl'));
+      $e.attr('ajax--url', Utils.GetData($e[0], 'ajaxUrl'));
+      Utils.StoreData($e[0], 'ajax-Url', Utils.GetData($e[0], 'ajaxUrl'));
     }
 
     var dataset = {};

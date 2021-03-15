@@ -502,7 +502,7 @@ $.extend( FixedColumns.prototype , {
 			return;
 		}
 
-		/* Apply the settings from the usuario / defaults */
+		/* Apply the settings from the user / defaults */
 		this.s = $.extend( true, this.s, FixedColumns.defaults, oInit );
 
 		/* Set up the DOM as we need it and cache nodes */

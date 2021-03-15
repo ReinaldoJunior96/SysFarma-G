@@ -563,7 +563,7 @@ $.extend( RowReorder.prototype, {
 
 		// Editor interface
 		if ( this.c.editor ) {
-			// Disable usuario interaction while Editor is submitting
+			// Disable user interaction while Editor is submitting
 			this.c.enable = false;
 
 			this.c.editor
@@ -705,7 +705,7 @@ RowReorder.defaults = {
 	editor: null,
 
 	/**
-	 * Enable / disable RowReorder's usuario interaction
+	 * Enable / disable RowReorder's user interaction
 	 * @type {Boolean}
 	 */
 	enable: true,

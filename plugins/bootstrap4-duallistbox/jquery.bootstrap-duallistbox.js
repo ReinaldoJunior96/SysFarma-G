@@ -50,10 +50,10 @@
       infoTextEmpty: 'Empty list',                                                        // when there are no options present in the list
       filterOnValues: false,                                                              // filter by selector's values, boolean
       sortByInputOrder: false,
-      eventMoveOverride: false,                                                           // boolean, allows usuario to unbind default event behaviour and run their own instead
-      eventMoveAllOverride: false,                                                        // boolean, allows usuario to unbind default event behaviour and run their own instead
-      eventRemoveOverride: false,                                                         // boolean, allows usuario to unbind default event behaviour and run their own instead
-      eventRemoveAllOverride: false,                                                      // boolean, allows usuario to unbind default event behaviour and run their own instead
+      eventMoveOverride: false,                                                           // boolean, allows user to unbind default event behaviour and run their own instead
+      eventMoveAllOverride: false,                                                        // boolean, allows user to unbind default event behaviour and run their own instead
+      eventRemoveOverride: false,                                                         // boolean, allows user to unbind default event behaviour and run their own instead
+      eventRemoveAllOverride: false,                                                      // boolean, allows user to unbind default event behaviour and run their own instead
       btnClass: 'btn-outline-secondary',                                                  // sets the button style class for all the buttons
       btnMoveText: '&gt;',                                                                // string, sets the text for the "Move" button
       btnRemoveText: '&lt;',                                                              // string, sets the text for the "Remove" button

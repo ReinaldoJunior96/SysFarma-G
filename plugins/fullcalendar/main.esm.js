@@ -2282,7 +2282,7 @@ var EventApi = /** @class */ (function () {
         configurable: true
     });
     Object.defineProperty(EventApi.prototype, "classNames", {
-        // NOTE: usuario can't modify these because Object.freeze was called in event-def parsing
+        // NOTE: user can't modify these because Object.freeze was called in event-def parsing
         get: function () { return this._def.ui.classNames; },
         enumerable: true,
         configurable: true
@@ -3083,7 +3083,7 @@ function parseEventDef(raw, sourceId, allDay, hasEnd, calendar) {
         leftovers = newLeftovers;
     }
     def.extendedProps = __assign(leftovers, def.extendedProps || {});
-    // help out EventApi from having usuario modify props
+    // help out EventApi from having user modify props
     Object.freeze(def.ui.classNames);
     Object.freeze(def.extendedProps);
     return def;
@@ -4479,7 +4479,7 @@ var globalDefaults = {
     minTime: '00:00:00',
     maxTime: '24:00:00',
     showNonCurrentDates: true,
-    // event avaria-ordem-ordem-compra-ordem-compra-ajax
+    // event ajax
     lazyFetching: true,
     startParam: 'start',
     endParam: 'end',
@@ -6437,7 +6437,7 @@ function interactionSettingsToStore(settings) {
 var interactionSettingsStore = {};
 
 /*
-Detects when the usuario clicks on an event within a DateComponent
+Detects when the user clicks on an event within a DateComponent
 */
 var EventClicking = /** @class */ (function (_super) {
     __extends(EventClicking, _super);
@@ -6474,7 +6474,7 @@ var EventClicking = /** @class */ (function (_super) {
 }(Interaction));
 
 /*
-Triggers events and adds/removes core classNames when the usuario's pointer
+Triggers events and adds/removes core classNames when the user's pointer
 enters/leaves event-elements of a component.
 */
 var EventHovering = /** @class */ (function (_super) {

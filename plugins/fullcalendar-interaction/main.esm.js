@@ -205,7 +205,7 @@ var PointerDragging = /** @class */ (function () {
     PointerDragging.prototype.shouldIgnoreMouse = function () {
         return ignoreMouseDepth || this.isTouchDragging;
     };
-    // can be called by usuario of this class, to cancel touch-based scrolling for the current drag
+    // can be called by user of this class, to cancel touch-based scrolling for the current drag
     PointerDragging.prototype.cancelTouchScroll = function () {
         if (this.isDragging) {
             isWindowTouchMoveCancelled = true;
@@ -715,10 +715,10 @@ var AutoScroller = /** @class */ (function () {
     AutoScroller.prototype.buildCaches = function () {
         return this.queryScrollEls().map(function (el) {
             if (el === window) {
-                return new WindowScrollGeomCache(false); // false = don't listen to usuario-generated scrolls
+                return new WindowScrollGeomCache(false); // false = don't listen to user-generated scrolls
             }
             else {
-                return new ElementScrollGeomCache(el, false); // false = don't listen to usuario-generated scrolls
+                return new ElementScrollGeomCache(el, false); // false = don't listen to user-generated scrolls
             }
         });
     };
@@ -754,7 +754,7 @@ var FeaturefulElementDragging = /** @class */ (function (_super) {
         _this.minDistance = 0;
         _this.touchScrollAllowed = true; // prevents drag from starting and blocks scrolling during drag
         _this.mirrorNeedsRevert = false;
-        _this.isInteracting = false; // is the usuario validly moving the pointer? lasts until pointerup
+        _this.isInteracting = false; // is the user validly moving the pointer? lasts until pointerup
         _this.isDragging = false; // is it INTENTFULLY dragging? lasts until after revert animation
         _this.isDelayEnded = false;
         _this.isDistanceSurpassed = false;
@@ -1111,7 +1111,7 @@ function isHitsEqual(hit0, hit1) {
 }
 
 /*
-Monitors when the usuario clicks on a specific date/time of a component.
+Monitors when the user clicks on a specific date/time of a component.
 A pointerdown+pointerup on the same "hit" constitutes a click.
 */
 var DateClicking = /** @class */ (function (_super) {
@@ -1151,7 +1151,7 @@ var DateClicking = /** @class */ (function (_super) {
 }(Interaction));
 
 /*
-Tracks when the usuario selects a portion of time of a component,
+Tracks when the user selects a portion of time of a component,
 constituted by a drag over date cells, with a possible delay at the beginning of the drag.
 */
 var DateSelecting = /** @class */ (function (_super) {
@@ -1166,7 +1166,7 @@ var DateSelecting = /** @class */ (function (_super) {
                 component.isValidDateDownEl(ev.origEvent.target);
             // don't bother to watch expensive moves if component won't do selection
             dragging.setIgnoreMove(!canSelect);
-            // if touch, require usuario to hold down
+            // if touch, require user to hold down
             dragging.delay = ev.isTouch ? getComponentTouchDelay(component) : null;
         };
         _this.handleDragStart = function (ev) {

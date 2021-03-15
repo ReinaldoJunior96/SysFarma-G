@@ -73,7 +73,7 @@ $.extend( $.fn, {
 
 					// Insert a hidden input as a replacement for the missing submit button
 					// The hidden input is inserted in two cases:
-					//   - A usuario defined a `submitHandler`
+					//   - A user defined a `submitHandler`
 					//   - There was a pending request due to `remote` method and `stopRequest()`
 					//     was called to submit the form in case it's valid
 					if ( validator.submitButton && ( validator.settings.submitHandler || validator.formSubmitted ) ) {
@@ -768,7 +768,7 @@ $.extend( $.validator, {
 				result, method, rule, normalizer;
 
 			// Prioritize the local normalizer defined for this element over the global one
-			// if the former exists, otherwise usuario the global one in case it exists.
+			// if the former exists, otherwise user the global one in case it exists.
 			if ( typeof rules.normalizer === "function" ) {
 				normalizer = rules.normalizer;
 			} else if (	typeof this.settings.normalizer === "function" ) {
@@ -1612,7 +1612,7 @@ $.extend( $.validator, {
 } );
 
 // Ajax mode: abort
-// usage: $.avaria-ordem-ordem-compra-ordem-compra-ajax({ mode: "abort"[, port: "uniqueport"]});
+// usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
 // if mode:"abort" is used, the previous request on that port (port can be undefined) is aborted via XMLHttpRequest.abort()
 
 var pendingRequests = {},
@@ -1631,7 +1631,7 @@ if ( $.ajaxPrefilter ) {
 	} );
 } else {
 
-	// Proxy avaria-ordem-ordem-compra-ordem-compra-ajax
+	// Proxy ajax
 	ajax = $.ajax;
 	$.ajax = function( settings ) {
 		var mode = ( "mode" in settings ? settings : $.ajaxSettings ).mode,

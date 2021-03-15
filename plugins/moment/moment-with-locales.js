@@ -1778,7 +1778,7 @@
 
     // MOMENTS
 
-    // Setting the hour should keep the time, because the usuario explicitly
+    // Setting the hour should keep the time, because the user explicitly
     // specified which hour they want. So trying to maintain the same hour (in
     // a new timezone) makes sense. Adding/subtracting hours does not follow
     // this rule.
@@ -1874,7 +1874,7 @@
             }
             else {
                 if ((typeof console !==  'undefined') && console.warn) {
-                    //warn usuario if arguments are passed but the locale could not be set
+                    //warn user if arguments are passed but the locale could not be set
                     console.warn('Locale ' + key +  ' not found. Did you forget to load it?');
                 }
             }
@@ -14092,7 +14092,7 @@
             y : 'рік',
             yy : relativeTimeWithPlural$4
         },
-        // M. E.: those two are virtually unused but a usuario might want to implement them for his/her website for some reason
+        // M. E.: those two are virtually unused but a user might want to implement them for his/her website for some reason
         meridiemParse: /ночі|ранку|дня|вечора/,
         isPM: function (input) {
             return /^(дня|вечора)$/.test(input);

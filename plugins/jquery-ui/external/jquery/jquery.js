@@ -1572,7 +1572,7 @@ getText = Sizzle.getText = function( elem ) {
 
 Expr = Sizzle.selectors = {
 
-	// Can be adjusted by the usuario
+	// Can be adjusted by the user
 	cacheLength: 50,
 
 	createPseudo: markFunction,
@@ -1848,7 +1848,7 @@ Expr = Sizzle.selectors = {
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
 
-			// The usuario may use createPseudo to indicate that
+			// The user may use createPseudo to indicate that
 			// arguments are needed to create the filter function
 			// just as Sizzle does
 			if ( fn[ expando ] ) {
@@ -3685,7 +3685,7 @@ jQuery.ready.promise = function( obj ) {
 	return readyList.promise( obj );
 };
 
-// Kick off the DOM ready check even if the usuario does not
+// Kick off the DOM ready check even if the user does not
 jQuery.ready.promise();
 
 
@@ -3884,7 +3884,7 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ) {
 	thisCache = cache[ id ];
 
 	// jQuery data() is stored in a separate object inside the object's internal data
-	// cache in order to avoid key collisions between internal data and usuario-defined
+	// cache in order to avoid key collisions between internal data and user-defined
 	// data.
 	if ( !pvt ) {
 		if ( !thisCache.data ) {
@@ -5683,7 +5683,7 @@ if ( !support.submit ) {
 
 		postDispatch: function( event ) {
 
-			// If form was submitted by the usuario, bubble the event up the tree
+			// If form was submitted by the user, bubble the event up the tree
 			if ( event._submitBubble ) {
 				delete event._submitBubble;
 				if ( this.parentNode && !event.isTrigger ) {
@@ -9085,7 +9085,7 @@ var
 	rurl = /^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/,
 
 	/* Prefilters
-	 * 1) They are useful to introduce custom dataTypes (see avaria-ordem-ordem-compra-ordem-compra-ajax/jsonp.js for an example)
+	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
 	 * 2) These are called:
 	 *    - BEFORE asking for a transport
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)
@@ -9172,7 +9172,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 	return inspect( options.dataTypes[ 0 ] ) || !inspected[ "*" ] && inspect( "*" );
 }
 
-// A special extend for avaria-ordem-ordem-compra-ordem-compra-ajax options
+// A special extend for ajax options
 // that takes "flat" options (not to be deep extended)
 // Fixes #9887
 function ajaxExtend( target, src ) {
@@ -9191,7 +9191,7 @@ function ajaxExtend( target, src ) {
 	return target;
 }
 
-/* Handles responses to an avaria-ordem-ordem-compra-ordem-compra-ajax request:
+/* Handles responses to an ajax request:
  * - finds the right dataType (mediates between content-type and expected dataType)
  * - returns the corresponding response
  */
@@ -9902,7 +9902,7 @@ jQuery._evalUrl = function( url ) {
 	return jQuery.ajax( {
 		url: url,
 
-		// Make this explicit, since usuario can override this through ajaxSetup (#11264)
+		// Make this explicit, since user can override this through ajaxSetup (#11264)
 		type: "GET",
 		dataType: "script",
 		cache: true,
@@ -10250,7 +10250,7 @@ if ( xhrSupported ) {
 
 					// Do send the request
 					// This may raise an exception which is actually
-					// handled in jQuery.avaria-ordem-ordem-compra-ordem-compra-ajax (so no try/catch here)
+					// handled in jQuery.ajax (so no try/catch here)
 					xhr.send( ( options.hasContent && options.data ) || null );
 
 					// Listener
@@ -10314,7 +10314,7 @@ if ( xhrSupported ) {
 
 					// Do send the request
 					// `xhr.send` may raise an exception, but it will be
-					// handled in jQuery.avaria-ordem-ordem-compra-ordem-compra-ajax (so no try/catch here)
+					// handled in jQuery.ajax (so no try/catch here)
 					if ( !options.async ) {
 
 						// If we're in sync mode we fire the callback
@@ -10615,7 +10615,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 			// If "type" variable is undefined, then "GET" method will be used.
 			// Make value of this field explicit since
-			// usuario can override it through ajaxSetup method
+			// user can override it through ajaxSetup method
 			type: type || "GET",
 			dataType: "html",
 			data: params

@@ -1686,7 +1686,7 @@
 	 *    mapped.
 	 *  @param {object} user The object to convert from camel case to Hungarian.
 	 *  @param {boolean} force When set to `true`, properties which already have a
-	 *    Hungarian value in the `usuario` object will be overwritten. Otherwise they
+	 *    Hungarian value in the `user` object will be overwritten. Otherwise they
 	 *    won't be.
 	 *  @memberof DataTable#oApi
 	 */
@@ -1981,7 +1981,7 @@
 		oSettings.aoColumns.push( oCol );
 	
 		// Add search object for column specific search. Note that the `searchCols[ iCol ]`
-		// passed into extend can be undefined. This allows the usuario to give a default
+		// passed into extend can be undefined. This allows the user to give a default
 		// with only some of the parameters defined, and also not give a default
 		var searchCols = oSettings.aoPreSearchCols;
 		searchCols[ iCol ] = $.extend( {}, DataTable.models.oSearch, searchCols[ iCol ] );
@@ -3116,7 +3116,7 @@
 					nTd.innerHTML = _fnGetCellData( oSettings, iRow, i, 'display' );
 				}
 	
-				/* Add usuario defined class */
+				/* Add user defined class */
 				if ( oCol.sClass )
 				{
 					nTd.className += ' '+oCol.sClass;
@@ -3251,7 +3251,7 @@
 		$(tfoot).find('>tr>th, >tr>td').addClass( classes.sFooterTH );
 	
 		// Cache the footer cells. Note that we only take the cells from the first
-		// row in the footer. If there is more than one row the usuario wants to
+		// row in the footer. If there is more than one row the user wants to
 		// interact with, they need to use the table().foot() method. Note also this
 		// allows cells to be used for multiple columns using colspan
 		if ( tfoot !== null ) {
@@ -3576,7 +3576,7 @@
 		oSettings.nTableWrapper = insert[0];
 		oSettings.nTableReinsertBefore = oSettings.nTable.nextSibling;
 	
-		/* Loop over the usuario set positioning and place the elements as needed */
+		/* Loop over the user set positioning and place the elements as needed */
 		var aDom = oSettings.sDom.split('');
 		var featureNode, cOption, nNewNode, cNext, sAttr, j;
 		for ( var i=0 ; i<aDom.length ; i++ )
@@ -4075,7 +4075,7 @@
 			param( 'iSortingCols', sort.length );
 		}
 	
-		// If the legacy.avaria-ordem-ordem-compra-ordem-compra-ajax parameter is null, then we automatically decide which
+		// If the legacy.ajax parameter is null, then we automatically decide which
 		// form to use, based on sAjaxSource
 		var legacy = DataTable.ext.legacy.ajax;
 		if ( legacy === null ) {
@@ -4374,7 +4374,7 @@
 	
 	
 	/**
-	 * Filter the data table based on usuario input and draw the table
+	 * Filter the data table based on user input and draw the table
 	 *  @param {object} settings dataTables settings object
 	 *  @param {string} input string to filter on
 	 *  @param {int} force optional - force a research of the master array (1) or not (undefined or 0)
@@ -4736,7 +4736,7 @@
 		// Server-side processing init complete is done by _fnAjaxUpdateDraw
 		var dataSrc = _fnDataSource( settings );
 		if ( dataSrc != 'ssp' || deferLoading ) {
-			// if there is an avaria-ordem-ordem-compra-ordem-compra-ajax source load the data
+			// if there is an ajax source load the data
 			if ( dataSrc == 'ajax' ) {
 				_fnBuildAjax( settings, [], function(json) {
 					var aData = _fnAjaxDataSrc( settings, json );
@@ -4800,7 +4800,7 @@
 	
 	
 	/**
-	 * Generate the node required for usuario display length changing
+	 * Generate the node required for user display length changing
 	 *  @param {object} settings dataTables settings object
 	 *  @returns {node} Display length feature node
 	 *  @memberof DataTable#oApi
@@ -4839,7 +4839,7 @@
 			settings.oLanguage.sLengthMenu.replace( '_MENU_', select[0].outerHTML )
 		);
 	
-		// Can't use `select` variable as usuario might provide their own and the
+		// Can't use `select` variable as user might provide their own and the
 		// reference is broken by the use of outerHTML
 		$('select', div)
 			.val( settings._iDisplayLength )
@@ -5406,7 +5406,7 @@
 				tableStyle.width = _fnStringToCss( correction-barWidth );
 			}
 	
-			// And give the usuario a warning that we've stopped the table getting too small
+			// And give the user a warning that we've stopped the table getting too small
 			if ( scrollX === "" || scrollXInner !== "" ) {
 				_fnLog( settings, 1, 'Possible column misalignment', 6 );
 			}
@@ -5541,7 +5541,7 @@
 			tableWidthAttr = styleWidth;
 		}
 	
-		/* Convert any usuario input sizes into pixel sizes */
+		/* Convert any user input sizes into pixel sizes */
 		for ( i=0 ; i<visibleColumns.length ; i++ ) {
 			column = columns[ visibleColumns[i] ];
 	
@@ -5572,7 +5572,7 @@
 		else
 		{
 			// Otherwise construct a single row, worst case, table with the widest
-			// node in the data, assign any usuario defined widths, then insert it into
+			// node in the data, assign any user defined widths, then insert it into
 			// the DOM and allow the browser to do all the hard work of calculating
 			// table widths
 			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove events on the main table
@@ -6089,7 +6089,7 @@
 	
 	
 	/**
-	 * Function to run on usuario sort request
+	 * Function to run on user sort request
 	 *  @param {object} settings dataTables settings object
 	 *  @param {node} attachTo node to attach the handler to
 	 *  @param {int} colIdx column sorting index
@@ -6167,7 +6167,7 @@
 		// Run the sort by calling a full redraw
 		_fnReDraw( settings );
 	
-		// callback used for async usuario interaction
+		// callback used for async user interaction
 		if ( typeof callback == 'function' ) {
 			callback( settings );
 		}
@@ -6448,7 +6448,7 @@
 	/**
 	 * Log an error message
 	 *  @param {object} settings dataTables settings object
-	 *  @param {int} level log error messages, or display them to the usuario
+	 *  @param {int} level log error messages, or display them to the user
 	 *  @param {string} msg error message
 	 *  @param {int} tn Technical note id to get more information about the error.
 	 *  @memberof DataTable#oApi
@@ -6699,7 +6699,7 @@
 	
 	/**
 	 * Detect the data source being used for the table. Used to simplify the code
-	 * a little (avaria-ordem-ordem-compra-ordem-compra-ajax) and to make it compress a little smaller.
+	 * a little (ajax) and to make it compress a little smaller.
 	 *
 	 *  @param {object} settings dataTables settings object
 	 *  @returns {string} Data source
@@ -7605,7 +7605,7 @@
 	 *
 	 * @return {object} JSON received from the server.
 	 */
-	_api_register( 'avaria-ordem-ordem-compra-ordem-compra-ajax.json()', function () {
+	_api_register( 'ajax.json()', function () {
 		var ctx = this.context;
 	
 		if ( ctx.length > 0 ) {
@@ -7619,7 +7619,7 @@
 	/**
 	 * Get the data submitted in the last Ajax request
 	 */
-	_api_register( 'avaria-ordem-ordem-compra-ordem-compra-ajax.params()', function () {
+	_api_register( 'ajax.params()', function () {
 		var ctx = this.context;
 	
 		if ( ctx.length > 0 ) {
@@ -7639,7 +7639,7 @@
 	 *   called, which is why the pagination reset is the default action.
 	 * @returns {DataTables.Api} this
 	 */
-	_api_register( 'avaria-ordem-ordem-compra-ordem-compra-ajax.reload()', function ( callback, resetPaging ) {
+	_api_register( 'ajax.reload()', function ( callback, resetPaging ) {
 		return this.iterator( 'table', function (settings) {
 			__reload( settings, resetPaging===false, callback );
 		} );
@@ -7658,7 +7658,7 @@
 	 * @param {string} url URL to set.
 	 * @returns {DataTables.Api} this
 	 */
-	_api_register( 'avaria-ordem-ordem-compra-ordem-compra-ajax.url()', function ( url ) {
+	_api_register( 'ajax.url()', function ( url ) {
 		var ctx = this.context;
 	
 		if ( url === undefined ) {
@@ -7684,7 +7684,7 @@
 				settings.ajax = url;
 			}
 			// No need to consider sAjaxSource here since DataTables gives priority
-			// to `avaria-ordem-ordem-compra-ordem-compra-ajax` over `sAjaxSource`. So setting `avaria-ordem-ordem-compra-ordem-compra-ajax` here, renders any
+			// to `ajax` over `sAjaxSource`. So setting `ajax` here, renders any
 			// value of `sAjaxSource` redundant.
 		} );
 	} );
@@ -7692,14 +7692,14 @@
 	
 	/**
 	 * Load data from the newly set Ajax URL. Note that this method is only
-	 * available when `avaria-ordem-ordem-compra-ordem-compra-ajax.url()` is used to set a URL. Additionally, this method
-	 * has the same effect as calling `avaria-ordem-ordem-compra-ordem-compra-ajax.reload()` but is provided for
-	 * convenience when setting a new URL. Like `avaria-ordem-ordem-compra-ordem-compra-ajax.reload()` it will
+	 * available when `ajax.url()` is used to set a URL. Additionally, this method
+	 * has the same effect as calling `ajax.reload()` but is provided for
+	 * convenience when setting a new URL. Like `ajax.reload()` it will
 	 * automatically redraw the table once the remote data has been loaded.
 	 *
 	 * @returns {DataTables.Api} this
 	 */
-	_api_register( 'avaria-ordem-ordem-compra-ordem-compra-ajax.url().load()', function ( callback, resetPaging ) {
+	_api_register( 'ajax.url().load()', function ( callback, resetPaging ) {
 		// Same as a reload, but makes sense to present it for easy access after a
 		// url change
 		return this.iterator( 'table', function ( ctx ) {
@@ -9267,9 +9267,9 @@
 	 *
 	 *  @param {object} src The model object which holds all parameters that can be
 	 *    mapped.
-	 *  @param {object} usuario The object to convert from camel case to Hungarian.
+	 *  @param {object} user The object to convert from camel case to Hungarian.
 	 *  @param {boolean} force When set to `true`, properties which already have a
-	 *    Hungarian value in the `usuario` object will be overwritten. Otherwise they
+	 *    Hungarian value in the `user` object will be overwritten. Otherwise they
 	 *    won't be.
 	 */
 	DataTable.camelToHungarian = _fnCamelToHungarian;
@@ -9364,7 +9364,7 @@
 			}
 	
 			// Blitz all `DT` namespaced events (these are internal events, the
-			// lowercase, `dt` events are usuario subscribed and they are responsible
+			// lowercase, `dt` events are user subscribed and they are responsible
 			// for removing them
 			jqWrapper.off('.DT').find(':not(tbody *)').off('.DT');
 			$(window).off('.DT-'+settings.sInstance);
@@ -10013,9 +10013,9 @@
 	
 		/**
 		 * This parameter is basically identical to the `sorting` parameter, but
-		 * cannot be overridden by usuario interaction with the table. What this means
+		 * cannot be overridden by user interaction with the table. What this means
 		 * is that you could have a column (visible or hidden) which the sorting
-		 * will always be forced on first - any sorting after that (from the usuario)
+		 * will always be forced on first - any sorting after that (from the user)
 		 * will then be performed as required. This can be useful for grouping rows
 		 * together.
 		 *  @type array
@@ -10038,24 +10038,24 @@
 		 * DataTables can be instructed to load data to display in the table from a
 		 * Ajax source. This option defines how that Ajax call is made and where to.
 		 *
-		 * The `avaria-ordem-ordem-compra-ordem-compra-ajax` property has three different modes of operation, depending on
+		 * The `ajax` property has three different modes of operation, depending on
 		 * how it is defined. These are:
 		 *
 		 * * `string` - Set the URL from where the data should be loaded from.
-		 * * `object` - Define properties for `jQuery.avaria-ordem-ordem-compra-ordem-compra-ajax`.
+		 * * `object` - Define properties for `jQuery.ajax`.
 		 * * `function` - Custom data get function
 		 *
 		 * `string`
 		 * --------
 		 *
-		 * As a string, the `avaria-ordem-ordem-compra-ordem-compra-ajax` property simply defines the URL from which
+		 * As a string, the `ajax` property simply defines the URL from which
 		 * DataTables will load data.
 		 *
 		 * `object`
 		 * --------
 		 *
 		 * As an object, the parameters in the object are passed to
-		 * [jQuery.avaria-ordem-ordem-compra-ordem-compra-ajax](http://api.jquery.com/jQuery.ajax/) allowing fine control
+		 * [jQuery.ajax](http://api.jquery.com/jQuery.ajax/) allowing fine control
 		 * of the Ajax request. DataTables has a number of default parameters which
 		 * you can override using this option. Please refer to the jQuery
 		 * documentation for a full description of the options available, although
@@ -10084,7 +10084,7 @@
 		 *
 		 * * `success` - Should not be overridden it is used internally in
 		 *   DataTables. To manipulate / transform the data returned by the server
-		 *   use `avaria-ordem-ordem-compra-ordem-compra-ajax.dataSrc`, or use `avaria-ordem-ordem-compra-ordem-compra-ajax` as a function (see below).
+		 *   use `ajax.dataSrc`, or use `ajax` as a function (see below).
 		 *
 		 * `function`
 		 * ----------
@@ -10116,14 +10116,14 @@
 		 *   // Get JSON data from a file via Ajax.
 		 *   // Note DataTables expects data in the form `{ data: [ ...data... ] }` by default).
 		 *   $('#example').dataTable( {
-		 *     "avaria-ordem-ordem-compra-ordem-compra-ajax": "data.json"
+		 *     "ajax": "data.json"
 		 *   } );
 		 *
 		 * @example
 		 *   // Get JSON data from a file via Ajax, using `dataSrc` to change
 		 *   // `data` to `tableData` (i.e. `{ tableData: [ ...data... ] }`)
 		 *   $('#example').dataTable( {
-		 *     "avaria-ordem-ordem-compra-ordem-compra-ajax": {
+		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": "tableData"
 		 *     }
@@ -10133,7 +10133,7 @@
 		 *   // Get JSON data from a file via Ajax, using `dataSrc` to read data
 		 *   // from a plain array rather than an array in an object
 		 *   $('#example').dataTable( {
-		 *     "avaria-ordem-ordem-compra-ordem-compra-ajax": {
+		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": ""
 		 *     }
@@ -10144,7 +10144,7 @@
 		 *   // (note this can, should, be done using `render` for the column - this
 		 *   // is just a simple example of how the data can be manipulated).
 		 *   $('#example').dataTable( {
-		 *     "avaria-ordem-ordem-compra-ordem-compra-ajax": {
+		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": function ( json ) {
 		 *         for ( var i=0, ien=json.length ; i<ien ; i++ ) {
@@ -10158,7 +10158,7 @@
 		 * @example
 		 *   // Add data to the request
 		 *   $('#example').dataTable( {
-		 *     "avaria-ordem-ordem-compra-ordem-compra-ajax": {
+		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "data": function ( d ) {
 		 *         return {
@@ -10171,7 +10171,7 @@
 		 * @example
 		 *   // Send request as POST
 		 *   $('#example').dataTable( {
-		 *     "avaria-ordem-ordem-compra-ordem-compra-ajax": {
+		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "type": "POST"
 		 *     }
@@ -10181,7 +10181,7 @@
 		 *   // Get the data from localStorage (could interface with a form for
 		 *   // adding, editing and removing rows).
 		 *   $('#example').dataTable( {
-		 *     "avaria-ordem-ordem-compra-ordem-compra-ajax": function (data, callback, settings) {
+		 *     "ajax": function (data, callback, settings) {
 		 *       callback(
 		 *         JSON.parse( localStorage.getItem('dataTablesData') )
 		 *       );
@@ -10336,7 +10336,7 @@
 		 *  @example
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
-		 *        "avaria-ordem-ordem-compra-ordem-compra-ajax": "sources/arrays.txt",
+		 *        "ajax": "sources/arrays.txt",
 		 *        "deferRender": true
 		 *      } );
 		 *    } );
@@ -10374,7 +10374,7 @@
 	
 		/**
 		 * Enable or disable filtering of data. Filtering in DataTables is "smart" in
-		 * that it allows the end usuario to input multiple words (space separated) and
+		 * that it allows the end user to input multiple words (space separated) and
 		 * will match a row containing those words, even if not in the order that was
 		 * specified (this allow matching across multiple columns). Note that if you
 		 * wish to use filtering in DataTables this must remain 'true' - to remove the
@@ -10417,7 +10417,7 @@
 	
 	
 		/**
-		 * Allows the end usuario to select the size of a formatted page from a select
+		 * Allows the end user to select the size of a formatted page from a select
 		 * menu (sizes are 10, 25, 50 and 100). Requires pagination (`paginate`).
 		 *  @type boolean
 		 *  @default true
@@ -10538,7 +10538,7 @@
 	
 		/**
 		 * Configure DataTables to use server-side processing. Note that the
-		 * `avaria-ordem-ordem-compra-ordem-compra-ajax` parameter must also be given in order to give DataTables a
+		 * `ajax` parameter must also be given in order to give DataTables a
 		 * source to obtain the required data for each draw.
 		 *  @type boolean
 		 *  @default false
@@ -10551,7 +10551,7 @@
 		 *    $(document).ready( function () {
 		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
-		 *        "avaria-ordem-ordem-compra-ordem-compra-ajax": "xhr.php"
+		 *        "ajax": "xhr.php"
 		 *      } );
 		 *    } );
 		 */
@@ -10579,7 +10579,7 @@
 	
 		/**
 		 * Enable or display DataTables' ability to sort multiple columns at the
-		 * same time (activated by shift-click by the usuario).
+		 * same time (activated by shift-click by the user).
 		 *  @type boolean
 		 *  @default true
 		 *
@@ -10642,7 +10642,7 @@
 		/**
 		 * Enable or disable state saving. When enabled HTML5 `localStorage` will be
 		 * used to save table display information such as pagination information,
-		 * display length, filtering and sorting. As such when the end usuario reloads
+		 * display length, filtering and sorting. As such when the end user reloads
 		 * the page the display display will match what thy had previously set up.
 		 *
 		 * Due to the use of `localStorage` the default state saving is not supported
@@ -10745,7 +10745,7 @@
 		 * When rendering large numbers in the information element for the table
 		 * (i.e. "Showing 1 to 10 of 57 entries") DataTables will render large numbers
 		 * to have a comma separator for the 'thousands' units (e.g. 1 million is
-		 * rendered as "1,000,000") to help readability for the end usuario. This
+		 * rendered as "1,000,000") to help readability for the end user. This
 		 * function will override the default method DataTables uses.
 		 *  @type function
 		 *  @member
@@ -10917,7 +10917,7 @@
 	
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
-		 * superseded by that provided through `avaria-ordem-ordem-compra-ordem-compra-ajax`, which should be used instead.
+		 * superseded by that provided through `ajax`, which should be used instead.
 		 *
 		 * This parameter allows you to override the default function which obtains
 		 * the data from the server so something more suitable for your application.
@@ -10925,7 +10925,7 @@
 		 * AIR database.
 		 *  @type function
 		 *  @member
-		 *  @param {string} source HTTP source to obtain the data from (`avaria-ordem-ordem-compra-ordem-compra-ajax`)
+		 *  @param {string} source HTTP source to obtain the data from (`ajax`)
 		 *  @param {array} data A key/value pair object containing the data to send
 		 *    to the server
 		 *  @param {function} callback to be called on completion of the data get
@@ -10936,14 +10936,14 @@
 		 *  @dtopt Server-side
 		 *  @name DataTable.defaults.serverData
 		 *
-		 *  @deprecated 1.10. Please use `avaria-ordem-ordem-compra-ordem-compra-ajax` for this functionality now.
+		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"fnServerData": null,
 	
 	
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
-		 * superseded by that provided through `avaria-ordem-ordem-compra-ordem-compra-ajax`, which should be used instead.
+		 * superseded by that provided through `ajax`, which should be used instead.
 		 *
 		 *  It is often useful to send extra data to the server when making an Ajax
 		 * request - for example custom filtering information, and this callback
@@ -10963,7 +10963,7 @@
 		 *  @dtopt Server-side
 		 *  @name DataTable.defaults.serverParams
 		 *
-		 *  @deprecated 1.10. Please use `avaria-ordem-ordem-compra-ordem-compra-ajax` for this functionality now.
+		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"fnServerParams": null,
 	
@@ -10987,7 +10987,7 @@
 		 *      $('#example').dataTable( {
 		 *        "stateSave": true,
 		 *        "stateLoadCallback": function (settings, callback) {
-		 *          $.avaria-ordem-ordem-compra-ordem-compra-ajax( {
+		 *          $.ajax( {
 		 *            "url": "/state_load",
 		 *            "dataType": "json",
 		 *            "success": function (json) {
@@ -11089,7 +11089,7 @@
 		 *        "stateSave": true,
 		 *        "stateSaveCallback": function (settings, data) {
 		 *          // Send an Ajax request to the server with the state object
-		 *          $.avaria-ordem-ordem-compra-ordem-compra-ajax( {
+		 *          $.ajax( {
 		 *            "url": "/state_save",
 		 *            "data": data,
 		 *            "dataType": "json",
@@ -11180,7 +11180,7 @@
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
-		 *        "avaria-ordem-ordem-compra-ordem-compra-ajax": "scripts/server_processing.php",
+		 *        "ajax": "scripts/server_processing.php",
 		 *        "deferLoading": 57
 		 *      } );
 		 *    } );
@@ -11190,7 +11190,7 @@
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
-		 *        "avaria-ordem-ordem-compra-ordem-compra-ajax": "scripts/server_processing.php",
+		 *        "ajax": "scripts/server_processing.php",
 		 *        "deferLoading": [ 57, 100 ],
 		 *        "search": {
 		 *          "search": "my_filter"
@@ -11203,7 +11203,7 @@
 	
 		/**
 		 * Number of rows to display on a single page when using pagination. If
-		 * feature enabled (`lengthChange`) then the end usuario will be able to override
+		 * feature enabled (`lengthChange`) then the end user will be able to override
 		 * this to a custom setting using a pop-up menu.
 		 *  @type int
 		 *  @default 10
@@ -11277,7 +11277,7 @@
 	
 	
 		/**
-		 * All strings that DataTables uses in the usuario interface that it creates
+		 * All strings that DataTables uses in the user interface that it creates
 		 * are defined in this object, allowing you to modified them individually or
 		 * completely replace them all as required.
 		 *  @namespace
@@ -11348,7 +11348,7 @@
 			"oPaginate": {
 				/**
 				 * Text to use when using the 'full_numbers' type of pagination for the
-				 * button to take the usuario to the first page.
+				 * button to take the user to the first page.
 				 *  @type string
 				 *  @default First
 				 *
@@ -11371,7 +11371,7 @@
 	
 				/**
 				 * Text to use when using the 'full_numbers' type of pagination for the
-				 * button to take the usuario to the last page.
+				 * button to take the user to the last page.
 				 *  @type string
 				 *  @default Last
 				 *
@@ -11393,7 +11393,7 @@
 	
 	
 				/**
-				 * Text to use for the 'next' pagination button (to take the usuario to the
+				 * Text to use for the 'next' pagination button (to take the user to the
 				 * next page).
 				 *  @type string
 				 *  @default Next
@@ -11416,7 +11416,7 @@
 	
 	
 				/**
-				 * Text to use for the 'previous' pagination button (to take the usuario to
+				 * Text to use for the 'previous' pagination button (to take the user to
 				 * the previous page).
 				 *  @type string
 				 *  @default Previous
@@ -11462,7 +11462,7 @@
 	
 	
 			/**
-			 * This string gives information to the end usuario about the information
+			 * This string gives information to the end user about the information
 			 * that is current on display on the page. The following tokens can be
 			 * used in the string and will be dynamically replaced as the table
 			 * display updates. This tokens can be placed anywhere in the string, or
@@ -11515,7 +11515,7 @@
 	
 	
 			/**
-			 * When a usuario filters the information in a table, this string is appended
+			 * When a user filters the information in a table, this string is appended
 			 * to the information (`info`) to give an idea of how strong the filtering
 			 * is. The variable _MAX_ is dynamically updated.
 			 *  @type string
@@ -11657,7 +11657,7 @@
 			/**
 			 * When using Ajax sourced data and during the first draw when DataTables is
 			 * gathering the data, this message is shown in an empty row in the table to
-			 * indicate to the end usuario the the data is being loaded. Note that this
+			 * indicate to the end user the the data is being loaded. Note that this
 			 * parameter is not used when loading data by server-side processing, just
 			 * Ajax sourced data with client-side processing.
 			 *  @type string
@@ -11679,7 +11679,7 @@
 	
 	
 			/**
-			 * Text which is displayed when the table is processing a usuario action
+			 * Text which is displayed when the table is processing a user action
 			 * (usually a sort command or similar).
 			 *  @type string
 			 *  @default Processing...
@@ -11700,7 +11700,7 @@
 	
 	
 			/**
-			 * Details the actions that will be taken when the usuario types into the
+			 * Details the actions that will be taken when the user types into the
 			 * filtering input text box. The variable "_INPUT_", if used in the string,
 			 * is replaced with the HTML text box for the filtering input allowing
 			 * control over where it appears in the string. If "_INPUT_" is not given
@@ -11819,7 +11819,7 @@
 	
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
-		 * superseded by that provided through `avaria-ordem-ordem-compra-ordem-compra-ajax`, which should be used instead.
+		 * superseded by that provided through `ajax`, which should be used instead.
 		 *
 		 * By default DataTables will look for the property `data` (or `aaData` for
 		 * compatibility with DataTables 1.9-) when obtaining data from an Ajax
@@ -11833,14 +11833,14 @@
 		 *  @dtopt Server-side
 		 *  @name DataTable.defaults.ajaxDataProp
 		 *
-		 *  @deprecated 1.10. Please use `avaria-ordem-ordem-compra-ordem-compra-ajax` for this functionality now.
+		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"sAjaxDataProp": "data",
 	
 	
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
-		 * superseded by that provided through `avaria-ordem-ordem-compra-ordem-compra-ajax`, which should be used instead.
+		 * superseded by that provided through `ajax`, which should be used instead.
 		 *
 		 * You can instruct DataTables to load data from an external
 		 * source using this parameter (use aData if you want to pass data in you
@@ -11852,7 +11852,7 @@
 		 *  @dtopt Server-side
 		 *  @name DataTable.defaults.ajaxSource
 		 *
-		 *  @deprecated 1.10. Please use `avaria-ordem-ordem-compra-ordem-compra-ajax` for this functionality now.
+		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"sAjaxSource": null,
 	
@@ -12034,7 +12034,7 @@
 	
 		/**
 		 * __Deprecated__ The functionality provided by this parameter has now been
-		 * superseded by that provided through `avaria-ordem-ordem-compra-ordem-compra-ajax`, which should be used instead.
+		 * superseded by that provided through `ajax`, which should be used instead.
 		 *
 		 * Set the HTTP method that is used to make the Ajax call for server-side
 		 * processing or Ajax sourced data.
@@ -12045,7 +12045,7 @@
 		 *  @dtopt Server-side
 		 *  @name DataTable.defaults.serverMethod
 		 *
-		 *  @deprecated 1.10. Please use `avaria-ordem-ordem-compra-ordem-compra-ajax` for this functionality now.
+		 *  @deprecated 1.10. Please use `ajax` for this functionality now.
 		 */
 		"sServerMethod": "GET",
 	
@@ -12575,7 +12575,7 @@
 		 *    // This would be used with a data source such as:
 		 *    //   { "phone": 5552368, "phone_filter": "5552368 555-2368", "phone_display": "555-2368" }
 		 *    // Here the `phone` integer is used for sorting and type detection, while `phone_filter`
-		 *    // (which has both forms) is used for filtering for if a usuario inputs either format, while
+		 *    // (which has both forms) is used for filtering for if a user inputs either format, while
 		 *    // the formatted phone number is the one that is shown in the table.
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
@@ -12790,7 +12790,7 @@
 		/**
 		 * Defines a data source type for the ordering which can be used to read
 		 * real-time information from the table (updating the internally cached
-		 * version) prior to ordering. This allows ordering to occur on usuario
+		 * version) prior to ordering. This allows ordering to occur on user
 		 * editable elements such as form inputs.
 		 *  @type string
 		 *  @default std
@@ -13017,7 +13017,7 @@
 			"bInfo": null,
 	
 			/**
-			 * Present a usuario control allowing the end usuario to change the page size
+			 * Present a user control allowing the end user to change the page size
 			 * when pagination is enabled.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
@@ -13036,7 +13036,7 @@
 	
 			/**
 			 * Processing indicator enable flag whenever DataTables is enacting a
-			 * usuario request - typically an Ajax request for server-side processing.
+			 * user request - typically an Ajax request for server-side processing.
 			 * Note that this parameter will be set by the initialisation routine. To
 			 * set a default use {@link DataTable.defaults}.
 			 *  @type boolean
@@ -13630,7 +13630,7 @@
 		"fnFormatNumber": null,
 	
 		/**
-		 * List of options that can be used for the usuario selectable length menu.
+		 * List of options that can be used for the user selectable length menu.
 		 * Note that this parameter will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
 		 *  @type array
@@ -13999,7 +13999,7 @@
 		 *  @example
 		 *    // The following example shows custom search being applied to the
 		 *    // fourth column (i.e. the data[3] index) based on two input values
-		 *    // from the end-usuario, matching the data in a certain range.
+		 *    // from the end-user, matching the data in a certain range.
 		 *    $.fn.dataTable.ext.search.push(
 		 *      function( settings, data, dataIndex ) {
 		 *        var min = document.getElementById('min').value * 1;
@@ -14033,7 +14033,7 @@
 		 * each of the three built in selector types offer (row, column and cell +
 		 * their plural counterparts). For example the Select extension uses this
 		 * mechanism to provide an option to select only rows, columns and cells
-		 * that have been marked as selected by the end usuario (`{selected: true}`),
+		 * that have been marked as selected by the end user (`{selected: true}`),
 		 * which can be used in conjunction with the existing built in selector
 		 * options.
 		 *
@@ -15252,7 +15252,7 @@
 	/**
 	 * Processing event, fired when DataTables is doing some kind of processing
 	 * (be it, order, search or anything else). It can be used to indicate to
-	 * the end usuario that there is something happening, or that something has
+	 * the end user that there is something happening, or that something has
 	 * finished.
 	 *  @name DataTable#processing.dt
 	 *  @event
