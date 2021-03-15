@@ -26,7 +26,7 @@ $("#nfform").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/notaf/nota_fiscal_r.php",
+        url: "../../back/response/notaf/post-nota-fiscal.php",
         type: "post",
         data: serializedData
     });

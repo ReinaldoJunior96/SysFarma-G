@@ -26,7 +26,7 @@ $("#lotesform").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/notaf/lotes_r.php",
+        url: "../../back/response/notaf/post-lote.php",
         type: "post",
         data: serializedData
     });
