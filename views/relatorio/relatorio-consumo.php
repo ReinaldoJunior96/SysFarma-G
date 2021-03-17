@@ -99,7 +99,7 @@ $todosProdutos = $produto->verEstoqueTotal();
                     <?php foreach ($todosProdutos as $prod): ?>
                         <?php if ($produto->verificarSaidaConsumo($prod->id_estoque, $_GET['dataI'], $_GET['dataF']) >= 1): ?>
                             <?php $filtrados = $produto->rconsumo($_GET['setor'], $_GET['dataI'], $_GET['dataF'], $prod->id_estoque); ?>
-                            <?php if (!empty($filtrados) or $filtrados!=null): ?>
+                            <?php if ($filtrados[0]->produto_e != ""): ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <?= $filtrados[0]->produto_e ?>
                                     <span class="badge badge-white badge-pill"><?= $filtrados[0]->somatorio ?></span>

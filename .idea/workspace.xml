@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/avaria-ajax/post-avaria-request.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/avaria-ajax/post-avaria-request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/nota-fiscal-ajax/post-lote-produto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/nota-fiscal-ajax/post-lote-produto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/nota-fiscal-ajax/put-nota-fiscal.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/nota-fiscal-ajax/put-nota-fiscal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/menu-estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/menu-estoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/relatorio/relatorio-consumo.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/relatorio/relatorio-consumo.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +132,7 @@
       <workItem from="1615550439882" duration="13192000" />
       <workItem from="1615770383171" duration="1153000" />
       <workItem from="1615798550018" duration="471000" />
+      <workItem from="1615993743270" duration="1898000" />
     </task>
     <servers />
   </component>

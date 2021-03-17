@@ -464,12 +464,12 @@ class EstoqueController
         }
     }
 
-    public function verificarSaidaConsumo($produto, $dataI, $dataF)
+    public function verificarSaidaConsumo($produto, $dataI, $dataF): int
     {
         $quantidadeSaida = 0;
         try {
             $querySaida = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
-				WHERE item_s = '$produto' AND data_s BETWEEN '$dataI' AND '$dataF'");
+				WHERE item_s = '$produto' AND data_dia_s BETWEEN '$dataI' AND '$dataF'");
             $querySaida->execute();
             $quantidadeSaida = $querySaida->rowCOunt();
         } catch (PDOException $erro) {
@@ -478,10 +478,11 @@ class EstoqueController
     }
 
 
-    public function rconsumo($setor, $dataI, $dataF, $idproduto)
+    public function rconsumo($setor, $dataI, $dataF, $idproduto): array
     {
         try {
             $querySearchRelatorio = "";
+
             if ($setor == 'todos'):
                 $querySearchRelatorio = $this->conn->prepare(/** @lang text */ "SELECT SUM(quantidade_s) as somatorio,produto_e FROM tbl_saida
             INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
@@ -489,7 +490,7 @@ class EstoqueController
             else:
                 $querySearchRelatorio = $this->conn->prepare(/** @lang text */ "SELECT SUM(quantidade_s) as somatorio,produto_e FROM tbl_saida
             INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
-            WHERE item_s='$idproduto' AND setor_s='$setor' AND data_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
+            WHERE item_s='$idproduto' AND setor_s='$setor' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
             endif;
             $querySearchRelatorio->execute();
             return $querySearchRelatorio->fetchAll(PDO::FETCH_OBJ);
