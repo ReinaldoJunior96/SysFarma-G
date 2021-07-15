@@ -17,6 +17,10 @@ class UsuarioController
         $user->execute();
         return $user->rowCount();
     }
-
-
+    
+    public function verificarPermissao($user){
+        $user = $this->conn->prepare("SELECT * FROM tbl_usuarios WHERE nome_user='$user'");
+        $user->execute();
+        return $user->fetchAll(PDO::FETCH_OBJ);
+    }
 }

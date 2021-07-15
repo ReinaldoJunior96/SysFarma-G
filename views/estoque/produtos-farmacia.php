@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
+if ($_SESSION['usuario'] == null || $_SESSION['password'] == null) {
     header("location: ../usuario/login.php");
 }
 ?>
@@ -33,9 +33,9 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
 <div class="wrapper">
 
     <!-- Navbar -->
-    <?php include('../componentes/nav.php') ?>
+    <?php include '../componentes/nav.php'?>
     <!-- /.navbar -->
-    <?php include('../componentes/sidebar.php') ?>
+    <?php include '../componentes/sidebar.php'?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -53,7 +53,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
 
                     <form role="form" id="estoqueform" method="post">
                         <input type="hidden" name="new" value="1">
-                        <input type="hidden" name="usuario" value="<?= $_SESSION['usuario'] ?>">
+                        <input type="hidden" name="usuario" value="<?=$_SESSION['usuario']?>">
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
@@ -105,7 +105,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                         </div>
                     </form>
                 </div>
-            <?php endif; ?>
+            <?php endif;?>
             <!-- /.card -->
             <div class="card" id="tabela">
                 <div class="card-header bg-olive">
@@ -124,18 +124,18 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                         </thead>
                         <tbody>
                         <?php
-                        require_once('../../back/controllers/EstoqueController.php');
-                        $view_estoque = new EstoqueController();
-                        $all_estoque = $view_estoque->verEstoqueFarmacia();
-                        foreach ($all_estoque as $v) {
-                            ?>
+require_once '../../back/controllers/EstoqueController.php';
+$view_estoque = new EstoqueController();
+$all_estoque = $view_estoque->verEstoqueFarmacia();
+foreach ($all_estoque as $v) {
+    ?>
                             <tr>
-                                <td><?= $v->principio_ativo ?></td>
-                                <td><a class="text-olive" href=nav/put-produto-view.php?idp=<?= $v->id_estoque ?>><?= $v->produto_e ?></td>
-                                <td><?= $v->quantidade_e ?></td>
-                                <td><?= $v->valor_un_e ?></td>
+                                <td><?=$v->principio_ativo?></td>
+                                <td><a class="text-olive" href=nav/put-produto-view.php?idp=<?=$v->id_estoque?>><?=$v->produto_e?></td>
+                                <td><?=$v->quantidade_e?></td>
+                                <td><?=$v->valor_un_e?></td>
                             </tr>
-                        <?php } ?>
+                        <?php }?>
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -145,7 +145,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
     </div>
     <!-- /.content-wrapper -->
 
-    <?php include('../componentes/footer.php'); ?>
+    <?php include '../componentes/footer.php';?>
 </div>
 <!-- ./wrapper -->
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
-    header("location: views/usuario/login.php");
+    header("location: ../usuario/login.php");
 }
 ?>
 <!DOCTYPE html>

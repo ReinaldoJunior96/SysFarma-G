@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
+if ($_SESSION['usuario'] == null || $_SESSION['password'] == null) {
     header("location: ../usuario/login.php");
 }
 ?>
@@ -26,9 +26,9 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
 <body class="hold-transition sidebar-mini roboto-condensed">
 <div class="wrapper">
     <!-- Navbar -->
-    <?php include('../componentes/nav.php') ?>
+    <?php include '../componentes/nav.php'?>
     <!-- /.navbar -->
-    <?php include('../componentes/sidebar.php') ?>
+    <?php include '../componentes/sidebar.php'?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -102,23 +102,23 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                             </thead>
                             <tbody>
                             <?php
-                            require_once('../../back/controllers/FornecedorController.php');
-                            $f = new FornecedorController();
-                            $fornecedores = $f->listFornecedores();
-                            foreach ($fornecedores as $v) {
-                                ?>
+                                require_once '../../back/controllers/FornecedorController.php';
+                                $f = new FornecedorController();
+                                $fornecedores = $f->listFornecedores();
+                                foreach ($fornecedores as $v) {
+                                    ?>
                                 <tr>
-                                    <td class="text-olive"><?= $v->nome_fornecedor ?></td>
+                                    <td class="text-olive"><?=$v->nome_fornecedor?></td>
                                     <td class="text-center">
-                                        <a href="edit-fornecedor-view.php?idfornecedor=<?= $v->id_fornecedor ?>"><i
+                                        <a href="edit-fornecedor-view.php?idfornecedor=<?=$v->id_fornecedor?>"><i
                                                     class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
                                     </td>
                                     <td class="text-center"><a
-                                                href="../../back/response/fornecedores/delete-fornecedor.php?idfornecedor=<?= $v->id_fornecedor ?>"
+                                                href="../../back/response/fornecedores/delete-fornecedor.php?idfornecedor=<?=$v->id_fornecedor?>"
                                         <i class="fas fa-window-close text-danger"></i></a>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php }?>
                         </table>
                     </div>
                     <div class="fixed-bottom position-sticky">
@@ -136,14 +136,14 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        <?php endif; ?>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <?php include('../componentes/footer.php'); ?>
+    <?php include '../componentes/footer.php';?>
 </div>
 <!-- ./wrapper -->
 

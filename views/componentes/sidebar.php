@@ -6,7 +6,6 @@
              style="opacity: .8">
         <span class="brand-text font-weight-light text-white">G-Stock</span>
     </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar Menu -->
@@ -15,6 +14,7 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
+                     
                 <?php if ($_SESSION['usuario'] == 'compras.hvu' or $_SESSION['usuario'] == 'admin'): ?>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
@@ -125,7 +125,12 @@
                         </li>
                     </ul>
                 </li>
-
+                <li class="nav-item">
+                    <a href="../../back/response/usuario/destruir-sessao.php" class="nav-link">
+                        <i class="fas fa-power-off nav-icon"></i>
+                        <p>Kits</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="../../back/response/usuario/destruir-sessao.php" class="nav-link">
