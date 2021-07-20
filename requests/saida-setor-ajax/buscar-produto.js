@@ -5,6 +5,16 @@ function getInEstoque() {
         console.log("success");
         $.each(dados, function (i, obj) {
             p.value = obj.quantidade_e;
+            if(parseInt(obj.quantidade_e) <= parseInt(obj.estoque_minimo_e)){
+                p.classList.add('bg-red')
+                Swal.fire(
+                    'Atenção!',
+                    'O produto selecionado encontra-se no ponto de compra, por favor informe o setor responsável.',
+                    'info'
+                )
+            }else{
+                p.classList.remove('bg-red')
+            }
         })
     })
         .done(function () {
