@@ -68,7 +68,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                             <td><?= date_format($data_emisao, 'd/m/Y') ?> </td>
                             <td><?= date_format($data_lancamento, 'd/m/Y') ?></td>
                             <td><a href=edit-nf-view.php?idnf=<?=$v->id_nf?>><i class='fas fa-pen fa-1x color-icon-nf text-success'></i></a></td>
-                            <td><a href=../../back/response/notaf/delete-nota-fiscal.php?idnf="<?=$v->id_nf?>><i class='fas fa-trash-alt fa-1x text-danger'></i></a></td>
+                            <td><a href=../../back/model/notaf/delete-nota-fiscal.php?idnf="<?=$v->id_nf?>><i class='fas fa-trash-alt fa-1x text-danger'></i></a></td>
                         </tr>
                     <?php } ?>
                 </table>

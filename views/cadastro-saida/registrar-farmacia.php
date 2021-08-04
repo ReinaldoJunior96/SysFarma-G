@@ -1,9 +1,9 @@
 <?php
 session_start();
-if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
+if ($_SESSION['usuario'] == null || $_SESSION['password'] == null) {
     header("location: login.php");
 }
-require_once('../../back/controllers/EstoqueController.php');
+require_once '../../back/controllers/EstoqueController.php';
 $view_estoque = new EstoqueController();
 $all_estoque = $view_estoque->verEstoqueFarmaciaSaida();
 $view_estoque->verProdDiversos();
@@ -44,29 +44,29 @@ $view_estoque->verProdDiversos();
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-user"></i>
-                    <span>Usuário: <?= $_SESSION['usuario'] ?></span>
+                    <span>Usuário: <?=$_SESSION['usuario']?></span>
                 </a>
             </li>
         </ul>
     </nav>
     <!-- /.navbar -->
-    <?php include('../componentes/sidebar.php') ?>
+    <?php include '../componentes/sidebar.php'?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper p-3">
         <div class="card">
             <div class="card-header bg-olive">
-                <?php $date = date_create($_GET['data_s']); ?>
+                <?php $date = date_create($_GET['data_s']);?>
                 <span class="badge badge-pill bg-white text-olive"><i
-                            class="text-olive fas fa-star-half"></i><?= str_replace("-", " ", $_GET['nomesetor']) ?></span>
+                            class="text-olive fas fa-star-half"></i><?=str_replace("-", " ", $_GET['nomesetor'])?></span>
                 <span class="badge badge-pill bg-white text-olive"><i
-                            class="text-olive fas fa-star-half"></i><?= date_format($date, 'd/m/Y') ?></span>
+                            class="text-olive fas fa-star-half"></i><?=date_format($date, 'd/m/Y')?></span>
             </div>
-            <!--<form method="POST" action="../../back/response/saidasetor/registrar-saida-back.php">-->
+            <!--<form method="POST" action="../../back/model/saida-setor/registrar-saida-back.php">-->
             <form method="POST" id="insertSaida">
-                <input type="hidden" name="data_s" value="<?= $_GET['data_s'] ?>">
-                <input type="hidden" name="setor_s" value="<?= $_GET['nomesetor'] ?>">
-                <input type="hidden" name="usuario" value="<?= $_SESSION['usuario'] ?>">
+                <input type="hidden" name="data_s" value="<?=$_GET['data_s']?>">
+                <input type="hidden" name="setor_s" value="<?=$_GET['nomesetor']?>">
+                <input type="hidden" name="usuario" value="<?=$_SESSION['usuario']?>">
                 <div class="card-body">
                     <div class="row">
                         <div class="form-group col-md-8">
@@ -75,15 +75,15 @@ $view_estoque->verProdDiversos();
                                     onchange="getInEstoque();">
                                 <option selected></option>
                                 <?php foreach ($all_estoque as $values): ?>
-                                    <option value="<?= $values->id_estoque ?>"><?= str_replace("-", " ", $values->produto_e) ?></option>
-                                <?php endforeach; ?>
+                                    <option value="<?=$values->id_estoque?>"><?=str_replace("-", " ", $values->produto_e)?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
                             <label class="font-weight-normal">Quantidade</label>
                             <div class="input-group">
                                 <input type="number" class="form-control"
-                                       id="qtdesolicitada" name="quantidade_solicitada" required onkeyup="validacao();">
+                                       id="qtdesolicitada" name="quantidade_solicitada" required disabled onkeyup="validacao();">
                             </div>
                         </div>
                         <div class="form-group col-md-2">
@@ -103,7 +103,7 @@ $view_estoque->verProdDiversos();
     </div>
     <!-- /.content-wrapper -->
 
-    <?php include('../componentes/footer.php'); ?>
+    <?php include '../componentes/footer.php';?>
 </div>
 <!-- ./wrapper -->
 

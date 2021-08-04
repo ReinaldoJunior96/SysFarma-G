@@ -123,17 +123,17 @@
                                 <p>Consumo</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="../relatorio/relatorio-ponto-compra.php" class="nav-link">
+                                <i class="fas fa-parachute-box"></i>
+                                <p>Ponto de Compra</p>
+                            </a>
+                        </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="../../back/response/usuario/destruir-sessao.php" class="nav-link">
-                        <i class="fas fa-power-off nav-icon"></i>
-                        <p>Kits</p>
-                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="../../back/response/usuario/destruir-sessao.php" class="nav-link">
+                    <a href="../../back/model/usuario/destruir-sessao.php" class="nav-link">
                         <i class="fas fa-power-off nav-icon"></i>
                         <p>Sair</p>
                     </a>

@@ -1,15 +1,19 @@
 // Variable to hold request
 var request;
+var qtdeSolicitada = document.getElementById('qtdesolicitada')
+var inEstoque = document.getElementById('estoque')
 // Bind to the submit event of our form
 $("#insertSaida").submit(function (event) {
 
     // Prevent default posting of form - put here to work in case of errors
     event.preventDefault();
 
+
     // Abort any pending request
     if (request) {
         request.abort();
     }
+
     // setup some local variables
     var $form = $(this);
 
@@ -24,9 +28,10 @@ $("#insertSaida").submit(function (event) {
     // Disabled form elements will not be serialized.
     $inputs.prop("disabled", true);
 
+
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/saida-setor/registrar-saida-back.php",
+        url: "../../back/model/saida-setor/registrar-saida-back.php",
         type: "post",
         data: serializedData
     });
@@ -34,10 +39,10 @@ $("#insertSaida").submit(function (event) {
     // Callback handler that will be called on success
     request.done(function (response, textStatus, jqXHR) {
         // Log a message to the console
-        console.log("Hooray, it worked!");
+        console.log(response);
         Swal.fire(
             'Sucesso!',
-            'Operação realizada',
+            'Operação realiada!',
             'success'
         ).then((result) => {
             if (result.isConfirmed) {
@@ -45,6 +50,8 @@ $("#insertSaida").submit(function (event) {
                     this.reset();
                     $('#produtoid').prop('selectedIndex', 0)
                 });
+                qtdeSolicitada.setAttribute("disabled", "");
+                inEstoque.setAttribute("disabled", "");
 
             }
         })

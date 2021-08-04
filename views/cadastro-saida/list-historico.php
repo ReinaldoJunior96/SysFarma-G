@@ -100,7 +100,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                         <td class="text-center"><a
                                                     href=registrar-devolucao.php?idsaida=<?= $v->id_saida ?>><i
                                                         class="fas fa-exchange-alt text-teal"></i></a></td>
-                                        <?php echo "<td class='text-center'><a href=../../back/response/saida-setor/delete-saida.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "&usuario=" . $_SESSION['usuario'] . "><i class='fas fa-backspace text-danger'></i></a></td>" ?>
+                                        <?php echo "<td class='text-center'><a href=../../back/model/saida-setor/delete-saida.php?idsaida=" . $v->id_saida . "&prod=" . $v->item_s . "&qtde=" . $v->quantidade_s . "&usuario=" . $_SESSION['usuario'] . "><i class='fas fa-backspace text-danger'></i></a></td>" ?>
 
                                     </tr>
                                 <?php } ?>

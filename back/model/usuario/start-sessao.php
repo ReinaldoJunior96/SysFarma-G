@@ -1,6 +1,9 @@
 <?php
 include '../../controllers/UsuarioController.php';
 $attLogin = new UsuarioController();
+//$dados = $attLogin->login($_POST['usuario'],$_POST['password']);
+//$decodeJson = json_decode($dados);
+//var_dump($decodeJson);
 if($attLogin->login($_POST['usuario'],$_POST['password']) == 1){
     session_cache_expire(1440);
     session_start();
@@ -15,6 +18,7 @@ if($attLogin->login($_POST['usuario'],$_POST['password']) == 1){
 }else{
     header("location: ../../../views/usuario/login.php");
 }
+
 
 
 

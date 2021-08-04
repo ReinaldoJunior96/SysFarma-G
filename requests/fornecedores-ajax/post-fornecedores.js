@@ -26,7 +26,7 @@ $("#fornecedorform").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/fornecedores/post-fornecedor.php",
+        url: "../../back/model/fornecedores/post-fornecedor.php",
         type: "post",
         data: serializedData
     });

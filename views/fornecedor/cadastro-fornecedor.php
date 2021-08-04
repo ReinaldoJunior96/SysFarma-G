@@ -114,7 +114,7 @@ if ($_SESSION['usuario'] == null || $_SESSION['password'] == null) {
                                                     class='fas fa-pen fa-1x color-icon-nf text-green'></i></a>
                                     </td>
                                     <td class="text-center"><a
-                                                href="../../back/response/fornecedores/delete-fornecedor.php?idfornecedor=<?=$v->id_fornecedor?>"
+                                                href="../../back/model/fornecedores/delete-fornecedor.php?idfornecedor=<?=$v->id_fornecedor?>"
                                         <i class="fas fa-window-close text-danger"></i></a>
                                     </td>
                                 </tr>

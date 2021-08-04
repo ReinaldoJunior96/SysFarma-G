@@ -54,6 +54,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                     </div>
                 </form>
                 <hr>
+
                 <!-- /.card -->
 
                 <div class="" id="tabela" style="display: none">
@@ -75,7 +76,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                                 <tr>
                                     <td class="font-weight-lighter"><?= str_replace("-", " ", $v->setor_s) ?></td>
                                     <td class="text-center">
-                                        <a href="../../back/response/setor/delete-setor.php?setor=<?= $v->id_setor ?>">
+                                        <a href="../../back/model/setor/delete-setor.php?setor=<?= $v->id_setor ?>">
                                             <i class="fas fa-window-close text-danger"></i>
                                         </a>
                                     </td>

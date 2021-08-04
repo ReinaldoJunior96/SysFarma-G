@@ -26,7 +26,7 @@ $("#setorform").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/setor/post-setor.php",
+        url: "../../back/model/setor/post-setor.php",
         type: "post",
         data: serializedData
     });

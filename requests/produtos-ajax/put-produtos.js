@@ -26,7 +26,7 @@ $("#estoqueform").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../../back/response/estoque/estoque_r.php",
+        url: "../../../back/model/estoque/estoque_r.php",
         type: "post",
         data: serializedData
     });

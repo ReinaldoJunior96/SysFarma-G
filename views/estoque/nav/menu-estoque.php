@@ -131,7 +131,7 @@
 
 
                 <li class="nav-item">
-                    <a href="../../../back/response/usuario/destruir-sessao.php" class="nav-link">
+                    <a href="../../../back/model/usuario/destruir-sessao.php" class="nav-link">
                         <i class="fas fa-power-off nav-icon"></i>
                         <p>Sair</p>
                     </a>

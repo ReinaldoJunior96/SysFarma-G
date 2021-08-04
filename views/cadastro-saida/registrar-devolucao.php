@@ -60,7 +60,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                 <!-- /.card-header -->
                 <!-- form start -->
 
-                <form role="form" method="post" action="../../back/response/saida-setor/post-devolucao.php">
+                <form role="form" method="post" action="../../back/model/saida-setor/post-devolucao.php">
                     <?php
                     require_once('../../back/controllers/EstoqueController.php');
                     $d = new EstoqueController();

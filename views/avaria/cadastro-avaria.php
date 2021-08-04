@@ -59,7 +59,7 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                 <div class="card-header">
                     <h3 class="card-title"><i class="fas fa-dumpster-fire nav-icon"></i> Avaria & Vencidos </h3>
                 </div>
-                <form role="form" id="avariaform" method="POST" action="../../back/response/avaria/post-avaria.php">
+                <form role="form" id="avariaform" method="POST" action="../../back/model/avaria/post-avaria.php">
                     <input type="hidden" value="<?= $_SESSION['usuario'] ?>" name="usuario">
                     <div class="card-body">
                         <div class="form-group col-md-12 mx-auto">
@@ -137,7 +137,7 @@ function text_limiter_caracter($str, $limit, $suffix = '...')
                                 <td class="font-weight-lighter"><?= $v->vencimento_avaria ?></td>
                                 <td class="font-weight-lighter"><?= text_limiter_caracter($v->obs_avaria, 30) ?></td>
                                 <td class="text-center"><a
-                                            href=../../back/response/avaria/delete-avaria.php?usuario=<?= $_SESSION['usuario'] ?>&avaria=<?= $v->id_avaria ?>><i
+                                            href=../../back/model/avaria/delete-avaria.php?usuario=<?= $v->id_avaria ?>><i
                                                 class="fas fa-minus-circle text-danger"></i></a></td>
                             </tr>
                         <?php } ?>

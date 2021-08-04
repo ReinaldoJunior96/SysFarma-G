@@ -1,11 +1,14 @@
 function getInEstoque() {
     var y = document.getElementById("produtoid");
     var p = document.getElementById("estoque");
-    var dados = $.getJSON("../../back/response/ordem-compra/request-ajax-response/buscar-produto.php?produtoid=" + y.value, function (dados) {
+
+
+    var dados = $.getJSON("../../back/model/ordem-compra/request-ajax-response/buscar-produto.php?produtoid=" + y.value, function (dados) {
         console.log("success");
         $.each(dados, function (i, obj) {
             p.value = obj.quantidade_e;
-            if(parseInt(obj.quantidade_e) <= parseInt(obj.estoque_minimo_e)){
+            document.getElementById('qtdesolicitada').removeAttribute('disabled');
+            /*if(parseInt(obj.quantidade_e) <= parseInt(obj.estoque_minimo_e)){
                 p.classList.add('bg-red')
                 Swal.fire(
                     'Atenção!',
@@ -14,7 +17,7 @@ function getInEstoque() {
                 )
             }else{
                 p.classList.remove('bg-red')
-            }
+            }*/
         })
     })
         .done(function () {

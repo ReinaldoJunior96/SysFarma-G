@@ -78,7 +78,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                 </div>
                 <hr>
                 <div class="p-3">
-                    <form method="POST" action="../../back/response/notaf/post-vencimento-parcela.php">
+                    <form method="POST" action="../../back/model/notaf/post-vencimento-parcela.php">
                         <input type="hidden" name="new" value="1">
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-2 col-form-label font-weight-normal">Data de vencimento</label>
@@ -110,7 +110,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                             ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center text-olive">
                                 <?= date_format($data, "d/m/Y") ?>
-                                <a href="../../back/response/notaf/delete-parcelas-vencimento.php?idv=<?= $value->id ?>">
+                                <a href="../../back/model/notaf/delete-parcelas-vencimento.php?idv=<?= $value->id ?>">
                                     <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
                                 </a>
                             </li>

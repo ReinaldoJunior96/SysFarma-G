@@ -51,7 +51,7 @@ if ($_SESSION['usuario'] == null || $_SESSION['password'] == null) {
                     <!-- form start -->
 
                     <!--<form role="form" id="cadastro-anatomo" method="post" enctype="multipart/form-data">-->
-                    <form role="form" method="post" action="../../../back/response/exame/anatomopatologia/post-exame.php" enctype="multipart/form-data">
+                    <form role="form" method="post" action="../../../back/model/exame/anatomopatologia/post-exame.php" enctype="multipart/form-data">
                         <input type="hidden" name="usuario" value="<?=$_SESSION['usuario']?>">
                         <div class="card-body">
                             <div class="row">

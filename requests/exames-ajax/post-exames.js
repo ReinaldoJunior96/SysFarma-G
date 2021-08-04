@@ -26,7 +26,7 @@ $("#cadastro-anatomo").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../../back/response/exame/anatomopatologia/post-exame.php",
+        url: "../../../back/model/exame/anatomopatologia/post-exame.php",
         type: "post",
         data: serializedData
     });

@@ -88,7 +88,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                         if ($attNota >= 1) {
                             $text = "Adicione a quantidade comprada ao estoque";
                             $class = "";
-                            $link = "../../back/response/ordem-compra/import-prod-estoque.php?idnf=" . $_GET['idnf'];
+                            $link = "../../back/model/ordem-compra/import-prod-estoque.php?idnf=" . $_GET['idnf'];
                         } else {
                             $text = "Quantidade já foi lançada";
                             $class = "disabled";

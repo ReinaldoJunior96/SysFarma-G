@@ -63,6 +63,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                 require_once '../../../back/controllers/EstoqueController.php';
                 $p = new EstoqueController();
                 $produtos = $p->estoqueID($_GET['idp']);
+                var_dump($produtos[0]->quantidade_e);
                 foreach ($produtos as $v) {
                     ?>
                     <div class="card-header">

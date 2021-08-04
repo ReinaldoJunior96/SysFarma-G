@@ -150,7 +150,7 @@ foreach ($nfController->listUniqueNF($idenNF) as $status) {
                     $valorUnCompra = floatval($value->valor_un_c);
                     $somatorio += $valorTotalProduto;
                     ?>
-                    <form method="post" action="../../back/response/ordem-compra/update-prod-compra.php"
+                    <form method="post" action="../../back/model/ordem-compra/update-prod-compra.php"
                           id="alterarproduto">
                         <input type="hidden" value="<?= $value->id_item_compra ?>" name="idcompra">
                         <input type="hidden" value="<?= $value->item_compra ?>" name="idproditem">
@@ -160,7 +160,7 @@ foreach ($nfController->listUniqueNF($idenNF) as $status) {
                             <div class="row mt-1">
                                 <?php if ($statusNF == 0): ?>
                                     <div class="col-md-1">
-                                        <a href=../../back/response/ordem-compra/delete-prod-compra.php?deleteprod=<?= $value->id_item_compra ?>>
+                                        <a href=../../back/model/ordem-compra/delete-prod-compra.php?deleteprod=<?= $value->id_item_compra ?>>
                                             <i class="fas fa-minus-circle text-danger"></i>
                                         </a>
                                     </div>

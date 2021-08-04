@@ -68,7 +68,7 @@ foreach ($exames as $v) {
                                     <td><?=$v->cod_anatomo?></td>
                                     <td><?=$v->raca_anatomo?></td>
                                     <td><?=$v->data_amostra?></td>
-                                    <td><a href="../../../back/response/exame/anatomopatologia/download-exame-anatomo.php?exame_string=<?=$v->exame_string?>"><i class="fas fa-cloud-download-alt"></i></a></td>
+                                    <td><a href="../../../back/model/exame/anatomopatologia/download-exame-anatomo.php?exame_string=<?=$v->exame_string?>"><i class="fas fa-cloud-download-alt"></i></a></td>
                                 </tr>
                                 <?php }?>
                         </table>

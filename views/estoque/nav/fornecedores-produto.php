@@ -96,7 +96,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                     </li>
                 </ul>
 
-                <form role="form" method="POST" action="../../../back/response/estoque/n_prod_fornecedor.php">
+                <form role="form" method="POST" action="../../../back/model/estoque/n_prod_fornecedor.php">
                     <input type="hidden" value="<?= $_GET['idp'] ?>" name="produto">
                     <div class="card-body">
                         <?php if ($_SESSION['usuario'] == 'compras.hvu' or $_SESSION['usuario'] == 'admin'): ?>
@@ -135,7 +135,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                             ?>
                             <li class="list-group-item d-flex justify-content-between align-items-center text-olive">
                                 <?= $value->nome_fornecedor ?>
-                                <a href="../../../back/response/estoque/d_fornecedor_prod.php?idpf=<?= $value->idfp ?>">
+                                <a href="../../../back/model/estoque/d_fornecedor_prod.php?idpf=<?= $value->idfp ?>">
                                     <span class="badge badge-pill far fa-window-close text-danger float-right"> </span>
                                 </a>
                             </li>

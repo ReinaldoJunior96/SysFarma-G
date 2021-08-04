@@ -1,12 +1,12 @@
 <?php
-require_once('conexao.php');
+require_once 'conexao.php';
 date_default_timezone_set('America/Sao_Paulo');
 
 class EstoqueController
 {
     public $conn = null;
 
-    function __construct()
+    public function __construct()
     {
         $this->conn = PDOconectar::conectar();
     }
@@ -16,7 +16,7 @@ class EstoqueController
         try {
             $this->conn->beginTransaction();
             $queryInsert = /** @lang text */
-                "INSERT INTO tbl_estoque(principio_ativo,produto_e,quantidade_e,valor_un_e,estoque_minimo_e,apresentacao,concentracao,forma_farmaceutica,tipo) 
+                "INSERT INTO tbl_estoque(principio_ativo,produto_e,quantidade_e,valor_un_e,estoque_minimo_e,apresentacao,concentracao,forma_farmaceutica,tipo)
 			VALUES (:principio_ativo,:produto_e,:quantidade_e,:valor_un_e,:estoque_minimo_e,:apresentacao,:concentracao,:forma_farmaceutica,:tipo)";
             $insertValues = $this->conn->prepare($queryInsert);
             $insertValues->bindValue(':principio_ativo', $produto['p_ativo']);
@@ -52,7 +52,7 @@ class EstoqueController
                 $qtdeAntigaEdit = $v->quantidade_e;
             }
             $queryUpdate = /** @lang text */
-                "UPDATE tbl_estoque SET 
+                "UPDATE tbl_estoque SET
             principio_ativo=:principio_ativo,
 			produto_e=:produto_e,
 			quantidade_e=:quantidade_e,
@@ -84,7 +84,7 @@ class EstoqueController
                         'quantidade' => ($produto['quantidade'] >= $qtdeAntigaEdit) ? $produto['quantidade'] - $qtdeAntigaEdit : $qtdeAntigaEdit - $produto['quantidade'],
                         'estoquefi' => $produto['quantidade'],
                         'cancelada' => ' ',
-                        'usuario' => $produto['usuario']
+                        'usuario' => $produto['usuario'],
                     );
                     self::transacaoRegistro($transacao);
                 }
@@ -140,7 +140,7 @@ class EstoqueController
         }
     }
 
-    public function estoqueID($id)
+    public function estoqueID($id): array
     {
         try {
             $queryBuscaProduto = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$id'");
@@ -150,7 +150,6 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro ao listar produtos!!\")</script>";
         }
     }
-
 
     public function destroyProduto($id)
     {
@@ -181,7 +180,7 @@ class EstoqueController
     {
         try {
             $buscarLote = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque
-                INNER JOIN tbl_nf_lotes ON tbl_estoque.id_estoque = tbl_nf_lotes.id_prod                
+                INNER JOIN tbl_nf_lotes ON tbl_estoque.id_estoque = tbl_nf_lotes.id_prod
                 WHERE tbl_nf_lotes.id_prod='$idprod'
                 ORDER BY tbl_nf_lotes.validade DESC");
             $buscarLote->execute();
@@ -214,7 +213,7 @@ class EstoqueController
     {
         try {
             $search = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_fornecedores
-                INNER JOIN tbl_prod_fornecedor ON tbl_fornecedores.id_fornecedor = tbl_prod_fornecedor.idfornecedor               
+                INNER JOIN tbl_prod_fornecedor ON tbl_fornecedores.id_fornecedor = tbl_prod_fornecedor.idfornecedor
                 WHERE tbl_prod_fornecedor.idproduto='$prod'
                 ORDER BY tbl_fornecedores.nome_fornecedor ASC");
             $search->execute();
@@ -239,7 +238,7 @@ class EstoqueController
         try {
             $this->conn->beginTransaction();
             $transacaoQuery = /** @lang text */
-                "INSERT INTO tbl_transacoes(produto_t, data_t,tipo_t, estoqueini_t,quantidade_t,estoquefi_t,cancelada_t, realizadapor_t) 
+                "INSERT INTO tbl_transacoes(produto_t, data_t,tipo_t, estoqueini_t,quantidade_t,estoquefi_t,cancelada_t, realizadapor_t)
                 VALUES (:produto_t, :data_t,:tipo_t,:estoqueini_t,:quantidade_t,:estoquefi_t,:cancelada_t,:realizadapor_t)";
             $tranSQL = $this->conn->prepare($transacaoQuery);
             $tranSQL->bindValue(':produto_t', $dados['produto']);
@@ -251,9 +250,7 @@ class EstoqueController
             $tranSQL->bindValue(':cancelada_t', $dados['cancelada']);
             $tranSQL->bindValue(':realizadapor_t', $dados['usuario']);
             $tranSQL->execute();
-            if ($tranSQL) {
-                $this->conn->commit();
-            }
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
         }
@@ -262,7 +259,7 @@ class EstoqueController
     public function searchTransacoes($prod)
     {
         try {
-            $search = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_transacoes           
+            $search = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_transacoes
                 WHERE produto_t='$prod' ORDER BY data_t DESC");
             $search->execute();
             return $search->fetchAll(PDO::FETCH_OBJ);
@@ -275,7 +272,7 @@ class EstoqueController
     {
         try {
             $historicoSaida = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
-				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque 
+				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
 				ORDER BY tbl_saida.id_saida DESC LIMIT 0,2500");
             $historicoSaida->execute();
             return $historicoSaida->fetchAll(PDO::FETCH_OBJ);
@@ -288,7 +285,7 @@ class EstoqueController
     {
         try {
             $historicoSaida = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
-				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque 
+				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
 				WHERE setor_s = '$setor'
 				ORDER BY tbl_saida.id_saida DESC LIMIT 0,2500");
             $historicoSaida->execute();
@@ -325,7 +322,7 @@ class EstoqueController
                 'quantidade' => $qtde,
                 'estoquefi' => $qtdeA + $qtde,
                 'cancelada' => 'Sim',
-                'usuario' => $user
+                'usuario' => $user,
             );
             self::transacaoRegistro($transacao);
         } catch (PDOException $erro) {
@@ -338,7 +335,7 @@ class EstoqueController
     {
         try {
             $historicoSaida = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
-				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque 
+				INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
 				WHERE tbl_saida.id_saida = '$id'");
             $historicoSaida->execute();
             return $historicoSaida->fetchAll(PDO::FETCH_OBJ);
@@ -346,7 +343,6 @@ class EstoqueController
             echo "<script language=\"javascript\">alert(\"Erro ao listar historico\")</script>";
         }
     }
-
 
     public function registrarDevolucao($request)
     {
@@ -421,7 +417,6 @@ class EstoqueController
                 header("location: ../../../views/cadastro-saida/list-historico.php?status=ok");
             }
 
-
         } catch (PDOException $erro) {
             $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro ao alterar produto!!\")</script>";
@@ -434,7 +429,7 @@ class EstoqueController
             $this->conn->beginTransaction();
             $idproduto = $produto['idp'];
             $queryUpdateProduto = /** @lang text */
-                "UPDATE tbl_estoque SET 
+                "UPDATE tbl_estoque SET
             principio_ativo=:principio_ativo,
 			produto_e=:produto_e,
 			quantidade_e=:quantidade_e,
@@ -477,7 +472,6 @@ class EstoqueController
         return $quantidadeSaida;
     }
 
-
     public function rconsumo($setor, $dataI, $dataF, $idproduto): array
     {
         try {
@@ -485,19 +479,18 @@ class EstoqueController
 
             if ($setor == 'todos'):
                 $querySearchRelatorio = $this->conn->prepare(/** @lang text */ "SELECT SUM(quantidade_s) as somatorio,produto_e FROM tbl_saida
-            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
-            WHERE item_s='$idproduto' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
+												            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
+												            WHERE item_s='$idproduto' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
             else:
                 $querySearchRelatorio = $this->conn->prepare(/** @lang text */ "SELECT SUM(quantidade_s) as somatorio,produto_e FROM tbl_saida
-            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
-            WHERE item_s='$idproduto' AND setor_s='$setor' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
+												            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
+												            WHERE item_s='$idproduto' AND setor_s='$setor' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
             endif;
             $querySearchRelatorio->execute();
             return $querySearchRelatorio->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
         }
     }
-
 
     /* relatório de consumo */
     public function relatorioConsumo($setor, $dataI, $dataF, $idproduto)
@@ -506,12 +499,12 @@ class EstoqueController
             $querySearchRelatorio = "";
             if ($setor == 'todos'):
                 $querySearchRelatorio = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
-            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
-            WHERE item_s='$idproduto' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
+												            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
+												            WHERE item_s='$idproduto' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
             else:
                 $querySearchRelatorio = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_saida
-            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
-            WHERE item_s='$idproduto' AND setor_s='$setor' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
+												            INNER JOIN tbl_estoque ON tbl_saida.item_s = tbl_estoque.id_estoque
+												            WHERE item_s='$idproduto' AND setor_s='$setor' AND data_dia_s BETWEEN '$dataI' AND '$dataF' ORDER BY tbl_estoque.produto_e ASC");
             endif;
             $querySearchRelatorio->execute();
             return $querySearchRelatorio->fetchAll(PDO::FETCH_OBJ);
@@ -520,11 +513,10 @@ class EstoqueController
         }
     }
 
-
     /**
      *
      */
-    public function inseirSaida($dadosSaida)
+    public function inserirSaida($dadosSaida)
     {
         try {
             $this->conn->beginTransaction();
@@ -537,107 +529,58 @@ class EstoqueController
             $sql->bindValue(':data_s', $dadosSaida['data']);
             $sql->bindValue(':data_dia_s', $dadosSaida['data']);
             $sql->execute();
-            if ($sql) {
-                $this->conn->commit();
-                $qtdeInicial = self::verificarQuantidade($dadosSaida['produto'], $dadosSaida['quantidade'], 1);
-                $data = new DateTime('NOW');
-                $transacaoInsert = array(
-                    'produto' => $dadosSaida['produto'],
-                    'data' => date_format($data, "Y-m-d H:i:s"),
-                    'tipo' => 'Saída',
-                    'estoqueini' => $qtdeInicial,
-                    'quantidade' => $dadosSaida['quantidade'],
-                    'estoquefi' => $qtdeInicial - $dadosSaida['quantidade'],
-                    'cancelada' => ' ',
-                    'usuario' => $dadosSaida['usuario']
-                );
-                self::removeQuantidadeSaida($dadosSaida['produto'], $qtdeInicial - $dadosSaida['quantidade']);
-                $this->transacaoRegistro($transacaoInsert);
-            }
+
+            $produtoSearch = self::estoqueID($dadosSaida['produto']);
+            $produtoIDSaida = $dadosSaida['produto'];
+            $queryQuantidadeSQL = /** @lang text */
+                "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produtoIDSaida'";
+            $alterarQtde = $this->conn->prepare($queryQuantidadeSQL);
+            $alterarQtde->bindValue(':quantidade', $produtoSearch[0]->quantidade_e - $dadosSaida['quantidade']);
+            $alterarQtde->execute();
+
+            $data = new DateTime('NOW');
+            $transacaoQuery = /** @lang text */
+                "INSERT INTO tbl_transacoes(produto_t, data_t,tipo_t, estoqueini_t,quantidade_t,estoquefi_t,cancelada_t, realizadapor_t)
+                VALUES (:produto_t, :data_t,:tipo_t,:estoqueini_t,:quantidade_t,:estoquefi_t,:cancelada_t,:realizadapor_t)";
+            $tranSQL = $this->conn->prepare($transacaoQuery);
+            $tranSQL->bindValue(':produto_t', $dadosSaida['produto']);
+            $tranSQL->bindValue(':data_t', date_format($data, "Y-m-d H:i:s"));
+            $tranSQL->bindValue(':tipo_t', 'Saída');
+            $tranSQL->bindValue(':estoqueini_t', $produtoSearch[0]->quantidade_e);
+            $tranSQL->bindValue(':quantidade_t', $dadosSaida['quantidade']);
+            $tranSQL->bindValue(':estoquefi_t', $produtoSearch[0]->quantidade_e - $dadosSaida['quantidade']);
+            $tranSQL->bindValue(':cancelada_t', ' ');
+            $tranSQL->bindValue(':realizadapor_t', $dadosSaida['usuario']);
+            $tranSQL->execute();
+
+            $this->conn->commit();
+
         } catch (PDOException $erro) {
             $this->conn->rollBack();
         }
     }
 
-    public function verificarQuantidade($produto, $quantidade, $aux)
-    {
-        $verificacao = null;
-        $inEstoque = null;
-        $buscarProduto = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque=$produto");
-        $buscarProduto->execute();
-        $resultado = $buscarProduto->fetchAll(PDO::FETCH_OBJ);
-        foreach ($resultado as $p):
-            $inEstoque = $p->quantidade_e;
-        endforeach;
-        if ($inEstoque < $quantidade):
-            $verificacao = 1;
-        endif;
-        return ($aux == 0) ? $verificacao : $inEstoque;
-    }
-
-    public function removeQuantidadeSaida($produto, $quantidade)
+    public function relatorioPontoCompra(): array
     {
         try {
-            $this->conn->beginTransaction();
-            $alteraQuantidadeSQL = /** @lang text * */
-                "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
-            $fazer_alteracao = $this->conn->prepare($alteraQuantidadeSQL);
-            $fazer_alteracao->bindValue(':quantidade', $quantidade);
-            $fazer_alteracao->execute();
-            if ($fazer_alteracao) {
-                $this->conn->commit();
-            }
-        } catch
-        (PDOException $erro) {
-            $this->conn->rollBack();
+            $produtosPontoCompra = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque
+                WHERE quantidade_e <= estoque_minimo_e ORDER BY tbl_estoque.produto_e ASC");
+            $produtosPontoCompra->execute();
+            return $produtosPontoCompra->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro ao listar produto\")</script>";
         }
     }
 
-
-    public function registrarSaida($saida)
+    public function controleVencimento(): array
     {
-        /* Array para armazenamento de produtos com quantidade de cadastro-saida maior que o estoque*/
-        $produtosErro = array();
-        for ($i = 0; $i < count($saida['produto']); $i++):
-            /* O valor 0 passado no metodo é para auxiliar e retorna apenas se  quantidade é menor ou maior*/
-            $verificacaoQtde = self::verificarQuantidade($saida['produto'][$i], $saida['quantidade'][$i], 0);
-            if ($verificacaoQtde == 1):
-                array_push($produtosErro, $saida['produto'][$i]);
-            elseif ($verificacaoQtde == 0):
-                $arrayTemp = array(
-                    'produto' => $saida['produto'][$i],
-                    'quantidade' => $saida['quantidade'][$i],
-                    'setores' => $saida['setores'],
-                    'data' => $saida['data'],
-                );
-                $insertSaida = self::inseirSaida($arrayTemp);
-                if ($insertSaida == 'success'):
-                    /* O valor 1 passado no metodo é para auxiliar e retorna apenas a quantidade em estoque*/
-                    $quantidadeInEstoque = self::verificarQuantidade($saida['produto'][$i], $saida['quantidade'][$i], 1);
-                    $altetaEstqoue = self::removeQuantidadeSaida($saida['produto'][$i], $quantidadeInEstoque - $saida['quantidade'][$i]);
-                    if ($altetaEstqoue == "success"):
-                        /* transacao */
-                        date_default_timezone_set('America/Sao_Paulo');
-                        $arrayTempTransacao = array(
-                            'produto' => $saida['produto'][$i],
-                            'data' => date("Y-m-d H:i:s"),
-                            'tipo' => 'Saída',
-                            'estoqueini' => $quantidadeInEstoque,
-                            'quantidade' => $saida['quantidade'][$i],
-                            'estoquefi' => $quantidadeInEstoque - $saida['quantidade'][$i],
-                            'cancelada' => ' ',
-                            'usuario' => $saida['usuario']
-                        );
-                        $transacao = new EstoqueController();
-                        $transacao->transacaoRegistro($arrayTempTransacao);
-                    endif;
-                endif;
-            endif;
-        endfor;
-        return $produtosErro;
+        try {
+            $medicamentosVencidos = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_nf_lotes
+            INNER JOIN tbl_estoque ON tbl_nf_lotes.id_prod = tbl_estoque.id_estoque WHERE tbl_estoque.tipo = 0 ORDER BY tbl_nf_lotes.validade ASC");
+            $medicamentosVencidos->execute();
+            return $medicamentosVencidos->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+        }
     }
-
-
-    /* /Combo de registro de saída */
 
 }

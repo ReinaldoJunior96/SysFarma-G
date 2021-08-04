@@ -26,7 +26,7 @@ $("#cadatrar-prod-compra").submit(function (event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "../../back/response/ordem-compra/post-prod-compra.php",
+        url: "../../back/model/ordem-compra/post-prod-compra.php",
         type: "post",
         data: serializedData
     });

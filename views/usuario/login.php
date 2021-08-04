@@ -6,17 +6,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="shortcut icon" href="../../dist/img/logo-single.png" type="image/x-icon">
     <title>g-stock</title>
-
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-
     <link rel="stylesheet" href="../../dist/css/mycss.css">
 </head>
 <body class="hold-transition login-page roboto-condensed">
 <div class="login-box">
-
     <!-- /.login-logo -->
     <div class="card">
         <div class="login-logo p-3">
@@ -24,7 +21,7 @@
                  style="opacity: .8">
         </div>
         <div class="card-body login-card-body">
-            <form method="post" action="../../back/response/usuario/start-sessao.php">
+            <form method="post" action="../../back/model/usuario/start-sessao.php">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Usuário" name="usuario">
                     <div class="input-group-append">
@@ -53,12 +50,10 @@
             </form>
         </div>
         <!-- /.login-card-body -->
-
     </div>
-    <div class="text-left"  style="opacity: .5">
+    <div class="text-left" style="opacity: .5">
         <p><img src="../../dist/img/logo-single.png" width="20" class="brand-image">Reinaldo Junior</p>
     </div>
-
 </div>
 <!-- /.login-box -->
 <!-- jQuery -->
@@ -67,6 +62,5 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
-
 </body>
 </html>

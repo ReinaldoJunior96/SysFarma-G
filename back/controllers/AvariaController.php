@@ -150,4 +150,13 @@ class AvariaController
         }
         return $status;
     }
+    public function verificaAvaria($lote): int
+    {
+        $querySelect = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_avaria WHERE lote_avaria='$lote'");
+        $querySelect->execute();
+        return $querySelect->rowCount();
+    }
+
+
+
 }

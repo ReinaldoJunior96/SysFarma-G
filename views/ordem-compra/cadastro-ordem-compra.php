@@ -61,7 +61,7 @@ switch ($_SESSION['usuario']) {
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="post" action="../../back/response/ordem-compra/post-ordem-compra.php">
+                <form role="form" method="post" action="../../back/model/ordem-compra/post-ordem-compra.php">
                     <div class="card-body">
                         <div class="form-group col-md-12">
                             <label class="font-weight-normal">Fornecedor</label>
@@ -131,7 +131,7 @@ switch ($_SESSION['usuario']) {
                                             href="adicionar-produtos.php?idordem=<?= $v->id_ordem ?>"><?= $v->nome_f ?></a></td>
                                 <td class=""><?= date("d/m/Y H:i:s", strtotime($v->data_c)) ?></td>
 
-                                <td><a href="../../back/response/ordem-compra/delete-ordem-compra.php?idordem=<?= $v->id_ordem ?>"><i
+                                <td><a href="../../back/model/ordem-compra/delete-ordem-compra.php?idordem=<?= $v->id_ordem ?>"><i
                                                 class='fas fa-trash text-danger'></i></a></td>
                             </tr>
                         <?php } ?>
