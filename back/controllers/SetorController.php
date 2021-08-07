@@ -13,6 +13,7 @@ class SetorController
     public function listSetores(): array
     {
         $indexSetores = null;
+
         try {
             $querySelect = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_setores ORDER BY setor_s ASC");
             $querySelect->execute();
@@ -25,32 +26,38 @@ class SetorController
 
     public function storeSetor($setor)
     {
-        $setor_replace = str_replace(" ", "-", $setor);
         try {
+            $updateNameSetor = str_replace(" ", "-", $setor);
             $this->conn->beginTransaction();
-            $query_Sql = /** @lang text */
+            $insertSetorQuery = /** @lang text */
                 "INSERT INTO tbl_setores(setor_s) VALUES (:setor_s)";
-            $sql = $this->conn->prepare($query_Sql);
-            $sql->bindValue(':setor_s', $setor_replace);
-            $sql->execute();
-            if ($sql) {
-                $this->conn->commit();
-            }
+            $sqlExecute = $this->conn->prepare($insertSetorQuery);
+            $sqlExecute->bindValue(':setor_s', $updateNameSetor);
+            $sqlExecute->execute();
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
-    public function deleteSetor($id)
+    public function deleteSetor($id): int
     {
-        $erro = 0;
+        $erroAux = 0;
         try {
-            $query_Sql = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_setores WHERE id_setor=$id");
-            $query_Sql->execute();
-            $erro = ($query_Sql) ? 0 : 1;
+            $this->conn->beginTransaction();
+
+            $deleteSetorQuery = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_setores WHERE id_setor=$id");
+            $deleteSetorQuery->execute();
+
+            $this->conn->commit();
+
+            $erroAux = ($this->conn->commit()) ? 0 : 1;
+
         } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
-        return $erro;
+        return $erroAux;
     }
 }

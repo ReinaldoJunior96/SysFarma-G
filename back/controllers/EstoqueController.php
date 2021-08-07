@@ -15,24 +15,22 @@ class EstoqueController
     {
         try {
             $this->conn->beginTransaction();
-            $queryInsert = /** @lang text */
+            $inserirProdutoQuery = /** @lang text */
                 "INSERT INTO tbl_estoque(principio_ativo,produto_e,quantidade_e,valor_un_e,estoque_minimo_e,apresentacao,concentracao,forma_farmaceutica,tipo)
 			VALUES (:principio_ativo,:produto_e,:quantidade_e,:valor_un_e,:estoque_minimo_e,:apresentacao,:concentracao,:forma_farmaceutica,:tipo)";
-            $insertValues = $this->conn->prepare($queryInsert);
-            $insertValues->bindValue(':principio_ativo', $produto['p_ativo']);
-            $insertValues->bindValue(':produto_e', $produto['produto']);
-            $insertValues->bindValue(':quantidade_e', $produto['quantidade']);
-            $insertValues->bindValue(':valor_un_e', $produto['valor']);
-            $insertValues->bindValue(':estoque_minimo_e', $produto['estoque_minimo_e']);
-            $insertValues->bindValue(':apresentacao', $produto['apresentacao']);
-            $insertValues->bindValue(':concentracao', $produto['concentracao']);
-            $insertValues->bindValue(':forma_farmaceutica', $produto['forma_farmaceutica']);
-            $insertValues->bindValue(':tipo', $produto['tipo']);
-            $insertValues->execute();
-            if ($insertValues) {
-                $this->conn->commit();
-                echo "<script language=\"javascript\">window.history.back();</script>";
-            }
+            $executeInserirProd = $this->conn->prepare($inserirProdutoQuery);
+            $executeInserirProd->bindValue(':principio_ativo', $produto['p_ativo']);
+            $executeInserirProd->bindValue(':produto_e', $produto['produto']);
+            $executeInserirProd->bindValue(':quantidade_e', $produto['quantidade']);
+            $executeInserirProd->bindValue(':valor_un_e', $produto['valor']);
+            $executeInserirProd->bindValue(':estoque_minimo_e', $produto['estoque_minimo_e']);
+            $executeInserirProd->bindValue(':apresentacao', $produto['apresentacao']);
+            $executeInserirProd->bindValue(':concentracao', $produto['concentracao']);
+            $executeInserirProd->bindValue(':forma_farmaceutica', $produto['forma_farmaceutica']);
+            $executeInserirProd->bindValue(':tipo', $produto['tipo']);
+            $executeInserirProd->execute();
+            $this->conn->commit();
+            echo "<script language=\"javascript\">window.history.back();</script>";
         } catch (PDOException $erro) {
             $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro ao cadastrar produto!!\")</script>";
@@ -43,15 +41,15 @@ class EstoqueController
     public function editProduto($produto, $id)
     {
         try {
-            $qtdeAntigaEdit = 0;
+            $varAuxEdit = 0;
+
             $this->conn->beginTransaction();
-            $buscarQtdeAntiga = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$id'");
-            $buscarQtdeAntiga->execute();
-            $queryResult = $buscarQtdeAntiga->fetchAll(PDO::FETCH_OBJ);
-            foreach ($queryResult as $v) {
-                $qtdeAntigaEdit = $v->quantidade_e;
-            }
-            $queryUpdate = /** @lang text */
+            $buscarProdutoQuery = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$id'");
+            $buscarProdutoQuery->execute();
+            $produtoResult = $buscarProdutoQuery->fetchAll(PDO::FETCH_OBJ);
+            $varAuxEdit = $produtoResult[0]->quantidade_e;
+
+            $updateProdutoQuery = /** @lang text */
                 "UPDATE tbl_estoque SET
             principio_ativo=:principio_ativo,
 			produto_e=:produto_e,
@@ -62,46 +60,43 @@ class EstoqueController
 			concentracao=:concentracao,
 			forma_farmaceutica=:forma_farmaceutica
 			WHERE id_estoque='$id'";
-            $newValue = $this->conn->prepare($queryUpdate);
-            $newValue->bindValue(':principio_ativo', $produto['p_ativo']);
-            $newValue->bindValue(':produto_e', $produto['produto']);
-            $newValue->bindValue(':quantidade_e', $produto['quantidade']);
-            $newValue->bindValue(':valor_un_e', $produto['valor']);
-            $newValue->bindValue(':estoque_minimo_e', $produto['estoque_minimo_e']);
-            $newValue->bindValue(':apresentacao', $produto['apresentacao']);
-            $newValue->bindValue(':concentracao', $produto['concentracao']);
-            $newValue->bindValue(':forma_farmaceutica', $produto['forma_farmaceutica']);
-            $newValue->execute();
-            if ($newValue) {
-                $this->conn->commit();
-                if ($qtdeAntigaEdit != $produto['quantidade']) {
-                    date_default_timezone_set('America/Sao_Paulo');
-                    $transacao = array(
-                        'produto' => $id,
-                        'data' => date("Y-m-d H:i:s"),
-                        'tipo' => 'Ajuste de Estoque',
-                        'estoqueini' => $qtdeAntigaEdit,
-                        'quantidade' => ($produto['quantidade'] >= $qtdeAntigaEdit) ? $produto['quantidade'] - $qtdeAntigaEdit : $qtdeAntigaEdit - $produto['quantidade'],
-                        'estoquefi' => $produto['quantidade'],
-                        'cancelada' => ' ',
-                        'usuario' => $produto['usuario'],
-                    );
-                    self::transacaoRegistro($transacao);
-                }
-                echo "<script language=\"javascript\">window.history.back();</script>";
+
+            $executeUpdateProd = $this->conn->prepare($updateProdutoQuery);
+            $executeUpdateProd->bindValue(':principio_ativo', $produto['p_ativo']);
+            $executeUpdateProd->bindValue(':produto_e', $produto['produto']);
+            $executeUpdateProd->bindValue(':quantidade_e', $produto['quantidade']);
+            $executeUpdateProd->bindValue(':valor_un_e', $produto['valor']);
+            $executeUpdateProd->bindValue(':estoque_minimo_e', $produto['estoque_minimo_e']);
+            $executeUpdateProd->bindValue(':apresentacao', $produto['apresentacao']);
+            $executeUpdateProd->bindValue(':concentracao', $produto['concentracao']);
+            $executeUpdateProd->bindValue(':forma_farmaceutica', $produto['forma_farmaceutica']);
+            $executeUpdateProd->execute();
+
+            if ($varAuxEdit != $produto['quantidade']) {
+                $transacao = array(
+                    'produto' => $id,
+                    'data' => date("Y-m-d H:i:s"),
+                    'tipo' => 'Ajuste de Estoque',
+                    'estoqueini' => $varAuxEdit,
+                    'quantidade' => ($produto['quantidade'] >= $varAuxEdit) ? $produto['quantidade'] - $varAuxEdit : $varAuxEdit - $produto['quantidade'],
+                    'estoquefi' => $produto['quantidade'],
+                    'cancelada' => ' ',
+                    'usuario' => $produto['usuario'],
+                );
+                self::transacaoRegistro($transacao);
             }
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
-            echo "<script language=\"javascript\">alert(\"Erro ao alterar produto!!\")</script>";
         }
     }
 
     public function verEstoqueTotal()
     {
         try {
-            $queryBuscaEstoque = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE produto_e!=''");
-            $queryBuscaEstoque->execute();
-            return $queryBuscaEstoque->fetchAll(PDO::FETCH_OBJ);
+            $buscarEstoqueQuery = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE produto_e!=''");
+            $buscarEstoqueQuery->execute();
+            return $buscarEstoqueQuery->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $erro) {
             echo "<script language=\"javascript\">alert(\"Erro ao listar produtos!!\")</script>";
         }
@@ -154,9 +149,12 @@ class EstoqueController
     public function destroyProduto($id)
     {
         try {
+            $this->conn->beginTransaction();
             $deleteProduto = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_estoque WHERE id_estoque='$id'");
             $deleteProduto->execute();
+            $this->conn->commit();
         } catch (PDOException $erro) {
+            $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro ao excluir produto!!\")</script>";
         }
     }
@@ -200,9 +198,7 @@ class EstoqueController
             $insertValues->bindValue(':idfornecedor', $fornecedor);
             $insertValues->bindValue(':idproduto', $produto);
             $insertValues->execute();
-            if ($insertValues) {
-                $this->conn->commit();
-            }
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
@@ -226,35 +222,16 @@ class EstoqueController
     public function removeFornecedorProd($id)
     {
         try {
+            $this->conn->beginTransaction();
             $deleteFornecedor = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_prod_fornecedor WHERE idfp='$id'");
             $deleteFornecedor->execute();
+            $this->conn->commit();
         } catch (PDOException $erro) {
+            $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro ao remover produto \")</script>";
         }
     }
 
-    public function transacaoRegistro($dados)
-    {
-        try {
-            $this->conn->beginTransaction();
-            $transacaoQuery = /** @lang text */
-                "INSERT INTO tbl_transacoes(produto_t, data_t,tipo_t, estoqueini_t,quantidade_t,estoquefi_t,cancelada_t, realizadapor_t)
-                VALUES (:produto_t, :data_t,:tipo_t,:estoqueini_t,:quantidade_t,:estoquefi_t,:cancelada_t,:realizadapor_t)";
-            $tranSQL = $this->conn->prepare($transacaoQuery);
-            $tranSQL->bindValue(':produto_t', $dados['produto']);
-            $tranSQL->bindValue(':data_t', $dados['data']);
-            $tranSQL->bindValue(':tipo_t', $dados['tipo']);
-            $tranSQL->bindValue(':estoqueini_t', $dados['estoqueini']);
-            $tranSQL->bindValue(':quantidade_t', $dados['quantidade']);
-            $tranSQL->bindValue(':estoquefi_t', $dados['estoquefi']);
-            $tranSQL->bindValue(':cancelada_t', $dados['cancelada']);
-            $tranSQL->bindValue(':realizadapor_t', $dados['usuario']);
-            $tranSQL->execute();
-            $this->conn->commit();
-        } catch (PDOException $erro) {
-            $this->conn->rollBack();
-        }
-    }
 
     public function searchTransacoes($prod)
     {
@@ -298,22 +275,23 @@ class EstoqueController
     public function cancelarSaida($id, $prod, $qtde, $user)
     {
         try {
+
             $qtdeA = 0;
-            $buscarProd = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque=$prod");
-            $buscarProd->execute();
-            $queryResult = $buscarProd->fetchAll(PDO::FETCH_OBJ);
-            foreach ($queryResult as $p) {
-                $qtdeA = $p->quantidade_e;
-            }
+
+            $produtoInEstoque = self::estoqueID($prod);
+            $qtdeA = $produtoInEstoque[0]->quantidade_e;
+
+            $this->conn->beginTransaction();
+
             $queryEdit = /** @lang text */
                 "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$prod'";
             $voltarQtde = $this->conn->prepare($queryEdit);
             $voltarQtde->bindValue(':quantidade', $qtdeA + $qtde);
             $voltarQtde->execute();
+
             $deleteSaida = $this->conn->prepare(/** @lang text */ "DELETE FROM tbl_saida WHERE id_saida='$id'");
             $deleteSaida->execute();
 
-            date_default_timezone_set('America/Sao_Paulo');
             $transacao = array(
                 'produto' => $prod,
                 'data' => date("Y-m-d H:i:s"),
@@ -325,9 +303,12 @@ class EstoqueController
                 'usuario' => $user,
             );
             self::transacaoRegistro($transacao);
-        } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
 
+            $this->conn->commit();
+
+        } catch (PDOException $erro) {
+            $this->conn->rollBack();
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
 
@@ -400,23 +381,23 @@ class EstoqueController
                 $newValue->bindValue(':data_s', $request['datas']);
                 $newValue->bindValue(':data_dia_s', $request['datadiasaida']);
                 $newValue->execute();
-                if ($newValue) {
-                    $this->conn->commit();
-                    date_default_timezone_set('America/Sao_Paulo');
-                    $transacao = array(
-                        'produto' => $request['itemsaida'],
-                        'data' => date("Y-m-d H:i:s"),
-                        'tipo' => 'Devolução',
-                        'estoqueini' => $quantidadeInicial,
-                        'quantidade' => $request['quantidadedevolvida'],
-                        'estoquefi' => $quantidadeInicial + $request['quantidadedevolvida'],
-                        'cancelada' => ' ',
-                        'usuario' => $request['usuario']);
-                    self::transacaoRegistro($transacao);
-                }
+
+                $transacao = array(
+                    'produto' => $request['itemsaida'],
+                    'data' => date("Y-m-d H:i:s"),
+                    'tipo' => 'Devolução',
+                    'estoqueini' => $quantidadeInicial,
+                    'quantidade' => $request['quantidadedevolvida'],
+                    'estoquefi' => $quantidadeInicial + $request['quantidadedevolvida'],
+                    'cancelada' => ' ',
+                    'usuario' => $request['usuario']);
+
+                self::transacaoRegistro($transacao);
+
+                $this->conn->commit();
+
                 header("location: ../../../views/cadastro-saida/list-historico.php?status=ok");
             }
-
         } catch (PDOException $erro) {
             $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro ao alterar produto!!\")</script>";
@@ -451,9 +432,7 @@ class EstoqueController
             $newValue->bindValue(':forma_farmaceutica', $produto['formaf']);
             $newValue->bindValue(':tipo', $produto['tipo']);
             $newValue->execute();
-            if ($newValue) {
-                $this->conn->commit();
-            }
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
         }
@@ -513,9 +492,6 @@ class EstoqueController
         }
     }
 
-    /**
-     *
-     */
     public function inserirSaida($dadosSaida)
     {
         try {
@@ -538,20 +514,17 @@ class EstoqueController
             $alterarQtde->bindValue(':quantidade', $produtoSearch[0]->quantidade_e - $dadosSaida['quantidade']);
             $alterarQtde->execute();
 
-            $data = new DateTime('NOW');
-            $transacaoQuery = /** @lang text */
-                "INSERT INTO tbl_transacoes(produto_t, data_t,tipo_t, estoqueini_t,quantidade_t,estoquefi_t,cancelada_t, realizadapor_t)
-                VALUES (:produto_t, :data_t,:tipo_t,:estoqueini_t,:quantidade_t,:estoquefi_t,:cancelada_t,:realizadapor_t)";
-            $tranSQL = $this->conn->prepare($transacaoQuery);
-            $tranSQL->bindValue(':produto_t', $dadosSaida['produto']);
-            $tranSQL->bindValue(':data_t', date_format($data, "Y-m-d H:i:s"));
-            $tranSQL->bindValue(':tipo_t', 'Saída');
-            $tranSQL->bindValue(':estoqueini_t', $produtoSearch[0]->quantidade_e);
-            $tranSQL->bindValue(':quantidade_t', $dadosSaida['quantidade']);
-            $tranSQL->bindValue(':estoquefi_t', $produtoSearch[0]->quantidade_e - $dadosSaida['quantidade']);
-            $tranSQL->bindValue(':cancelada_t', ' ');
-            $tranSQL->bindValue(':realizadapor_t', $dadosSaida['usuario']);
-            $tranSQL->execute();
+            $transacao = array(
+                'produto' => $dadosSaida['produto'],
+                'data' => date("Y-m-d H:i:s"),
+                'tipo' => 'Saída',
+                'estoqueini' => $produtoSearch[0]->quantidade_e,
+                'quantidade' => $dadosSaida['quantidade'],
+                'estoquefi' => $produtoSearch[0]->quantidade_e - $dadosSaida['quantidade'],
+                'cancelada' => ' ',
+                'usuario' => $dadosSaida['usuario'],
+            );
+            self::transacaoRegistro($transacao);
 
             $this->conn->commit();
 
@@ -583,4 +556,21 @@ class EstoqueController
         }
     }
 
+
+    public function transacaoRegistro($dados)
+    {
+        $transacaoQuery = /** @lang text */
+            "INSERT INTO tbl_transacoes(produto_t, data_t,tipo_t, estoqueini_t,quantidade_t,estoquefi_t,cancelada_t, realizadapor_t)
+                VALUES (:produto_t, :data_t,:tipo_t,:estoqueini_t,:quantidade_t,:estoquefi_t,:cancelada_t,:realizadapor_t)";
+        $tranSQL = $this->conn->prepare($transacaoQuery);
+        $tranSQL->bindValue(':produto_t', $dados['produto']);
+        $tranSQL->bindValue(':data_t', $dados['data']);
+        $tranSQL->bindValue(':tipo_t', $dados['tipo']);
+        $tranSQL->bindValue(':estoqueini_t', $dados['estoqueini']);
+        $tranSQL->bindValue(':quantidade_t', $dados['quantidade']);
+        $tranSQL->bindValue(':estoquefi_t', $dados['estoquefi']);
+        $tranSQL->bindValue(':cancelada_t', $dados['cancelada']);
+        $tranSQL->bindValue(':realizadapor_t', $dados['usuario']);
+        $tranSQL->execute();
+    }
 }

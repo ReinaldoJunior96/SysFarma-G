@@ -1,7 +1,8 @@
 <?php
 require_once('../../controllers/NotaFiscalController.php');
 $importDados = new NotaFiscalController();
-$importDados->lancarQtdeNFinEstoque($_GET['idnf']);
-header("location: ../../../views/nota-fiscal/edit-nf-view.php?idnf=" . $_GET['idnf'] . "&status=success");
+$result = ($importDados->lancarQtdeNFinEstoque($_GET['idnf']) == true)? "success" : "fail" ;
+
+header("location: ../../../views/nota-fiscal/edit-nf-view.php?idnf=" . $_GET['idnf'] . "&status=$result");
 //echo "<script language=\"javascript\">window.history.back();</script>";
 ?>

@@ -15,117 +15,101 @@ class CompraController
         $this->estoqueClass = new EstoqueController();
         $this->data = new DateTime('NOW');
     }
-
     public function storeOC($forcenedor, $infoNE)
     {
         try {
             $this->conn->beginTransaction();
-            $cadOrdemSQL = /** @lang text */
-            "INSERT INTO tbl_nf(numero_nf,fornecedor,nota_entrega) VALUES (:numero_nf,:fornecedor,:nota_entrega)";
-            $queryExecute = $this->conn->prepare($cadOrdemSQL);
-            $queryExecute->bindValue(':numero_nf', 'temp' . rand(0, 99999));
-            $queryExecute->bindValue(':fornecedor', $forcenedor);
-            $queryExecute->bindValue(':nota_entrega', $infoNE);
-            $queryExecute->execute();
+            $queryCadastroNF = /** @lang text */
+                "INSERT INTO tbl_nf(numero_nf,fornecedor,nota_entrega) VALUES (:numero_nf,:fornecedor,:nota_entrega)";
+            $executeCadastroNF = $this->conn->prepare($queryCadastroNF);
+            $executeCadastroNF->bindValue(':numero_nf', 'temp' . rand(0, 99999));
+            $executeCadastroNF->bindValue(':fornecedor', $forcenedor);
+            $executeCadastroNF->bindValue(':nota_entrega', $infoNE);
+            $executeCadastroNF->execute();
             $lastID = $this->conn->lastInsertId();
-            if ($queryExecute) {
-                $this->conn->commit();
-                self::storeNFTemp($forcenedor, $this->data->format('Y-m-d H:i:s'), $lastID);
-            }
 
+            $queryCadastroOrdem = /** @lang text */
+                "INSERT INTO tbl_ordem_compra(nome_f,data_c,id_fk_nf) VALUES (:nome_f,:data_c,:id_fk_nf)";
+            $cadastroOrdemExecute = $this->conn->prepare($queryCadastroOrdem);
+            $cadastroOrdemExecute->bindValue(':nome_f', $forcenedor);
+            $cadastroOrdemExecute->bindValue(':data_c', $this->data->format('Y-m-d H:i:s'));
+            $cadastroOrdemExecute->bindValue(':id_fk_nf', $lastID);
+            $cadastroOrdemExecute->execute();
+            $this->conn->commit();
+            //self::storeNFTemp($forcenedor, $this->data->format('Y-m-d H:i:s'), $lastID);
         } catch (PDOException $erro) {
             $this->conn->rollBack();
         }
     }
-
-    public function storeNFTemp($forcenedor, $data, $lastID)
-    {
-        try {
-            $this->conn->beginTransaction();
-            $querySql = /** @lang text */
-            "INSERT INTO tbl_ordem_compra(nome_f,data_c,id_fk_nf) VALUES (:nome_f,:data_c,:id_fk_nf)";
-            $sql = $this->conn->prepare($querySql);
-            $sql->bindValue(':nome_f', $forcenedor);
-            $sql->bindValue(':data_c', $data);
-            $sql->bindValue(':id_fk_nf', $lastID);
-            $sql->execute();
-            if ($sql) {
-                $this->conn->commit();
-            }
-        } catch (PDOException $erro) {
-            $this->conn->rollBack();
-        }
-    }
-
     public function deleteOC($id)
     {
         try {
-            $search = self::listUniqueOC($id);
-            $idNF = $search[0]->id_fk_nf;
-            $deleteNF = $this->conn->prepare(/** @lang text */"DELETE FROM  tbl_nf WHERE id_nf='$idNF' AND status_nf='0'");
-            $deleteNF->execute();
-            $delete_ordem = $this->conn->prepare(/** @lang text */"DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
-            $delete_ordem->execute();
-            $deleteProdOrdem = $this->conn->prepare(/** @lang text */"DELETE FROM  tbl_items_compra WHERE ordem_compra_id='$id'");
-            $deleteProdOrdem->execute();
+            $this->conn->beginTransaction();
+            $buscarOC = self::listUniqueOC($id);
+            $notaFiscalID = $buscarOC[0]->id_fk_nf;
+            $notaFiscalQuery = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_nf WHERE id_nf='$notaFiscalID' AND status_nf='0'");
+            $notaFiscalQuery->execute();
+            $ordemCompraQuery = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_ordem_compra WHERE id_ordem='$id'");
+            $ordemCompraQuery->execute();
+            $prodOrdemQuery = $this->conn->prepare(/** @lang text */ "DELETE FROM  tbl_items_compra WHERE ordem_compra_id='$id'");
+            $prodOrdemQuery->execute();
+            $this->conn->commit();
         } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+            $this->conn->rollBack();
         }
     }
-
     public function adicionarPOC($produto, $ordemCompra, $qtdeCompra, $valorUn)
     {
         try {
             $this->conn->beginTransaction();
-            $query_Sql = /** @lang text */
-            "INSERT INTO tbl_items_compra(item_compra,ordem_compra_id,qtde_compra,valor_un_c) VALUES (:item_compra,:ordem_compra_id,:qtde_compra,:valor_un_c)";
-            $sql = $this->conn->prepare($query_Sql);
-            $sql->bindValue(':item_compra', $produto);
-            $sql->bindValue(':ordem_compra_id', $ordemCompra);
-            $sql->bindValue(':qtde_compra', $qtdeCompra);
-            $sql->bindValue(':valor_un_c', $valorUn);
-            $sql->execute();
-            $query_update = /** @lang text */
-            "UPDATE tbl_estoque SET  valor_un_e=:valor_un_e WHERE id_estoque='$produto'";
-            $editar_prod = $this->conn->prepare($query_update);
-            $editar_prod->bindValue(':valor_un_e', $valorUn);
-            $editar_prod->execute();
-            if ($sql) {
-                $this->conn->commit();
-            }
+            $adicionarProdOCQuery = /** @lang text */
+                "INSERT INTO tbl_items_compra(item_compra,ordem_compra_id,qtde_compra,valor_un_c) VALUES (:item_compra,:ordem_compra_id,:qtde_compra,:valor_un_c)";
+            $executeAddProdOCQuery = $this->conn->prepare($adicionarProdOCQuery);
+            $executeAddProdOCQuery->bindValue(':item_compra', $produto);
+            $executeAddProdOCQuery->bindValue(':ordem_compra_id', $ordemCompra);
+            $executeAddProdOCQuery->bindValue(':qtde_compra', $qtdeCompra);
+            $executeAddProdOCQuery->bindValue(':valor_un_c', $valorUn);
+            $executeAddProdOCQuery->execute();
+
+            $updateValueEstoqueQuery = /** @lang text */
+                "UPDATE tbl_estoque SET  valor_un_e=:valor_un_e WHERE id_estoque='$produto'";
+            $executeUpdateValueEstoqueQuery = $this->conn->prepare($updateValueEstoqueQuery);
+            $executeUpdateValueEstoqueQuery->bindValue(':valor_un_e', $valorUn);
+            $executeUpdateValueEstoqueQuery->execute();
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
-
     public function deletePOC($id)
     {
         try {
-            $deleteProd = $this->conn->prepare(/** @lang text */"DELETE FROM tbl_items_compra WHERE id_item_compra='$id'");
-            $deleteProd->execute();
+            $this->conn->beginTransaction();
+            $deleteProdOCQuery = $this->conn->prepare(/** @lang text */
+                "DELETE FROM tbl_items_compra WHERE id_item_compra='$id'");
+            $deleteProdOCQuery->execute();
+            $this->conn->commit();
         } catch (PDOException $erro) {
+            $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
-
     public function listOC(): array
     {
-        $ver = $this->conn->prepare(/** @lang text */"SELECT * FROM tbl_ordem_compra");
-        $ver->execute();
-        return $ver->fetchAll(PDO::FETCH_OBJ);
+        $listOCAll = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra");
+        $listOCAll->execute();
+        return $listOCAll->fetchAll(PDO::FETCH_OBJ);
     }
-
     public function listUniqueOC($id): array
     {
-        $ver = $this->conn->prepare(/** @lang text */"SELECT * FROM tbl_ordem_compra WHERE id_ordem='$id'");
-        $ver->execute();
-        return $ver->fetchAll(PDO::FETCH_OBJ);
+        $listUniqueOCQuery = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra WHERE id_ordem='$id'");
+        $listUniqueOCQuery->execute();
+        return $listUniqueOCQuery->fetchAll(PDO::FETCH_OBJ);
     }
-
     public function listOCwithEstoque($idOrdem): array
     {
-        $selectQuery = $this->conn->prepare(/** @lang text */"SELECT * FROM tbl_ordem_compra
+        $selectQuery = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_ordem_compra
 		INNER JOIN tbl_items_compra
 		ON tbl_ordem_compra.id_ordem = tbl_items_compra.ordem_compra_id
 		INNER JOIN tbl_estoque
@@ -134,27 +118,16 @@ class CompraController
         $selectQuery->execute();
         return $selectQuery->fetchAll(PDO::FETCH_OBJ);
     }
-
-    public function updateItemOC($iditemcompra, $produto, $qtde, $idordem, $valoruni)
+    public function updateItemOC($iditemcompra, $qtde)
     {
         try {
             $this->conn->beginTransaction();
             $queryUpdate = /** @lang text */
-            "UPDATE tbl_items_compra SET
-            item_compra=:item_compra,
-			ordem_compra_id=:ordem_compra_id,
-			qtde_compra=:qtde_compra,
-			valor_un_c=:valor_un_c
-			WHERE id_item_compra='$iditemcompra'";
-            $newValue = $this->conn->prepare($queryUpdate);
-            $newValue->bindValue('item_compra', $produto);
-            $newValue->bindValue(':ordem_compra_id', $idordem);
-            $newValue->bindValue(':qtde_compra', $qtde);
-            $newValue->bindValue(':valor_un_c', $valoruni);
-            $newValue->execute();
-            if ($newValue) {
-                $this->conn->commit();
-            }
+                "UPDATE tbl_items_compra SET qtde_compra=:qtde_compra WHERE id_item_compra='$iditemcompra'";
+            $executeUpdateQtde = $this->conn->prepare($queryUpdate);
+            $executeUpdateQtde->bindValue(':qtde_compra', $qtde);
+            $executeUpdateQtde->execute();
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";

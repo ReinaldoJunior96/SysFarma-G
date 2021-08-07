@@ -186,7 +186,7 @@ if ($_SESSION['usuario'] == NULL || $_SESSION['password'] == NULL) {
                         </div>
                     <?php elseif (isset($_GET['status']) && $_GET['status'] == 'fail'): ?>
                         <div class="alert alert-danger alert-dismissible fade show w-25" role="alert">
-                            <strong>Erro!</strong> Erro ao realizar operação.
+                            <strong>Erro!</strong> Quantidade não foi lançada.
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

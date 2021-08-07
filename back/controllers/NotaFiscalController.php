@@ -26,14 +26,11 @@ class NotaFiscalController
             $sql->bindValue(':valor_nf', $nf['valor']);
             $sql->bindValue(':obs_nf', $nf['obs']);
             $sql->execute();
-            if ($sql) {
-                $this->conn->commit();
-            }
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
         }
     }
-
     public function deleteNF($id)
     {
         try {
@@ -54,7 +51,6 @@ class NotaFiscalController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
-
     public function listUniqueNF($id): array
     {
         $notas = null;
@@ -67,7 +63,6 @@ class NotaFiscalController
         }
         return $notas;
     }
-
     public function updateNF($nf, $id)
     {
         try {
@@ -97,15 +92,11 @@ class NotaFiscalController
             $editar_nf->bindValue(':obs_nf', $nf['obs']);
             $editar_nf->bindValue(':nota_entrega', $nf['nota_entrega']);
             $editar_nf->execute();
-            if ($editar_nf) {
-                $this->conn->commit();
-            }
+            $this->conn->commit();
         } catch (PDOException $erro) {
             $this->conn->rollBack();
         }
     }
-
-
     public function verificarStatusNF($idnf): int
     {
         $verificar = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
@@ -117,65 +108,60 @@ class NotaFiscalController
         $verificar->execute();
         return $verificar->rowCount();
     }
-
     public function lancarQtdeNFinEstoque($idnf)
-    {
-        $importOrdem = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
-        INNER JOIN tbl_ordem_compra
-        ON tbl_items_compra.ordem_compra_id = tbl_ordem_compra.id_ordem
-        INNER JOIN tbl_nf
-        on tbl_ordem_compra.id_fk_nf = tbl_nf.id_nf
-        WHERE tbl_ordem_compra.id_fk_nf = '$idnf' AND tbl_nf.status_nf = 0");
-        $importOrdem->execute();
-        $dados = $importOrdem->fetchAll(PDO::FETCH_OBJ);
-        foreach ($dados as $v) {
-            $produto = array(
-                'produto' => $v->item_compra,
-                'quantidade' => $v->qtde_compra,
-                'lote' => "",
-                'validade' => "",
-                'nota-fiscal' => $idnf
-            );
-            self::storeProdNF($produto);
-        }
-        self::updateStatusNF($idnf);
-    }
-
-    public function storeProdNF($produto_nf)
     {
         try {
             $this->conn->beginTransaction();
-            $query_Sql = /** @lang text */
-                "INSERT INTO tbl_itens_nf(item_nf,qtde_nf,lote_e,validade_prod_nf,id_nf) 
-                VALUES (:item_nf,:qtde_nf,:lote_e,:valiadde_prod_nf,:id_nf)";
-            $sql = $this->conn->prepare($query_Sql);
-            $sql->bindValue(':item_nf', $produto_nf['produto']);
-            $sql->bindValue(':qtde_nf', $produto_nf['quantidade']);
-            $sql->bindValue(':lote_e', $produto_nf['lote']);
-            $sql->bindValue(':valiadde_prod_nf', $produto_nf['validade']);
-            $sql->bindValue(':id_nf', $produto_nf['nota-fiscal']);
-            $sql->execute();
-            $produto = $produto_nf['produto'];
-            $qtde_antiga_sql = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
-            $qtde_antiga_sql->execute();
-            $query_result = $qtde_antiga_sql->fetchAll(PDO::FETCH_OBJ);
-            $qtde_nova = 0;
-            $qtde_antiga = 0;
-            foreach ($query_result as $v) {
-                $qtde_antiga = $v->quantidade_e;
-                $qtde_nova = $qtde_antiga + $produto_nf['quantidade'];
-            }
-            $alterar_estoque = /** @lang text */
-                "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
-            $fazer_alteracao = $this->conn->prepare($alterar_estoque);
-            $fazer_alteracao->bindValue(':quantidade', $qtde_nova);
-            $fazer_alteracao->execute();
+            /* Busca a ordem */
+            $importOrdem = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
+            INNER JOIN tbl_ordem_compra
+            ON tbl_items_compra.ordem_compra_id = tbl_ordem_compra.id_ordem
+            INNER JOIN tbl_nf
+            on tbl_ordem_compra.id_fk_nf = tbl_nf.id_nf
+            WHERE tbl_ordem_compra.id_fk_nf = '$idnf' AND tbl_nf.status_nf = 0");
+            $importOrdem->execute();
 
-            if ($fazer_alteracao) {
-                $this->conn->commit();
-                /* transacao */
-                date_default_timezone_set('America/Sao_Paulo');
-                $hora = new DateTime();
+            /* pega os produtos desta ordem encontrada */
+            $dados = $importOrdem->fetchAll(PDO::FETCH_OBJ);
+            /* percorre pelos produtos inserindo na tabela dos itens da nf */
+            foreach ($dados as $v) {
+                $produto_nf = array(
+                    'produto' => $v->item_compra,
+                    'quantidade' => $v->qtde_compra,
+                    'lote' => "",
+                    'validade' => "",
+                    'nota-fiscal' => $idnf
+                );
+                $query_Sql = /** @lang text */
+                    "INSERT INTO tbl_itens_nf(item_nf,qtde_nf,lote_e,validade_prod_nf,id_nf) 
+                VALUES (:item_nf,:qtde_nf,:lote_e,:valiadde_prod_nf,:id_nf)";
+                $sql = $this->conn->prepare($query_Sql);
+                $sql->bindValue(':item_nf', $produto_nf['produto']);
+                $sql->bindValue(':qtde_nf', $produto_nf['quantidade']);
+                $sql->bindValue(':lote_e', $produto_nf['lote']);
+                $sql->bindValue(':valiadde_prod_nf', $produto_nf['validade']);
+                $sql->bindValue(':id_nf', $produto_nf['nota-fiscal']);
+                $sql->execute();
+
+                $produto = $produto_nf['produto'];
+                $qtde_antiga_sql = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_estoque WHERE id_estoque='$produto'");
+                $qtde_antiga_sql->execute();
+                $query_result = $qtde_antiga_sql->fetchAll(PDO::FETCH_OBJ);
+
+                $qtde_nova = 0;
+                $qtde_antiga = 0;
+
+                foreach ($query_result as $v) {
+                    $qtde_antiga = $v->quantidade_e;
+                    $qtde_nova = $qtde_antiga + $produto_nf['quantidade'];
+                }
+
+                $alterar_estoque = /** @lang text */
+                    "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
+                $fazer_alteracao = $this->conn->prepare($alterar_estoque);
+                $fazer_alteracao->bindValue(':quantidade', $qtde_nova);
+                $fazer_alteracao->execute();
+
                 $transacao = array(
                     'produto' => $produto_nf['produto'],
                     'data' => date("Y-m-d H:i:s"),
@@ -187,15 +173,34 @@ class NotaFiscalController
                     'usuario' => 'compras.hvu'
                 );
 
-                $registrarTransaocao = new EstoqueController();
-                $registrarTransaocao->transacaoRegistro($transacao);
+                $transacaoQ = /** @lang text */
+                    "INSERT INTO tbl_transacoes(produto_t, data_t,tipo_t, estoqueini_t,quantidade_t,estoquefi_t,cancelada_t, realizadapor_t)
+                VALUES (:produto_t, :data_t,:tipo_t,:estoqueini_t,:quantidade_t,:estoquefi_t,:cancelada_t,:realizadapor_t)";
+                $tranSQL = $this->conn->prepare($transacaoQ);
+                $tranSQL->bindValue(':produto_t', $transacao['produto']);
+                $tranSQL->bindValue(':data_t', $transacao['data']);
+                $tranSQL->bindValue(':tipo_t', $transacao['tipo']);
+                $tranSQL->bindValue(':estoqueini_t', $transacao['estoqueini']);
+                $tranSQL->bindValue(':quantidade_t', $transacao['quantidade']);
+                $tranSQL->bindValue(':estoquefi_t', $transacao['estoquefi']);
+                $tranSQL->bindValue(':cancelada_t', $transacao['cancelada']);
+                $tranSQL->bindValue(':realizadapor_t', $transacao['usuario']);
+                $tranSQL->execute();
 
             }
+            $query = /** @lang text */
+                "UPDATE tbl_nf SET 
+			status_nf=:status_nf
+			WHERE id_nf='$idnf'";
+            $editar_nf = $this->conn->prepare($query);
+            $editar_nf->bindValue(':status_nf', 1);
+            $editar_nf->execute();
+            return (bool)($this->conn->commit());
+
         } catch (PDOException $erro) {
             $this->conn->rollBack();
         }
     }
-
     public function deleteProdNF($id, $item_estoque, $qtde_nf)
     {
         try {
@@ -225,26 +230,6 @@ class NotaFiscalController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
-
-    public function updateStatusNF($idnf)
-    {
-        try {
-            $this->conn->beginTransaction();
-            $query = /** @lang text */
-                "UPDATE tbl_nf SET 
-			status_nf=:status_nf
-			WHERE id_nf='$idnf'";
-            $editar_nf = $this->conn->prepare($query);
-            $editar_nf->bindValue(':status_nf', 1);
-            $editar_nf->execute();
-            if ($editar_nf) {
-                $this->conn->commit();
-            }
-        } catch (PDOException $erro) {
-            $this->conn->rollBack();
-        }
-    }
-
     public function listProdNF($nf): array
     {
         $produtosNF = null;
@@ -259,8 +244,6 @@ class NotaFiscalController
         }
         return $produtosNF;
     }
-
-
     public function updateProdNF($produto, $idprod)
     {
         try {
@@ -282,7 +265,6 @@ class NotaFiscalController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
-
     public function storeVencimentoNF($data)
     {
         try {
@@ -301,7 +283,6 @@ class NotaFiscalController
             $this->conn->rollBack();
         }
     }
-
     public function listVencimento($id): array
     {
         $vencimento = null;
@@ -313,7 +294,6 @@ class NotaFiscalController
         }
         return $vencimento;
     }
-
     public function deleteVencimento($id)
     {
         try {
@@ -322,7 +302,6 @@ class NotaFiscalController
         } catch (PDOException $erro) {
         }
     }
-
     public function storeLoteProdNF($produto)
     {
         try {
@@ -343,7 +322,6 @@ class NotaFiscalController
             $this->conn->rollBack();
         }
     }
-
     public function deleteLoteProdNF($id)
     {
 
@@ -353,7 +331,6 @@ class NotaFiscalController
         } catch (PDOException $erro) {
         }
     }
-
     public function listLote($idnf): array
     {
         $lotes = null;
@@ -367,7 +344,6 @@ class NotaFiscalController
         }
         return $lotes;
     }
-
     public function listNF(): array
     {
         $notas = null;

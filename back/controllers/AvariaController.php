@@ -20,10 +20,17 @@ class AvariaController
     {
         try {
             $statusErro = 0;
+
             /* Se entrar no if é pq a quantidade em estoque é menor que a quantidade de avaria (soliticatada)*/
-            if ($this->estoqueClass->verificarQuantidade($produto['produtoavaria'], $produto['quantidadeavaria'], 0) == 1):
+            $produtoEstoque = $this->estoqueClass->estoqueID($produto['produtoavaria']);
+
+            if ($produtoEstoque[0]->quantidade_e < $produto['quantidadeavaria']):
+
+                #if ($this->estoqueClass->verificarQuantidade($produto['produtoavaria'], $produto['quantidadeavaria'], 0) == 1):
                 $statusErro = 1;
+
             else:
+
                 $this->conn->beginTransaction();
                 $cadastroQuery = /** @lang text * */
                     "INSERT INTO tbl_avaria(produto_avaria,quantidade_avaria,lote_avaria,vencimento_avaria,obs_avaria,data_cadastro) 
@@ -36,42 +43,38 @@ class AvariaController
                 $sql->bindValue(':obs_avaria', $produto['obsavaria']);
                 $sql->bindValue(':data_cadastro', date_format($this->data, 'Y-m-d H:i:s'));
                 $sql->execute();
-                if ($sql) {
-                    $this->conn->commit();
-                    self::deleteQtdeInEstoque($produto['produtoavaria'], $produto['quantidadeavaria'], $produto['usuario']);
-                }
+                $this->conn->commit();
+                self::deleteQtdeInEstoque($produto['produtoavaria'], $produto['quantidadeavaria'], $produto['usuario']);
             endif;
         } catch (PDOException $erro) {
             $this->conn->rollBack();
         }
         return $statusErro;
     }
-
     public function deleteQtdeInEstoque($produto, $quantidade, $user)
     {
         try {
-            $emEstoque = $this->estoqueClass->verificarQuantidade($produto, $quantidade, 1);
+            $produtoEstoque = new EstoqueController();
+            $produtoID = $produtoEstoque->estoqueID(8);
             $this->conn->beginTransaction();
             $alteraQuantidadeSQL = /** @lang text * */
                 "UPDATE tbl_estoque SET quantidade_e=:quantidade WHERE id_estoque='$produto'";
             $queryExecute = $this->conn->prepare($alteraQuantidadeSQL);
-            $queryExecute->bindValue(':quantidade', $emEstoque - $quantidade);
+            $queryExecute->bindValue(':quantidade', $produtoID[0]->quantidade_e - $quantidade);
             $queryExecute->execute();
-            if ($queryExecute) {
-                $this->conn->commit();
-                /* transacao */
-                $arrayTempTransacao = array(
-                    'produto' => $produto,
-                    'data' => date_format($this->data, 'Y-m-d H:i:s'),
-                    'tipo' => 'Avaria/Vencido',
-                    'estoqueini' => $emEstoque,
-                    'quantidade' => $quantidade,
-                    'estoquefi' => $emEstoque - $quantidade,
-                    'cancelada' => ' ',
-                    'usuario' => $user
-                );
-                $this->estoqueClass->transacaoRegistro($arrayTempTransacao);
-            }
+            $this->conn->commit();
+            /* transacao */
+            $arrayTempTransacao = array(
+                'produto' => $produto,
+                'data' => date_format($this->data, 'Y-m-d H:i:s'),
+                'tipo' => 'Avaria/Vencido',
+                'estoqueini' => $produtoID[0]->quantidade_e,
+                'quantidade' => $quantidade,
+                'estoquefi' => $produtoID[0]->quantidade_e - $quantidade,
+                'cancelada' => ' ',
+                'usuario' => $user
+            );
+            $this->estoqueClass->transacaoRegistro($arrayTempTransacao);
         } catch
         (PDOException $erro) {
             $this->conn->rollBack();
@@ -150,13 +153,13 @@ class AvariaController
         }
         return $status;
     }
+
     public function verificaAvaria($lote): int
     {
         $querySelect = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_avaria WHERE lote_avaria='$lote'");
         $querySelect->execute();
         return $querySelect->rowCount();
     }
-
 
 
 }

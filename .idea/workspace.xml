@@ -5,79 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/AvariaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/AvariaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/CompraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/CompraController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/UsuarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/UsuarioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/avaria/delete-avaria.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/avaria/delete-avaria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/avaria/post-avaria.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/avaria/post-avaria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/estoque/d_fornecedor_prod.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/estoque/d_fornecedor_prod.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/estoque/d_produto.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/estoque/d_produto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/estoque/estoque_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/estoque/estoque_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/estoque/n_prod_fornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/estoque/n_prod_fornecedor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/exame/anatomopatologia/download-exame-anatomo.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/exame/anatomopatologia/download-exame-anatomo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/exame/anatomopatologia/post-exame.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/exame/anatomopatologia/post-exame.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/exame/patologia/post-exame-patologia.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/exame/patologia/post-exame-patologia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/exame/upload-exame.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/exame/upload-exame.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/fornecedores/delete-fornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/fornecedores/delete-fornecedor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/fornecedores/post-fornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/fornecedores/post-fornecedor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/delete-lote.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/notaf/delete-lote.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/delete-nota-fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/notaf/delete-nota-fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/delete-parcelas-vencimento.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/notaf/delete-parcelas-vencimento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/delete-prod-nf.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/notaf/delete-prod-nf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/post-lote-produto.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/notaf/post-lote-produto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/post-lote.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/notaf/post-lote.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/post-nota-fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/notaf/post-nota-fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/notaf/post-vencimento-parcela.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/notaf/post-vencimento-parcela.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/ordem-compra/delete-ordem-compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/delete-ordem-compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/ordem-compra/delete-prod-compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/delete-prod-compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/ordem-compra/import-prod-estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/import-prod-estoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/ordem-compra/post-ordem-compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/post-ordem-compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/ordem-compra/post-prod-compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/post-prod-compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/ordem-compra/request-ajax-response/buscar-produto.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/request-ajax-response/buscar-produto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/ordem-compra/update-prod-compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/update-prod-compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/saida-setor/delete-saida.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/saida-setor/delete-saida.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/saida-setor/post-devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/saida-setor/post-devolucao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/saida-setor/post-saida.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/saida-setor/post-saida.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/saida-setor/registrar-saida-back.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/saida-setor/registrar-saida-back.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/setor/delete-setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/setor/delete-setor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/setor/post-setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/setor/post-setor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/usuario/destruir-sessao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/usuario/destruir-sessao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/response/usuario/start-sessao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/usuario/start-sessao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/avaria-ajax/post-avaria-request.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/avaria-ajax/post-avaria-request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/exames-ajax/post-exames.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/exames-ajax/post-exames.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/fornecedores-ajax/post-fornecedores.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/fornecedores-ajax/post-fornecedores.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/nota-fiscal-ajax/post-lote-produto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/nota-fiscal-ajax/post-lote-produto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/nota-fiscal-ajax/put-nota-fiscal.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/nota-fiscal-ajax/put-nota-fiscal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/ordem-compra-ajax/buscar-produtos.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/ordem-compra-ajax/buscar-produtos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/ordem-compra-ajax/cadastrar-produto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/ordem-compra-ajax/cadastrar-produto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/produtos-ajax/post-cadastro-produto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/produtos-ajax/post-cadastro-produto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/produtos-ajax/put-produtos.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/produtos-ajax/put-produtos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/saida-setor-ajax/buscar-produto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/saida-setor-ajax/buscar-produto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/saida-setor-ajax/post-produto.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/saida-setor-ajax/post-produto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requests/setores-ajax/post-setor.js" beforeDir="false" afterPath="$PROJECT_DIR$/requests/setores-ajax/post-setor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/avaria/cadastro-avaria.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/avaria/cadastro-avaria.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cadastro-saida/list-historico.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/list-historico.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cadastro-saida/registrar-devolucao.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/registrar-devolucao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cadastro-saida/registrar-farmacia.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cadastro-saida/registrar-farmacia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/componentes/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/componentes/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/fornecedores-produto.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/fornecedores-produto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/menu-estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/menu-estoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/estoque/nav/transacao-produto.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/transacao-produto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/exame/anatomopatologia/buscar.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/exame/anatomopatologia/buscar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/exame/anatomopatologia/cadastro.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/exame/anatomopatologia/cadastro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/fornecedor/cadastro-fornecedor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/fornecedor/cadastro-fornecedor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/nota-fiscal/cadastro-lote.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/cadastro-lote.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/nota-fiscal/nota-fiscal-list.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/nota-fiscal-list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/nota-fiscal/produtos-nota-fiscal.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/produtos-nota-fiscal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/nota-fiscal/vencimentos-prod-nf.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/vencimentos-prod-nf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem-compra/adicionar-produtos.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem-compra/adicionar-produtos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordem-compra/cadastro-ordem-compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordem-compra/cadastro-ordem-compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/setores/cadastro-setor.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/setores/cadastro-setor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/usuario/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/usuario/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/usuario/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/usuario/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/FornecedorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/FornecedorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/NotaFiscalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/NotaFiscalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/SetorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/SetorController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/controllers/conexao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/conexao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/model/ordem-compra/import-prod-estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/import-prod-estoque.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/model/ordem-compra/update-prod-compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/update-prod-compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/nota-fiscal/edit-nf-view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/edit-nf-view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +55,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="NEW_TOOLWINDOW_STRIPE_DEFAULTS" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -222,6 +161,10 @@
       <workItem from="1627571933338" duration="2154000" />
       <workItem from="1628009124383" duration="6846000" />
       <workItem from="1628040115351" duration="5864000" />
+      <workItem from="1628173491964" duration="126000" />
+      <workItem from="1628173675627" duration="15088000" />
+      <workItem from="1628212209868" duration="1532000" />
+      <workItem from="1628269102977" duration="3414000" />
     </task>
     <servers />
   </component>
@@ -247,10 +190,14 @@
           <url>file://$PROJECT_DIR$/back/model/ordem-compra/update-prod-compra.php</url>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/back/controllers/CompraController.php</url>
-          <line>5</line>
-          <option name="timeStamp" value="4" />
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/back/controllers/EstoqueController.php</url>
+          <line>13</line>
+          <properties>
+            <option name="className" value="\EstoqueController" />
+            <option name="methodName" value="newProduto" />
+          </properties>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
