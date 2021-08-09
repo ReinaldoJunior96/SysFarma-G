@@ -36,6 +36,7 @@ class CompraController
             $cadastroOrdemExecute->bindValue(':id_fk_nf', $lastID);
             $cadastroOrdemExecute->execute();
             $this->conn->commit();
+
             //self::storeNFTemp($forcenedor, $this->data->format('Y-m-d H:i:s'), $lastID);
         } catch (PDOException $erro) {
             $this->conn->rollBack();

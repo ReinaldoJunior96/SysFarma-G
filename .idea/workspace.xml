@@ -6,16 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4b59b5b8-c722-4446-bc67-9859ba07197f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/AvariaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/AvariaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/CompraController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/CompraController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/EstoqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/EstoqueController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/FornecedorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/FornecedorController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/controllers/NotaFiscalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/NotaFiscalController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/SetorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/SetorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/controllers/conexao.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/controllers/conexao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/model/ordem-compra/import-prod-estoque.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/import-prod-estoque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/model/ordem-compra/update-prod-compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/back/model/ordem-compra/update-prod-compra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/nota-fiscal/edit-nf-view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/nota-fiscal/edit-nf-view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/estoque/nav/transacao-produto.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/estoque/nav/transacao-produto.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +159,10 @@
       <workItem from="1628173675627" duration="15088000" />
       <workItem from="1628212209868" duration="1532000" />
       <workItem from="1628269102977" duration="3414000" />
+      <workItem from="1628371465308" duration="148000" />
+      <workItem from="1628459774249" duration="45000" />
+      <workItem from="1628537109955" duration="2045000" />
+      <workItem from="1628550605528" duration="1224000" />
     </task>
     <servers />
   </component>

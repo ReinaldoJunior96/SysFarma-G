@@ -30,6 +30,7 @@ class FornecedorController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function updateFornecedor($fornecedor, $id)
     {
         try {
@@ -55,6 +56,7 @@ class FornecedorController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function deleteFornecedor($id): int
     {
         $auxErro = 0;
@@ -74,6 +76,7 @@ class FornecedorController
         }
         return $auxErro;
     }
+
     public function dadosFornecedor($sqlExecute, $fornecedor)
     {
         $sqlExecute->bindValue(':nome_fornecedor', $fornecedor['nome']);
@@ -108,7 +111,6 @@ class FornecedorController
         }
         return $uniqueFornecedor;
     }
-
 
     public function listProdFornecedores($fornecedor): array
     {

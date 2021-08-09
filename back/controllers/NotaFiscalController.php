@@ -51,18 +51,6 @@ class NotaFiscalController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
-    public function listUniqueNF($id): array
-    {
-        $notas = null;
-        try {
-            $find_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_nf WHERE id_nf='$id'");
-            $find_nf->execute();
-            $notas = $find_nf->fetchAll(PDO::FETCH_OBJ);
-        } catch (PDOException $erro) {
-            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
-        }
-        return $notas;
-    }
     public function updateNF($nf, $id)
     {
         try {
@@ -97,6 +85,20 @@ class NotaFiscalController
             $this->conn->rollBack();
         }
     }
+
+    public function listUniqueNF($id): array
+    {
+        $notas = null;
+        try {
+            $find_nf = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_nf WHERE id_nf='$id'");
+            $find_nf->execute();
+            $notas = $find_nf->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $erro) {
+            echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
+        }
+        return $notas;
+    }
+
     public function verificarStatusNF($idnf): int
     {
         $verificar = $this->conn->prepare(/** @lang text */ "SELECT * FROM tbl_items_compra
@@ -108,6 +110,7 @@ class NotaFiscalController
         $verificar->execute();
         return $verificar->rowCount();
     }
+
     public function lancarQtdeNFinEstoque($idnf)
     {
         try {
@@ -123,6 +126,7 @@ class NotaFiscalController
 
             /* pega os produtos desta ordem encontrada */
             $dados = $importOrdem->fetchAll(PDO::FETCH_OBJ);
+
             /* percorre pelos produtos inserindo na tabela dos itens da nf */
             foreach ($dados as $v) {
                 $produto_nf = array(
@@ -201,6 +205,7 @@ class NotaFiscalController
             $this->conn->rollBack();
         }
     }
+
     public function deleteProdNF($id, $item_estoque, $qtde_nf)
     {
         try {
@@ -230,6 +235,7 @@ class NotaFiscalController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function listProdNF($nf): array
     {
         $produtosNF = null;
@@ -244,6 +250,7 @@ class NotaFiscalController
         }
         return $produtosNF;
     }
+
     public function updateProdNF($produto, $idprod)
     {
         try {
@@ -265,6 +272,7 @@ class NotaFiscalController
             echo "<script language=\"javascript\">alert(\"Erro...\")</script>";
         }
     }
+
     public function storeVencimentoNF($data)
     {
         try {
@@ -283,6 +291,7 @@ class NotaFiscalController
             $this->conn->rollBack();
         }
     }
+
     public function listVencimento($id): array
     {
         $vencimento = null;
@@ -294,6 +303,7 @@ class NotaFiscalController
         }
         return $vencimento;
     }
+
     public function deleteVencimento($id)
     {
         try {
@@ -302,6 +312,7 @@ class NotaFiscalController
         } catch (PDOException $erro) {
         }
     }
+
     public function storeLoteProdNF($produto)
     {
         try {
@@ -322,6 +333,7 @@ class NotaFiscalController
             $this->conn->rollBack();
         }
     }
+
     public function deleteLoteProdNF($id)
     {
 
@@ -331,6 +343,7 @@ class NotaFiscalController
         } catch (PDOException $erro) {
         }
     }
+
     public function listLote($idnf): array
     {
         $lotes = null;
@@ -344,6 +357,7 @@ class NotaFiscalController
         }
         return $lotes;
     }
+
     public function listNF(): array
     {
         $notas = null;
